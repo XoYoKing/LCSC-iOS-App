@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D8E585D7-F37B-46E6-A006-4EB25F207393</string>
+	<key>IDESourceControlProjectName</key>
+	<string>campuslife</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5E2365A383ADCF7EE3B4454A53EE9E3285C5544E</key>
+		<string>https://github.com/JakeWaffle/LCSC-Campus-Life.git</string>
+		<key>70C84376-8680-4FCF-816E-3FA577098E76</key>
+		<string>git://github.com/JakeWaffle/LCSC-Campus-Life.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>campuslife.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5E2365A383ADCF7EE3B4454A53EE9E3285C5544E</key>
+		<string>../..</string>
+		<key>70C84376-8680-4FCF-816E-3FA577098E76</key>
+		<string>../../../LCSC-Campus-Life</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/JakeWaffle/LCSC-Campus-Life.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5E2365A383ADCF7EE3B4454A53EE9E3285C5544E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>70C84376-8680-4FCF-816E-3FA577098E76</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LCSC-Campus-Life</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5E2365A383ADCF7EE3B4454A53EE9E3285C5544E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LCSC-Campus-Life-2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

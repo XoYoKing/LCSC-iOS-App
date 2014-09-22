@@ -1,0 +1,57 @@
+Jake needs to...
+
+BUGGSSSS
+
+1. (done) Add Event View Controller - The start event time and end event time don't need checking if the days are different.
+
+2. (done) Updating an event should send you all the way back to the calendar.
+
+3. (done) After adding or updating an event the calendar should be refreshed.
+
+4. (done) Lock the selection of days on the calendar if the calendar is loading.
+
+5. (done) Smaller circles on iphone storyboard calendar.
+
+6. (done) Days of the week labels on iphone storyboard calendar.
+
+7. Push notification stuff...
+
+8. (done) Updating an event should actually delete the old event.
+
+9. (done) Reposition the labels for the Days of the week for the ipad storyboard.
+
+10. The repeat and repeat until buttons will disappear after a warning alert shows up.
+
+11. (done) The location isn't being saved when events are being added/updated.
+
+12. (done) The repeat until is invalid when the day is less than the start day no matter the month/year.
+
+13. (done) The activity indicator needs repositioned.
+
+14. (done) Add Event button is showing up on the day event view controller for regular user.
+
+15. (done) (apart of #14) Nevena got authorized for two calendars (athletics, campus rec.)
+
+16. (done) Update Event won't delete old events.
+
+17. (done) The delete event method isn't intuitive. Put a button at the bottom of the event detail page.
+
+18. After moving multiple months at a time. The jsonReceivedDicts array will have all of its dictionaries be updated simultaneously (even though a specific index is given.)
+    No ideas for why it would do that, it makes no sense...
+
+NEW FEATURES!
+
+* 1. Load three months into memory at a time.
+
+2. Allow the event on a day area to go to other days.
+
+
+
+Last Things To Finish:
+
+1. Alter the names of the category buttons.
+
+2. Adjust the preference usage to utilize strings instead of ints.
+
+3. Finish the hub.
+
