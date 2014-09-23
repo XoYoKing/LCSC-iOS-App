@@ -67,12 +67,6 @@ static MonthlyEvents *sharedInstance;
         
         Authentication *auth = [Authentication getSharedInstance];
         
-        //NSURL *urllll = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/public/basic"];
-        //NSError *error = nil;
-        //NSData *data = [NSData dataWithContentsOfURL:urllll];
-        //NSDictionary *eventsInfoDict = [XMLReader dictionaryForXMLData:data options:XMLReaderOptionsProcessNamespaces error:&error];
-        
-        
         // URL for the XML of events on the Academic calendar.
         NSURL *urlAca = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/public/basic"];
         
