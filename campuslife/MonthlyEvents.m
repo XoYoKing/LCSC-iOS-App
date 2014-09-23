@@ -123,18 +123,22 @@ static MonthlyEvents *sharedInstance;
         
         NSMutableArray *arrayOfXMLDict = [[NSMutableArray alloc] init];
         [arrayOfXMLDict addObject:eventsInfoDictAth];
-        //NSLog(@"%@",[eventsInfoDict description]);
+        [arrayOfXMLDict addObject:eventsInfoDictAct];
+        [arrayOfXMLDict addObject:eventsInfoDictRes];
+        [arrayOfXMLDict addObject:eventsInfoDictEnt];
+        [arrayOfXMLDict addObject:eventsInfoDictRec];
+        [arrayOfXMLDict addObject:eventsInfoDictAca];
+
 
             NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
             for (int j=0; j<[arrayOfXMLDict count]; j++)
             {
-                NSLog(@"%@",[arrayOfXMLDict description]);
-                //[jsonDict setObject:@0 forKey: ];
+                [jsonDict setObject:@0 forKey: arrayOfXMLDict[j]];
 
             }
-            //[jsonsReceived addObject:jsonDict];
+            [jsonsReceived addObject:jsonDict];
         
-        //[sharedInstance setJsonReceivedDicts:jsonsReceived];
+        [sharedInstance setJsonReceivedDicts:jsonsReceived];
         
     }
     return sharedInstance;
