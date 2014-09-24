@@ -130,9 +130,9 @@ static MonthlyEvents *sharedInstance;
                 [jsonDict setObject:@0 forKey: arrayOfXMLDict[j]];
 
             }
-            [jsonsReceived addObject:jsonDict];
+            //[jsonsReceived addObject:jsonDict];
         
-        [sharedInstance setJsonReceivedDicts:jsonsReceived];
+       // [sharedInstance setJsonReceivedDicts:jsonsReceived];
         
     }
     return sharedInstance;
@@ -274,7 +274,16 @@ static MonthlyEvents *sharedInstance;
 //Takes in events from the json retrieved from the Google Calendar API.
 //@param day Day the event is on, 1-31.
 -(void)AppendEvent:(NSInteger)day :(NSDictionary *)eventDict :(int)arrayId {
-    [[_calendarEvents[arrayId] objectAtIndex:day-1] addObject:eventDict];
+    NSLog(@"------------day------------");
+    NSLog(@"%li",(long)day);
+    NSLog(@"-----------event-------------");
+    NSLog(@"%@",eventDict);
+    NSLog(@"-----------array-------------");
+    NSLog(@"%i",arrayId);
+    NSLog(@"------------------------");
+    
+    //[[_calendarEvents[arrayId] objectAtIndex:day-1] addObject:eventDict];
+    //NSLog(@"%@",[_calendarEvents description]);
 }
 
 //@param day Day the events are on, 1-31.
