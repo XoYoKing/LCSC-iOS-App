@@ -61,29 +61,27 @@ static MonthlyEvents *sharedInstance;
         
         [sharedInstance setKnownOffsetForJan2013:2];
         
+        [sharedInstance setCategoryNames:@[@"Entertainment", @"Academics", @"Student Activities", @"Residence Life", @"Warrior Athletics", @"Campus Rec"]];
+        
         [sharedInstance setCalendarEvents:[[NSMutableArray alloc]initWithArray:@[[NSNull null], [NSNull null], [NSNull null]]]];
         
-        NSMutableArray *jsonsReceived = [[NSMutableArray alloc] init];
-        
-        Authentication *auth = [Authentication getSharedInstance];
-        
         // URL for the XML of events on the Academic calendar.
-        NSURL *urlAca = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/public/basic"];
+        NSURL *urlAca = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/public/full"];
         
         // URL for the XML of events on the Campus Rec calendar.
-        NSURL *urlRec = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/h4j413d3q0uftb2crk0t92jjlc%40group.calendar.google.com/public/basic"];
+        NSURL *urlRec = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/h4j413d3q0uftb2crk0t92jjlc%40group.calendar.google.com/public/full"];
         
         // URL for the XML of events on the Entertainment calendar.
-        NSURL *urlEnt = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/m6h2d5afcjfnmaj8qr7o96q89c%40group.calendar.google.com/public/basic"];
+        NSURL *urlEnt = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/m6h2d5afcjfnmaj8qr7o96q89c%40group.calendar.google.com/public/full"];
         
         // URL for the XML of events on the Residence Life calendar.
-        NSURL *urlRes = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/gqv0n6j15pppdh0t8adgc1n1ts%40group.calendar.google.com/public/basic"];
+        NSURL *urlRes = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/gqv0n6j15pppdh0t8adgc1n1ts%40group.calendar.google.com/public/full"];
         
         // URL for the XML of events on the Student Activities calendar.
-        NSURL *urlAct = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/l9qpkh5gb7dhjqv8nm0mn098fk%40group.calendar.google.com/public/basic"];
+        NSURL *urlAct = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/l9qpkh5gb7dhjqv8nm0mn098fk%40group.calendar.google.com/public/full"];
         
         // URL for the XML of events on the Warrior Athletics calendar.
-        NSURL *urlAth = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/d6jbgjhudph2mpef1cguhn4g9g%40group.calendar.google.com/public/basic"];
+        NSURL *urlAth = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/d6jbgjhudph2mpef1cguhn4g9g%40group.calendar.google.com/public/full"];
         
         // Parse events on the Academic calendar into the NSDictionary.
         NSError *errorAca = nil;
@@ -115,6 +113,8 @@ static MonthlyEvents *sharedInstance;
         NSData *dataAth = [NSData dataWithContentsOfURL:urlAth];
         NSDictionary *eventsInfoDictAth = [XMLReader dictionaryForXMLData:dataAth options:XMLReaderOptionsProcessNamespaces error:&errorAth];
         
+        NSLog(@"%@",eventsInfoDictAca);
+        
         NSMutableArray *arrayOfXMLDict = [[NSMutableArray alloc] init];
         [arrayOfXMLDict addObject:eventsInfoDictAth];
         [arrayOfXMLDict addObject:eventsInfoDictAct];
@@ -124,16 +124,17 @@ static MonthlyEvents *sharedInstance;
         [arrayOfXMLDict addObject:eventsInfoDictAca];
 
 
-            NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
-            for (int j=0; j<[arrayOfXMLDict count]; j++)
-            {
-                [jsonDict setObject:@0 forKey: arrayOfXMLDict[j]];
-
+        NSMutableArray *jsonsReceived = [[NSMutableArray alloc] init];
+        NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
+        for (int i=0; i<3; i++)
+        {
+            for (NSString *name in [sharedInstance getCategoryNames]) {
+                jsonDict[name] = @0;
             }
-            //[jsonsReceived addObject:jsonDict];
+            [jsonsReceived addObject:jsonDict];
+        }
         
-       // [sharedInstance setJsonReceivedDicts:jsonsReceived];
-        
+        [sharedInstance setJsonReceivedDicts:jsonsReceived];
     }
     return sharedInstance;
 }
@@ -146,7 +147,7 @@ static MonthlyEvents *sharedInstance;
     
     for (int i=0; i<3; i++)
     {
-        for (NSString *name in [[Authentication getSharedInstance] getCategoryNames]) {
+        for (NSString *name in [sharedInstance getCategoryNames]) {
             _jsonReceivedDicts[i][name] = @0;
         }
     }

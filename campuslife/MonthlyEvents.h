@@ -38,5 +38,6 @@
 
 @property (nonatomic, setter=setYear:) int selectedYear;
 @property (nonatomic, setter=setMonth:) int selectedMonth;
+@property (nonatomic, strong, setter=setCategoryNames:, getter=getCategoryNames) NSArray *categoryNames;
 
 @end

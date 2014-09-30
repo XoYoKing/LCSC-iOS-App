@@ -47,6 +47,4 @@
 - (NSString*)toStringFromDateTime:(NSDate*)datetime;
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year;
 
-- (void) authenticate;
-
 @end

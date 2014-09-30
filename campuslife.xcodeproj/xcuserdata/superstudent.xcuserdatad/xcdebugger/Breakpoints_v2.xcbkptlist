@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "@implementation CalendarViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "-getFirstWeekDay:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/MonthlyEvents.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "@implementation MonthlyEvents"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/MonthlyEvents.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "-getMonthBarDate"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,60 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
-            landmarkName = "@implementation MonthlyEvents"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "@implementation MonthlyEvents"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "@implementation MonthlyEvents"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "-getDaysOfMonth"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "-getMonthBarDate"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,13 +138,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
-            landmarkName = "@implementation MonthlyEvents"
-            landmarkType = "3">
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "-getMonthBarDate"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -170,11 +154,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "-getMonthBarDate"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/MonthlyEvents.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-refreshArrayOfEvents:"
             landmarkType = "5">
          </BreakpointContent>
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "-backMonthOffset:"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "726"
-            endingLineNumber = "726"
+            startingLineNumber = "673"
+            endingLineNumber = "673"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "730"
-            endingLineNumber = "730"
+            startingLineNumber = "677"
+            endingLineNumber = "677"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "742"
-            endingLineNumber = "742"
+            startingLineNumber = "689"
+            endingLineNumber = "689"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -326,11 +326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "748"
-            endingLineNumber = "748"
+            startingLineNumber = "695"
+            endingLineNumber = "695"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -342,11 +342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "716"
-            endingLineNumber = "716"
+            startingLineNumber = "663"
+            endingLineNumber = "663"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -358,11 +358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/Authentication.m"
-            timestampString = "421107800.886568"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "-getAuthenticator"
             landmarkType = "5">
          </BreakpointContent>
@@ -422,11 +422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,204 +438,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-resetEvents"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-resetEvents"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "@implementation MonthlyEvents"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "-onTick:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "-onTick:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "-onTickForDelay:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "@implementation CalendarViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358084.803534"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358084.803534"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
             endingLineNumber = "84"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "-onTick:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-onTickForDelay:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -646,12 +454,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420944987.249738"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
-            landmarkName = "-isMonthDoneLoading:"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -662,7 +470,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -677,12 +485,156 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420667834.869568"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-onTick:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "-onTickForDelay:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "-onTickForDelay:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "-onTick:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "-onTickForDelay:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/MonthlyEvents.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "-offsetMonth:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/MonthlyEvents.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
@@ -694,12 +646,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420944987.249738"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "444"
-            endingLineNumber = "444"
-            landmarkName = "-isMonthDoneLoading:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -710,12 +662,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420944987.249738"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "446"
-            endingLineNumber = "446"
-            landmarkName = "-isMonthDoneLoading:"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
+            landmarkName = "-offsetMonth:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/MonthlyEvents.m"
+            timestampString = "433811060.594871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
+            landmarkName = "-offsetMonth:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -742,11 +710,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -758,11 +726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -774,12 +742,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "421101439.299317"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
-            landmarkName = "-setCalendarJsonReceivedForMonth::"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
+            landmarkName = "-getSelectedMonth"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -790,12 +758,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "421101439.299317"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
-            landmarkName = "-setCalendarJsonReceivedForMonth::"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
+            landmarkName = "-getSelectedMonth"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -806,11 +774,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420944987.249738"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "-offsetMonth:"
             landmarkType = "5">
          </BreakpointContent>
@@ -822,12 +790,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420944987.249738"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "-offsetMonth:"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "-getDaysOfPreviousMonth"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -838,11 +806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -854,12 +822,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420676141.168433"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-resetEvents"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "+getSharedInstance"
             landmarkType = "5">
             <Locations>
                <Location
@@ -900,12 +868,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420676161.632986"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-resetEvents"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -916,12 +884,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420676176.407612"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-resetEvents"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "+getSharedInstance"
             landmarkType = "5">
             <Locations>
                <Location
@@ -962,11 +930,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "723"
-            endingLineNumber = "723"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -978,11 +946,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "709"
-            endingLineNumber = "709"
+            startingLineNumber = "656"
+            endingLineNumber = "656"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -994,11 +962,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
+            startingLineNumber = "657"
+            endingLineNumber = "657"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -1010,12 +978,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "421101439.299317"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "469"
-            endingLineNumber = "469"
-            landmarkName = "-getCalendarJsonReceivedForMonth::"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
+            landmarkName = "-getSelectedYear"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1026,12 +994,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "421101439.299317"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "471"
-            endingLineNumber = "471"
-            landmarkName = "-getCalendarJsonReceivedForMonth::"
+            startingLineNumber = "490"
+            endingLineNumber = "490"
+            landmarkName = "-getSelectedYear"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1042,12 +1010,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420944987.249738"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
-            landmarkName = "-offsetMonth:"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
+            landmarkName = "-getDaysOfPreviousMonth"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1058,12 +1026,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420944987.249738"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "-offsetMonth:"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "-getDaysOfPreviousMonth"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1074,12 +1042,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/MonthlyEvents.m"
-            timestampString = "420943812.788853"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-resetEvents"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "+getSharedInstance"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1122,11 +1090,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358084.803534"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "@interface CalendarViewController()"
             landmarkType = "2">
          </BreakpointContent>
@@ -1138,11 +1106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
+            startingLineNumber = "735"
+            endingLineNumber = "735"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -1154,11 +1122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "779"
-            endingLineNumber = "779"
+            startingLineNumber = "726"
+            endingLineNumber = "726"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -1170,11 +1138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "789"
-            endingLineNumber = "789"
+            startingLineNumber = "736"
+            endingLineNumber = "736"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -1186,11 +1154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1218,11 +1186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1298,11 +1266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "771"
-            endingLineNumber = "771"
+            startingLineNumber = "718"
+            endingLineNumber = "718"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -1314,11 +1282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "770"
-            endingLineNumber = "770"
+            startingLineNumber = "717"
+            endingLineNumber = "717"
             landmarkName = "-getEventsForMonth::"
             landmarkType = "5">
          </BreakpointContent>
@@ -1330,13 +1298,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "@implementation CalendarViewController"
-            landmarkType = "3">
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-onTick:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1346,13 +1314,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/CalendarViewController.m"
-            timestampString = "421358765.508827"
+            timestampString = "433811060.594871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1331"
-            endingLineNumber = "1331"
+            startingLineNumber = "1278"
+            endingLineNumber = "1278"
             landmarkName = "-responseFromServiceWasReceived:andResponseJSONAsData:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "433810620.507526"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "@implementation CalendarViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CalendarViewController failedReqs]"
+                  moduleName = "campuslife"
+                  urlString = "file:///Volumes/Thawspace/CampusLifeiOS/campuslife/CalendarViewController.m"
+                  timestampString = "433810620.58005"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CalendarViewController setFailedReqs:]"
+                  moduleName = "campuslife"
+                  urlString = "file:///Volumes/Thawspace/CampusLifeiOS/campuslife/CalendarViewController.m"
+                  timestampString = "433810620.580398"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

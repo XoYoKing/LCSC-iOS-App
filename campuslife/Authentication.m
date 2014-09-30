@@ -35,8 +35,6 @@ static Authentication *_sharedInstance;
                                     @"pshph3m2oef72tmnk50i4enng0", @"Campus Rec", nil]];
         
         [_sharedInstance setAuthCals:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"NO", @"Academics", @"NO", @"Student Activities", @"NO", @"Warrior Athletics", @"NO", @"Entertainment", @"NO", @"Residence Life", @"NO", @"Campus Rec", nil]];
-        
-        [_sharedInstance setCategoryNames:@[@"Entertainment", @"Academics", @"Student Activities", @"Residence Life", @"Warrior Athletics", @"Campus Rec"]];
     }
     return _sharedInstance;
 }

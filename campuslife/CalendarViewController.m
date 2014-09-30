@@ -14,7 +14,6 @@
 #import "CalendarViewController.h"
 #import "MonthlyEvents.h"
 #import "Preferences.h"
-#import "Authentication.h"
 #import "AddEventParentViewController.h"
 
 @interface CalendarViewController ()
@@ -24,8 +23,6 @@
 @property (nonatomic) int curArrayId;
 
 @property (nonatomic) MonthlyEvents *events;
-
-@property (nonatomic) Authentication *auth;
 
 @property (nonatomic) NSDate *start;
 
@@ -49,11 +46,7 @@
 
 @property (nonatomic) BOOL loadCompleted;
 
-@property (nonatomic) int authJsonReceived;
-
 @property (nonatomic) int failedReqs;
-
-@property (nonatomic) BOOL authenticating;
 
 @end
 
@@ -63,10 +56,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    //NSLog(@"authorizing user");
-
-    _auth = [Authentication getSharedInstance];
     
     _events = [MonthlyEvents getSharedInstance];
     
@@ -82,8 +71,6 @@
     
     _leftArrow.enabled = NO;
     _rightArrow.enabled = NO;
-    
-    _authJsonReceived = 0;
     
     _failedReqs = 0;
 
@@ -132,15 +119,9 @@
     
     [_events resetEvents];
     
-    [_auth resetPriviledges];
-    
     [_activityIndicator startAnimating];
     
-    _authenticating = YES;
-    
     [self.navigationItem setHidesBackButton:YES animated:YES];
-    
-    [self authenticate];
     
     //NSLog(@"viewDidLoad was called");
 }
@@ -149,8 +130,6 @@
     //NSLog(@"view appeared");
     
     [super viewDidAppear:YES];
-    
-    [_auth setDelegate:self];
     
     if (_shouldRefresh) {
         [_activityIndicator startAnimating];
@@ -185,34 +164,19 @@
         //Resend the requests that failed.
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     }
-    
-    if (_authenticating)
+    //Check a bunch of conditions that altogether mean that the json that we're expecting
+    //  hasn't been heard from for over 3 seconds. This hopefully means it won't be coming back.
+    if (!_loadCompleted
+        && _timeLastReqSent + (_failedReqs*2) + 3 < [[NSDate date] timeIntervalSince1970])
     {
-        //Have we received all of the authorization jsons after 3 seconds has passed?
-        if (_authJsonReceived < [[_auth getCategoryNames] count]
-            && _timeLastReqSent + (_failedReqs*2) + 3 < [[NSDate date] timeIntervalSince1970])
-        {
-            _failedReqs += 1;
-            [self authenticate];
-        }
+        //[_events resetEvents];
+        //_curArrayId = 1;
+        
+        _failedReqs += 1;
+        
+        //Resend the requests that failed.
+        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     }
-    else
-    {
-        //Check a bunch of conditions that altogether mean that the json that we're expecting
-        //  hasn't been heard from for over 3 seconds. This hopefully means it won't be coming back.
-        if (!_loadCompleted
-            && _timeLastReqSent + (_failedReqs*2) + 3 < [[NSDate date] timeIntervalSince1970])
-        {
-            //[_events resetEvents];
-            //_curArrayId = 1;
-            
-            _failedReqs += 1;
-            
-            //Resend the requests that failed.
-            [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-        }
-    }
-    
 }
 
 - (void)onTickForDelay:(NSTimer*)timer
@@ -685,23 +649,6 @@
     return sDateTime;
 }
 
-- (void) authenticate
-{
-    for (NSString *name in [_auth getCategoryNames])
-    {
-        if ([[_auth getAuthCals][name] isEqualToString:@"NO"])
-        {
-            //This is a dummy update that will be to see if the user is able to manage events.
-            [[_auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events/%@/move", [_auth getCalIds][name], [_auth getEventIds][name]]
-                               withHttpMethod:httpMethod_POST
-                           postParameterNames:[NSArray arrayWithObjects:@"destination", nil]
-                          postParameterValues:[NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",[_auth getCalIds][name]], nil]
-                                  requestBody:nil];
-            _timeLastReqSent = [[NSDate date] timeIntervalSince1970];
-        }
-    }
-}
-
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year {
     if (month+(_curArrayId-1) == 0)
     {
@@ -735,15 +682,15 @@
         // If user authorization is successful, then make an API call to get the event list for the current month.
         // For more infomation about this API call, visit:
         // https://developers.google.com/google-apps/calendar/v3/reference/calendarList/list
-        for (NSString *name in [_auth getCategoryNames])
+        for (NSString *name in [_events getCategoryNames])
         {
             if (![_events getCalendarJsonReceivedForMonth:_curArrayId :name])
             {
-                [[_auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events", [_auth getCalIds][name]]
+                /*[[_auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events", [_auth getCalIds][name]]
                                    withHttpMethod:httpMethod_GET
                                postParameterNames:[NSArray arrayWithObjects:@"timeMax", @"timeMin", nil]
                               postParameterValues:[NSArray arrayWithObjects:[self toStringFromDateTime:_lastDateOfMonth], [self toStringFromDateTime:_firstDateOfMonth], nil]
-                                      requestBody:nil];
+                                      requestBody:nil];*/
                 
                 _timeLastReqSent = [[NSDate date] timeIntervalSince1970];
                 
@@ -838,7 +785,7 @@ NSError *error = nil;
             
             category = eventsInfoDict[@"summary"];
             
-            for (NSString *name in [_auth getCategoryNames])
+            for (NSString *name in [_events getCategoryNames])
             {
                 if ([self getIndexOfSubstringInString:name :eventsInfoDict[@"summary"]] != -1) {
                     category = eventsInfoDict[@"summary"];
@@ -1335,44 +1282,6 @@ NSError *error = nil;
             }
         }
     }
-    //This type of json is retrieved if an update was made to an event (currently only for authenticating.)
-    else if ([responseJSONAsString rangeOfString:@"calendar#event"].location != NSNotFound) {
-        [_auth setUserCanManageEvents:YES];
-
-        _addEventButton.title = @"Add Event";
-        _addEventButton.enabled = YES;
-        
-        NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:responseJSONAsData options:NSJSONReadingMutableContainers error:&error];
-        
-        //BOOL foundCal = NO;
-        
-        for (NSString *name in [_auth getCategoryNames])
-        {
-            if ([self getIndexOfSubstringInString:name :eventsInfoDict[@"organizer"][@"displayName"]] != -1) {
-                [[_auth getAuthCals] setObject:@"YES" forKey:name];
-                //foundCal = YES;
-            }
-        }
-        
-        /*
-        //This is for checking to see if there was a authorized category that doesn't have a calendar name associated with it.
-        if (!foundCal)
-        {
-            NSLog(@"auth problems");
-        }*/
-        
-        _authJsonReceived += 1;
-        
-        if (_authJsonReceived == 6)
-        {
-            _authenticating = NO;
-            _failedReqs = 0;
-            _curArrayId = 1;
-            [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-        }
-        
-        //NSLog(@"Authenticated Calendar: %@", category);
-    }
 }
 
 -(void)accessTokenWasRevoked{
@@ -1400,20 +1309,6 @@ NSError *error = nil;
 -(void)errorInResponseWithBody:(NSString *)errorMessage{
     // Just log the error message.
     //NSLog(@"Error:%@", errorMessage);
-    
-    if ([self getIndexOfSubstringInString:@"403" :errorMessage] != -1
-       && [self getIndexOfSubstringInString:@"Forbidden" :errorMessage] != -1)
-    {
-        _authJsonReceived += 1;
-    }
-    
-    if (_authJsonReceived == 6)
-    {
-        _authenticating = NO;
-        _failedReqs = 0;
-        _curArrayId = 1;
-        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-    }
 }
 
 @end
