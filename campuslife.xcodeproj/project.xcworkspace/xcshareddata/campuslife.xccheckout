@@ -12,8 +12,6 @@
 	<dict>
 		<key>5E2365A383ADCF7EE3B4454A53EE9E3285C5544E</key>
 		<string>https://github.com/JakeWaffle/LCSC-Campus-Life.git</string>
-		<key>70C84376-8680-4FCF-816E-3FA577098E76</key>
-		<string>git://github.com/JakeWaffle/LCSC-Campus-Life.git</string>
 		<key>AAE0896C2EAE6ACAC14BDEA404AECCD9318FA278</key>
 		<string>https://github.com/cmyager/CampusLifeiOS.git</string>
 	</dict>
@@ -23,8 +21,6 @@
 	<dict>
 		<key>5E2365A383ADCF7EE3B4454A53EE9E3285C5544E</key>
 		<string>../../../LCSC-Campus-Life-2</string>
-		<key>70C84376-8680-4FCF-816E-3FA577098E76</key>
-		<string>../../../LCSC-Campus-Life</string>
 		<key>AAE0896C2EAE6ACAC14BDEA404AECCD9318FA278</key>
 		<string>../..</string>
 	</dict>
@@ -48,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>70C84376-8680-4FCF-816E-3FA577098E76</string>
+			<string>5E2365A383ADCF7EE3B4454A53EE9E3285C5544E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LCSC-Campus-Life</string>
 		</dict>

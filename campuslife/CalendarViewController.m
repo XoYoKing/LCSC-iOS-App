@@ -687,12 +687,10 @@
         // https://developers.google.com/google-apps/calendar/v3/reference/calendarList/list
         for (NSString *name in [_events getCategoryNames])
         {
-            NSLog(@"Got here!");
             
             if (![_events getCalendarJsonReceivedForMonth:_curArrayId :name])
             {
-                // This is where JSON's get requested
-                // Josh NOTE
+                
                 
                 /*[[_auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events", [_auth getCalIds][name]]
                                    withHttpMethod:httpMethod_GET
@@ -700,6 +698,9 @@
                               postParameterValues:[NSArray arrayWithObjects:[self toStringFromDateTime:_lastDateOfMonth], [self toStringFromDateTime:_firstDateOfMonth], nil]
                                       requestBody:nil];*/
                 
+                
+                // This is where JSON's get requested
+                // Josh NOTE
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json", [[Authentication getSharedInstance] getCalIds][name]]];
                 
                 NSData *data = [NSData dataWithContentsOfURL:url];
@@ -775,7 +776,7 @@
     
     //NSLog(@"%@",responseJSONAsString);
     // Get the JSON data as a dictionary.
-    
+    // Josh NOTE
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
 
     NSLog(@"Dictionary: %@", [eventsInfoDict description]);

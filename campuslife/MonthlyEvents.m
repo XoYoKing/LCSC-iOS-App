@@ -65,6 +65,8 @@ static MonthlyEvents *sharedInstance;
         
         [sharedInstance setCalendarEvents:[[NSMutableArray alloc]initWithArray:@[[NSNull null], [NSNull null], [NSNull null]]]];
         
+        // Remove before deployment!
+        // Josh NOTE
         /*
         // URL for the XML of events on the Academic calendar.
         NSURL *urlAca = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/public/full?alt=json"];
@@ -127,7 +129,7 @@ static MonthlyEvents *sharedInstance;
         [arrayOfXMLDict addObject:eventsInfoDictAca];
         */
 
-         
+        /*
         NSMutableArray *jsonsReceived = [[NSMutableArray alloc] init];
         NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
         for (int i=0; i<3; i++)
@@ -138,8 +140,29 @@ static MonthlyEvents *sharedInstance;
             [jsonsReceived addObject:jsonDict];
         }
         
+        //[sharedInstance setJsonReceivedDicts:jsonsReceived];
+        */
+        
+        NSMutableArray *jsonsReceived = [[NSMutableArray alloc] init];
+        
+        //Authentication *auth = [Authentication getSharedInstance];
+        
+        for (int i=0; i<3; i++)
+        {
+            NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
+            for (int j=0; j<[[sharedInstance getCategoryNames] count]; j++)
+            {
+                [jsonDict setObject:@0 forKey:[sharedInstance getCategoryNames][j]];
+            }
+            [jsonsReceived addObject:jsonDict];
+        }
+        NSLog(@"Got Here1");
         [sharedInstance setJsonReceivedDicts:jsonsReceived];
+        NSLog(@"Got Here2");
     }
+    
+        
+        
     return sharedInstance;
 }
 
