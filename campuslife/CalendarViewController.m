@@ -779,7 +779,7 @@
     // Josh NOTE
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
 
-    NSLog(@"Dictionary: %@", [eventsInfoDict description]);
+    //NSLog(@"Dictionary: %@", [eventsInfoDict description]);
     
     
     if (error) {
@@ -789,7 +789,9 @@
     }
     else{
         //Get the events as an array
-        NSArray *eventsInfo = [eventsInfoDict objectForKey:@"items"];
+        NSLog(@"%@", [eventsInfoDict valueForKeyPath:@"feed.entry"]);
+        NSArray *eventsInfo = [eventsInfoDict valueForKeyPath:@"\"gCal$uid\".value"];
+        NSLog(@"%@", eventsInfo);
         
         //NSLog(@"Putting the events into _calendarEvents.");
         
@@ -803,12 +805,13 @@
             //NSLog(@"Refreshing current month");
         }
         
-        category = eventsInfoDict[@"summary"];
+        category = eventsInfoDict[@"gd$who"][@"valueString"];
+        //NSLog(@"%@", category);
         
         for (NSString *name in [_events getCategoryNames])
         {
-            if ([self getIndexOfSubstringInString:name :eventsInfoDict[@"summary"]] != -1) {
-                category = eventsInfoDict[@"summary"];
+            if ([self getIndexOfSubstringInString:name :eventsInfoDict[@"gd$who"][@"valueString"]] != -1) {
+                category = eventsInfoDict[@"gd$who"][@"valueString"];
             }
         }
         
