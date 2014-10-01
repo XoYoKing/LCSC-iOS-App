@@ -47,4 +47,6 @@
 - (NSString*)toStringFromDateTime:(NSDate*)datetime;
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year;
 
+- (void) parseJSON:(NSData *) JSONAsString;
+
 @end

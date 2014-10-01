@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GoogleOAuth.h"
 
-@interface hubViewController : UIViewController <GoogleOAuthDelegate>
+@interface hubViewController : UIViewController
 
--(IBAction)signInToGoogleCalendar:(id)sender;
+-(IBAction)segueToCalendar:(id)sender;
 
 @end

@@ -65,24 +65,26 @@ static MonthlyEvents *sharedInstance;
         
         [sharedInstance setCalendarEvents:[[NSMutableArray alloc]initWithArray:@[[NSNull null], [NSNull null], [NSNull null]]]];
         
+        /*
         // URL for the XML of events on the Academic calendar.
-        NSURL *urlAca = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/public/full"];
+        NSURL *urlAca = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/public/full?alt=json"];
         
         // URL for the XML of events on the Campus Rec calendar.
-        NSURL *urlRec = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/h4j413d3q0uftb2crk0t92jjlc%40group.calendar.google.com/public/full"];
+        NSURL *urlRec = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/h4j413d3q0uftb2crk0t92jjlc%40group.calendar.google.com/public/full?alt=json"];
         
         // URL for the XML of events on the Entertainment calendar.
-        NSURL *urlEnt = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/m6h2d5afcjfnmaj8qr7o96q89c%40group.calendar.google.com/public/full"];
+        NSURL *urlEnt = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/m6h2d5afcjfnmaj8qr7o96q89c%40group.calendar.google.com/public/full?alt=json"];
         
         // URL for the XML of events on the Residence Life calendar.
-        NSURL *urlRes = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/gqv0n6j15pppdh0t8adgc1n1ts%40group.calendar.google.com/public/full"];
+        NSURL *urlRes = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/gqv0n6j15pppdh0t8adgc1n1ts%40group.calendar.google.com/public/full?alt=json"];
         
         // URL for the XML of events on the Student Activities calendar.
-        NSURL *urlAct = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/l9qpkh5gb7dhjqv8nm0mn098fk%40group.calendar.google.com/public/full"];
+        NSURL *urlAct = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/l9qpkh5gb7dhjqv8nm0mn098fk%40group.calendar.google.com/public/full?alt=json"];
         
         // URL for the XML of events on the Warrior Athletics calendar.
-        NSURL *urlAth = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/d6jbgjhudph2mpef1cguhn4g9g%40group.calendar.google.com/public/full"];
-        
+        NSURL *urlAth = [NSURL URLWithString:@"https://www.google.com/calendar/feeds/d6jbgjhudph2mpef1cguhn4g9g%40group.calendar.google.com/public/full?alt=json"];
+        */
+        /*
         // Parse events on the Academic calendar into the NSDictionary.
         NSError *errorAca = nil;
         NSData *dataAca = [NSData dataWithContentsOfURL:urlAca];
@@ -112,8 +114,9 @@ static MonthlyEvents *sharedInstance;
         NSError *errorAth = nil;
         NSData *dataAth = [NSData dataWithContentsOfURL:urlAth];
         NSDictionary *eventsInfoDictAth = [XMLReader dictionaryForXMLData:dataAth options:XMLReaderOptionsProcessNamespaces error:&errorAth];
-        
+         
         NSLog(@"%@",eventsInfoDictAca);
+        
         
         NSMutableArray *arrayOfXMLDict = [[NSMutableArray alloc] init];
         [arrayOfXMLDict addObject:eventsInfoDictAth];
@@ -122,8 +125,9 @@ static MonthlyEvents *sharedInstance;
         [arrayOfXMLDict addObject:eventsInfoDictEnt];
         [arrayOfXMLDict addObject:eventsInfoDictRec];
         [arrayOfXMLDict addObject:eventsInfoDictAca];
+        */
 
-
+         
         NSMutableArray *jsonsReceived = [[NSMutableArray alloc] init];
         NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
         for (int i=0; i<3; i++)
