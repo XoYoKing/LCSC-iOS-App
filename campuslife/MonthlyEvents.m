@@ -156,9 +156,7 @@ static MonthlyEvents *sharedInstance;
             }
             [jsonsReceived addObject:jsonDict];
         }
-        NSLog(@"Got Here1");
         [sharedInstance setJsonReceivedDicts:jsonsReceived];
-        NSLog(@"Got Here2");
     }
     
         
