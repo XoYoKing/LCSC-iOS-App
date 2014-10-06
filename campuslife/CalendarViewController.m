@@ -795,8 +795,7 @@
         
         //NSLog(@"Putting the events into _calendarEvents.");
         
-        NSString *category = eventsInfo[0];
-        
+        NSString *category = [[eventsInfo[0] valueForKey:@"description"] componentsJoinedByString:@""];
         
         //NSLog(@"Jsons previously received: %d", _jsonsReceived);
         
