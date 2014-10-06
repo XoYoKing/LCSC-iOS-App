@@ -790,12 +790,14 @@
     else{
         //Get the events as an array
         //NSLog(@"%@", [eventsInfoDict valueForKeyPath:@"feed.entry.gd$who.valueString"]);
-        NSArray *eventsInfo = [eventsInfoDict valueForKeyPath:@"feed.entry.gd$who.valueString"];
-        NSLog(@"%@", eventsInfo);
+        NSArray *eventsInfo = [eventsInfoDict valueForKeyPath:@"feed.entry"];
+        //NSLog(@"%@", eventsInfo);
         
         //NSLog(@"Putting the events into _calendarEvents.");
         
         NSString *category = [[eventsInfo[0] valueForKey:@"description"] componentsJoinedByString:@""];
+        
+        NSLog(@"%@", category);
         
         //NSLog(@"Jsons previously received: %d", _jsonsReceived);
         
@@ -805,16 +807,10 @@
             //NSLog(@"Refreshing current month");
         }
         
-        
-        NSLog(@"%@", category);
-        NSLog(@"Got Here2");
-        
         for (NSString *name in [_events getCategoryNames])
         {
-            // THIS IS WHERE IT DIES...
-            if ([self getIndexOfSubstringInString:name : category] != -1) {
-                
-                category = [eventsInfoDict valueForKeyPath:@"feed.entry.gd$who.valueString"];
+            if ([self getIndexOfSubstringInString:name :[[eventsInfo[0] valueForKey:@"description"] componentsJoinedByString:@""]] != -1) {
+                category = [[eventsInfo[0] valueForKey:@"description"] componentsJoinedByString:@""];
             }
         }
         
