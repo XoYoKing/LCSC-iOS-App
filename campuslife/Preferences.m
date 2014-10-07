@@ -38,7 +38,7 @@ static Preferences *_sharedInstance;
     
     for ( int i = 0; i < keyCount; i++ )
     {
-        [_prefs setObject:@1 forKey:[[Authentication getSharedInstance] getCategoryNames][i]];
+        [_prefs setObject:@0 forKey:[[Authentication getSharedInstance] getCategoryNames][i]];
     }
 }
 

@@ -55,9 +55,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                       initWithTarget:self action:@selector(tap:)];
     [self.view addGestureRecognizer: tapRec];
     
-    _auth = [Authentication getSharedInstance];
+    //_auth = [Authentication getSharedInstance];
     
-    [_auth setDelegate:self];
+    //[_auth setDelegate:self];
     
     NSMutableArray *cats = [[NSMutableArray alloc] init];
     

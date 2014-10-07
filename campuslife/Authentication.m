@@ -41,22 +41,4 @@ static Authentication *_sharedInstance;
 
 
 
--(GoogleOAuth *) getAuthenticator {
-    return _googleOAuth;
-}
-
--(void) setAuthenticator:(GoogleOAuth *)authenticator {
-    _googleOAuth = authenticator;
-}
-
--(void) setDelegate:(UIViewController<GoogleOAuthDelegate> *)delegate {
-    [_googleOAuth setGOAuthDelegate:delegate];
-}
-
--(void) resetPriviledges
-{
-    [_sharedInstance setAuthCals:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"NO", @"Academics", @"NO", @"Student Activities", @"NO", @"Warrior Athletics", @"NO", @"Entertainment", @"NO", @"Residence Life", @"NO", @"Campus Rec", nil]];
-}
-
-
 @end
