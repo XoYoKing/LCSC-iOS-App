@@ -170,7 +170,7 @@
     //Check a bunch of conditions that altogether mean that the json that we're expecting
     //  hasn't been heard from for over 3 seconds. This hopefully means it won't be coming back.
     if (!_loadCompleted
-        && _timeLastReqSent + (_failedReqs*2) + 3 < [[NSDate date] timeIntervalSince1970])
+        && _timeLastReqSent + (_failedReqs*2) + 2 < [[NSDate date] timeIntervalSince1970])
     {
         //[_events resetEvents];
         //_curArrayId = 1;
@@ -705,8 +705,10 @@
                 
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 
-                [self parseJSON:data];
-                
+                if (data != nil)
+                {
+                    [self parseJSON:data];
+                }
                 
                 
                 _timeLastReqSent = [[NSDate date] timeIntervalSince1970];
@@ -779,7 +781,7 @@
     // Josh NOTE
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
 
-    NSLog(@"Dictionary: %@", [eventsInfoDict description]);
+    //NSLog(@"Dictionary:\n%@", [eventsInfoDict description]);
     
     
     if (error) {
@@ -790,14 +792,94 @@
     else{
         //Get the events as an array
         //NSLog(@"%@", [eventsInfoDict valueForKeyPath:@"feed.entry.gd$who.valueString"]);
-        NSArray *eventsInfo = [eventsInfoDict valueForKeyPath:@"feed.entry"];
-        //NSLog(@"%@", eventsInfo);
+        NSArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"feed.entry"];
+        //NSLog(@"\n\n\nEvent Array:\n%@", oldEventsInfo);
         
-        //NSLog(@"Putting the events into _calendarEvents.");
+        NSString *category;
         
-        NSString *category = [[eventsInfo[0] valueForKey:@"description"] componentsJoinedByString:@""];
+    
+        for (NSString *name in [_events getCategoryNames])
+        {
+            if ([self getIndexOfSubstringInString:name :[[oldEventsInfo[0] valueForKey:@"gd$who"][0] valueForKey:@"valueString"]] != -1) {
+                category = name;
+            }
+        }
         
-        NSLog(@"%@", category);
+        //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
+        //  of the app.
+        NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
+        
+        //Iterate through the old events, convert them to the proper dictionary structure,
+        //  then append them to the eventsInfo array.
+        for (int i=0; i<oldEventsInfo.count; i++)
+        {
+            //These will store the information that's needed for the event.
+            NSString *startTime;
+            NSString *endTime;
+            NSString *recurrence;
+            NSString *location;
+            NSString *summary;
+            NSString *description;
+            
+            if ([oldEventsInfo[i] valueForKey:@"gd$when"] != nil)
+            {
+                startTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"startTime"];
+                endTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"endTime"];
+            }
+            else if ([oldEventsInfo[i] valueForKey:@"gd$recurrence"] != nil)
+            {
+                //Parse the [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"]
+                //  for the start and end time of the event. Then set the string to recurrence.
+                recurrence = [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"];
+            }
+                
+            if (([oldEventsInfo[i] valueForKey:@"gd$where"] != nil)
+                && ([[oldEventsInfo[i] valueForKey:@"gd$where"] count] > 0))
+            {
+                location = [[oldEventsInfo[i] valueForKey:@"gd$where"][0] valueForKey:@"valueString"];
+            }
+            
+            if ([oldEventsInfo[i] valueForKey:@"content"] != nil)
+            {
+                description = [[oldEventsInfo[i] valueForKey:@"content"] valueForKey:@"$t"];
+            }
+            
+            if ([oldEventsInfo[i] valueForKey:@"title"] != nil)
+            {
+                summary = [[oldEventsInfo[i] valueForKey:@"title"] valueForKey:@"$t"];
+            }
+            
+            //This will be the new dictionary for the current event.
+            NSDictionary *event;
+            NSDictionary *start;
+            NSDictionary *end;
+            
+            //Is the event an all day event?
+            if ([startTime length] < 12)
+            {
+                start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"date"]];
+                end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"date"]];
+            }
+            else
+            {
+                start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"dateTime"]];
+                end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"dateTime"]];
+            }
+            
+            if (recurrence == nil)
+            {
+                event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description"]];
+            }
+            else
+            {
+                event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description, recurrence] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description", @"recurrence"]];
+            }
+            
+            //Puts the new event into the new array of event dictionaries!
+            [eventsInfo addObject:event];
+        }
+        
+        //NSLog(@"Category: %@", category);
         
         //NSLog(@"Jsons previously received: %d", _jsonsReceived);
         
@@ -805,13 +887,6 @@
         {
             [_events refreshArrayOfEvents:_curArrayId];
             //NSLog(@"Refreshing current month");
-        }
-        
-        for (NSString *name in [_events getCategoryNames])
-        {
-            if ([self getIndexOfSubstringInString:name :[[eventsInfo[0] valueForKey:@"description"] componentsJoinedByString:@""]] != -1) {
-                category = [[eventsInfo[0] valueForKey:@"description"] componentsJoinedByString:@""];
-            }
         }
         
         if (![_events getCalendarJsonReceivedForMonth:_curArrayId :category])

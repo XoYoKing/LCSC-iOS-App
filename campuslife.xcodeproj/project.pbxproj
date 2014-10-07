@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		99823A1C19CA01780003D6C5 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 99823A1B19CA01780003D6C5 /* XMLReader.m */; };
 		C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C105A29F18B6A992007C841C /* bigAlphaCircle.png */; };
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
 		C10C84F918E23B4400C7CB09 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = C10C84F818E23B4400C7CB09 /* ToDo */; };
@@ -89,8 +88,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		99823A1A19CA01780003D6C5 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
-		99823A1B19CA01780003D6C5 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		C105A29F18B6A992007C841C /* bigAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigAlphaCircle.png; sourceTree = "<group>"; };
 		C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newAlphaCircle.png; sourceTree = "<group>"; };
 		C10C84F818E23B4400C7CB09 /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
@@ -242,8 +239,6 @@
 				C1E66E03183C333A00851B89 /* Main_iPhone.storyboard */,
 				C1FBB4D21907057200C5D3B5 /* Main_iPad.storyboard */,
 				C1DB86B41919BC2300A301DD /* AboutViewController.h */,
-				99823A1A19CA01780003D6C5 /* XMLReader.h */,
-				99823A1B19CA01780003D6C5 /* XMLReader.m */,
 				C1DB86B51919BC2300A301DD /* AboutViewController.m */,
 				C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */,
 				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
@@ -488,7 +483,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
-				99823A1C19CA01780003D6C5 /* XMLReader.m in Sources */,
 				C1F3207D1855623000811DDA /* UpdateEventViewController.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,

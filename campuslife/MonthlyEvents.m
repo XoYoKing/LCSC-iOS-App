@@ -300,15 +300,7 @@ static MonthlyEvents *sharedInstance;
 //Takes in events from the json retrieved from the Google Calendar API.
 //@param day Day the event is on, 1-31.
 -(void)AppendEvent:(NSInteger)day :(NSDictionary *)eventDict :(int)arrayId {
-    NSLog(@"------------day------------");
-    NSLog(@"%li",(long)day);
-    NSLog(@"-----------event-------------");
-    NSLog(@"%@",eventDict);
-    NSLog(@"-----------array-------------");
-    NSLog(@"%i",arrayId);
-    NSLog(@"------------------------");
-    
-    //[[_calendarEvents[arrayId] objectAtIndex:day-1] addObject:eventDict];
+    [[_calendarEvents[arrayId] objectAtIndex:day-1] addObject:eventDict];
     //NSLog(@"%@",[_calendarEvents description]);
 }
 

@@ -7,7 +7,6 @@
 //
 
 #import "Day_Event_ViewController.h"
-#import "Authentication.h"
 #import "MonthlyEvents.h"
 #import "Preferences.h"
 #import "EventDetailTableViewController.h"
@@ -24,8 +23,9 @@
     
 }
 
-@end
+@property (nonatomic) BOOL didSegue;
 
+@end
 
 
 
@@ -49,12 +49,6 @@
     //NSLog(@" --> Just set the observer");
     
     [super viewDidLoad];
-    
-    if ([[Authentication getSharedInstance] getUserCanManageEvents])
-    {
-        self.navigationItem.rightBarButtonItem.title = @"Add Event";
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    }
     
     events = [MonthlyEvents getSharedInstance];
     
@@ -82,6 +76,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     //NSLog(@"viewDidAppear");
+    _didSegue = NO;
 }
 
 
@@ -121,7 +116,7 @@
             //NSLog(@"\n\n\n er meh gersh!!!\n\n %@ \n\n\n", categoryName);
             
             BOOL removedSomething = NO;
-            for (NSString *name in [[Authentication getSharedInstance] getCategoryNames])
+            for (NSString *name in [[MonthlyEvents getSharedInstance] getCategoryNames])
             {
                 if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == NO))
                 {
@@ -285,11 +280,14 @@
 
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"dayToEventDetailTable"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
-        
-        [destViewController setEvent:[sortedArray objectAtIndex:indexPath.row]];
+        if (!_didSegue)
+        {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
+            
+            [destViewController setEvent:[sortedArray objectAtIndex:indexPath.row]];
+        }
     }
 }
 
@@ -402,37 +400,6 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Authentication *auth = [Authentication getSharedInstance];
-        
-        [auth setDelegate:self];
-        
-        if ([[[auth getAuthCals] objectForKey:sortedArray[indexPath.row][@"category"]] isEqualToString:@"YES"]) {
-            NSString *calId = [[Authentication getSharedInstance] getCalIds][sortedArray[indexPath.row][@"category"]];
-
-            
-            
-            [[auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events/%@", calId, sortedArray[indexPath.row][@"id"]]
-                               withHttpMethod:httpMethod_DELETE
-                           postParameterNames:[NSArray arrayWithObjects: nil]
-                         postParameterValues:[NSArray arrayWithObjects: nil]
-                                 requestBody:nil];
-            
-            CalendarViewController *controller = (CalendarViewController *) self.navigationController.viewControllers[1];
-            [controller setShouldRefresh:YES];
-            
-            [sortedArray removeObjectAtIndex:indexPath.row];
-            
-            [self.tableView reloadData];
-        }
-    }
-}
-
-
-
-
 
 - (NSString *)twentyFourToTwelve:(NSString *)time
 {
@@ -466,39 +433,5 @@
     
     return time;
 }
-
-
-#pragma mark - GoogleOAuth class delegate method implementation
-
--(void)authorizationWasSuccessful {
-}
-
--(void)responseFromServiceWasReceived:(NSString *)responseJSONAsString andResponseJSONAsData:(NSData *)responseJSONAsData{
-    //NSLog(@"%@", responseJSONAsString);
-}
-
--(void)accessTokenWasRevoked{
-}
-
-
--(void)errorOccuredWithShortDescription:(NSString *)errorShortDescription andErrorDetails:(NSString *)errorDetails{
-    // Just log the error messages.
-    //NSLog(@"%@", errorShortDescription);
-    //NSLog(@"%@", errorDetails);
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: errorShortDescription
-                                                    message: errorDetails
-                                                   delegate: nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
-
-
--(void)errorInResponseWithBody:(NSString *)errorMessage{
-    // Just log the error message.
-    //NSLog(@"%@", errorMessage);
-}
-
 
 @end

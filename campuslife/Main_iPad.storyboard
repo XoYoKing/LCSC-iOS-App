@@ -281,7 +281,7 @@ One of the top public comprehensive four-year colleges in the West, with its bea
                                                             <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.12156862745098039" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.45490196078431372" green="0.69803921568627447" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <view hidden="YES" tag="16" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bc7-Lf-7M2">
                                                     <rect key="frame" x="33" y="60" width="13" height="13"/>
@@ -290,7 +290,7 @@ One of the top public comprehensive four-year colleges in the West, with its bea
                                                             <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.45490196078431372" green="0.69803921568627447" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.12156862745098039" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -361,7 +361,7 @@ One of the top public comprehensive four-year colleges in the West, with its bea
                                     <color key="titleColor" white="0.6043031754" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected">
-                                    <color key="titleColor" red="0.1215686275" green="0.45882352939999999" blue="0.23529411759999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" red="0.45490196078431372" green="0.69803921568627447" blue="0.73725490196078436" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="radioSelected:" destination="DZS-au-tdA" eventType="touchUpInside" id="yF7-Kr-xLi"/>
@@ -393,7 +393,7 @@ One of the top public comprehensive four-year colleges in the West, with its bea
                                     <color key="titleColor" white="0.6043031754" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected">
-                                    <color key="titleColor" red="0.45490196078431372" green="0.69803921568627447" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.12156862745098039" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="radioSelected:" destination="DZS-au-tdA" eventType="touchUpInside" id="Gc6-DL-U3j"/>
