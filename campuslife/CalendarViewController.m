@@ -10,7 +10,6 @@
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
 
-#import "XMLReader.h"
 #import "CalendarViewController.h"
 #import "MonthlyEvents.h"
 #import "Preferences.h"

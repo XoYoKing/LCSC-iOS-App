@@ -8,7 +8,7 @@
 
 #import "MonthlyEvents.h"
 #import "Authentication.h"
-#import "XMLReader.h"
+
 
 static MonthlyEvents *sharedInstance;
 
