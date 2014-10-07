@@ -44,32 +44,6 @@ static Preferences *_sharedInstance;
 
 
 
-/*- (void) setPreference:(NSString *)prefName :(BOOL)isSelected
-{
-    
-    
-    switch(index) {
-        case 1:
-            [self setPrefOne:isSelected];
-            break;
-        case 2:
-            [self setPrefTwo:isSelected];
-            break;
-        case 3:
-            [self setPrefThree:isSelected];
-            break;
-        case 4:
-            [self setPrefFour:isSelected];
-            break;
-        case 5:
-            [self setPrefFive:isSelected];
-            break;
-        case 6:
-            [self setPrefSix:isSelected];
-            break;
-    }
-}*/
-
 
 
 /*

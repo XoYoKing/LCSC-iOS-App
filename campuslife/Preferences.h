@@ -14,7 +14,6 @@
 
 +(Preferences *) getSharedInstance;
 
-//- (void) setPreference:(NSString *)prefName :(BOOL)preference;
 - (BOOL) getPreference:(NSString *)prefName;
 - (void) negatePreference:(NSString *)prefName;
 

@@ -190,7 +190,7 @@
                         NSString *endMnStr1 = [[[newArray[lowestItem] objectForKey:@"end"] objectForKey:@"dateTime"] substringWithRange:endMn1];
                         NSString *endTime1 =[endHrStr1 stringByAppendingString:endMnStr1];
                         int end1 = [endTime1 intValue];
-                        //NSLog(@"end1 = %d\n\n", end1);
+        
                         
                         NSRange endHr2 = NSMakeRange(11, 2);
                         NSRange endMn2 = NSMakeRange(14, 2);
@@ -198,22 +198,21 @@
                         NSString *endMnStr2 = [[[newArray[i] objectForKey:@"end"] objectForKey:@"dateTime"] substringWithRange:endMn2];
                         NSString *endTime2 =[endHrStr2 stringByAppendingString:endMnStr2];
                         int end2 = [endTime2 intValue];
-                        //NSLog(@"end2 = %d\n\n", end2);
+
                         
                         if (end1 > end2)
                         {
-                            //NSLog(@"Apparently end time %d > %d.\nSetting lowestItem to %d\n\n", end1, end2, i);
+        
                             
                             lowestItem = i;
                         }
                     }
                     
-                    //NSLog(@"End for-loop.\n\n currentPos = %d\n lowestItem = %d\n i = %d\n\n", currentPos, lowestItem, i);
+                    
                 }
                 
                 if (lowestItem != currentPos)
                 {
-                    //NSLog(@"Had to swap currentPos[%d] and lowestPos[%d]\n\n", currentPos, lowestItem);
                     
                     NSDictionary *temp = newArray[currentPos];
                     

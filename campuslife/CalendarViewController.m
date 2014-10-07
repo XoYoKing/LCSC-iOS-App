@@ -124,11 +124,11 @@
     
     [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     
-    //NSLog(@"viewDidLoad was called");
+
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    //NSLog(@"view appeared");
+
     
     [super viewDidAppear:YES];
     
@@ -144,7 +144,6 @@
         _shouldRefresh = NO;
     }
     
-    //NSLog(@"viewDidAppear was called");
 }
 
 - (void)onTick:(NSTimer*)timer
@@ -195,7 +194,7 @@
         {
             [_collectionView reloadData];
             [_activityIndicator stopAnimating];
-            //NSLog(@"Collection view reloaded!");
+
             
             _curArrayId = 2;
             if ([_events doesMonthNeedLoaded:_curArrayId])
@@ -211,7 +210,6 @@
                 }
                 else
                 {
-                    //NSLog(@"Screen is no longer locked!");
                     _loadCompleted = YES;
                     _screenLocked = NO;
                     [self.navigationItem setHidesBackButton:NO animated:YES];
@@ -287,8 +285,7 @@
 - (IBAction)backMonthOffset:(id)sender {
     if (!_screenLocked)
     {
-        //NSLog(@"went to previous month, jsons received: %d", _reqsSent);
-        
+
         [_activityIndicator startAnimating];
         
         [_events offsetMonth:-1];
@@ -303,7 +300,6 @@
 - (IBAction)forwardMonthOffset:(id)sender {
     if (!_screenLocked)
     {
-        //NSLog(@"went to next month, jsons received: %d", _reqsSent);
 
         [_activityIndicator startAnimating];
         
@@ -323,9 +319,7 @@
     
     if (![_events doesMonthNeedLoaded:1]) {
         cells = 35;
-        
-        //NSLog(@"The number of cells required:%d", [events getFirstWeekDay] + [events getDaysOfMonth]-1);
-        
+
         if ([_events getFirstWeekDay:1] + [_events getDaysOfMonth]-1 >= 35) {
             cells = 42;
         }
@@ -341,9 +335,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell;
     
-    //NSLog(@"The first weekday is:%d", [events getFirstWeekDay]);
-    
-    //NSLog(@"Check to see if cell is for next month:%d >= %d", indexPath.row+1 - [events getFirstWeekDay], [events getDaysOfMonth]);
+
     
     //Check to see if this cell is for a day of the previous month
     if (indexPath.row+1 - [_events getFirstWeekDay:1] <= 0) {
@@ -402,9 +394,7 @@
         
         //Iterate through all events and determine categories that are present.
         for (int i=0; i<[dayEvents count]; i++) {
-            //NSString *category = [[dayEvents objectAtIndex:i] objectForKey:@"category"];
-            
-            //NSLog(@"The event's colorId is %d", [[[dayEvents objectAtIndex:i] objectForKey:@"colorId"] intValue]);
+
             
             if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Entertainment"]) {
                 if (entertainment.hidden) {
@@ -667,7 +657,7 @@
         _lastDateOfMonth = [self returnDateForMonth:month+1+(_curArrayId-1) year:year day:0];
     }
     
-    //NSLog(@"Getting events for selected month, month:%@, year:%@", [self toStringFromDateTime:firstDateOfMonth], [self toStringFromDateTime:lastDateOfMonth]);
+
     
     //_start = [NSDate date];
     
@@ -678,7 +668,7 @@
             _screenLocked = YES;
         }
         
-        //NSLog(@"Sending requests");
+
         
         // If user authorization is successful, then make an API call to get the event list for the current month.
         // For more infomation about this API call, visit:
@@ -717,10 +707,7 @@
                     [self.navigationItem setHidesBackButton:YES animated:YES];
                 }
             }
-            else
-            {
-                //NSLog(@"%@ calendar has already been loaded for month %d", name, _curArrayId);
-            }
+
         }
         _timeLastReqSent = [[NSDate date] timeIntervalSince1970];
     }
@@ -772,26 +759,24 @@
 //-(void)responseFromServiceWasReceived:(NSString *)responseJSONAsString andResponseJSONAsData:(NSData *)responseJSONAsData {
 - (void) parseJSON:(NSData *)JSONAsData {
     NSError *error = nil;
-    //NSLog(@"json Incoming");
     
     //NSLog(@"%@",responseJSONAsString);
     // Get the JSON data as a dictionary.
     // Josh NOTE
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
 
-    //NSLog(@"Dictionary:\n%@", [eventsInfoDict description]);
-    
+
     
     if (error) {
         // This is the case that an error occured during converting JSON data to dictionary.
         // Simply log the error description.
-        //NSLog(@"%@", [error localizedDescription]);
+
     }
     else{
         //Get the events as an array
-        //NSLog(@"%@", [eventsInfoDict valueForKeyPath:@"feed.entry.gd$who.valueString"]);
+
         NSArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"feed.entry"];
-        //NSLog(@"\n\n\nEvent Array:\n%@", oldEventsInfo);
+
         
         NSString *category;
         
@@ -877,19 +862,17 @@
             [eventsInfo addObject:event];
         }
         
-        //NSLog(@"Category: %@", category);
-        
-        //NSLog(@"Jsons previously received: %d", _jsonsReceived);
+
         
         if ([_events doesMonthNeedLoaded:_curArrayId])
         {
             [_events refreshArrayOfEvents:_curArrayId];
-            //NSLog(@"Refreshing current month");
+
         }
         
         if (![_events getCalendarJsonReceivedForMonth:_curArrayId :category])
         {
-            //NSLog(@"Calendar received: %@", category);
+
             
             [_events setCalendarJsonReceivedForMonth:_curArrayId :category];
 
@@ -923,7 +906,7 @@
                 
                 [currentEventInfo setObject:category forKey:@"category"];
                 
-                //NSLog(@"%@", currentEventInfo);
+ 
                 
                 int startDay = 0;
                 int startMonth = 0;
@@ -1345,7 +1328,7 @@
                         }
                         else
                         {
-                            //NSLog(@"Screen is no longer locked!");
+                     
                             _screenLocked = NO;
                             _loadCompleted = YES;
                             [self.navigationItem setHidesBackButton:NO animated:YES];
@@ -1362,7 +1345,7 @@
                     }
                     else
                     {
-                        //NSLog(@"Screen is no longer locked!");
+                     
                         _screenLocked = NO;
                         _loadCompleted = YES;
                         [self.navigationItem setHidesBackButton:NO animated:YES];
@@ -1371,7 +1354,7 @@
                 }
                 else
                 {
-                    //NSLog(@"Screen is no longer locked!");
+
                     _screenLocked = NO;
                     _loadCompleted = YES;
                     [self.navigationItem setHidesBackButton:NO animated:YES];
@@ -1390,8 +1373,7 @@
 
 -(void)errorOccuredWithShortDescription:(NSString *)errorShortDescription andErrorDetails:(NSString *)errorDetails{
     // Just log the error messages.
-    //NSLog(@"Error:%@", errorShortDescription);
-    //NSLog(@"Details:%@", errorDetails);
+
     
     /*
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: errorShortDescription
@@ -1406,7 +1388,7 @@
 
 -(void)errorInResponseWithBody:(NSString *)errorMessage{
     // Just log the error message.
-    //NSLog(@"Error:%@", errorMessage);
+
 }
 
 @end

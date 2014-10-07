@@ -382,7 +382,6 @@ static MonthlyEvents *sharedInstance;
         [self setMonth:_selectedMonth+offset];
     }
     
-    //NSLog(@"The new year is %d and the new month is %d", _selectedYear, _selectedMonth);
     
     //[self resetEvents];
     
@@ -478,15 +477,6 @@ static MonthlyEvents *sharedInstance;
 
 -(void)setCalendarJsonReceivedForMonth:(int)arrayId :(NSString*)calendar
 {
-    /*
-    if ([_jsonReceivedDicts[arrayId][calendar] intValue] == 1)
-    {
-        NSLog(@"Month: %d already loaded the %@ calendar",arrayId, calendar);
-    }
-    else
-    {
-        NSLog(@"Month: %d has had %@ calendar loaded",arrayId, calendar);
-    }*/
     _jsonReceivedDicts[arrayId][calendar] = @1;
 }
 
