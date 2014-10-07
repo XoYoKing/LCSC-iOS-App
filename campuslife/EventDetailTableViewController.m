@@ -8,7 +8,6 @@
 
 #import "EventDetailTableViewController.h"
 #import "MonthlyEvents.h"
-#import "Authentication.h"
 #import "UpdateEventViewController.h"
 #import "CalendarViewController.h"
 
@@ -20,7 +19,7 @@
 {
     MonthlyEvents *events;
     
-    Authentication *auth;
+    MonthlyEvents *auth;
 }
 
 @end
@@ -39,7 +38,7 @@
     
     [self setDay:[events getSelectedDay]];
     
-    auth = [Authentication getSharedInstance];
+    auth = [MonthlyEvents getSharedInstance];
     
     if ([auth getUserCanManageEvents] && [[[auth getAuthCals] objectForKey:_eventDict[@"category"]] isEqualToString:@"YES"])
     {
@@ -476,13 +475,13 @@
     //u need to change 0 to other value(,1,2,3) if u have more buttons.then u can check which button was pressed.
     if (buttonIndex == 1)
     {
-        NSString *calId = [[Authentication getSharedInstance] getCalIds][_eventDict[@"category"]];
+        NSString *calId = [[MonthlyEvents getSharedInstance] getCalIds][_eventDict[@"category"]];
         
-        [[auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events/%@", calId, _eventDict[@"id"]]
+       /* [[auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events/%@", calId, _eventDict[@"id"]]
                           withHttpMethod:httpMethod_DELETE
                       postParameterNames:[NSArray arrayWithObjects: nil]
                      postParameterValues:[NSArray arrayWithObjects: nil]
-                             requestBody:nil];
+                             requestBody:nil];*/
         
         CalendarViewController *controller = (CalendarViewController *) self.navigationController.viewControllers[1];
         [controller setShouldRefresh:YES];

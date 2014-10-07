@@ -7,7 +7,7 @@
 //
 
 #import "Preferences.h"
-#import "Authentication.h"
+#import "MonthlyEvents.h"
 
 @implementation Preferences
 
@@ -34,11 +34,11 @@ static Preferences *_sharedInstance;
 {
     _prefs = [[NSMutableDictionary alloc] init];
     
-    NSUInteger keyCount = [[[Authentication getSharedInstance] getCategoryNames] count];
+    NSUInteger keyCount = [[[MonthlyEvents getSharedInstance] getCategoryNames] count];
     
     for ( int i = 0; i < keyCount; i++ )
     {
-        [_prefs setObject:@0 forKey:[[Authentication getSharedInstance] getCategoryNames][i]];
+        [_prefs setObject:@0 forKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]];
     }
 }
 
@@ -113,9 +113,9 @@ static Preferences *_sharedInstance;
     //Load all of the prefences for the categories that are selected.
     for (int i = 0; i < each; i++)
     {
-        NSNumber *prefActive = [NSNumber numberWithBool:![defaults boolForKey:[[Authentication getSharedInstance] getCategoryNames][i]]];
+        NSNumber *prefActive = [NSNumber numberWithBool:![defaults boolForKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]]];
         
-        [_prefs setValue:prefActive forKey:[[Authentication getSharedInstance] getCategoryNames][i]];
+        [_prefs setValue:prefActive forKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]];
     }
 }
 
@@ -136,10 +136,10 @@ static Preferences *_sharedInstance;
     for (int i = 0; i < each; i++)
     {
         //Retrieves current value for key, or if none exists returns 0 - then typecasted into Bool.
-        BOOL prefActive = [[_prefs valueForKey:[[Authentication getSharedInstance] getCategoryNames][i]] boolValue];
+        BOOL prefActive = [[_prefs valueForKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]] boolValue];
         
         //Sets the boolean value for key.
-        [defaults setBool:!prefActive forKey:[[Authentication getSharedInstance] getCategoryNames][i]];
+        [defaults setBool:!prefActive forKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]];
     }
     
     [defaults synchronize];

@@ -14,7 +14,6 @@
 #import "MonthlyEvents.h"
 #import "Preferences.h"
 #import "AddEventParentViewController.h"
-#import "Authentication.h"
 
 @interface CalendarViewController ()
 
@@ -700,7 +699,7 @@
                 
                 // This is where JSON's get requested
                 // Josh NOTE
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json", [[Authentication getSharedInstance] getCalIds][name]]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json", [[MonthlyEvents getSharedInstance] getCalIds][name]]];
                 
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 

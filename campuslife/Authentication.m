@@ -16,10 +16,7 @@ static Authentication *_sharedInstance;
 +(Authentication *) getSharedInstance {
     if (!_sharedInstance) {
         _sharedInstance = [[Authentication alloc] init];
-        
-        //Just setting the default.
-        [_sharedInstance setUserCanManageEvents:NO];
-        
+   /*
         [_sharedInstance setCalIds:[[NSDictionary alloc] initWithObjectsAndKeys:@"0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com", @"Academics",
                                     @"l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com", @"Student Activities",
                                     @"d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com", @"Warrior Athletics",
@@ -36,6 +33,7 @@ static Authentication *_sharedInstance;
         
         [_sharedInstance setAuthCals:[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"NO", @"Academics", @"NO", @"Student Activities", @"NO", @"Warrior Athletics", @"NO", @"Entertainment", @"NO", @"Residence Life", @"NO", @"Campus Rec", nil]];
     }
+    */
     return _sharedInstance;
 }
 
