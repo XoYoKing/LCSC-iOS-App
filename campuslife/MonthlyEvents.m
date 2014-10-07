@@ -48,8 +48,6 @@ static MonthlyEvents *sharedInstance;
         [sharedInstance setYear:(int)year];
         [sharedInstance setMonth:(int)month];
         
-        //NSLog(@"This month is: %d", month);
-        
         //account for leap year.
         if (year % 4 == 0) {
             [sharedInstance setDaysInMonth:[[NSMutableArray alloc] initWithArray:@[@31, @29, @31, @30, @31, @30, @31, @31, @30, @31, @30, @31]]];
@@ -225,15 +223,6 @@ static MonthlyEvents *sharedInstance;
     else if ((int)[_daysInMonth objectAtIndex:1] != 28){
         [_daysInMonth replaceObjectAtIndex:1 withObject:@28];
     }
-    
-    //NSLog(@"The array of daysInMonth is %@", _daysInMonth);
-    
-    //NSLog(@"The first weekday index is %d", _firstWeekDay);
-    
-    //NSLog(@"The selectedMonth is %d", _selectedMonth);
-    
-    //NSLog(@"The number of days for the given month is:%ld", [[_daysInMonth objectAtIndex:_selectedMonth-1] integerValue]);
-    
     //This should loop through the amounts of days in the given month.
     //  So change this to work with the month/year that the user has selected.
     for (int i=0; i < [[_daysInMonth objectAtIndex:_selectedMonth+monthOffset-1] integerValue]; i++) {

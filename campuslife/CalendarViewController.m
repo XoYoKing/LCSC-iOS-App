@@ -82,22 +82,22 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
     
 
-    _timer = [NSTimer scheduledTimerWithTimeInterval: 1
+    /*_timer = [NSTimer scheduledTimerWithTimeInterval: 1
                                              target: self
                                            selector: @selector(onTick:)
                                            userInfo: nil
-                                            repeats: YES];
+                                            repeats: YES];*/
 
     _monthNeedsLoaded = NO;
     
     _timeLastMonthSwitch = 0;
     _timeLastReqSent = 0;
 
-    _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
+    /*_delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
                                               target: self
                                             selector: @selector(onTickForDelay:)
                                             userInfo: nil
-                                             repeats: YES];
+                                             repeats: YES];*/
     
     _leftArrow.enabled = YES;
     _rightArrow.enabled = YES;
@@ -148,7 +148,7 @@
 
 - (void)onTick:(NSTimer*)timer
 {
-    if (_failedReqs == 3)
+    /*if (_failedReqs == 3)
     {
         [_events resetEvents];
         _curArrayId = 1;
@@ -163,9 +163,11 @@
         
         //Resend the requests that failed.
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-    }
+    }*/
     //Check a bunch of conditions that altogether mean that the json that we're expecting
     //  hasn't been heard from for over 3 seconds. This hopefully means it won't be coming back.
+    
+    
     if (!_loadCompleted
         && _timeLastReqSent + (_failedReqs*2) + 2 < [[NSDate date] timeIntervalSince1970])
     {
