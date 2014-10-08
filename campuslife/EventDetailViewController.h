@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface EventDetailViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *Date;
+@property (weak, nonatomic) IBOutlet UILabel *Time;
+@property (weak, nonatomic) IBOutlet UILabel *Title;
+@property (weak, nonatomic) IBOutlet UILabel *Location;
+@property (weak, nonatomic) IBOutlet UITextView *Description;
 
 @end
