@@ -82,22 +82,22 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
     
 
-    /*_timer = [NSTimer scheduledTimerWithTimeInterval: 1
+    _timer = [NSTimer scheduledTimerWithTimeInterval: 1
                                              target: self
                                            selector: @selector(onTick:)
                                            userInfo: nil
-                                            repeats: YES];*/
+                                            repeats: YES];
 
     _monthNeedsLoaded = NO;
     
     _timeLastMonthSwitch = 0;
     _timeLastReqSent = 0;
 
-    /*_delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
+    _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
                                               target: self
                                             selector: @selector(onTickForDelay:)
                                             userInfo: nil
-                                             repeats: YES];*/
+                                             repeats: YES];
     
     _leftArrow.enabled = YES;
     _rightArrow.enabled = YES;
