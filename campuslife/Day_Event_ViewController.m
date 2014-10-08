@@ -43,10 +43,7 @@
  */
 - (void)viewDidLoad
 {
-    //NSLog(@"viewDidLoad");
-    
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidAppear:)name:UIApplicationWillEnterForegroundNotification object:nil];
-    //NSLog(@" --> Just set the observer");
+
     
     [super viewDidLoad];
     
@@ -60,12 +57,6 @@
     
     [self.tableView reloadData];
 }
-/*
--(void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSLog(@" --> Just deallocated the observer");
-}
-*/
 
 
 
@@ -75,7 +66,7 @@
  */
 -(void)viewDidAppear:(BOOL)animated
 {
-    //NSLog(@"viewDidAppear");
+
     _didSegue = NO;
 }
 
@@ -102,9 +93,7 @@
     
     if ([[events getEventsForDay:_day] count]>=1)
     {
-        //NSLog(@"More than one event. Entered if-loop");
-        
-        //NSLog(@"Checking your preferences");
+
         
         Preferences *preferences = [Preferences getSharedInstance];
         
@@ -113,14 +102,14 @@
         while (currentPos < [newArray count])
         {
             NSString *categoryName = [newArray[currentPos] objectForKey:@"category"];
-            //NSLog(@"\n\n\n er meh gersh!!!\n\n %@ \n\n\n", categoryName);
+
             
             BOOL removedSomething = NO;
             for (NSString *name in [[MonthlyEvents getSharedInstance] getCategoryNames])
             {
                 if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == NO))
                 {
-                    //NSLog(@"Popping Entertainment event");
+        
                     
                     [newArray removeObjectAtIndex:currentPos];
                     
@@ -136,13 +125,13 @@
         
         
         
-        //NSLog(@"Printing newArray size: %lu\n", (unsigned long)[newArray count]);
+
         
         
         
         if ([newArray count] > 1)
         {
-            //NSLog(@"sorting array");
+       
             
             int currentPos = 0;
             
@@ -150,13 +139,13 @@
             
             while(!finished)
             {
-                //NSLog(@"Entered while-loop. currentPos = %d\n\n", currentPos);
+            
                 
                 int lowestItem = currentPos;
                 
                 for (int i = currentPos + 1; i < [newArray count]; i++)
                 {
-                    //NSLog(@"Entered for-loop.\n\n currentPos = %d\n lowestItem = %d\n i = %d\n\n", currentPos, lowestItem, i);
+                 
                     
                     NSRange startHr1 = NSMakeRange(11, 2);
                     NSRange startMn1 = NSMakeRange(14, 2);
@@ -164,7 +153,7 @@
                     NSString *startMnStr1 = [[[newArray[lowestItem] objectForKey:@"start"] objectForKey:@"dateTime"] substringWithRange:startMn1];
                     NSString *startTime1 =[startHrStr1 stringByAppendingString:startMnStr1];
                     int start1 = [startTime1 intValue];
-                    //NSLog(@"start1 = %d\n\n", start1);
+                
                     
                     NSRange startHr2 = NSMakeRange(11, 2);
                     NSRange startMn2 = NSMakeRange(14, 2);
@@ -172,17 +161,17 @@
                     NSString *startMnStr2 = [[[newArray[i] objectForKey:@"start"] objectForKey:@"dateTime"] substringWithRange:startMn2];
                     NSString *startTime2 =[startHrStr2 stringByAppendingString:startMnStr2];
                     int start2 = [startTime2 intValue];
-                    //NSLog(@"start2 = %d\n\n", start2);
+               
                     
                     if (start1 > start2)
                     {
-                        //NSLog(@"\n\nApparently %d > %d.\nSetting lowestItem to %d\n\n", start1, start2, i);
+                      
                         
                         lowestItem = i;
                     }
                     else if (start1 == start2)
                     {
-                        //NSLog(@"start times fine: checking end times\n\n");
+
                         
                         NSRange endHr1 = NSMakeRange(11, 2);
                         NSRange endMn1 = NSMakeRange(14, 2);
@@ -219,8 +208,7 @@
                     newArray[currentPos] = newArray[lowestItem];
                     
                     newArray[lowestItem] = temp;
-                    
-                    //NSLog(@"updating currentPos to %d\n\n", currentPos + 1);
+            
                     
                     currentPos += 1;
                 }
@@ -233,18 +221,11 @@
                 {
                     finished = TRUE;
                     
-                    /*for (int j = 0; j < [newArray count]; j++)
-                    {
-                        //NSLog(@"\n\n Index %d:\n Start: %@\n End:  %@\n\n", j, [[newArray[j] objectForKey:@"start"] objectForKey:@"dateTime"], [[newArray[j] objectForKey:@"end"] objectForKey:@"dateTime"]);
-                    }*/
                 }
             }
         }
     }
-    /*else
-    {
-        //NSLog(@"didn't enter if-loop");
-    }*/
+
     
     return newArray;
 }
@@ -322,7 +303,7 @@
     
     NSDictionary *eventTime = [sortedArray objectAtIndex:indexPath.row];
     
-    //NSLog(@"eventTime %@", eventTime);
+
     
     if ([[eventTime objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
     {

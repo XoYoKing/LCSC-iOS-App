@@ -462,8 +462,7 @@
         //[destViewController setDay:indexPath.row+1 - [events getFirstWeekDay] ];
         
         [_events setSelectedDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
-        
-        //NSLog(@"The selected day is %d", (int)indexPath.row+1 - [_events getFirstWeekDay]);
+
     }
 }
 
@@ -481,10 +480,7 @@
                 //Offset month if a previous month's cell is clicked
                 [self backMonthOffset:nil];
             }
-            else
-            {
-                //NSLog(@"No segue for you!");
-            }
+
             canSegue = NO;
         }
         //Check to see if this cell is for a day of the next month
@@ -493,10 +489,7 @@
                 //Offset month if a future month's cell is clicked
                 [self forwardMonthOffset:nil];
             }
-            else
-            {
-                //NSLog(@"No segue for you!");
-            }
+
             canSegue = NO;
         }
     }
@@ -761,8 +754,7 @@
 //-(void)responseFromServiceWasReceived:(NSString *)responseJSONAsString andResponseJSONAsData:(NSData *)responseJSONAsData {
 - (void) parseJSON:(NSData *)JSONAsData {
     NSError *error = nil;
-    
-    //NSLog(@"%@",responseJSONAsString);
+
     // Get the JSON data as a dictionary.
     // Josh NOTE
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
@@ -1035,8 +1027,7 @@
                 
                 //If an event is reocurring, then we must account for that.
                 if ([currentEventInfo objectForKey:@"recurrence"] != nil) {
-                    //NSLog(@"recurrence: %@", currentEventInfo[@"recurrence"][0]);
-                    
+
                     //The beginning of the substring that represents the freq of the recurrence.
                     int freqSubstringIndx = 11;
                     
@@ -1171,8 +1162,7 @@
                                 }
                                 
                                 repeat = (daysInEventDuration / freq) + 1;
-                                
-                                //NSLog(@"The repeat number is %d", repeat);
+  
                             }
                         }
                         NSUInteger substringIndx = [self getIndexOfSubstringInString:@"INTERVAL=":currentEventInfo[@"recurrence"][0]];
@@ -1309,12 +1299,12 @@
 
             if ([_events isMonthDoneLoading:_curArrayId])
             {
-                //NSLog(@"Monthid=%d is done loading.", _curArrayId);
+
                 if (_curArrayId == 1)
                 {
                     [_collectionView reloadData];
                     [_activityIndicator stopAnimating];
-                    //NSLog(@"Collection view reloaded!");
+
                     
                     _curArrayId = 2;
                     if ([_events doesMonthNeedLoaded:_curArrayId])

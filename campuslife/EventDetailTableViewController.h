@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GoogleOAuth.h"
 
 /**
  An interface for the EventDetailTableViewController class
  */
-@interface EventDetailTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, GoogleOAuthDelegate>
+@interface EventDetailTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 /**
  Contains the selected day

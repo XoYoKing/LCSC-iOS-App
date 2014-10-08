@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GoogleOAuth.h"
 
-@interface CalendarViewController : UIViewController <GoogleOAuthDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface CalendarViewController : UIViewController < UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftArrow;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;

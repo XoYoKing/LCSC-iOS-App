@@ -34,7 +34,7 @@
     
     events = [MonthlyEvents getSharedInstance];
     
-    //NSLog(@"\n\n\n Printing eventDict: %@ \n\n\n", _eventDict);
+
     
     [self setDay:[events getSelectedDay]];
     
@@ -269,7 +269,7 @@
             
             if ([_eventDict objectForKey:@"recurrence"])
             {
-                //NSLog(@"Recurrence: %@", [_eventDict objectForKey:@"recurrence"]);
+            
                 
                 NSString *repeatUntilLbl;
                 NSString *repeatUntilOtherStuff;

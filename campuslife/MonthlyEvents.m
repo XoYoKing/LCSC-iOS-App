@@ -234,7 +234,6 @@ static MonthlyEvents *sharedInstance;
 //@param day Day the event is on, 1-31.
 -(void)AppendEvent:(NSInteger)day :(NSDictionary *)eventDict :(int)arrayId {
     [[_calendarEvents[arrayId] objectAtIndex:day-1] addObject:eventDict];
-    //NSLog(@"%@",[_calendarEvents description]);
 }
 
 //@param day Day the events are on, 1-31.
