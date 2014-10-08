@@ -40,14 +40,6 @@
     
     auth = [MonthlyEvents getSharedInstance];
     
-    if ([auth getUserCanManageEvents] && [[[auth getAuthCals] objectForKey:_eventDict[@"category"]] isEqualToString:@"YES"])
-    {
-        self.navigationItem.rightBarButtonItem.title = @"Update Event";
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-        
-        [_deleteBtn setEnabled:YES];
-        [_deleteBtn setTitle:@"Delete Event" forState:UIControlStateNormal];
-    }
 }
 
 
@@ -361,7 +353,7 @@
             
             cell.editingAccessoryView = button;
             
-            //[cell.editingAccessoryView setHidden:YES];
+            [cell.editingAccessoryView setHidden:YES];
         }
     }
     
@@ -458,15 +450,4 @@
 }
 
 
-- (IBAction)deleteEvent:(id)sender
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Delete Event"
-                                                    message: @"Are you sure you want to delete this event?"
-                                                   delegate: self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Delete", nil];
-    
-    [alert show];
-    
-}
 @end
