@@ -7,15 +7,22 @@
 //
 
 #import "EventDetailViewController.h"
+#import "MonthlyEvents.h"
+#import "UpdateEventViewController.h"
+#import "CalendarViewController.h"
 
-@interface EventDetailViewController ()
-
+@interface EventDetailViewController (){
+    MonthlyEvents *events;
+}
 @end
 
 @implementation EventDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    events = [MonthlyEvents getSharedInstance];
+    [self setDay:[events getSelectedDay]];
     // Do any additional setup after loading the view.
 }
 
