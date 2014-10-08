@@ -39,18 +39,10 @@
 @property (nonatomic, setter=setYear:) int selectedYear;
 @property (nonatomic, setter=setMonth:) int selectedMonth;
 @property (nonatomic, strong, setter=setCategoryNames:, getter=getCategoryNames) NSArray *categoryNames;
-
-
-////
 @property (nonatomic, getter=getUserCanManageEvents, setter=setUserCanManageEvents:) BOOL userCanManageEvents;
-
 @property (nonatomic, strong, setter=setCalIds:, getter=getCalIds) NSDictionary *calendarIds;
-
 @property (nonatomic, strong, setter=setEventIds:, getter=getEventIds) NSDictionary *authorizationEventIds;
-
 @property (nonatomic, strong, setter=setAuthCals:, getter=getAuthCals) NSMutableDictionary *authorizedCalendars;
-
-////
 
 
 @end

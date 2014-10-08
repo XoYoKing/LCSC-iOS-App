@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *summary;
 @property (weak, nonatomic) IBOutlet UITextField *where;
-@property (weak, nonatomic) IBOutlet UITextView *description;
+//@property (weak, nonatomic) IBOutlet UITextView *description;
 
 @property (weak, nonatomic) IBOutlet UISwitch *allDayEventSwitch;
 

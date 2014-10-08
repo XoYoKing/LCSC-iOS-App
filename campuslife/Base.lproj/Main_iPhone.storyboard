@@ -298,7 +298,7 @@
                             <outletCollection property="gestureRecognizers" destination="JhE-A6-Mbz" appends="YES" id="bUR-ps-Sg1"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="0QB-JS-ySv"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar-32.png" id="0QB-JS-ySv"/>
                     <navigationItem key="navigationItem" title="Calendar" id="xAc-fc-j1e">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="iBk-o7-Bqm"/>
                     </navigationItem>
@@ -427,14 +427,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfg-Kw-lgB">
-                                                    <rect key="frame" x="20" y="0.0" width="75" height="43"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="Rg9-OF-Zns">
+                                                    <rect key="frame" x="103" y="0.0" width="212" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="Rg9-OF-Zns">
-                                                    <rect key="frame" x="103" y="0.0" width="212" height="43"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfg-Kw-lgB">
+                                                    <rect key="frame" x="20" y="0.0" width="75" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -546,9 +546,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIo-uu-o2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119" y="-733"/>
+            <point key="canvasLocation" x="-160" y="-567"/>
         </scene>
-        <!--Item-->
+        <!--List-->
         <scene sceneID="G1c-XG-YUy">
             <objects>
                 <viewController id="ISZ-Pu-eDz" sceneMemberID="viewController">
@@ -560,16 +560,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="THIS IS FOR THE LIST VIEW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoB-bG-uTJ">
-                                <rect key="frame" x="50" y="262" width="221" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="THIS IS FOR THE LIST VIEW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoB-bG-uTJ">
+                                <rect key="frame" x="0.0" y="243" width="320" height="80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="THESE IMAGES NEED FIXED" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6yV-VZ-F3n">
+                                <rect key="frame" x="0.0" y="489" width="320" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="zcJ-fr-rGS"/>
+                    <tabBarItem key="tabBarItem" title="List" image="day_view-32.png" id="zcJ-fr-rGS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C99-qe-bO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -595,6 +600,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar-32.png" width="32" height="32"/>
+        <image name="day_view-32.png" width="32" height="32"/>
         <image name="dotEntertainment.png" width="20" height="20"/>
         <image name="newAlphaCircle.png" width="13" height="13"/>
     </resources>
@@ -604,6 +611,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="j4T-2R-tpU"/>
+        <segue reference="2OA-YN-uOU"/>
     </inferredMetricsTieBreakers>
 </document>
