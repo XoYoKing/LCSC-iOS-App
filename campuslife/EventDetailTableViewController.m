@@ -18,10 +18,7 @@
 @interface EventDetailTableViewController ()
 {
     MonthlyEvents *events;
-    
-    MonthlyEvents *auth;
 }
-
 @end
 
 
@@ -31,17 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     events = [MonthlyEvents getSharedInstance];
-    
-
-    
     [self setDay:[events getSelectedDay]];
-    
-    auth = [MonthlyEvents getSharedInstance];
-    
 }
-
 
 
 - (void)didReceiveMemoryWarning

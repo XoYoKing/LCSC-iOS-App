@@ -331,7 +331,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-985" y="-217"/>
+            <point key="canvasLocation" x="-985" y="-439"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jxY-4S-7qQ">
@@ -402,7 +402,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bc-Cu-JgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-545" y="-217"/>
+            <point key="canvasLocation" x="-623" y="-439"/>
         </scene>
         <!--Event Detail Table View Controller-->
         <scene sceneID="pU9-zL-lpj">
@@ -546,7 +546,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIo-uu-o2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-160" y="-567"/>
+            <point key="canvasLocation" x="-138" y="-657"/>
         </scene>
         <!--List-->
         <scene sceneID="G1c-XG-YUy">
@@ -578,7 +578,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C99-qe-bO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-985" y="-1229"/>
+            <point key="canvasLocation" x="-985" y="-1079"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MpC-QZ-mcS">
