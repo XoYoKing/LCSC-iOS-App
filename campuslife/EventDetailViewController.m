@@ -22,7 +22,7 @@
     [super viewDidLoad];
 
     events = [MonthlyEvents getSharedInstance];
-    [self setDay:[events getSelectedDay]];
+    //[self setDay:[events getSelectedDay]];
     // Do any additional setup after loading the view.
 }
 
