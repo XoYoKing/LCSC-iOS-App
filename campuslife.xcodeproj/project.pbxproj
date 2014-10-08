@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899119E4F81D00D6AED4 /* day_view-32.png */; };
 		9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899219E4F81D00D6AED4 /* calendar-32.png */; };
+		99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */; };
 		C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C105A29F18B6A992007C841C /* bigAlphaCircle.png */; };
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
 		C10C84F918E23B4400C7CB09 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = C10C84F818E23B4400C7CB09 /* ToDo */; };
@@ -80,6 +81,8 @@
 /* Begin PBXFileReference section */
 		9941899119E4F81D00D6AED4 /* day_view-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "day_view-32.png"; sourceTree = "<group>"; };
 		9941899219E4F81D00D6AED4 /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-32.png"; sourceTree = "<group>"; };
+		99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
+		99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		C105A29F18B6A992007C841C /* bigAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigAlphaCircle.png; sourceTree = "<group>"; };
 		C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newAlphaCircle.png; sourceTree = "<group>"; };
 		C10C84F818E23B4400C7CB09 /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
@@ -208,9 +211,9 @@
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
 				C1E66E03183C333A00851B89 /* Main_iPhone.storyboard */,
+				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
+				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C1FBB4D21907057200C5D3B5 /* Main_iPad.storyboard */,
-				C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */,
-				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
 				C1E66E0C183C333A00851B89 /* Images.xcassets */,
 				C114505519172761005D1D99 /* hubViewController.h */,
 				C114505619172761005D1D99 /* hubViewController.m */,
@@ -222,6 +225,8 @@
 				C1E66E44183C33D000851B89 /* MonthlyEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
+				C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */,
+				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
 				C1E66DF8183C333A00851B89 /* Supporting Files */,
 			);
 			path = campuslife;
@@ -433,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,

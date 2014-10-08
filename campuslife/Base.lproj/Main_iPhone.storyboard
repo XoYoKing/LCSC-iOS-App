@@ -347,11 +347,12 @@
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="Iwm-vG-bSo"/>
                         <segue destination="ISZ-Pu-eDz" kind="relationship" relationship="viewControllers" id="YfJ-W4-BDO"/>
+                        <segue destination="5sb-bb-V1f" kind="relationship" relationship="viewControllers" id="HFy-jH-Kb5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1420" y="-733"/>
+            <point key="canvasLocation" x="-1426" y="-667"/>
         </scene>
         <!--Day Events-->
         <scene sceneID="bdj-ao-PaR">
@@ -403,6 +404,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bc-Cu-JgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-623" y="-439"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Egp-68-igS">
+            <objects>
+                <viewController id="5sb-bb-V1f" customClass="EventDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zSH-ET-tR3"/>
+                        <viewControllerLayoutGuide type="bottom" id="UfA-sO-tdM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lfN-Rz-gl5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coF-Fo-dhO">
+                                <rect key="frame" x="16" y="140" width="288" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="QTB-zv-Yfh">
+                                <rect key="frame" x="16" y="258" width="288" height="253"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMT-W8-Yma">
+                                <rect key="frame" x="16" y="111" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Bv5-MP-w4w"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rCG-p7-BJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-353" y="-1207"/>
         </scene>
         <!--Event Detail Table View Controller-->
         <scene sceneID="pU9-zL-lpj">
@@ -546,7 +586,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIo-uu-o2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-138" y="-657"/>
+            <point key="canvasLocation" x="-190" y="-199"/>
         </scene>
         <!--List-->
         <scene sceneID="G1c-XG-YUy">
@@ -578,7 +618,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C99-qe-bO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-985" y="-1079"/>
+            <point key="canvasLocation" x="-849" y="-1247"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MpC-QZ-mcS">
@@ -611,6 +651,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2OA-YN-uOU"/>
+        <segue reference="j4T-2R-tpU"/>
     </inferredMetricsTieBreakers>
 </document>
