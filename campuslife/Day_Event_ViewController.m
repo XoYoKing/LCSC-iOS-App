@@ -259,11 +259,12 @@
 
 
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"dayToEventDetailTable"]) {
+    if ([segue.identifier isEqualToString:@"DayToDetail"]) {
         if (!_didSegue)
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             
+            //Instantiate your next view controller!
             EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
             
             [destViewController setEvent:[sortedArray objectAtIndex:indexPath.row]];

@@ -93,7 +93,7 @@
             title.text = @"Summary";
             UILabel *summary = (UILabel *)[cell viewWithTag:2];
             summary.text = [_eventDict objectForKey:@"summary"];
-            NSLog(@"%@",summary.text);
+            //NSLog(@"%@",summary.text);
         }
         
         if (indexPath.row == 2)
@@ -431,13 +431,6 @@
 }
 
 
--(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"EventDetailToUpdateEvent"]) {
-        UpdateEventViewController *destViewController = (UpdateEventViewController *)[segue destinationViewController];
-        
-        [destViewController setEventInfo:_eventDict];
-    }
-}
 
 
 @end

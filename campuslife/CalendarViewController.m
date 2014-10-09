@@ -797,10 +797,10 @@
             NSString *location;
             NSString *summary;
             NSString *description;
-            
             if ([oldEventsInfo[i] valueForKey:@"gd$when"] != nil)
             {
                 startTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"startTime"];
+                NSLog(@"%@",startTime);
                 endTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"endTime"];
             }
             else if ([oldEventsInfo[i] valueForKey:@"gd$recurrence"] != nil)
@@ -808,6 +808,10 @@
                 //Parse the [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"]
                 //  for the start and end time of the event. Then set the string to recurrence.
                 recurrence = [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"];
+                //NSLog(@"%@",recurrence);
+                //startTime
+                //endTime
+                continue;
             }
                 
             if (([oldEventsInfo[i] valueForKey:@"gd$where"] != nil)

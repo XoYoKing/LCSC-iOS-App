@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kwF-Lk-Zzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kwF-Lk-Zzz">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -26,7 +26,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="SLV-s7-n9l"/>
-                                    <barButtonItem enabled="NO" title=">" id="4dy-g2-40z">
+                                    <barButtonItem enabled="NO" title="&gt;" id="4dy-g2-40z">
                                         <connections>
                                             <action selector="forwardMonthOffset:" destination="vXZ-lx-hvc" id="Q1M-ZT-WZW"/>
                                         </connections>
@@ -347,12 +347,11 @@
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="Iwm-vG-bSo"/>
                         <segue destination="ISZ-Pu-eDz" kind="relationship" relationship="viewControllers" id="YfJ-W4-BDO"/>
-                        <segue destination="5sb-bb-V1f" kind="relationship" relationship="viewControllers" id="HFy-jH-Kb5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1426" y="-667"/>
+            <point key="canvasLocation" x="-1482" y="-695"/>
         </scene>
         <!--Day Events-->
         <scene sceneID="bdj-ao-PaR">
@@ -388,7 +387,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="AVD-nM-o4Z" kind="push" identifier="dayToEventDetailTable" id="3QE-OV-uvP"/>
+                                    <segue destination="5sb-bb-V1f" kind="push" identifier="DayToDetail" id="kKn-JZ-pN7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -451,6 +450,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Bv5-MP-w4w"/>
+                    <navigationItem key="navigationItem" id="Edf-cH-Fdp"/>
                     <connections>
                         <outlet property="Date" destination="Vyv-ar-sDL" id="hus-RT-YJb"/>
                         <outlet property="Description" destination="QTB-zv-Yfh" id="od0-pd-4Qi"/>
@@ -461,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCG-p7-BJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-353" y="-1207"/>
+            <point key="canvasLocation" x="-203" y="-833"/>
         </scene>
         <!--Event Detail Table View Controller-->
         <scene sceneID="pU9-zL-lpj">
@@ -655,7 +655,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAG-nL-nyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1798" y="-733"/>
+            <point key="canvasLocation" x="-1822" y="-711"/>
         </scene>
     </scenes>
     <resources>
