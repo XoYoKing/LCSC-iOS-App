@@ -24,6 +24,7 @@
     events = [MonthlyEvents getSharedInstance];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
     NSLog(@"%@",[_eventDict description]);
+//    self.Time.text [_eventDict ]
     // Do any additional setup after loading the view.
 }
 
