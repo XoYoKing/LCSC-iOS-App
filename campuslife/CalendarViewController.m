@@ -800,15 +800,46 @@
             if ([oldEventsInfo[i] valueForKey:@"gd$when"] != nil)
             {
                 startTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"startTime"];
-                NSLog(@"%@",startTime);
+            NSLog(@"%@\n",startTime);
+
                 endTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"endTime"];
+                NSLog(@"%@\n-------\n",endTime);
             }
             else if ([oldEventsInfo[i] valueForKey:@"gd$recurrence"] != nil)
             {
+                 /*
+                 NSString *timestampString = @"\/Date(1242597600000)\/";
+                 NSArray *components = [timestampString componentsSeparatedByString:@"("];
+                 NSString *afterOpenBracket = [components objectAtIndex:1];
+                 components = [afterOpenBracket componentsSeparatedByString:@")"];
+                 NSString *numberString = [components objectAtIndex:0];
+                 long timeStamp = [numberString longValue];
+                 */
+                
                 //Parse the [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"]
                 //  for the start and end time of the event. Then set the string to recurrence.
                 recurrence = [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"];
-                //NSLog(@"%@",recurrence);
+                NSArray *components = [recurrence componentsSeparatedByString:@"\n"];
+                NSArray *dtstartHold;
+                NSArray *dtendHold;
+                for (id object in components) {
+                    if ([object rangeOfString:@"DTSTART"].location != NSNotFound){
+                        dtstartHold = [[object componentsSeparatedByString:@":"][1] componentsSeparatedByString:@"T"];
+                    }
+                    if ([object rangeOfString:@"DTEND"].location != NSNotFound){
+                        dtendHold = [[object componentsSeparatedByString:@":"][1] componentsSeparatedByString:@"T"];
+                    }
+                }
+                
+                //NSString *startYear = [dtstartHold[0] substringWithRange:NSMakeRange(0, 3)] ;
+                //NSString *startMonth  = [dtstartHold[0] substringWithRange:NSMakeRange(4, 5)] ;
+                //NSString *startDay  = [dtstartHold[0] substringWithRange:NSMakeRange(6, 7)] ;;
+                //NSString *startHour  = [dtstartHold[1] substringWithRange:NSMakeRange(0, 1)] ;;
+                //NSString *startMinute  = [dtstartHold[1] substringWithRange:NSMakeRange(2, 3)] ;;
+                //NSString *startSecond = @"00";
+                //2014-10-24T08:00:00.000-07:00
+                //startTime = [NSString stringWithFormat:@"%@-/%@-/%@T/%@", startYear, startMonth, startDay,startHour,startMinute,startSecond];
+                NSLog(@"%@\n-------\n",dtendHold);
                 //startTime
                 //endTime
                 continue;
