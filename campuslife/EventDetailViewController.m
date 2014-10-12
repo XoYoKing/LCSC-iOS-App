@@ -27,7 +27,7 @@
     self.Title.text = [_eventDict objectForKey:@"summary"];
     self.Location.text = [(NSString*) @"Location: " stringByAppendingString:[_eventDict objectForKey:@"location"]];
     self.Description.text = [(NSString*) @"Description: " stringByAppendingString:[_eventDict objectForKey:@"description"]];
-    //NSLog(@"%@",[_eventDict description]);
+
     
     //self.startLabel.text = [(NSString*) [whenComponents objectAtIndex:0] stringByReplacingOccurrencesOfString:@"When: " withString:@""];
 //    self.Time.text [_eventDict ]

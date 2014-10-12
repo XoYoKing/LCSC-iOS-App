@@ -93,7 +93,7 @@
             title.text = @"Summary";
             UILabel *summary = (UILabel *)[cell viewWithTag:2];
             summary.text = [_eventDict objectForKey:@"summary"];
-            //NSLog(@"%@",summary.text);
+
         }
         
         if (indexPath.row == 2)
