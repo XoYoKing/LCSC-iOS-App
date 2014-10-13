@@ -210,9 +210,9 @@
 			children = (
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
-				C1E66E03183C333A00851B89 /* Main_iPhone.storyboard */,
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
+				C1E66E03183C333A00851B89 /* Main_iPhone.storyboard */,
 				C1FBB4D21907057200C5D3B5 /* Main_iPad.storyboard */,
 				C1E66E0C183C333A00851B89 /* Images.xcassets */,
 				C114505519172761005D1D99 /* hubViewController.h */,

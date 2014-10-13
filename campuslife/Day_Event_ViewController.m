@@ -43,7 +43,7 @@
  */
 - (void)viewDidLoad
 {
-
+    self.tableView.rowHeight = 44;
     
     [super viewDidLoad];
     
@@ -314,34 +314,10 @@
     else
     {
         NSString *eventStart = [[eventTime objectForKey:@"start"] objectForKey:@"dateTime"];
-        NSRange fiveToTen = NSMakeRange(5, 5);
-        NSString *datePart = [eventStart substringWithRange:fiveToTen];
-        
-        datePart = [datePart stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        
-        NSRange zeroToFour = NSMakeRange(0, 4);
-        
-        datePart = [datePart stringByAppendingString:@"/"];
-        datePart = [datePart stringByAppendingString:[eventStart substringWithRange:zeroToFour]];
-        
-        NSRange elevenToSixteenStart = NSMakeRange(11, 5);
-        NSString *startTime = [eventStart substringWithRange:elevenToSixteenStart];
+        NSString *startTime = [eventStart substringWithRange:NSMakeRange(11, 5)];
         startTime = [self twentyFourToTwelve:startTime];
-        
-        NSString *eventEnd = [[eventTime objectForKey:@"end"] objectForKey:@"dateTime"];
-        NSString *datePart2 = [eventEnd substringWithRange:fiveToTen];
-        
-        datePart2 = [datePart2 stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
-        
-        datePart2 = [datePart2 stringByAppendingString:@"/"];
-        datePart2 = [datePart2 stringByAppendingString:[eventEnd substringWithRange:zeroToFour]];
-        
-        NSRange elevenToSixteenEnd = NSMakeRange(11, 5);
-        NSString *endTime = [eventEnd substringWithRange:elevenToSixteenEnd];
-        endTime = [self twentyFourToTwelve:endTime];
-        
         UILabel *time = (UILabel *)[cell viewWithTag:20];
-        time.text = [NSString stringWithFormat:@"%@  %@\n  to  \n%@  %@", datePart, startTime, datePart2, endTime];
+        time.text = [NSString stringWithFormat:@"%@", startTime];
     }
     
     if ([[eventTime objectForKey:@"category"] isEqualToString:@"Entertainment"])

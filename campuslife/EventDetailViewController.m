@@ -23,14 +23,32 @@
 
     events = [MonthlyEvents getSharedInstance];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
-    self.Time.text = @"12:00 am - 12:50 pm";
-    self.Title.text = [_eventDict objectForKey:@"summary"];
-    self.Location.text = [(NSString*) @"Location: " stringByAppendingString:[_eventDict objectForKey:@"location"]];
-    self.Description.text = [(NSString*) @"Description: " stringByAppendingString:[_eventDict objectForKey:@"description"]];
 
     
-    //self.startLabel.text = [(NSString*) [whenComponents objectAtIndex:0] stringByReplacingOccurrencesOfString:@"When: " withString:@""];
-//    self.Time.text [_eventDict ]
+    if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
+    {
+        self.Time.text = @"All Day Event";
+    }
+    else
+    {
+        NSArray *startTimeHold = [_eventDict objectForKey:@"start"];
+        NSArray *endTimeHold = [_eventDict objectForKey:@"end"];
+        //NSLog(@"%@\n%@\n\n",startTimeHold,endTimeHold);
+        self.Time.text = @"dsfd";
+    }
+    
+    
+    NSString *titleToParse = [_eventDict objectForKey:@"summary"];
+    titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@":" withString:@"\n"];
+    titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@": " withString:@"\n"];
+    titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@"(" withString:@"\n("];
+    self.Title.text = titleToParse;
+    
+    
+    self.Location.text = [_eventDict objectForKey:@"location"];
+    self.Description.text = [_eventDict objectForKey:@"description"];
+
+
     // Do any additional setup after loading the view.
 }
 
