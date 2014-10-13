@@ -11,12 +11,46 @@
 #import "UpdateEventViewController.h"
 #import "CalendarViewController.h"
 
+
 @interface EventDetailViewController (){
     MonthlyEvents *events;
 }
 @end
 
 @implementation EventDetailViewController
+
+- (NSString *)twentyFourToTwelve:(NSString *)time
+{
+    NSRange stringHourRange = NSMakeRange(0, 2);
+    NSString *stringHour = [time substringWithRange:stringHourRange];
+    int hourInt = [stringHour intValue];
+    
+    NSRange stringMinRange = NSMakeRange(2, 3);
+    NSString *restOfString = [time substringWithRange:stringMinRange];
+    
+    
+    if (hourInt == 0)
+    {
+        time = [NSString stringWithFormat:@"%d%@ AM", 12, restOfString];
+    }
+    
+    else if(hourInt < 12)
+    {
+        time = [NSString stringWithFormat:@"%d%@ AM", hourInt, restOfString];
+    }
+    
+    else if (hourInt == 12)
+    {
+        time = [NSString stringWithFormat:@"%d%@ PM", 12, restOfString];
+    }
+    
+    else if (hourInt >= 13)
+    {
+        time = [NSString stringWithFormat:@"%d%@ PM", hourInt - 12, restOfString];
+    }
+    
+    return time;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,10 +65,11 @@
     }
     else
     {
-        NSArray *startTimeHold = [_eventDict objectForKey:@"start"];
-        NSArray *endTimeHold = [_eventDict objectForKey:@"end"];
-        //NSLog(@"%@\n%@\n\n",startTimeHold,endTimeHold);
-        self.Time.text = @"dsfd";
+    NSString *startTimeHold = [[[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+    NSString *endTimeHold = [[[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+        startTimeHold = [self twentyFourToTwelve:startTimeHold];
+        endTimeHold = [self twentyFourToTwelve:endTimeHold];
+        self.Time.text = [NSString stringWithFormat:@"%@ - %@",startTimeHold,endTimeHold];
     }
     
     
