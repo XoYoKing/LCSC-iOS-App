@@ -791,7 +791,8 @@
             //These will store the information that's needed for the event.
             NSString *startTime;
             NSString *endTime;
-            NSString *recurrence;
+            NSString *recur;
+            NSArray *recurrence;
             NSString *location;
             NSString *summary;
             NSString *description;
@@ -806,8 +807,9 @@
             {
                 //Parse the [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"]
                 //  for the start and end time of the event. Then set the string to recurrence.
-                recurrence = [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"];
-                NSArray *components = [recurrence componentsSeparatedByString:@"\n"];
+                recur = [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"];
+                NSArray *components = [recur componentsSeparatedByString:@"\n"];
+                recurrence = [NSArray arrayWithObjects:components[2], nil];
                 NSArray *dtstartHold;
                 NSArray *dtendHold;
                 
@@ -834,9 +836,7 @@
                 NSString *endMinute  = [dtendHold[1] substringWithRange:NSMakeRange(2, 2)] ;
                 NSString *endSecond = @"00";
                 endTime = [NSString stringWithFormat:@"%@-%@-%@T%@:%@:%@.000-07:00", endYear, endMonth, endDay,endHour,endMinute,endSecond];
-                //NSLog(@"\n\n%@\n%@\n\n\n",startTime,endTime);
-                
-                continue;
+                //continue;
             }
             
             if (([oldEventsInfo[i] valueForKey:@"gd$where"] != nil) && ([[oldEventsInfo[i] valueForKey:@"gd$where"] count] > 0))
