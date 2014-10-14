@@ -685,7 +685,18 @@
                 // This is where JSON's get requested
                 // Josh NOTE
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json", [[MonthlyEvents getSharedInstance] getCalIds][name]]];
-                
+                /*
+                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-%d-01T00:00:00-07:00&start-max=%d-%d-%dT23:59:59-07:00", [[MonthlyEvents getSharedInstance] getCalIds][name],[_events getSelectedYear],[_events getSelectedMonth]+(_curArrayId-1),[_events getSelectedYear],[_events getSelectedMonth]+(_curArrayId-1),[_events getDaysOfMonth: [_events getSelectedMonth]+(_curArrayId-1):[_events getSelectedYear]]]];
+                 // NSLog(@"%@",url);
+                 /*
+                 getDaysOfMonth
+                 
+                 -(int)getSelectedMonth;
+                 -(int)getSelectedYear;
+                 url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com/public/full?alt=json&start-min=2014-10-01T00:00:00&start-max=2014-10-31T23:59:59"]] ;
+                 
+                 //@"l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com
+                 */
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 
                 if (data != nil)
