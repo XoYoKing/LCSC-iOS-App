@@ -272,8 +272,6 @@
     }
 }
 
-
-// Useless comment!
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -285,10 +283,6 @@
 {
     return [sortedArray count];
 }
-
-
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -314,10 +308,15 @@
     else
     {
         NSString *eventStart = [[eventTime objectForKey:@"start"] objectForKey:@"dateTime"];
-        NSString *startTime = [eventStart substringWithRange:NSMakeRange(11, 5)];
+        NSRange elevenToSixteenStart = NSMakeRange(11, 5);
+        NSString *startTime = [eventStart substringWithRange:elevenToSixteenStart];
         startTime = [self twentyFourToTwelve:startTime];
+        NSString *eventEnd = [[eventTime objectForKey:@"end"] objectForKey:@"dateTime"];
+        NSRange elevenToSixteenEnd = NSMakeRange(11, 5);
+        NSString *endTime = [eventEnd substringWithRange:elevenToSixteenEnd];
+        endTime = [self twentyFourToTwelve:endTime];
         UILabel *time = (UILabel *)[cell viewWithTag:20];
-        time.text = [NSString stringWithFormat:@"%@", startTime];
+        time.text = [NSString stringWithFormat:@"%@\nto\n%@", startTime, endTime];
     }
     
     if ([[eventTime objectForKey:@"category"] isEqualToString:@"Entertainment"])

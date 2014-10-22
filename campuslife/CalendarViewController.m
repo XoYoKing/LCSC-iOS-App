@@ -163,7 +163,7 @@
         
         //Resend the requests that failed.
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-    }*/
+    }
     //Check a bunch of conditions that altogether mean that the json that we're expecting
     //  hasn't been heard from for over 3 seconds. This hopefully means it won't be coming back.
     
@@ -178,7 +178,7 @@
         
         //Resend the requests that failed.
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-    }
+    }*/
 }
 
 - (void)onTickForDelay:(NSTimer*)timer
@@ -683,10 +683,29 @@
                 
                 
                 // This is where JSON's get requested
-                // Josh NOTE
+                // Josh NOTE;
+                NSURL *url;
+                NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
+                
 
-                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-%d-01T00:00:00-07:00&start-max=%d-%d-%dT23:59:59-07:00&max-results=9001", [[MonthlyEvents getSharedInstance] getCalIds][name],[_events getSelectedYear],[_events getSelectedMonth]+(_curArrayId-1),[_events getSelectedYear],[_events getSelectedMonth]+(_curArrayId-1),[_events getDaysOfMonth: [_events getSelectedMonth]+(_curArrayId-1):[_events getSelectedYear]]]];
-                 // NSLog(@"%@",url);
+                int urlMonth = [_events getSelectedMonth]+(_curArrayId-1);
+                if (urlMonth > 12){
+                    urlMonth = 1;
+                }else if (urlMonth < 1){
+                    urlMonth = 12;
+                }
+                int urlendday = [_events getDaysOfMonth: urlMonth:[_events getSelectedYear]];
+                int urlYear = [_events getSelectedYear];
+
+                if ([_events getSelectedMonth]+(_curArrayId-1) <10){
+                    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-0%d-01T00:00:00-07:00&start-max=%d-0%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
+
+                    
+                }else{
+                    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-%d-01T00:00:00-07:00&start-max=%d-%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
+                }
+                
+            
                 
 
                 NSData *data = [NSData dataWithContentsOfURL:url];
@@ -774,14 +793,19 @@
 
         NSArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"feed.entry"];
         
+        if (oldEventsInfo == nil) {
+            oldEventsInfo = [[NSArray alloc] init];
+        }
+        
         NSString *category;
         
-    
         for (NSString *name in [_events getCategoryNames])
         {
-            if ([self getIndexOfSubstringInString:name :[[oldEventsInfo[0] valueForKey:@"gd$who"][0] valueForKey:@"valueString"]] != -1) {
+            if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"feed.title.$t"]] != -1) {
                 category = name;
                 
+            }
+            else{
             }
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
@@ -839,7 +863,6 @@
                 NSString *endMinute  = [dtendHold[1] substringWithRange:NSMakeRange(2, 2)] ;
                 NSString *endSecond = @"00";
                 endTime = [NSString stringWithFormat:@"%@-%@-%@T%@:%@:%@.000-07:00", endYear, endMonth, endDay,endHour,endMinute,endSecond];
-                //continue;
             }
             
             if (([oldEventsInfo[i] valueForKey:@"gd$where"] != nil) && ([[oldEventsInfo[i] valueForKey:@"gd$where"] count] > 0))
@@ -1363,7 +1386,7 @@
                         else
                         {
                      
-                            _screenLocked = NO;
+                           _screenLocked = NO;
                             _loadCompleted = YES;
                             [self.navigationItem setHidesBackButton:NO animated:YES];
                             _failedReqs = 0;
@@ -1379,7 +1402,6 @@
                     }
                     else
                     {
-                     
                         _screenLocked = NO;
                         _loadCompleted = YES;
                         [self.navigationItem setHidesBackButton:NO animated:YES];
@@ -1399,6 +1421,10 @@
     }
 }
 
+- (void)setMonthNeedsLoaded:(BOOL)monthNeedsLoaded
+{
+    _monthNeedsLoaded = monthNeedsLoaded;
+}
 -(void)accessTokenWasRevoked{
     [_events resetEvents];
     _loadCompleted = YES;
