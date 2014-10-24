@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     cal = [self.tabBarController.childViewControllers objectAtIndex:0];
     NSDate *todaysDate = [[NSDate alloc] init];
     currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
@@ -38,6 +39,7 @@
     sortedArray = (NSMutableArray *)[events getEventsStartingToday];
     hasLoadedOnce = NO;
     numberOfLoads = 0;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -170,10 +172,14 @@
 -(void)loadEventsForNextMonth
 {
     ++currentMonth;
-    if(currentMonth >= 13) {
-        currentMonth = 1;
-        currentYear++;
-    }
+     if (currentMonth > 12){
+         currentMonth = 1;
+         currentYear++;
+     }else if (currentMonth < 1){
+         currentMonth = 12;
+        currentYear--;
+     }
+
     [events offsetMonth:1];
     [cal setMonthNeedsLoaded:YES];
     [cal getEventsForMonth:currentMonth - 1 :currentYear];
