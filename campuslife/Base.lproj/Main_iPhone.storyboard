@@ -450,7 +450,7 @@
                         <outlet property="Location" destination="700-hq-3un" id="ePH-3V-1ms"/>
                         <outlet property="Time" destination="nMT-W8-Yma" id="BSA-6z-emm"/>
                         <outlet property="Title" destination="coF-Fo-dhO" id="WDv-RT-U3Q"/>
-                        <segue destination="UZU-fc-uCS" kind="push" id="bo0-7s-029"/>
+                        <segue destination="UZU-fc-uCS" kind="push" identifier="weWillChangeThis" id="bo0-7s-029"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCG-p7-BJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -563,7 +563,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIs-z4-GJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1413" y="-1038"/>
+            <point key="canvasLocation" x="-1421" y="-998"/>
         </scene>
     </scenes>
     <resources>

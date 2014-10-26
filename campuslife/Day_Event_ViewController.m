@@ -43,10 +43,10 @@
  */
 - (void)viewDidLoad
 {
-    self.tableView.rowHeight = 44;
     
     [super viewDidLoad];
-    
+    self.tableView.rowHeight = 44;
+    //self.tableView.rowHeight = UITableViewAutomaticDimension;
     events = [MonthlyEvents getSharedInstance];
     
     [self setDay:[events getSelectedDay]];
@@ -231,9 +231,8 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
     EventDetailViewController *detailViewController;
     if (IDIOM != IPAD) {
         detailViewController = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"eventDetail"];
@@ -254,9 +253,9 @@
         detailViewController.view.superview.bounds=CGRectMake(0.0, 0.0, 300.0, 500.0);
         ///detailViewController.view.superview.center=detailViewController.view.center;
         detailViewController.view.superview.clipsToBounds=YES;
-    }*/
+    }
 }
-
+*/
 
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"DayToDetail"]) {
@@ -351,7 +350,9 @@
     }
     
     UILabel *summary = (UILabel *)[cell viewWithTag:22];
-    summary.text = [eventTime objectForKey:@"summary"];
+    NSString *summaryHold = [eventTime objectForKey:@"summary"];
+    summaryHold = [summaryHold stringByReplacingOccurrencesOfString:@":" withString:@""];
+    summary.text = summaryHold;
     
     return cell;
 }

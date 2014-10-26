@@ -422,11 +422,6 @@
     timeStr = [timeStr stringByAppendingString:[time substringWithRange:NSMakeRange(6, 2)]];
     timeStr = [timeStr stringByAppendingString:@"/"];
     timeStr = [timeStr stringByAppendingString:[time substringWithRange:NSMakeRange(0, 4)]];
-    /*timeStr = [timeStr stringByAppendingString:@" "];
-    timeStr = [timeStr stringByAppendingString:[time substringWithRange:NSMakeRange(9, 2)]];
-    timeStr = [timeStr stringByAppendingString:@":"];
-    timeStr = [timeStr stringByAppendingString:[time substringWithRange:NSMakeRange(11, 2)]];*/
-    
     return timeStr;
 }
 

@@ -82,11 +82,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
     
 
-    _timer = [NSTimer scheduledTimerWithTimeInterval: 1
+    /*_timer = [NSTimer scheduledTimerWithTimeInterval: 1
                                              target: self
-                                           selector: @selector(onTick:)
+                                            selector: @selector(onTick:)
                                            userInfo: nil
-                                            repeats: YES];
+                                            repeats: YES];*/
 
     _monthNeedsLoaded = NO;
     
@@ -107,6 +107,7 @@
     
     
     _screenLocked = YES;
+
     
     NSDate *date = [NSDate date];
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
@@ -128,8 +129,6 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-
-    
     [super viewDidAppear:YES];
     
     if (_shouldRefresh) {
@@ -146,9 +145,9 @@
     
 }
 
-- (void)onTick:(NSTimer*)timer
+/*- (void)onTick:(NSTimer*)timer
 {
-    /*if (_failedReqs == 3)
+    if (_failedReqs == 3)
     {
         [_events resetEvents];
         _curArrayId = 1;
@@ -178,8 +177,8 @@
         
         //Resend the requests that failed.
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-    }*/
-}
+    }
+}*/
 
 - (void)onTickForDelay:(NSTimer*)timer
 {
@@ -190,7 +189,6 @@
         if ([_events doesMonthNeedLoaded:_curArrayId])
         {
             [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-            _screenLocked = YES;
         }
         else
         {
@@ -213,6 +211,7 @@
                 else
                 {
                     _loadCompleted = YES;
+
                     _screenLocked = NO;
                     [self.navigationItem setHidesBackButton:NO animated:YES];
                     _failedReqs = 0;
@@ -740,6 +739,7 @@
             [_collectionView reloadData];
             [_activityIndicator stopAnimating];
             _screenLocked = NO;
+
             _loadCompleted = YES;
             
             _curArrayId = 2;
@@ -830,7 +830,7 @@
                     for (int timee = 0; timee<holdRecurTimes.count; timee++,counter++){
                         NSMutableDictionary *replacementEvent = [holdRecurEvent mutableCopy];
                         [replacementEvent setValue:holdRecurTimes[timee] forKey:@"gd$when"];
-                        [oldEventsInfo addObject:replacementEvent];
+                        [replacementEvent setValue:nil forKey:@"gd$recurrence"];
                         if (counter == 0){
                          oldEventsInfo[i] = replacementEvent;
                          }else{
@@ -842,7 +842,7 @@
                 }
             }
         }
-        
+
         for (int i=0; i<oldEventsInfo.count; i++)
         {
             //These will store the information that's needed for the event.
@@ -854,13 +854,7 @@
             NSString *summary;
             NSString *description;
    
-            NSLog(@"%@\n----\n",oldEventsInfo[i]);
-            if ([[oldEventsInfo[i] valueForKeyPath:@"title.$t"]  isEqual: @"Harvest Fair"]){
-                NSLog(@"dsfa");
-            }
             if ([oldEventsInfo[i] valueForKey:@"gd$when"] != nil)
-            //if ([[oldEventsInfo[i] valueForKey:@"gd$when"] count] <= 1)
-            //if([[oldEventsInfo[i] valueForKey:@"gd$when"][0] isKindOfClass:[NSArray class]])
             {
                 if ([[oldEventsInfo[i] valueForKey:@"gd$when"] isKindOfClass:[NSArray class]]) {
                     startTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"startTime"];
@@ -869,13 +863,26 @@
                     startTime = [[oldEventsInfo[i] valueForKey:@"gd$when"] valueForKey:@"startTime"];
                     endTime = [[oldEventsInfo[i] valueForKey:@"gd$when"] valueForKey:@"endTime"];
                 }
- 
+                if (endTime.length > 10){
+                NSString *endMoment = [endTime substringWithRange:NSMakeRange(10, 9)];
+                    if ([endMoment isEqual: @"T00:00:00"]){
+                        NSString *endDayPart = [NSString stringWithFormat:@"%d",[[endTime substringWithRange:NSMakeRange(8, 2)] intValue]-1];
+                        if ([endDayPart intValue] >0){
+                        if (endDayPart.length < 2){
+                            endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(9, 1) withString:endDayPart];
+                        }else{
+                            endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(8, 2) withString:endDayPart];
+                        }
+                        endTime = [endTime stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@"T23:59:00"];
+
+                        }
+                    }
+                }
             }
             else if ([oldEventsInfo[i] valueForKey:@"gd$recurrence"] != nil)
             {
                 //Parse the [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"]
                 //  for the start and end time of the event. Then set the string to recurrence.
-               // NSLog(@"\n------start----------\n%@",oldEventsInfo[i]);
                 recur = [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"];
                 NSArray *components = [recur componentsSeparatedByString:@"\n"];
                 recurrence = [NSArray arrayWithObjects:components[2], nil];
@@ -1143,6 +1150,10 @@
                 int repeat = 1;
                 
                 //If an event is reocurring, then we must account for that.
+                
+             //////////
+             /// CLAYTON
+             /*
                 if ([currentEventInfo objectForKey:@"recurrence"] != nil) {
 
                     //The beginning of the substring that represents the freq of the recurrence.
@@ -1258,7 +1269,6 @@
                                 }
                                 else {
                                     //Account for days in startMonth
-                                    //NSLog(@"This is where it is crashing");
                                     daysInEventDuration += [_events getDaysOfMonth:startMonth :startYear]-startDay+1;
                                     
                                     //At the very beginning we'll be working with probably not a full year.
@@ -1304,6 +1314,9 @@
                         }
                     }
                 }
+              */
+            //THIS IS NO LONGER NEEDED
+            //////////
                 
                 //This will hold the number of days into the next month.
                 int wrappedDays = endDay-[_events getDaysOfMonth:startMonth :startYear];
@@ -1433,8 +1446,9 @@
                         }
                     }
                 }
-            }
+            
 
+            }
             if ([_events isMonthDoneLoading:_curArrayId])
             {
 
@@ -1460,6 +1474,7 @@
                         {
                      
                            _screenLocked = NO;
+
                             _loadCompleted = YES;
                             [self.navigationItem setHidesBackButton:NO animated:YES];
                             _failedReqs = 0;
@@ -1497,25 +1512,6 @@
 - (void)setMonthNeedsLoaded:(BOOL)monthNeedsLoaded
 {
     _monthNeedsLoaded = monthNeedsLoaded;
-}
--(void)accessTokenWasRevoked{
-    [_events resetEvents];
-    _loadCompleted = YES;
-}
-
-
--(void)errorOccuredWithShortDescription:(NSString *)errorShortDescription andErrorDetails:(NSString *)errorDetails{
-    // Just log the error messages.
-
-    
-    /*
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: errorShortDescription
-                                                    message: errorDetails
-                                                   delegate: nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-     */
 }
 
 
