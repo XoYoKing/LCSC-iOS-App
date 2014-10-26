@@ -56,7 +56,7 @@
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
         EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
-        NSLog(@"%ld", (long)selectedRow);
+
         [destViewController setEvent:[sortedArray objectAtIndex:selectedRow]];
         
     }
@@ -183,8 +183,7 @@
     [events offsetMonth:1];
     [cal setMonthNeedsLoaded:YES];
     [cal getEventsForMonth:currentMonth - 1 :currentYear];
-    NSLog(@"%d", (int)currentMonth);
-    NSLog(@"%d", (int)currentYear);
+
     
     [sortedArray addObjectsFromArray:[events getEventsForCurrentMonth: 1]];
     
