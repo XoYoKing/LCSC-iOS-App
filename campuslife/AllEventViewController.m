@@ -19,8 +19,10 @@
     CalendarViewController *cal;
     NSInteger currentMonth;
     NSInteger currentYear;
-    BOOL hasLoadedOnce;
-    int numberOfLoads;
+    // Clayton Merge
+    //BOOL hasLoadedOnce;
+    //int numberOfLoads;
+    BOOL stopLoading;
 }
 
 @end
@@ -29,7 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     cal = [self.tabBarController.childViewControllers objectAtIndex:0];
     NSDate *todaysDate = [[NSDate alloc] init];
     currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
@@ -37,9 +38,16 @@
     
     events = [MonthlyEvents getSharedInstance];
     sortedArray = (NSMutableArray *)[events getEventsStartingToday];
-    hasLoadedOnce = NO;
-    numberOfLoads = 0;
+    stopLoading = NO;
     
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSInteger selectedMonth = [events getSelectedMonth];
+    NSInteger selectedYear = [events getSelectedYear];
+    NSInteger moveDistance = (currentYear - selectedYear) * 12;
+    moveDistance += (currentMonth - selectedMonth);
+    NSLog(@"%ld", moveDistance);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,12 +81,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row >= [sortedArray count] - 5)
+    if(indexPath.row >= [sortedArray count] - 10 && !stopLoading)
     {
         // do whatever to dynamically add events from next month to sortedArray
-        //[sortedArray addObjectsFromArray:[events getEvents:1 monthOffset:1]];
+        tableView.scrollEnabled = NO;
         [self loadEventsForNextMonth];
         [tableView reloadData];
+        tableView.scrollEnabled = YES;
     }
     static NSString *CellIdentifier = @"EventCell";
     
@@ -167,25 +176,36 @@
     return cell;
 }
 
-
+-(void)incrementCurrentMonth
+{
+    ++currentMonth;
+    if (currentMonth > 12){
+        currentMonth = 1;
+        currentYear++;
+    }else if (currentMonth < 1){
+        currentMonth = 12;
+        currentYear--;
+    }
+}
 
 -(void)loadEventsForNextMonth
 {
-    ++currentMonth;
-     if (currentMonth > 12){
-         currentMonth = 1;
-         currentYear++;
-     }else if (currentMonth < 1){
-         currentMonth = 12;
-        currentYear--;
-     }
-
-    [events offsetMonth:1];
-    [cal setMonthNeedsLoaded:YES];
-    [cal getEventsForMonth:currentMonth - 1 :currentYear];
-
+    [self incrementCurrentMonth];
+    //[self incrementCurrentMonth];
+    //[events offsetMonth:1];
+    //[cal setMonthNeedsLoaded:YES];
+    //[cal getEventsForMonth:currentMonth - 1 :currentYear];
+    //NSLog(@"%d", currentMonth);
+    //NSLog(@"%d", currentYear);
+    [cal loadEventsForMonth:currentMonth andYear:currentYear];
     
-    [sortedArray addObjectsFromArray:[events getEventsForCurrentMonth: 1]];
+    NSArray *newEvents = [events getEventsForCurrentMonth: 1];
+    
+    if([newEvents count] == 0) {
+        stopLoading = YES;
+    }
+    
+    [sortedArray addObjectsFromArray:newEvents];
     
 }
 

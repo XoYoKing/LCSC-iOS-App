@@ -72,10 +72,6 @@
 
 
 
-
-/*
- *  Possibly useless?
- */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

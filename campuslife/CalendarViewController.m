@@ -1509,6 +1509,14 @@
     }
 }
 
+-(void)loadEventsForMonth:(NSInteger)month andYear:(NSInteger) year
+{
+    [_events offsetMonth:1];
+    _curArrayId = 1;
+    _monthNeedsLoaded = YES;
+    [self getEventsForMonth:month :year];
+}
+
 - (void)setMonthNeedsLoaded:(BOOL)monthNeedsLoaded
 {
     _monthNeedsLoaded = monthNeedsLoaded;

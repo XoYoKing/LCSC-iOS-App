@@ -359,12 +359,14 @@ static MonthlyEvents *sharedInstance;
 
 -(NSArray *)getEventsForCurrentMonth:(NSInteger) offset
 {
+//clayton merge
     NSMutableArray *allEvents = [[NSMutableArray alloc] init];
     
-    int monthLength = (int)[_calendarEvents[0 + offset] count];
-    for(int j = 0; j < monthLength; j++) {
-        [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[0 + offset] objectAtIndex:j]]];
-    }
+    int monthLength = (int)[_calendarEvents[1] count];
+        for(int j = 0; j < monthLength; j++) {
+            [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[1] objectAtIndex:j]]];
+        }
+    
     
     return allEvents;
 }
