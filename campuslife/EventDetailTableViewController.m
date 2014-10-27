@@ -8,7 +8,6 @@
 
 #import "EventDetailTableViewController.h"
 #import "MonthlyEvents.h"
-#import "UpdateEventViewController.h"
 #import "CalendarViewController.h"
 
 //This is for checking to see if an ipad is being used.
