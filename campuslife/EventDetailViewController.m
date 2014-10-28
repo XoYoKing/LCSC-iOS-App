@@ -86,6 +86,12 @@
 
     // Do any additional setup after loading the view.
 }
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+    NSLog(@"%@",URL);
+    return 0;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

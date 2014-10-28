@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EventDetailViewController : UIViewController
+@interface EventDetailViewController : UIViewController<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *Time;
 @property (weak, nonatomic) IBOutlet UILabel *Title;
 @property (weak, nonatomic) IBOutlet UILabel *Location;
