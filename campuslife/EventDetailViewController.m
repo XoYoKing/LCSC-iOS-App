@@ -10,6 +10,7 @@
 #import "MonthlyEvents.h"
 //#import "UpdateEventViewController.h"
 #import "CalendarViewController.h"
+#import "WebViewViewController.h"
 
 
 @interface EventDetailViewController (){
@@ -86,9 +87,20 @@
 
     // Do any additional setup after loading the view.
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showURL"]) {
+        
+        WebViewViewController *wv = [segue destinationViewController];
+        [wv setUrl:_urlSelected];
+    }
+}
+
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
 {
-    NSLog(@"%@",URL);
+    _urlSelected = URL;
+    [self performSegueWithIdentifier:@"showURL" sender:self];
+    
     return 0;
 }
 

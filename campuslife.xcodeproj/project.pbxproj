@@ -33,6 +33,7 @@
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
 		C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */; };
 		C114505719172761005D1D99 /* hubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C114505619172761005D1D99 /* hubViewController.m */; };
+		C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7C9851A00380500252982 /* WebViewViewController.m */; };
 		C1BA288419198B520035F364 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1BA288119198B520035F364 /* Default-568h@2x.png */; };
 		C1BA288519198B520035F364 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = C1BA288219198B520035F364 /* Default-Portrait.png */; };
 		C1BA288619198B520035F364 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1BA288319198B520035F364 /* Default-Portrait@2x.png */; };
@@ -103,6 +104,8 @@
 		C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTableViewController.m; sourceTree = "<group>"; };
 		C114505519172761005D1D99 /* hubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hubViewController.h; sourceTree = "<group>"; };
 		C114505619172761005D1D99 /* hubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hubViewController.m; sourceTree = "<group>"; };
+		C1A7C9841A00380500252982 /* WebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewViewController.h; sourceTree = "<group>"; };
+		C1A7C9851A00380500252982 /* WebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewViewController.m; sourceTree = "<group>"; };
 		C1BA288119198B520035F364 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C1BA288219198B520035F364 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
 		C1BA288319198B520035F364 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 				C1E66E44183C33D000851B89 /* MonthlyEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
+				C1A7C9841A00380500252982 /* WebViewViewController.h */,
+				C1A7C9851A00380500252982 /* WebViewViewController.m */,
 				99F6F39119FDC39500536DB8 /* Images.xcassets */,
 				C1E66DF8183C333A00851B89 /* Supporting Files */,
 			);
@@ -441,6 +446,7 @@
 			files = (
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
+				C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,

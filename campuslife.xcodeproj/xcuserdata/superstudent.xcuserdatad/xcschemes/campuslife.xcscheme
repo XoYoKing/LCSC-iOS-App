@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1E66DED183C333A00851B89"
-               BuildableName = "campuslife.app"
-               BlueprintName = "campuslife"
+               BuildableName = "Campus Life.app"
+               BlueprintName = "Campus Life"
                ReferencedContainer = "container:campuslife.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1E66DED183C333A00851B89"
-            BuildableName = "campuslife.app"
-            BlueprintName = "campuslife"
+            BuildableName = "Campus Life.app"
+            BlueprintName = "Campus Life"
             ReferencedContainer = "container:campuslife.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1E66DED183C333A00851B89"
-            BuildableName = "campuslife.app"
-            BlueprintName = "campuslife"
+            BuildableName = "Campus Life.app"
+            BlueprintName = "Campus Life"
             ReferencedContainer = "container:campuslife.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1E66DED183C333A00851B89"
-            BuildableName = "campuslife.app"
-            BlueprintName = "campuslife"
+            BuildableName = "Campus Life.app"
+            BlueprintName = "Campus Life"
             ReferencedContainer = "container:campuslife.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
