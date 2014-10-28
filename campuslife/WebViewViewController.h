@@ -12,7 +12,7 @@
 
 @property (copy, nonatomic) NSURL *url;
 
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
 
 -(void) setUrl:(NSURL *)url;
 

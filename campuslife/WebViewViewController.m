@@ -14,6 +14,8 @@
 
 @implementation WebViewViewController
 
+//@synthesize webView = _webView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
@@ -22,6 +24,18 @@
 
 -(void) setUrl:(NSURL *)url {
     _url = url;
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [_webView loadHTMLString:@"" baseURL:nil];
+    [_webView stopLoading];
+    [_webView removeFromSuperview];
+    [_webView setDelegate:nil];
+}
+
+-(void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    [_webView reload];
 }
 
 @end
