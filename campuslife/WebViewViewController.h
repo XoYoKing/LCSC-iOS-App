@@ -13,7 +13,7 @@
 @property (copy, nonatomic) NSURL *url;
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
-
+-(void) TearDownUIWebView;
 -(void) setUrl:(NSURL *)url;
 
 @end

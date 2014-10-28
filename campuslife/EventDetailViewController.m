@@ -105,7 +105,7 @@
     _urlSelected = URL;
     [self performSegueWithIdentifier:@"showURL" sender:self];
     
-    return 0;
+    return NO;
 }
 
 

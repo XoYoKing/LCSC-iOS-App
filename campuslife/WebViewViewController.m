@@ -26,16 +26,25 @@
     _url = url;
 }
 
-- (void) viewWillDisappear:(BOOL)animated {
+-(void) TearDownUIWebView{
     [_webView loadHTMLString:@"" baseURL:nil];
     [_webView stopLoading];
     [_webView removeFromSuperview];
+    [_webView stopLoading];
     [_webView setDelegate:nil];
+    
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    [[NSURLCache sharedURLCache] setDiskCapacity:0];
+    [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [self TearDownUIWebView];
 }
 
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    [_webView reload];
+    [self TearDownUIWebView];
 }
 
 @end
