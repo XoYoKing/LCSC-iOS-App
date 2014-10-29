@@ -142,8 +142,14 @@
         
         _shouldRefresh = NO;
     }
-    
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self rollbackEvents];
+}
+
 
 /*- (void)onTick:(NSTimer*)timer
 {
@@ -1521,6 +1527,48 @@
 {
     _monthNeedsLoaded = monthNeedsLoaded;
 }
+
+// resets the MonthlyEvents instance to the current month and year if and only if
+// the MonthlyEvents instance isn't already at the current month and year
+- (void)rollbackEvents
+{
+    NSDate *date = [NSDate date];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
+    NSInteger year = [dateComponents year];
+    NSInteger month = [dateComponents month];
+    NSInteger day = [dateComponents day];
+
+    if(year != [_events getSelectedYear] || month != [_events getSelectedMonth]) {
+        _screenLocked = YES;
+        
+        [_events setYear:(int)year];
+        [_events setMonth:(int)month];
+        
+        [_events resetEvents];
+        
+        
+        [_activityIndicator startAnimating];
+        
+        [self.navigationItem setHidesBackButton:YES animated:YES];
+        _curArrayId = 1;
+        _monthNeedsLoaded = YES;
+        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+        
+        
+        [_events setSelectedDay:day];
+        [self.collectionView reloadData];
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

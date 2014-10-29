@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "287"
             endingLineNumber = "287"
-            landmarkName = "-backMonthOffset:"
+            landmarkName = "-radioSelected:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "302"
             endingLineNumber = "302"
-            landmarkName = "-forwardMonthOffset:"
+            landmarkName = "-backMonthOffset:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -176,6 +176,22 @@
             startingLineNumber = "30"
             endingLineNumber = "30"
             landmarkName = "-TearDownUIWebView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/EventDetailViewController.m"
+            timestampString = "436300219.198078"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -20,6 +20,62 @@
 
 @implementation EventDetailViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSArray *dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
+//substringWithRange:NSMakeRange(10, 9);
+    NSString *yearHold = dateHold[0];
+    NSString *dayHold = dateHold[2];
+    NSString *monthHold = dateHold[1];
+    monthHold = [self convertMonthNumberToString:monthHold];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@, %@", monthHold, dayHold,yearHold];
+}
+
+-(NSString *)convertMonthNumberToString:(NSString *)monthh
+{
+    NSString *month = [[NSString alloc] init];
+    switch ([monthh intValue]) {
+        case 1:
+            month = @"January";
+            break;
+        case 2:
+            month = @"February";
+            break;
+        case 3:
+            month = @"March";
+            break;
+        case 4:
+            month = @"April";
+            break;
+        case 5:
+            month = @"May";
+            break;
+        case 6:
+            month = @"June";
+            break;
+        case 7:
+            month = @"July";
+            break;
+        case 8:
+            month = @"August";
+            break;
+        case 9:
+            month = @"September";
+            break;
+        case 10:
+            month = @"October";
+            break;
+        case 11:
+            month = @"November";
+            break;
+        case 12:
+            month = @"December";
+            break;
+    }
+
+    return month;
+}
+
 - (NSString *)twentyFourToTwelve:(NSString *)time
 {
     NSRange stringHourRange = NSMakeRange(0, 2);

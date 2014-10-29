@@ -328,9 +328,8 @@ static MonthlyEvents *sharedInstance;
 
 -(NSInteger)getCurrentDay
 {
-    NSDate *todaysDate = [[NSDate alloc] init];
-    NSRange dayRange = NSMakeRange(8, 2);
-    return [[[todaysDate description] substringWithRange:dayRange] intValue];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    return [components day];
 }
 
 -(NSArray *)getEventsStartingToday
@@ -347,7 +346,6 @@ static MonthlyEvents *sharedInstance;
         } else {
             startAt = 0;
         }
-        
         int monthLength = (int)[_calendarEvents[i] count];
         for(int j = startAt; j < monthLength; j++) {
             [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[i] objectAtIndex:j]]];

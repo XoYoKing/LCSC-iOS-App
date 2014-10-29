@@ -23,6 +23,7 @@
     //BOOL hasLoadedOnce;
     //int numberOfLoads;
     BOOL stopLoading;
+    BOOL wentToEvent;
 }
 
 @end
@@ -31,23 +32,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.rowHeight = 44;
     cal = [self.tabBarController.childViewControllers objectAtIndex:0];
     NSDate *todaysDate = [[NSDate alloc] init];
     currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
     currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
-    
     events = [MonthlyEvents getSharedInstance];
-    sortedArray = (NSMutableArray *)[events getEventsStartingToday];
     stopLoading = NO;
-    
+    // prevents data from reloading when user comes back from Day_Event_ViewController
+    wentToEvent = NO;
 }
-- (void)viewDidAppear:(BOOL)animated
+
+- (void)viewWillAppear:(BOOL)animated
 {
-    NSInteger selectedMonth = [events getSelectedMonth];
-    NSInteger selectedYear = [events getSelectedYear];
-    NSInteger moveDistance = (currentYear - selectedYear) * 12;
-    moveDistance += (currentMonth - selectedMonth);
-    NSLog(@"%ld", moveDistance);
+    [super viewDidAppear:YES];
+    if(!wentToEvent){
+        [cal rollbackEvents];
+        sortedArray = (NSMutableArray *)[events getEventsStartingToday];
+        [self.tableView reloadData];
+        stopLoading = NO;
+    
+    } else {
+        wentToEvent = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,10 +70,10 @@
 
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
+        wentToEvent = YES;
         EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
 
         [destViewController setEvent:[sortedArray objectAtIndex:selectedRow]];
-        
     }
 }
 
@@ -81,17 +88,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row >= [sortedArray count] - 10 && !stopLoading)
+    //BOOL a = indexPath.row >= [sortedArray count] - 10;
+    //NSLog(@"%ld >= %ld is: %d", indexPath.row, [sortedArray count] - 10, a);
+    
+    NSInteger rowCount = [sortedArray count];
+    if(indexPath.row >= (NSInteger)(rowCount * 0.8) && !stopLoading)
     {
-        // do whatever to dynamically add events from next month to sortedArray
-        tableView.scrollEnabled = NO;
+        self.tableView.scrollEnabled = NO;
         [self loadEventsForNextMonth];
-        [tableView reloadData];
-        tableView.scrollEnabled = YES;
+        [self.tableView reloadData];
+        self.tableView.scrollEnabled = YES;
     }
+    
     static NSString *CellIdentifier = @"EventCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     UILabel *dayLbl = (UILabel *)[cell viewWithTag:20];
     UILabel *eventDetailLbl = (UILabel *)[cell viewWithTag:22];
     UILabel *eventTimeLbl = (UILabel *)[cell viewWithTag:24];
@@ -191,12 +202,6 @@
 -(void)loadEventsForNextMonth
 {
     [self incrementCurrentMonth];
-    //[self incrementCurrentMonth];
-    //[events offsetMonth:1];
-    //[cal setMonthNeedsLoaded:YES];
-    //[cal getEventsForMonth:currentMonth - 1 :currentYear];
-    //NSLog(@"%d", currentMonth);
-    //NSLog(@"%d", currentYear);
     [cal loadEventsForMonth:currentMonth andYear:currentYear];
     
     NSArray *newEvents = [events getEventsForCurrentMonth: 1];
