@@ -119,6 +119,7 @@ static MonthlyEvents *sharedInstance;
         }
     }
 }
+
 - (void) refreshArrayOfEvents:(int)arrayId {
     if (![_calendarEvents[arrayId] isEqual:[NSNull null]]) {
         [_calendarEvents[arrayId] removeAllObjects];
@@ -348,6 +349,7 @@ static MonthlyEvents *sharedInstance;
         }
         int monthLength = (int)[_calendarEvents[i] count];
         for(int j = startAt; j < monthLength; j++) {
+            //NSLog(@"\n\nMonth Oct Day %d\n\n", j);
             [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[i] objectAtIndex:j]]];
         }
     }
@@ -362,21 +364,19 @@ static MonthlyEvents *sharedInstance;
     
     int monthLength = (int)[_calendarEvents[1] count];
         for(int j = 0; j < monthLength; j++) {
+            //NSLog(@"\n\nDay %d\n\n", j);
             [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[1] objectAtIndex:j]]];
         }
     
     
     return allEvents;
 }
+
 - (NSMutableArray *)eventSorter:(NSArray *)unsorted
 {
     NSMutableArray *newArray = [[NSMutableArray alloc] init];
     
     [newArray addObjectsFromArray:unsorted];
-    
-    //if ([[events getEventsForDay:_day] count]>=1)
-    //{
-        
         
     Preferences *preferences = [Preferences getSharedInstance];
     
@@ -386,6 +386,8 @@ static MonthlyEvents *sharedInstance;
     {
         NSString *categoryName = [newArray[currentPos] objectForKey:@"category"];
         
+        //NSLog(categoryName);
+        
         
         BOOL removedSomething = NO;
         for (NSString *name in [[MonthlyEvents getSharedInstance] getCategoryNames])
@@ -393,7 +395,7 @@ static MonthlyEvents *sharedInstance;
             if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == NO))
             {
                 
-                
+                //NSLog(@"Removing event with category: @", categoryName);
                 [newArray removeObjectAtIndex:currentPos];
                 
                 removedSomething = YES;
@@ -404,26 +406,15 @@ static MonthlyEvents *sharedInstance;
         {
             currentPos++;
         }
-        //}
-        
-        
-        
-        
-        
-        
         
         if ([newArray count] > 1)
         {
-            
-            
             int currentPos = 0;
             
             BOOL finished = FALSE;
             
             while(!finished)
             {
-                
-                
                 int lowestItem = currentPos;
                 
                 for (int i = currentPos + 1; i < [newArray count]; i++)
@@ -448,8 +439,6 @@ static MonthlyEvents *sharedInstance;
                     
                     if (start1 > start2)
                     {
-                        
-                        
                         lowestItem = i;
                     }
                     else if (start1 == start2)

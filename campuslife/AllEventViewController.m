@@ -24,6 +24,7 @@
     //int numberOfLoads;
     BOOL stopLoading;
     BOOL wentToEvent;
+    int noEventsInMonthCount;
 }
 
 @end
@@ -41,6 +42,7 @@
     stopLoading = NO;
     // prevents data from reloading when user comes back from Day_Event_ViewController
     wentToEvent = NO;
+    noEventsInMonthCount = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -49,8 +51,8 @@
     if(!wentToEvent){
         [cal rollbackEvents];
         sortedArray = (NSMutableArray *)[events getEventsStartingToday];
-        [self.tableView reloadData];
         stopLoading = NO;
+        [self.tableView reloadData];
     
     } else {
         wentToEvent = NO;
@@ -62,18 +64,33 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedRow = indexPath.row;
     [self performSegueWithIdentifier:@"allEventToEventDetailTable" sender:self];
-}
+}*/
 
+/*
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
         wentToEvent = YES;
         EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
 
         [destViewController setEvent:[sortedArray objectAtIndex:selectedRow]];
+    }
+}
+ */
+
+-(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
+    
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        wentToEvent = YES;
+        //Instantiate your next view controller!
+        EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
+        
+        [destViewController setEvent:[sortedArray objectAtIndex:indexPath.row]];
     }
 }
 
@@ -207,7 +224,13 @@
     NSArray *newEvents = [events getEventsForCurrentMonth: 1];
     
     if([newEvents count] == 0) {
-        stopLoading = YES;
+        ++noEventsInMonthCount;
+        if(noEventsInMonthCount >= 3) {
+            stopLoading = YES;
+        }
+    
+    } else {
+        noEventsInMonthCount = 0;
     }
     
     [sortedArray addObjectsFromArray:newEvents];
