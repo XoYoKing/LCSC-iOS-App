@@ -89,8 +89,6 @@
     
     if ([[events getEventsForDay:_day] count]>=1)
     {
-
-        
         Preferences *preferences = [Preferences getSharedInstance];
         
         int currentPos = 0;
@@ -98,15 +96,12 @@
         while (currentPos < [newArray count])
         {
             NSString *categoryName = [newArray[currentPos] objectForKey:@"category"];
-
             
             BOOL removedSomething = NO;
             for (NSString *name in [[MonthlyEvents getSharedInstance] getCategoryNames])
             {
                 if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == NO))
                 {
-        
-                    
                     [newArray removeObjectAtIndex:currentPos];
                     
                     removedSomething = YES;

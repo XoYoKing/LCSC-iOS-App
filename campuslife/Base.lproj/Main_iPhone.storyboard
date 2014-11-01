@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kwF-Lk-Zzz">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -345,7 +344,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="Iwm-vG-bSo"/>
-                        <segue destination="PYI-sD-Pxi" kind="relationship" relationship="viewControllers" id="PdU-AR-eGN"/>
+                        <segue destination="PYI-sD-Pxi" kind="relationship" relationship="viewControllers" id="ndn-xx-smT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -401,7 +400,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bc-Cu-JgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1230" y="-379"/>
+            <point key="canvasLocation" x="-698" y="-379"/>
         </scene>
         <!--Item-->
         <scene sceneID="Egp-68-igS">
@@ -458,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCG-p7-BJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-793" y="-695"/>
+            <point key="canvasLocation" x="-261" y="-695"/>
         </scene>
         <!--Web View View Controller-->
         <scene sceneID="MqN-QG-0WA">
@@ -486,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oS4-bo-0Yg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-263" y="-730"/>
+            <point key="canvasLocation" x="269" y="-730"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MpC-QZ-mcS">
@@ -564,7 +563,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="All Events" image="day_view-32.png" id="ftP-Gq-TBh"/>
+                    <tabBarItem key="tabBarItem" title="All Events" image="day_view-32.png" id="2J2-W4-Dwn"/>
                     <navigationItem key="navigationItem" title="All Events" id="MAy-EH-2mP"/>
                     <connections>
                         <outlet property="tableView" destination="zst-gA-ldo" id="250-hr-9wb"/>
@@ -572,7 +571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIs-z4-GJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1421" y="-998"/>
+            <point key="canvasLocation" x="-1629" y="-1024"/>
         </scene>
     </scenes>
     <resources>

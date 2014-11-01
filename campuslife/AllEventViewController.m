@@ -40,17 +40,21 @@
     currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
     events = [MonthlyEvents getSharedInstance];
     stopLoading = NO;
-    // prevents data from reloading when user comes back from Day_Event_ViewController
+    // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
     wentToEvent = NO;
     noEventsInMonthCount = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+    [super viewWillAppear:YES];
     if(!wentToEvent){
         [cal rollbackEvents];
         sortedArray = (NSMutableArray *)[events getEventsStartingToday];
+        // events won't load for next month if nothing was loaded for this month
+        while([sortedArray count] == 0 && noEventsInMonthCount < 3) {
+            [self loadEventsForNextMonth];
+        }
         stopLoading = NO;
         [self.tableView reloadData];
     
