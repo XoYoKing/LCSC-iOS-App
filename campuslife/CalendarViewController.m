@@ -797,6 +797,7 @@
     // Get the JSON data as a dictionary.
     // Josh NOTE
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
+    //NSLog([eventsInfoDict description]);
     
 
 
@@ -1483,6 +1484,7 @@
     }
 }
 
+/*
 -(void)loadEventsForMonth:(NSInteger)month andYear:(NSInteger) year
 {
     [_events offsetMonth:1];
@@ -1490,6 +1492,98 @@
     _monthNeedsLoaded = YES;
     [self getEventsForMonth:month :year];
 }
+*/
+/*
+-(void)loadEventsFromCurrentMonthToMonth:(NSInteger)month andYear:(NSInteger) year
+{
+    _curArrayId = 1;
+    [_events offsetMonth:6];
+    int toMonth = (int)month;
+    int toYear = (int)year;
+    int endDay = [_events getDaysOfMonth:toMonth :toYear];
+    
+    [_events setSelectedDay:endDay];
+    //[_events setMonth:toMonth];
+    //[_events setYear:toYear];
+    
+    int curMonth = (int)[_events getCurrentMonth];
+    int curYear = (int)[_events getCurrentYear];
+    
+    for (NSString *name in [_events getCategoryNames])
+    {
+        NSURL *url;
+        NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
+        NSString *urlString;
+        //NSLog(name);
+        
+        if(curMonth >= 10 && curMonth <= 12 && toMonth >= 10 && curMonth <= 12) {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+        
+        } else if(curMonth >= 10 && curMonth <= 12 && toMonth < 10 && curMonth > 12) {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+        
+        } else if(curMonth < 10 && curMonth > 12 && toMonth >= 10 && curMonth <= 12) {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+        
+        } else {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+        }
+        
+        //NSLog(urlString);
+        
+        url = [NSURL URLWithString:urlString];
+        
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        //NSLog([data description]);
+        if (data != nil)
+        {
+            NSLog(@"YAAAY");
+            [self parseJSON:data];
+        }
+        // IS THIS IMPORTANT????
+        //_timeLastReqSent = [[NSDate date] timeIntervalSince1970];
+    }
+}
+*/
+
+-(void)loadEventsForMonth:(int)month andYear:(int) year
+{
+    _curArrayId = 1;
+    int endDay = [_events getDaysOfMonth :month :year];
+    
+    [_events setSelectedDay:endDay];
+    [_events setMonth:month];
+    [_events setYear:year];
+    
+    
+    for (NSString *name in [_events getCategoryNames])
+    {
+        NSURL *url;
+        NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
+        //NSLog(name);
+        
+        NSString *urlString;
+        if (month < 10 || month > 12){
+            
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,year,month,year,month,endDay];
+            
+        }else{
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,year,month,year,month,endDay];
+        }
+        url = [NSURL URLWithString:urlString];
+        
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        if (data != nil)
+        {
+            //NSLog(@"YAAAY");
+            
+            [self parseJSON:data];
+        }
+        // IS THIS IMPORTANT????
+        //_timeLastReqSent = [[NSDate date] timeIntervalSince1970];
+    }
+}
+
 
 - (void)setMonthNeedsLoaded:(BOOL)monthNeedsLoaded
 {

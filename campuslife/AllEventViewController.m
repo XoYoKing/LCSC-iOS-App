@@ -4,7 +4,7 @@
 //
 //  Created by Super Student on 10/12/14.
 //  Copyright (c) 2014 LCSC. All rights reserved.
-//
+//1
 
 #import "AllEventViewController.h"
 #import "MonthlyEvents.h"
@@ -52,10 +52,9 @@
     if(!wentToEvent){
         [cal rollbackEvents];
         sortedArray = (NSMutableArray *)[events getEventsStartingToday];
+        [self incrementCurrentMonth];
+        [self loadEventsForNextSixMonths];
         // events won't load for next month if nothing was loaded for this month
-        while([sortedArray count] == 0 && noEventsInMonthCount < 3) {
-            [self loadEventsForNextMonth];
-        }
         stopLoading = NO;
         [self.tableView reloadData];
     
@@ -116,10 +115,10 @@
     NSInteger rowCount = [sortedArray count];
     if(indexPath.row >= (NSInteger)(rowCount * 0.8) && !stopLoading)
     {
-        self.tableView.scrollEnabled = NO;
-        [self loadEventsForNextMonth];
-        [self.tableView reloadData];
-        self.tableView.scrollEnabled = YES;
+        //self.tableView.scrollEnabled = NO;
+        //[self loadEventsForNextMonth];
+        //[self.tableView reloadData];
+        //self.tableView.scrollEnabled = YES;
     }
     
     static NSString *CellIdentifier = @"EventCell";
@@ -221,23 +220,21 @@
     }
 }
 
+-(void)loadEventsForNextSixMonths
+{
+    for(int i = 0; i < 5; ++i) {
+        [self loadEventsForNextMonth];
+    }
+}
+
 -(void)loadEventsForNextMonth
 {
     [self incrementCurrentMonth];
+    [events offsetMonth:1];
     [cal loadEventsForMonth:currentMonth andYear:currentYear];
     
     NSArray *newEvents = [events getEventsForCurrentMonth: 1];
-    
-    if([newEvents count] == 0) {
-        ++noEventsInMonthCount;
-        if(noEventsInMonthCount >= 3) {
-            stopLoading = YES;
-        }
-    
-    } else {
-        noEventsInMonthCount = 0;
-    }
-    
+    //NSLog([newEvents description]);
     [sortedArray addObjectsFromArray:newEvents];
     
 }
@@ -333,49 +330,519 @@
     return monthAbr;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void) loadEventsForMonth:(NSInteger)month onYear:(NSInteger)year
+{
+    [events setMonth:month];
+    [events setYear:year];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void) parseJSON:(NSData *)JSONAsData onMonth:(NSInteger)month1 onYear:(NSInteger)year1 {
+    NSError *error = nil;
+    
+    // Get the JSON data as a dictionary.
+    // Josh NOTE
+    NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
+    
+    if (error) {
+        // This is the case that an error occured during converting JSON data to dictionary.
+        // Simply log the error description.
+        
+    }
+    else{
+        //Get the events as an array
+        
+        NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"items"];
+        
+        
+        if (oldEventsInfo == nil) {
+            oldEventsInfo = [[NSMutableArray alloc] init];
+        }
+        
+        NSString *category;
+        
+        for (NSString *name in [events getCategoryNames])
+        {
+            if ([cal getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
+                category = name;
+                
+            }
+            else{
+            }
+        }
+        //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
+        //  of the app.
+        NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
+        for (int i=0; i<oldEventsInfo.count; i++)
+        {
+            
+        //These will store the information that's needed for the event.
+        NSString *startTime;
+        NSString *endTime;
+        //NSString *recur;
+        NSArray *recurrence;
+        NSString *location;
+        NSString *summary;
+        NSString *description;
+        
+        if ([oldEventsInfo[i] valueForKey:@"start"] != nil)
+        {
+            if ([oldEventsInfo[i] valueForKeyPath:@"start.dateTime"] != nil) {
+                if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
+                    startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"dateTime"];
+                    endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"dateTime"];
+                }
+                else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
+                    startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"dateTime"];
+                    endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"dateTime"];
+                }
+            }else if ([oldEventsInfo[i] valueForKeyPath:@"start.date"] != nil){
+                if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
+                    startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"date"];
+                    endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"date"];
+                }
+                else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
+                    startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"date"];
+                    endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"date"];
+                }
+            }
+            
+            if (endTime.length > 10){
+                NSString *endMoment = [endTime substringWithRange:NSMakeRange(10, 9)];
+                if ([endMoment isEqual: @"T00:00:00"]){
+                    NSString *endDayPart = [NSString stringWithFormat:@"%d",[[endTime substringWithRange:NSMakeRange(8, 2)] intValue]-1];
+                    if ([endDayPart intValue] >0){
+                        if (endDayPart.length < 2){
+                            endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(9, 1) withString:endDayPart];
+                        }else{
+                            endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(8, 2) withString:endDayPart];
+                        }
+                        endTime = [endTime stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@"T23:59:00"];
+                        
+                    }
+                }
+            }
+        }
+        
+        if (([oldEventsInfo[i] valueForKey:@"location"] != nil))
+        {
+            location = [oldEventsInfo[i] valueForKey:@"location"];
+            
+        }else{
+            location = @"No Location Provided";
+        }
+        
+        if ([oldEventsInfo[i] valueForKey:@"description"] != nil)
+        {
+            description = [oldEventsInfo[i] valueForKey:@"description"];
+            
+        }
+        else{
+            description = @"No Description Provided";
+        }
+        
+        if ([oldEventsInfo[i] valueForKey:@"summary"] != nil)
+        {
+            summary = [oldEventsInfo[i] valueForKey:@"summary"];
+        }
+        
+        //This will be the new dictionary for the current event.
+        NSDictionary *event;
+        NSDictionary *start;
+        NSDictionary *end;
+        //Is the event an all day event?
+        if ([startTime length] < 12)
+        {
+            start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"date"]];
+            end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"date"]];
+        }
+        else
+        {
+            start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"dateTime"]];
+            end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"dateTime"]];
+        }
+        
+        if (recurrence == nil)
+        {
+            event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description"]];
+            
+        }
+        else
+        {
+            event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description, recurrence] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description", @"recurrence"]];
+        }
+        
+        //Puts the new event into the new array of event dictionaries!
+        [eventsInfo addObject:event];
+    }
+    
+    /*
+    if (![_events getCalendarJsonReceivedForMonth:_curArrayId :category])
+    {
+        
+        
+        [_events setCalendarJsonReceivedForMonth:_curArrayId :category];
+        if (_curArrayId == 1)
+        {
+            _monthLabel.text = [NSString stringWithFormat:@"%@ %d", [_events getMonthBarDate], [_events getSelectedYear]];
+            
+        }
+     */
+        
+        //int selectedMonth = month1 ;//[events getSelectedMonth] + (_curArrayId-1);
+        //int selectedYear = [events getSelectedYear];
+        int selectedYear = year1;
+        int selectedMonth = month1;
+        
+        
+        if (selectedMonth == 0)
+        {
+            selectedMonth = 12;
+            selectedYear -= 1;
+            
+        }
+        else if (selectedMonth == 13)
+        {
+            selectedMonth = 1;
+            selectedYear += 1;
+            
+        }
+        //Loop through the events
+        for (int i=0; i<[eventsInfo count]; i++) {
+            
+            //Now we must parse the summary and alter the dictionary so that it can be
+            //  used in the rest of the program easier. So we'll call parseSummaryForKey in this class
+            //  to pull info out of the Summary field in the Dictionary and place
+            //  it back into the dictionary mapped to a new key.
+            
+            NSMutableDictionary *currentEventInfo = [[NSMutableDictionary alloc] initWithDictionary:[eventsInfo objectAtIndex:i]];
+            
+            [currentEventInfo setObject:category forKey:@"category"];
+            
+            
+            
+            int startDay = 0;
+            int startMonth = 0;
+            int startYear = 0;
+            
+            int endDay = 0;
+            
+            
+            //Change to check string length???
+            //Josh NOTE
+            
+            //Determine if the event isn't an all day event type.
+            if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"dateTime"] != nil) {
+                startDay = (int)[[[[currentEventInfo objectForKey:@"start"]
+                                   objectForKey:@"dateTime"]
+                                  substringWithRange:NSMakeRange(8, 2)]
+                                 integerValue];
+                
+                startMonth = [[currentEventInfo[@"start"][@"dateTime"] substringWithRange:NSMakeRange(5, 2)] intValue];
+                
+                startYear = [[currentEventInfo[@"start"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue];
+                
+                //The endDay must not be the day of the month that it is on, but the number of days from the first day
+                //  of the startMonth.
+                if (startYear == [[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
+                    for (int month=startMonth; month<[[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(5, 2)] intValue]; month++) {
+                        endDay += [events getDaysOfMonth:month :startYear];
+                        
+                    }
+                    //Account for days in endMonth
+                    endDay += [[[[currentEventInfo objectForKey:@"end"]
+                                 objectForKey:@"dateTime"]
+                                substringWithRange:NSMakeRange(8, 2)]
+                               integerValue];
+                }
+                else {
+                    //At the very beginning we'll be working with probably not a full year.
+                    for (int month=startMonth; month<13; month++) {
+                        endDay += [events getDaysOfMonth:month :startYear];
+                        
+                    }
+                    
+                    //Start by accounting for year differences.
+                    for (int year=startYear+1; year<[[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue]+1; year++) {
+                        int endMonth = 12;
+                        //This makes sure that we stop on the month prior to the selected month
+                        //  and then add in the days for that month.
+                        if (year == [[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
+                            endMonth = [[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(5, 2)] intValue]-1;
+                            //Account for days in endMonth
+                            endDay += [[[[currentEventInfo objectForKey:@"end"]
+                                         objectForKey:@"dateTime"]
+                                        substringWithRange:NSMakeRange(8, 2)]
+                                       integerValue];
+                        }
+                        
+                        //This only takes into account full months strictly inbetween the start and end months.
+                        for (int month=1; month<endMonth+1; month++) {
+                            endDay += [events getDaysOfMonth:month :year];
+                            
+                        }
+                    }
+                }
+            }
+            
+            else if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"date"] != nil) {
+                startDay = (int)[[[[currentEventInfo objectForKey:@"start"]
+                                   objectForKey:@"date"]
+                                  substringWithRange:NSMakeRange(8, 2)]
+                                 integerValue];
+                
+                startMonth = [[currentEventInfo[@"start"][@"date"] substringWithRange:NSMakeRange(5, 2)] intValue];
+                
+                startYear = [[currentEventInfo[@"start"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue];
+                
+                //The endDay must not be the day of the month that it is on, but the number of days from the first day
+                //  of the startMonth.
+                if (startYear == [[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
+                    for (int month=startMonth; month<[[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(5, 2)] intValue]; month++) {
+                        endDay += [events getDaysOfMonth:month :startYear];
+                        
+                    }
+                    //Account for days in endMonth
+                    endDay += [[[[currentEventInfo objectForKey:@"end"]
+                                 objectForKey:@"date"]
+                                substringWithRange:NSMakeRange(8, 2)]
+                               integerValue];
+                }
+                else {
+                    //At the very beginning we'll be working with probably not a full year.
+                    for (int month=startMonth; month<13; month++) {
+                        endDay += [events getDaysOfMonth:month :startYear];
+                        
+                    }
+                    
+                    //Start by accounting for year differences.
+                    for (int year=startYear+1; year<[[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue]+1; year++) {
+                        int endMonth = 12;
+                        //This makes sure that we stop on the month prior to the selected month
+                        //  and then add in the days for that month.
+                        if (year == [[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
+                            endMonth = [[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(5, 2)] intValue]-1;
+                            //Account for days in endMonth
+                            endDay += [[[[currentEventInfo objectForKey:@"end"]
+                                         objectForKey:@"date"]
+                                        substringWithRange:NSMakeRange(8, 2)]
+                                       integerValue];
+                        }
+                        //This only takes into account full months strictly inbetween the start and end months.
+                        for (int month=1; month<endMonth+1; month++) {
+                            
+                            endDay += [events getDaysOfMonth:month :year];
+                            
+                            
+                        }
+                    }
+                }
+                //This makes the end day exclusive! As per the google calendar's standard.
+                endDay -= 1;
+            }
+            else if ([[currentEventInfo objectForKey:@"status"] isEqualToString:@"cancelled"])
+            {
+                continue;
+            }
+            else
+            {
+                continue;
+            }
+            
+            float freq = 1.0;
+            int repeat = 1;
+            
+            //This will hold the number of days into the next month.
+            int wrappedDays = endDay-[events getDaysOfMonth:startMonth :startYear];
+            
+            
+            //The e variable isn't being set properly. So fix it!
+            
+            int s = 0;
+            int e = 0;
+            
+            //The outer loop loops through the reocurrences.
+            for (int rep=0; rep<repeat; rep++) {
+                BOOL iterateOverDays = YES;
+                
+                //Are we dealing with a monthly repeat?
+                if (freq >= 28 && freq <= 31) {
+                    freq = [events getDaysOfMonth:startMonth :startYear];
+                    
+                }
+                else if (freq >= 365 && freq <= 366) {
+                    if (startYear % 4 == 0) {
+                        freq = 366;
+                    }
+                    else {
+                        freq = 365;
+                    }
+                }
+                
+                //Here we setup the s and e variables for the for loop.
+                if (startYear == selectedYear) {
+                    //The startMonth is with respect to the startDay. The endDay quite possible
+                    //  can be going into the next month.
+                    if (startMonth == selectedMonth) {
+                        s = startDay;
+                        
+                        //Check if the endDay will be moving into the next month.
+                        if (endDay > [events getDaysOfMonth:startMonth :startYear]) {
+                            
+                            e = [events getDaysOfMonth:startMonth :startYear];
+                            
+                        }
+                        else {
+                            e = endDay;
+                        }
+                    }
+                    //Check if the startMonth is the previous month and the endDay will roll over into the next month.
+                    else if (startMonth + 1 == selectedMonth && endDay > [events getDaysOfMonth:startMonth :startYear]) {
+                        
+                        //We don't care about the days in the previous month, only that
+                        //  the rolled over days are going to be in the selected month.
+                        s = 1;
+                        
+                        //endDay is for sure going to be above the daysInMonth.
+                        e = endDay%[events getDaysOfMonth:startMonth :startYear];
+                        
+                    }
+                    else {
+                        //We'll skip this iterating, because we won't add anything.
+                        iterateOverDays = NO;
+                    }
+                }
+                else if (startYear == selectedYear-1
+                         && startMonth == 12
+                         && endDay > [events getDaysOfMonth:startMonth :startYear]) {
+                    
+                    //We don't care about the days in the previous month, only that
+                    //  the rolled over days are going to be in the selected month.
+                    s = 1;
+                    
+                    //endDay is for sure going to be above the daysInMonth.
+                    e = endDay%[events getDaysOfMonth:startMonth :startYear];
+                    
+                }
+                else {
+                    //We'll skip this iterating, because we won't add anything.
+                    iterateOverDays = NO;
+                }
+                if (iterateOverDays) {
+                    //Add events for the startday all the way up to the end day.
+                    for (int day=s; day<e+1; day++) {
+                        if (day != 0) {
+                            //This then uses that day as an index and inserts the currentEvent into that indice's array.
+                            //[events AppendEvent:day :currentEventInfo :_curArrayId];
+                            [sortedArray addObject:currentEventInfo];
+                        }
+                    }
+                }
+                
+                //Setup the start and end vars for the next repeat.
+                startDay = startDay + freq;
+                
+                endDay = endDay + freq;
+                
+                BOOL nextDateUpdated = NO;
+                
+                while (!nextDateUpdated)
+                {
+                    //Check if we're moving into a new month.
+                    if (startDay%[events getDaysOfMonth:startMonth :startYear] < startDay) {
+                        
+                        //Then we mod the startDay to get the day of the next month it will be on.
+                        startDay = startDay-[events getDaysOfMonth:startMonth :startYear];
+                        
+                        endDay = endDay-[events getDaysOfMonth:startMonth :startYear];
+                        
+                        startMonth += 1;
+                        
+                        //Check to see if we transitioned to a new year.
+                        if (startMonth > 12) {
+                            startMonth = 1;
+                            startYear += 1;
+                        }
+                        if (wrappedDays > 0) {
+                            if (startMonth != 1) {
+                                endDay += [events getDaysOfMonth:startMonth :startYear] - [events getDaysOfMonth:startMonth-1 :startYear];
+                                
+                            }
+                            else {
+                                endDay += [events getDaysOfMonth:startMonth :startYear] - [events getDaysOfMonth:12 :startYear-1];
+                                
+                            }
+                        }
+                    }
+                    else
+                    {
+                        nextDateUpdated = YES;
+                    }
+                }
+            }
+            
+            
+        }
+    /*
+        if ([_events isMonthDoneLoading:_curArrayId])
+        {
+            
+            if (_curArrayId == 1)
+            {
+                [_collectionView reloadData];
+                [_activityIndicator stopAnimating];
+                
+                
+                _curArrayId = 2;
+                if ([_events doesMonthNeedLoaded:_curArrayId])
+                {
+                    [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+                }
+                else
+                {
+                    _curArrayId = 0;
+                    if ([_events doesMonthNeedLoaded:_curArrayId])
+                    {
+                        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+                    }
+                    else
+                    {
+                        
+                        _screenLocked = NO;
+                        
+                        _loadCompleted = YES;
+                        [self.navigationItem setHidesBackButton:NO animated:YES];
+                        _failedReqs = 0;
+                    }
+                }
+            }
+            else if (_curArrayId == 2)
+            {
+                _curArrayId = 0;
+                if ([_events doesMonthNeedLoaded:_curArrayId])
+                {
+                    [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+                }
+                else
+                {
+                    _screenLocked = NO;
+                    _loadCompleted = YES;
+                    [self.navigationItem setHidesBackButton:NO animated:YES];
+                    _failedReqs = 0;
+                }
+            }
+            else
+            {
+                _screenLocked = NO;
+                _loadCompleted = YES;
+                [self.navigationItem setHidesBackButton:NO animated:YES];
+                _failedReqs = 0;
+            }*/
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end

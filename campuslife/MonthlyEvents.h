@@ -28,7 +28,9 @@
 
 -(void)setSelectedDay:(int)day;
 -(int)getSelectedDay;
-
+-(NSInteger)getCurrentDay;
+-(NSInteger)getCurrentMonth;
+-(NSInteger)getCurrentYear;
 -(int)getSelectedMonth;
 -(int)getSelectedYear;
 

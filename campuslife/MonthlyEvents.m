@@ -333,6 +333,18 @@ static MonthlyEvents *sharedInstance;
     return [components day];
 }
 
+-(NSInteger)getCurrentMonth
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    return [components month];
+}
+
+-(NSInteger)getCurrentYear
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    return [components year];
+}
+
 -(NSArray *)getEventsStartingToday
 {
     NSMutableArray *allEvents = [[NSMutableArray alloc] init];
@@ -360,7 +372,6 @@ static MonthlyEvents *sharedInstance;
 {
 //clayton merge
     NSMutableArray *allEvents = [[NSMutableArray alloc] init];
-    
     int monthLength = (int)[_calendarEvents[1] count];
         for(int j = 0; j < monthLength; j++) {
             [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[1] objectAtIndex:j]]];
