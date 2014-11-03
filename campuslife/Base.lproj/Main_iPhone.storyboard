@@ -345,7 +345,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="Iwm-vG-bSo"/>
-                        <segue destination="PYI-sD-Pxi" kind="relationship" relationship="viewControllers" id="PdU-AR-eGN"/>
+                        <segue destination="PYI-sD-Pxi" kind="relationship" relationship="viewControllers" id="ndn-xx-smT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -370,7 +370,7 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12:00pm to 12:00am" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="KGP-G7-znB">
                                             <rect key="frame" x="2" y="0.0" width="50" height="43"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -401,7 +401,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bc-Cu-JgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1230" y="-379"/>
+            <point key="canvasLocation" x="-698" y="-379"/>
         </scene>
         <!--Item-->
         <scene sceneID="Egp-68-igS">
@@ -458,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCG-p7-BJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-793" y="-695"/>
+            <point key="canvasLocation" x="-261" y="-695"/>
         </scene>
         <!--Web View View Controller-->
         <scene sceneID="MqN-QG-0WA">
@@ -486,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oS4-bo-0Yg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-263" y="-730"/>
+            <point key="canvasLocation" x="269" y="-730"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MpC-QZ-mcS">
@@ -536,13 +536,13 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="22" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-Ya-Z8l">
                                                     <rect key="frame" x="66" y="8" width="221" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="24" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Siz-Wi-ZeC">
                                                     <rect key="frame" x="66" y="22" width="258" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -551,6 +551,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="5sb-bb-V1f" kind="push" identifier="allEventToEventDetailTable" id="91h-l3-254"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -561,16 +564,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="All Events" image="day_view-32.png" id="ftP-Gq-TBh"/>
-                    <navigationItem key="navigationItem" id="MAy-EH-2mP"/>
+                    <tabBarItem key="tabBarItem" title="All Events" image="day_view-32.png" id="2J2-W4-Dwn"/>
+                    <navigationItem key="navigationItem" title="All Events" id="MAy-EH-2mP"/>
                     <connections>
                         <outlet property="tableView" destination="zst-gA-ldo" id="250-hr-9wb"/>
-                        <segue destination="5sb-bb-V1f" kind="push" identifier="allEventToEventDetailTable" id="Bhf-rt-Iyg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIs-z4-GJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1421" y="-998"/>
+            <point key="canvasLocation" x="-1629" y="-1024"/>
         </scene>
     </scenes>
     <resources>
@@ -585,6 +587,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Bhf-rt-Iyg"/>
+        <segue reference="91h-l3-254"/>
     </inferredMetricsTieBreakers>
 </document>

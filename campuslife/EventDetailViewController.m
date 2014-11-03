@@ -22,8 +22,17 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSArray *dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
-//substringWithRange:NSMakeRange(10, 9);
+    NSArray *dateHold;
+    // Date info in different places depending on whether or not event is all day
+    if([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]) {
+        dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
+    
+    } else {
+        dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"date"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
+    }
+    
+    //NSArray *dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
+    //substringWithRange:NSMakeRange(10, 9);
     NSString *yearHold = dateHold[0];
     NSString *dayHold = dateHold[2];
     NSString *monthHold = dateHold[1];

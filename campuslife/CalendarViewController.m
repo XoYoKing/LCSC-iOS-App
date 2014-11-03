@@ -124,6 +124,7 @@
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
     [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+
     
 
 }
@@ -1557,7 +1558,7 @@
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
         
         
-        [_events setSelectedDay:day];
+        [_events setSelectedDay:(int)day];
         [self.collectionView reloadData];
     }
 }
