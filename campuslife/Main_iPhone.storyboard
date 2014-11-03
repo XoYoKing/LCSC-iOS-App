@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kwF-Lk-Zzz">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -490,6 +491,7 @@
         <!--Navigation Controller-->
         <scene sceneID="MpC-QZ-mcS">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IAG-nL-nyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kwF-Lk-Zzz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="atb-lw-K5C">
@@ -501,7 +503,6 @@
                         <segue destination="hAo-Ec-eGI" kind="relationship" relationship="rootViewController" id="Z3N-5K-cgr"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IAG-nL-nyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2455" y="-695"/>
         </scene>

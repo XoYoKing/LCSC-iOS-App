@@ -339,7 +339,7 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12:00pm to 12:00am" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaS-l5-jgp">
                                             <rect key="frame" x="0.0" y="0.0" width="158" height="40"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -456,6 +456,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="63C-A0-dPf" kind="push" identifier="allEventToEventDetailTable" id="RkC-Ht-X7J"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -470,7 +473,6 @@
                     <navigationItem key="navigationItem" title="All Events" id="QZH-qg-071"/>
                     <connections>
                         <outlet property="tableView" destination="OsI-tx-WYo" id="ahE-m7-Gbj"/>
-                        <segue destination="63C-A0-dPf" kind="push" identifier="allEventToEventDetailTable" id="Km1-kO-dvf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLd-hK-xvy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -575,6 +577,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Km1-kO-dvf"/>
+        <segue reference="RkC-Ht-X7J"/>
     </inferredMetricsTieBreakers>
 </document>
