@@ -51,6 +51,9 @@
     [super viewWillAppear:YES];
     if(!wentToEvent){
         [cal rollbackEvents];
+        NSDate *todaysDate = [[NSDate alloc] init];
+        currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
+        currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
         sortedArray = (NSMutableArray *)[events getEventsStartingToday];
         [self incrementCurrentMonth];
         [self loadEventsForNextSixMonths];
