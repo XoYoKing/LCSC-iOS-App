@@ -110,7 +110,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //BOOL a = indexPath.row >= [sortedArray count] - 10;
-    //NSLog(@"%ld >= %ld is: %d", indexPath.row, [sortedArray count] - 10, a);
+
     
     NSInteger rowCount = [sortedArray count];
     if(indexPath.row >= (NSInteger)(rowCount * 0.8) && !stopLoading)

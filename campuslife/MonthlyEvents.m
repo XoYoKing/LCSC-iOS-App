@@ -376,9 +376,7 @@ static MonthlyEvents *sharedInstance;
     
     [newArray addObjectsFromArray:unsorted];
     
-    if([newArray count] >= 1) {
-        //NSLog([newArray description]);
-    }
+
         
     Preferences *preferences = [Preferences getSharedInstance];
     

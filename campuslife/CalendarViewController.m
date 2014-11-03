@@ -106,7 +106,7 @@
     _swipeRight.enabled = YES;
     
     
-    _screenLocked = YES;
+    _screenLocked = NO;
 
     
     NSDate *date = [NSDate date];
@@ -670,7 +670,7 @@
     {
         if (_curArrayId == 1)
         {
-            _screenLocked = YES;
+            _screenLocked = NO;
         }
         
 
@@ -699,38 +699,31 @@
                 
 
                 int urlMonth = [_events getSelectedMonth]+(_curArrayId-1);
+                int urlYear = [_events getSelectedYear];
+    
                 if (urlMonth > 12){
                     urlMonth = 1;
+                    urlYear++;
                 }else if (urlMonth < 1){
                     urlMonth = 12;
+                    urlYear--;
                 }
-                
+       
                 int urlendday = [_events getDaysOfMonth: urlMonth:[_events getSelectedYear]];
-                int urlYear = [_events getSelectedYear];
-            
-                //2012-01-18T19:27:05+0000
-                //AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0
-                //https://www.googleapis.com/calendar/v3/calendars/l9qpkh5gb7dhjqv8nm0mn098fk%40group.calendar.google.com/events?maxResults=2500&timeMax=2012-02-18T19%3A27%3A05%2B0000&timeMin=2012-01-18T19%3A27%3A05%2B0000&timeZone=-7&key={YOUR_API_KEY}
+        //[_events getSelectedMonth]+(_curArrayId-1)
                 
-                
-                
-            https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/events?maxResults=2500&timeMax=2014-10-31T11%3A59%3A59-07%3A00&timeMin=2014-10-30T00%3A00%3A00-07%3A00&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0
-                
-                if ([_events getSelectedMonth]+(_curArrayId-1) <10){
-                    /*url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-0%d-01T00:00:00-07:00&start-max=%d-0%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];*/
+                if ([_events getSelectedMonth]+(_curArrayId-1) < 10 || [_events getSelectedMonth]+(_curArrayId-1) > 12){
                     
                     url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
-
-
                     
                 }else{
-                    /*url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-%d-01T00:00:00-07:00&start-max=%d-%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];*/
                     url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
                 }
                 
             
 
                 NSData *data = [NSData dataWithContentsOfURL:url];
+                
                 
                 if (data != nil)
                 {
@@ -824,7 +817,7 @@
         }
         
         NSString *category;
-        //NSLog(@"%@",eventsInfoDict);
+
         for (NSString *name in [_events getCategoryNames])
         {
             if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
@@ -838,38 +831,9 @@
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //  of the app.
         NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
-        //Iterate through the old events, convert them to the proper dictionary structure,
-        //  then append them to the eventsInfo array.
-        /*
-        NSArray *holdddddd = [oldEventsInfo copy];
-        for (int i=0; i<holdddddd.count; i++){
-            if ([[holdddddd[i] valueForKey:@"gd$when"] count] > 1){
-                if ([[holdddddd[i] valueForKey:@"gd$when"][0] isKindOfClass:[NSDictionary class]]){
-                    int counter = 0;
-                    NSDictionary *holdRecurEvent = holdddddd[i];
-                    NSArray *holdRecurTimes = [holdddddd[i] valueForKey:@"gd$when"];
-                    
-                    for (int timee = 0; timee<holdRecurTimes.count; timee++,counter++){
-                        NSMutableDictionary *replacementEvent = [holdRecurEvent mutableCopy];
-                        [replacementEvent setValue:holdRecurTimes[timee] forKey:@"gd$when"];
-                        [replacementEvent setValue:nil forKey:@"gd$recurrence"];
-                        if (counter == 0){
-                         oldEventsInfo[i] = replacementEvent;
-                         }else{
-                         [oldEventsInfo addObject:replacementEvent];
-                        }
-                    }
-                }else{
-                    NSLog(@"Error: dateTime info is not a NSDictionary. CalendarViewController.");
-                }
-            }
-        }
-*/
-
-
         for (int i=0; i<oldEventsInfo.count; i++)
         {
-           //NSLog(@"%@",oldEventsInfo[i]);
+
             //These will store the information that's needed for the event.
             NSString *startTime;
             NSString *endTime;
@@ -1542,7 +1506,6 @@
     NSInteger day = [dateComponents day];
 
     if(year != [_events getSelectedYear] || month != [_events getSelectedMonth]) {
-        _screenLocked = YES;
         
         [_events setYear:(int)year];
         [_events setMonth:(int)month];
