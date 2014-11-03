@@ -707,16 +707,27 @@
                 int urlendday = [_events getDaysOfMonth: urlMonth:[_events getSelectedYear]];
                 int urlYear = [_events getSelectedYear];
             
+                //2012-01-18T19:27:05+0000
+                //AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0
+                //https://www.googleapis.com/calendar/v3/calendars/l9qpkh5gb7dhjqv8nm0mn098fk%40group.calendar.google.com/events?maxResults=2500&timeMax=2012-02-18T19%3A27%3A05%2B0000&timeMin=2012-01-18T19%3A27%3A05%2B0000&timeZone=-7&key={YOUR_API_KEY}
+                
+                
+                
+            https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com/events?maxResults=2500&timeMax=2014-10-31T11%3A59%3A59-07%3A00&timeMin=2014-10-30T00%3A00%3A00-07%3A00&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0
+                
                 if ([_events getSelectedMonth]+(_curArrayId-1) <10){
-                    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-0%d-01T00:00:00-07:00&start-max=%d-0%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
+                    /*url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-0%d-01T00:00:00-07:00&start-max=%d-0%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];*/
+                    
+                    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
+
 
                     
                 }else{
-                    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-%d-01T00:00:00-07:00&start-max=%d-%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
+                    /*url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/calendar/feeds/%@/public/full?alt=json&start-min=%d-%d-01T00:00:00-07:00&start-max=%d-%d-%dT23:59:59-07:00&max-results=9001", calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];*/
+                    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
                 }
                 
             
-                
 
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 
@@ -791,6 +802,8 @@
     // Get the JSON data as a dictionary.
     // Josh NOTE
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
+    
+
 
 
     
@@ -802,18 +815,20 @@
     else{
         //Get the events as an array
 
-        NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"feed.entry"];
+        NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"items"];
+      
         
         if (oldEventsInfo == nil) {
             oldEventsInfo = [[NSMutableArray alloc] init];
         }
         
         NSString *category;
-        
+        //NSLog(@"%@",eventsInfoDict);
         for (NSString *name in [_events getCategoryNames])
         {
-            if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"feed.title.$t"]] != -1) {
+            if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
                 category = name;
+               
                 
             }
             else{
@@ -824,7 +839,7 @@
         NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
         //Iterate through the old events, convert them to the proper dictionary structure,
         //  then append them to the eventsInfo array.
- 
+        /*
         NSArray *holdddddd = [oldEventsInfo copy];
         for (int i=0; i<holdddddd.count; i++){
             if ([[holdddddd[i] valueForKey:@"gd$when"] count] > 1){
@@ -848,27 +863,47 @@
                 }
             }
         }
+*/
+
 
         for (int i=0; i<oldEventsInfo.count; i++)
         {
+           //NSLog(@"%@",oldEventsInfo[i]);
             //These will store the information that's needed for the event.
             NSString *startTime;
             NSString *endTime;
-            NSString *recur;
+            //NSString *recur;
             NSArray *recurrence;
             NSString *location;
             NSString *summary;
             NSString *description;
    
-            if ([oldEventsInfo[i] valueForKey:@"gd$when"] != nil)
+            if ([oldEventsInfo[i] valueForKey:@"start"] != nil)
             {
-                if ([[oldEventsInfo[i] valueForKey:@"gd$when"] isKindOfClass:[NSArray class]]) {
-                    startTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"startTime"];
-                    endTime = [[oldEventsInfo[i] valueForKey:@"gd$when"][0] valueForKey:@"endTime"];
-                }else if ([[oldEventsInfo[i] valueForKey:@"gd$when"] isKindOfClass:[NSDictionary class]]){
-                    startTime = [[oldEventsInfo[i] valueForKey:@"gd$when"] valueForKey:@"startTime"];
-                    endTime = [[oldEventsInfo[i] valueForKey:@"gd$when"] valueForKey:@"endTime"];
+                if ([oldEventsInfo[i] valueForKeyPath:@"start.dateTime"] != nil) {
+                    if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"dateTime"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"dateTime"];
+                    }
+                    else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"dateTime"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"dateTime"];
+                    }
+                }else if ([oldEventsInfo[i] valueForKeyPath:@"start.date"] != nil){
+                    if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"date"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"date"];
+                    }
+                    else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"date"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"date"];
+                    }
                 }
+                
+                
+                
+                
+                
                 if (endTime.length > 10){
                 NSString *endMoment = [endTime substringWithRange:NSMakeRange(10, 9)];
                     if ([endMoment isEqual: @"T00:00:00"]){
@@ -885,64 +920,31 @@
                     }
                 }
             }
-            else if ([oldEventsInfo[i] valueForKey:@"gd$recurrence"] != nil)
+
+            if (([oldEventsInfo[i] valueForKey:@"location"] != nil))
             {
-                //Parse the [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"]
-                //  for the start and end time of the event. Then set the string to recurrence.
-                recur = [[oldEventsInfo[i] valueForKey:@"gd$recurrence"] valueForKey:@"$t"];
-                NSArray *components = [recur componentsSeparatedByString:@"\n"];
-                recurrence = [NSArray arrayWithObjects:components[2], nil];
-                NSArray *dtstartHold;
-                NSArray *dtendHold;
-                
-                for (id object in components) {
-                    if ([object rangeOfString:@"DTSTART;TZID"].location != NSNotFound){
-                        dtstartHold = [[object componentsSeparatedByString:@":"][1] componentsSeparatedByString:@"T"];
-                    }
-                    if ([object rangeOfString:@"DTEND;TZID"].location != NSNotFound){
-                        dtendHold = [[object componentsSeparatedByString:@":"][1] componentsSeparatedByString:@"T"];
-                    }
-                }
-                if (dtstartHold == nil && dtendHold == nil){
-                    
-                }
-                else{
-                NSString *startYear = [dtstartHold[0] substringWithRange:NSMakeRange(0, 4)] ;
-                NSString *startMonth  = [dtstartHold[0] substringWithRange:NSMakeRange(4, 2)] ;
-                NSString *startDay  = [dtstartHold[0] substringWithRange:NSMakeRange(6, 2)] ;
-                NSString *startHour  = [dtstartHold[1] substringWithRange:NSMakeRange(0, 2)] ;
-                NSString *startMinute  = [dtstartHold[1] substringWithRange:NSMakeRange(2, 2)] ;
-                NSString *startSecond = @"00";
-                startTime = [NSString stringWithFormat:@"%@-%@-%@T%@:%@:%@.000-07:00", startYear, startMonth, startDay,startHour,startMinute,startSecond];
-                
-                NSString *endYear = [dtendHold[0] substringWithRange:NSMakeRange(0, 4)] ;
-                NSString *endMonth  = [dtendHold[0] substringWithRange:NSMakeRange(4, 2)] ;
-                NSString *endDay  = [dtendHold[0] substringWithRange:NSMakeRange(6, 2)] ;
-                NSString *endHour  = [dtendHold[1] substringWithRange:NSMakeRange(0, 2)] ;
-                NSString *endMinute  = [dtendHold[1] substringWithRange:NSMakeRange(2, 2)] ;
-                NSString *endSecond = @"00";
-                endTime = [NSString stringWithFormat:@"%@-%@-%@T%@:%@:%@.000-07:00", endYear, endMonth, endDay,endHour,endMinute,endSecond];
-                }
+                location = [oldEventsInfo[i] valueForKey:@"location"];
+
+            }else{
+                location = @"No Location Provided";
             }
             
-            if (([oldEventsInfo[i] valueForKey:@"gd$where"] != nil) && ([[oldEventsInfo[i] valueForKey:@"gd$where"] count] > 0))
+            if ([oldEventsInfo[i] valueForKey:@"description"] != nil)
             {
-                location = [[oldEventsInfo[i] valueForKey:@"gd$where"][0] valueForKey:@"valueString"];
+                description = [oldEventsInfo[i] valueForKey:@"description"];
+                
 
             }
-            
-            if ([oldEventsInfo[i] valueForKey:@"content"] != nil)
-            {
-                description = [[oldEventsInfo[i] valueForKey:@"content"] valueForKey:@"$t"];
-
+            else{
+                description = @"No Description Provided";
             }
             
-            if ([oldEventsInfo[i] valueForKey:@"title"] != nil)
+            if ([oldEventsInfo[i] valueForKey:@"summary"] != nil)
             {
-                summary = [[oldEventsInfo[i] valueForKey:@"title"] valueForKey:@"$t"];
+                summary = [oldEventsInfo[i] valueForKey:@"summary"];
     
             }
-            
+
             //This will be the new dictionary for the current event.
             NSDictionary *event;
             NSDictionary *start;

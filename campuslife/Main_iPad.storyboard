@@ -456,9 +456,6 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="63C-A0-dPf" kind="push" identifier="allEventToEventDetailTable" id="gk2-BK-naV"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -473,6 +470,7 @@
                     <navigationItem key="navigationItem" id="QZH-qg-071"/>
                     <connections>
                         <outlet property="tableView" destination="OsI-tx-WYo" id="ahE-m7-Gbj"/>
+                        <segue destination="63C-A0-dPf" kind="push" identifier="allEventToEventDetailTable" id="Km1-kO-dvf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLd-hK-xvy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -577,6 +575,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gk2-BK-naV"/>
+        <segue reference="Km1-kO-dvf"/>
     </inferredMetricsTieBreakers>
 </document>
