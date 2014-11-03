@@ -324,7 +324,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     int cells;
-    
+    cells = 42;
+    /*
     if (![_events doesMonthNeedLoaded:1]) {
         cells = 35;
       
@@ -335,7 +336,7 @@
     }
     else {
         cells = 0;
-    }
+    }*/
     
     return cells;
 }
