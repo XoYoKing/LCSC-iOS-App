@@ -281,7 +281,7 @@
         NSString *endTime = [eventEnd substringWithRange:elevenToSixteenEnd];
         endTime = [self twentyFourToTwelve:endTime];
         UILabel *time = (UILabel *)[cell viewWithTag:20];
-        time.text = [NSString stringWithFormat:@"%@\nto\n%@", startTime, endTime];
+        time.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
     }
     
     if ([[eventTime objectForKey:@"category"] isEqualToString:@"Entertainment"])
