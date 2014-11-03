@@ -41,6 +41,7 @@
 		99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */; };
 		99F6F39219FDC39500536DB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99F6F39119FDC39500536DB8 /* Images.xcassets */; };
 		C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C105A29F18B6A992007C841C /* bigAlphaCircle.png */; };
+		C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */; };
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
 		C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */; };
 		C114505719172761005D1D99 /* hubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C114505619172761005D1D99 /* hubViewController.m */; };
@@ -57,7 +58,6 @@
 		C1E66DFC183C333A00851B89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1E66DFA183C333A00851B89 /* InfoPlist.strings */; };
 		C1E66DFE183C333A00851B89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66DFD183C333A00851B89 /* main.m */; };
 		C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E01183C333A00851B89 /* AppDelegate.m */; };
-		C1E66E05183C333A00851B89 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E66E03183C333A00851B89 /* Main_iPhone.storyboard */; };
 		C1E66E14183C333A00851B89 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E66E13183C333A00851B89 /* XCTest.framework */; };
 		C1E66E15183C333A00851B89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E66DF1183C333A00851B89 /* Foundation.framework */; };
 		C1E66E16183C333A00851B89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E66DF5183C333A00851B89 /* UIKit.framework */; };
@@ -116,6 +116,7 @@
 		99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		99F6F39119FDC39500536DB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C105A29F18B6A992007C841C /* bigAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigAlphaCircle.png; sourceTree = "<group>"; };
+		C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newAlphaCircle.png; sourceTree = "<group>"; };
 		C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTableViewController.h; sourceTree = "<group>"; };
 		C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTableViewController.m; sourceTree = "<group>"; };
@@ -139,7 +140,6 @@
 		C1E66DFF183C333A00851B89 /* campuslife-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "campuslife-Prefix.pch"; sourceTree = "<group>"; };
 		C1E66E00183C333A00851B89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1E66E01183C333A00851B89 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C1E66E04183C333A00851B89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C1E66E12183C333A00851B89 /* campuslifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = campuslifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E66E13183C333A00851B89 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C1E66E1B183C333A00851B89 /* campuslifeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "campuslifeTests-Info.plist"; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
-				C1E66E03183C333A00851B89 /* Main_iPhone.storyboard */,
+				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
 				C114505519172761005D1D99 /* hubViewController.h */,
 				C114505619172761005D1D99 /* hubViewController.m */,
@@ -425,6 +425,7 @@
 				C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */,
 				992592BD19FDC46B008946F8 /* Icon@2x.png in Resources */,
 				992592B919FDC46B008946F8 /* Icon-Small-50@2x.png in Resources */,
+				C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */,
 				99A580911A0048E70044CA5E /* Default-Landscape.png in Resources */,
 				C1DEC8CD18F4AC2700ECD591 /* dotAthletics.png in Resources */,
 				99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */,
@@ -440,7 +441,6 @@
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
 				9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */,
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,
-				C1E66E05183C333A00851B89 /* Main_iPhone.storyboard in Resources */,
 				C1E66DFC183C333A00851B89 /* InfoPlist.strings in Resources */,
 				992592AF19FDC46B008946F8 /* Icon-60@3x.png in Resources */,
 				992592B619FDC46B008946F8 /* Icon-Small-40@2x.png in Resources */,
@@ -508,14 +508,6 @@
 				C1E66DFB183C333A00851B89 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C1E66E03183C333A00851B89 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C1E66E04183C333A00851B89 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		C1E66E1C183C333B00851B89 /* InfoPlist.strings */ = {
