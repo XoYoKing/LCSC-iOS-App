@@ -34,7 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = 44;
-    cal = [self.tabBarController.childViewControllers objectAtIndex:0];
+    UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:0];
+    cal = [navCont.childViewControllers objectAtIndex:0];
     NSDate *todaysDate = [[NSDate alloc] init];
     currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
     currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];

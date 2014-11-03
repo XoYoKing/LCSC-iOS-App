@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kwF-Lk-Zzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hAo-Ec-eGI">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -297,7 +296,6 @@
                             <outletCollection property="gestureRecognizers" destination="JhE-A6-Mbz" appends="YES" id="bUR-ps-Sg1"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar-32.png" id="0QB-JS-ySv"/>
                     <navigationItem key="navigationItem" title="Calendar" id="xAc-fc-j1e">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="iBk-o7-Bqm"/>
                     </navigationItem>
@@ -330,7 +328,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1629" y="-379"/>
+            <point key="canvasLocation" x="-1097" y="-379"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jxY-4S-7qQ">
@@ -344,8 +342,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="Iwm-vG-bSo"/>
-                        <segue destination="PYI-sD-Pxi" kind="relationship" relationship="viewControllers" id="ndn-xx-smT"/>
+                        <segue destination="uar-4W-Ymn" kind="relationship" relationship="viewControllers" id="Iwm-vG-bSo"/>
+                        <segue destination="pcG-gU-rIb" kind="relationship" relationship="viewControllers" id="ndn-xx-smT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -401,7 +399,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bc-Cu-JgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-698" y="-379"/>
+            <point key="canvasLocation" x="-166" y="-379"/>
         </scene>
         <!--Item-->
         <scene sceneID="Egp-68-igS">
@@ -458,7 +456,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCG-p7-BJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-261" y="-695"/>
+            <point key="canvasLocation" x="803" y="-695"/>
         </scene>
         <!--Web View View Controller-->
         <scene sceneID="MqN-QG-0WA">
@@ -486,25 +484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oS4-bo-0Yg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="269" y="-730"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="MpC-QZ-mcS">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IAG-nL-nyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kwF-Lk-Zzz" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="atb-lw-K5C">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hAo-Ec-eGI" kind="relationship" relationship="rootViewController" id="Z3N-5K-cgr"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="-2455" y="-695"/>
+            <point key="canvasLocation" x="1333" y="-730"/>
         </scene>
         <!--All Events-->
         <scene sceneID="msc-UQ-NXQ">
@@ -564,7 +544,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="All Events" image="day_view-32.png" id="2J2-W4-Dwn"/>
                     <navigationItem key="navigationItem" title="All Events" id="MAy-EH-2mP"/>
                     <connections>
                         <outlet property="tableView" destination="zst-gA-ldo" id="250-hr-9wb"/>
@@ -572,7 +551,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIs-z4-GJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1097" y="-1024"/>
+        </scene>
+        <!--All Events-->
+        <scene sceneID="vbC-Ui-bsr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pcG-gU-rIb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="All Events" image="day_view-32.png" id="2J2-W4-Dwn"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bgd-Eu-lYD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PYI-sD-Pxi" kind="relationship" relationship="rootViewController" id="s0q-jm-9Q7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8wJ-Vl-EOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-1629" y="-1024"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="oWY-TB-3gO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uar-4W-Ymn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar-32.png" id="0QB-JS-ySv"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nr1-r4-eMJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="sl1-eV-oR3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Do-WT-Mrx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1629" y="-379"/>
         </scene>
     </scenes>
     <resources>
