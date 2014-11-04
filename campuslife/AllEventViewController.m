@@ -173,7 +173,7 @@
         NSString *endTime = [eventEnd substringWithRange:elevenToSixteenEnd];
         endTime = [self twentyFourToTwelve:endTime];
         
-        eventTimeLbl.text = [NSString stringWithFormat:@"%@ to %@",startTime, endTime];
+        eventTimeLbl.text = [NSString stringWithFormat:@"%@ - %@",startTime, endTime];
         
         NSInteger monthNum = [[datePart substringWithRange:NSMakeRange(0, 2)] integerValue];
         NSString *dayNum = [datePart substringWithRange:NSMakeRange(3, 2)];
