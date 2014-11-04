@@ -10,5 +10,5 @@
 
 @interface AllEventViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+-(void)loadAllData;
 @end

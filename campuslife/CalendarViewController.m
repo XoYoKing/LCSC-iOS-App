@@ -11,6 +11,7 @@
 #define IPAD     UIUserInterfaceIdiomPad
 
 #import "CalendarViewController.h"
+#import "AllEventViewController.h"
 #import "MonthlyEvents.h"
 #import "Preferences.h"
 //#import "AddEventParentViewController.h"
@@ -44,6 +45,8 @@
 @property (nonatomic) NSTimeInterval timeLastReqSent;
 
 @property (nonatomic) BOOL loadCompleted;
+
+@property (nonatomic) BOOL allEventsDidLoad;
 
 @property (nonatomic) int failedReqs;
 
@@ -107,6 +110,8 @@
     
     
     _screenLocked = NO;
+    
+    _allEventsDidLoad = NO;
 
     
     NSDate *date = [NSDate date];
@@ -125,8 +130,6 @@
     
     [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
 
-    
-
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -142,6 +145,15 @@
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
         
         _shouldRefresh = NO;
+    }
+    if(!_allEventsDidLoad) {
+        [_activityIndicator startAnimating];
+        UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:1];
+        AllEventViewController *aevc = [navCont.childViewControllers objectAtIndex:0];
+        [aevc loadAllData];
+        [self rollbackEvents];
+        _allEventsDidLoad = YES;
+        //[self.activityIndicator stopAnimating];
     }
 }
 
@@ -1392,7 +1404,7 @@
             urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,year,month,year,month,endDay];
         }
         url = [NSURL URLWithString:urlString];
-        
+        //NSLog(urlString);
         NSData *data = [NSData dataWithContentsOfURL:url];
         if (data != nil)
         {

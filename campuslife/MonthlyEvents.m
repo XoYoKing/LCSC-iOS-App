@@ -362,6 +362,7 @@ static MonthlyEvents *sharedInstance;
         int monthLength = (int)[_calendarEvents[i] count];
         for(int j = startAt; j < monthLength; j++) {
             [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[i] objectAtIndex:j]]];
+            //[allEvents addObjectsFromArray:[_calendarEvents[i] objectAtIndex:j]];
         }
     }
     
@@ -370,11 +371,11 @@ static MonthlyEvents *sharedInstance;
 
 -(NSArray *)getEventsForCurrentMonth:(NSInteger) offset
 {
-//clayton merge
     NSMutableArray *allEvents = [[NSMutableArray alloc] init];
     int monthLength = (int)[_calendarEvents[1] count];
         for(int j = 0; j < monthLength; j++) {
             [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[1] objectAtIndex:j]]];
+            //[allEvents addObjectsFromArray:[_calendarEvents[1] objectAtIndex:j]];
         }
     
     
@@ -389,10 +390,10 @@ static MonthlyEvents *sharedInstance;
     
 
         
-    Preferences *preferences = [Preferences getSharedInstance];
+    //Preferences *preferences = [Preferences getSharedInstance];
     
-    int currentPos = 0;
-    
+    //int currentPos = 0;
+    /*
     while (currentPos < [newArray count])
     {
         NSString *categoryName = [newArray[currentPos] objectForKey:@"category"];
@@ -411,7 +412,7 @@ static MonthlyEvents *sharedInstance;
         {
             currentPos++;
         }
-    }
+    }*/
     
     if ([newArray count] > 1)
     {

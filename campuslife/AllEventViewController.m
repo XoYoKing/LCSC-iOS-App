@@ -10,21 +10,21 @@
 #import "MonthlyEvents.h"
 #import "EventDetailTableViewController.h"
 #import "CalendarViewController.h"
+#import "Preferences.h"
 
 @interface AllEventViewController ()
 {
     MonthlyEvents *events;
+    NSMutableArray *displayedEvents;
     NSMutableArray *sortedArray;
     NSInteger selectedRow;
     CalendarViewController *cal;
     NSInteger currentMonth;
     NSInteger currentYear;
-    // Clayton Merge
-    //BOOL hasLoadedOnce;
-    //int numberOfLoads;
     BOOL stopLoading;
     BOOL wentToEvent;
     int noEventsInMonthCount;
+    Preferences *preferences;
 }
 
 @end
@@ -34,35 +34,58 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = 44;
-    UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:0];
-    cal = [navCont.childViewControllers objectAtIndex:0];
-    NSDate *todaysDate = [[NSDate alloc] init];
-    currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
-    currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
-    events = [MonthlyEvents getSharedInstance];
     stopLoading = NO;
     // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
     wentToEvent = NO;
     noEventsInMonthCount = 0;
+
+}
+
+-(void)loadAllData
+{
+    UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:0];
+    cal = [navCont.childViewControllers objectAtIndex:0];
+    //[cal rollbackEvents];
+    NSDate *todaysDate = [[NSDate alloc] init];
+    currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
+    currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
+    events = [MonthlyEvents getSharedInstance];
+    preferences = [Preferences getSharedInstance];
+    sortedArray = (NSMutableArray *)[events getEventsStartingToday];
+    displayedEvents = [[NSMutableArray alloc]init];
+    [self loadEventsForNextNMonths:7];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     if(!wentToEvent){
-        [cal rollbackEvents];
-        NSDate *todaysDate = [[NSDate alloc] init];
-        currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
-        currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
-        sortedArray = (NSMutableArray *)[events getEventsStartingToday];
-        [self incrementCurrentMonth];
-        [self loadEventsForNextSixMonths];
-        // events won't load for next month if nothing was loaded for this month
-        stopLoading = NO;
+        //[cal rollbackEvents];
+        [displayedEvents removeAllObjects];
+        //NSDate *todaysDate = [[NSDate alloc] init];
+        ///currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
+        //currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
+        //sortedArray = (NSMutableArray *)[events getEventsStartingToday];
+        //[self incrementCurrentMonth];
+        //[self loadEventsForNextSixMonths];
+        [self removeCancelledEvents];
         [self.tableView reloadData];
-    
     } else {
         wentToEvent = NO;
+    }
+}
+
+-(void)removeCancelledEvents
+{
+    for(int i = 0; i < [sortedArray count]; ++i) {
+        NSString *categoryName = [sortedArray[i] objectForKey:@"category"];
+        //NSLog(categoryName);
+        for (NSString *name in [[MonthlyEvents getSharedInstance] getCategoryNames])
+        {
+            if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == YES)) {
+                [displayedEvents addObject:sortedArray[i]];
+            }
+        }
     }
 }
 
@@ -97,7 +120,7 @@
         //Instantiate your next view controller!
         EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
         
-        [destViewController setEvent:[sortedArray objectAtIndex:indexPath.row]];
+        [destViewController setEvent:[displayedEvents objectAtIndex:indexPath.row]];
     }
 }
 
@@ -108,21 +131,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [sortedArray count];
+    return [displayedEvents count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //BOOL a = indexPath.row >= [sortedArray count] - 10;
-
-    
-    NSInteger rowCount = [sortedArray count];
-    if(indexPath.row >= (NSInteger)(rowCount * 0.8) && !stopLoading)
+    //NSInteger rowCount = [displayedEvents count];
+    /*
+    if(indexPath.row >= (NSInteger)(rowCount * 0.8) && noEventsInMonthCount <= 6)
     {
         //self.tableView.scrollEnabled = NO;
-        //[self loadEventsForNextMonth];
+        //[self loadEventsForNextNMonths:2];
+        
+        if(noEventsInMonthCount <= 6) {
+            [self removeCancelledEvents];
+        }
+        
         //[self.tableView reloadData];
         //self.tableView.scrollEnabled = YES;
     }
+    */
     
     static NSString *CellIdentifier = @"EventCell";
     
@@ -131,9 +158,7 @@
     UILabel *eventDetailLbl = (UILabel *)[cell viewWithTag:22];
     UILabel *eventTimeLbl = (UILabel *)[cell viewWithTag:24];
     UIImageView *image = (UIImageView *)[cell viewWithTag:10];
-    NSDictionary *eventTime = [sortedArray objectAtIndex:indexPath.row];
-    
-    
+    NSDictionary *eventTime = [displayedEvents objectAtIndex:indexPath.row];
     
     if ([[eventTime objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
     {
@@ -221,11 +246,12 @@
         currentMonth = 12;
         currentYear--;
     }
+    [events offsetMonth:1];
 }
 
--(void)loadEventsForNextSixMonths
+-(void)loadEventsForNextNMonths:(NSInteger) n
 {
-    for(int i = 0; i < 5; ++i) {
+    for(int i = 0; i < n-1; ++i) {
         [self loadEventsForNextMonth];
     }
 }
@@ -233,8 +259,7 @@
 -(void)loadEventsForNextMonth
 {
     [self incrementCurrentMonth];
-    [events offsetMonth:1];
-    [cal loadEventsForMonth:currentMonth andYear:currentYear];
+    [cal loadEventsForMonth:(int)currentMonth andYear:(int)currentYear];
     
     NSArray *newEvents = [events getEventsForCurrentMonth: 1];
     //NSLog([newEvents description]);
@@ -333,11 +358,13 @@
     return monthAbr;
 }
 
+/*
 -(void) loadEventsForMonth:(NSInteger)month onYear:(NSInteger)year
 {
     [events setMonth:month];
     [events setYear:year];
 }
+*/
 
 - (void) parseJSON:(NSData *)JSONAsData onMonth:(NSInteger)month1 onYear:(NSInteger)year1 {
     NSError *error = nil;
