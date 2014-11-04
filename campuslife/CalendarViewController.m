@@ -685,16 +685,7 @@
             if (![_events getCalendarJsonReceivedForMonth:_curArrayId :name])
             {
                 
-                
-                /*[[_auth getAuthenticator] callAPI:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events", [_auth getCalIds][name]]
-                                   withHttpMethod:httpMethod_GET
-                               postParameterNames:[NSArray arrayWithObjects:@"timeMax", @"timeMin", nil]
-                              postParameterValues:[NSArray arrayWithObjects:[self toStringFromDateTime:_lastDateOfMonth], [self toStringFromDateTime:_firstDateOfMonth], nil]
-                                      requestBody:nil];*/
-                
-                
-                // This is where JSON's get requested
-                // Josh NOTE;
+
                 NSURL *url;
                 NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
                 
@@ -711,7 +702,7 @@
                 }
        
                 int urlendday = [_events getDaysOfMonth: urlMonth:[_events getSelectedYear]];
-        //[_events getSelectedMonth]+(_curArrayId-1)
+
                 
                 if ([_events getSelectedMonth]+(_curArrayId-1) < 10 || [_events getSelectedMonth]+(_curArrayId-1) > 12){
                     
@@ -721,7 +712,6 @@
                     url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,urlYear,urlMonth,urlYear,urlMonth,urlendday]];
                 }
                 
-            
 
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 
@@ -787,15 +777,13 @@
 }
 
 
-//Rename this?
-//Josh NOTE
 
 //-(void)responseFromServiceWasReceived:(NSString *)responseJSONAsString andResponseJSONAsData:(NSData *)responseJSONAsData {
 - (void) parseJSON:(NSData *)JSONAsData {
     NSError *error = nil;
 
     // Get the JSON data as a dictionary.
-    // Josh NOTE
+
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
     //NSLog([eventsInfoDict description]);
     
@@ -1000,8 +988,7 @@
                 int endDay = 0;
                 
                 
-                //Change to check string length???
-                //Josh NOTE
+        
            
                 //Determine if the event isn't an all day event type.
                 if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"dateTime"] != nil) {
@@ -1126,172 +1113,6 @@
                 
                 //If an event is reocurring, then we must account for that.
                 
-             //////////
-             /// CLAYTON
-             /*
-                if ([currentEventInfo objectForKey:@"recurrence"] != nil) {
-
-                    //The beginning of the substring that represents the freq of the recurrence.
-                    int freqSubstringIndx = 11;
-                    
-                    //Thankfully there is only one semicolon in the string. So we use that to find the length of the frequency.
-                    int freqLen = (int)[currentEventInfo[@"recurrence"][0] rangeOfString:@";"].location;
-                    
-                    freqLen -= freqSubstringIndx;
-                    
-                    //This will prevent any problems regarding the recurrence value.
-                    //  Events that repeat forever will not be usable.
-                    if (freqLen <= 250) {
-                        NSString *frequency = [currentEventInfo[@"recurrence"][0] substringWithRange:NSMakeRange(freqSubstringIndx, freqLen)];
-                        
-                        //This 6 offsets the index so that it represents the beginning of the date we want.
-                        int untilSubstringIndx = [self getIndexOfSubstringInString:@"UNTIL=":currentEventInfo[@"recurrence"][0]];
-                        
-                        if ([frequency isEqualToString:@"DAILY"]) {
-                            freq = 1.0;
-                        }
-                        else if ([frequency isEqualToString:@"WEEKLY"]) {
-                            freq = 7.0;
-                        }
-                        else if ([frequency isEqualToString:@"MONTHLY"]) {
-                            freq = 31;
-                        }
-                        else if ([frequency isEqualToString:@"YEARLY"]) {
-                            freq = 365;
-                        }
-                        
-                        
-                        
-                        if (freq == 31) {
-                            //Count the months between the start day and end day.
-                            if (startYear == selectedYear) {
-                                for (int month=startMonth; month<selectedMonth; month++) {
-                                    repeat += 1;
-                                }
-                            }
-                            else {
-                                //At the very beginning we'll be working with probably not a full year.
-                                for (int month=startMonth; month<13; month++) {
-                                    repeat += 1;
-                                }
-                                
-                                //Start by accounting for year differences.
-                                for (int year=startYear+1; year<[_events getSelectedYear]+1; year++) {
-                                    int endMonth = 12;
-                                    //This makes sure that we stop on the month prior to the selected month
-                                    //  and then add in the days for that month.
-                                    if (year == selectedYear) {
-                                        endMonth = selectedMonth-1;
-                                    }
-                                    //This only takes into account full months strictly inbetween the start and end months.
-                                    for (int month=1; month<endMonth+1; month++) {
-                                        repeat += 1;
-                                    }
-                                }
-                            }
-                        }
-                        else if (freq == 365) {
-                            if (startYear != selectedYear){
-                                for (int year=startYear; year<selectedYear; year++) {
-                                    repeat += 1;
-                                }
-                            }
-                        }
-                        else if (untilSubstringIndx != -1) {
-                            //In here we'll determine the number of ocurrences.
-                            
-                            untilSubstringIndx += 6;
-                            //Get the until substring
-                            NSString *untilString = [currentEventInfo[@"recurrence"][0] substringFromIndex:untilSubstringIndx];
-                            
-                            //Determine if the start and end are within the selected month.
-                            if (startYear == [[untilString substringWithRange:NSMakeRange(0,4)] intValue]
-                                && startMonth == [[untilString substringWithRange:NSMakeRange(4,2)] intValue]
-                                && startYear == selectedYear
-                                && startMonth == selectedMonth) {
-                                repeat = (([[untilString substringWithRange:NSMakeRange(6,2)] intValue] - startDay)/freq) + 1;
-                            }
-                            //If they aren't then we need to determine the amount of days between the start and end.
-                            else {
-                                //Add up all of the days for the months inbetween the start and end. Then do the same formula to calculate the repeat.
-                                
-                                //We know that at least the startMonth is not within the selected month.
-                                
-                                //These days is just the length from start to finish no matter if there are some holes in the middle.
-                                float daysInEventDuration = 0.0;
-                                
-                                if (startYear == selectedYear) {
-                                    //Account for days in startMonth
-                                    daysInEventDuration += [_events getDaysOfMonth:startMonth :startYear]-startDay+1;
-                                 
-                                    
-                                    if (selectedMonth < [[untilString substringWithRange:NSMakeRange(4,2)] intValue]) {
-                              
-                                        for (int month=startMonth+1; month<[_events getSelectedMonth]+1; month++) {
-                                            daysInEventDuration += [_events getDaysOfMonth:month :startYear];
-                                            
-                                        }
-                                    }
-                                    else {
-                                   
-                                        for (int month=startMonth+1; month<[_events getSelectedMonth]; month++) {
-                                            daysInEventDuration += [_events getDaysOfMonth:month :startYear];
-                                            
-                                        }
-                                        //Account for days in endMonth
-                                        daysInEventDuration += [[untilString substringWithRange:NSMakeRange(6,2)] intValue];
-                                    }
-                                }
-                                else {
-                                    //Account for days in startMonth
-                                    daysInEventDuration += [_events getDaysOfMonth:startMonth :startYear]-startDay+1;
-                                    
-                                    //At the very beginning we'll be working with probably not a full year.
-                                    for (int month=startMonth+1; month<13; month++) {
-                                      
-                                        daysInEventDuration += [_events getDaysOfMonth:month :startYear];
-                                        
-                                    }
-                                    
-                                    //Start by accounting for year differences.
-                                    for (int year=startYear+1; year<[_events getSelectedYear]+1; year++) {
-                                        int endMonth = 12;
-                                        //This makes sure that we stop on the month prior to the selected month
-                                        //  and then add in the days for that month.
-                                        if (year == selectedYear) {
-                                            endMonth = selectedMonth-1;
-                                            //Account for days in endMonth
-                                            daysInEventDuration += [[untilString substringWithRange:NSMakeRange(6,2)] intValue];
-                                        }
-                                        
-                                        //This only takes into account full months strictly inbetween the start and end months.
-                                        for (int month=1; month<endMonth+1; month++) {
-                                            daysInEventDuration += [_events getDaysOfMonth:month :year];
-                                            
-                                        }
-                                    }
-                                }
-                                
-                                repeat = (daysInEventDuration / freq) + 1;
-  
-                            }
-                        }
-                        NSUInteger substringIndx = [self getIndexOfSubstringInString:@"INTERVAL=":currentEventInfo[@"recurrence"][0]];
-                        if (substringIndx != -1)
-                        {
-                            NSString *substring = [currentEventInfo[@"recurrence"][0] substringFromIndex:substringIndx+9];
-                            substringIndx = [self getIndexOfSubstringInString:@";":currentEventInfo[@"recurrence"][0]];
-                            if (substringIndx == -1)
-                            {
-                                substringIndx = [substring length];
-                            }
-                            freq *= [[substring substringWithRange:NSMakeRange(0,substringIndx)] intValue];
-                        }
-                    }
-                }
-              */
-            //THIS IS NO LONGER NEEDED
-            //////////
                 
                 //This will hold the number of days into the next month.
                 int wrappedDays = endDay-[_events getDaysOfMonth:startMonth :startYear];

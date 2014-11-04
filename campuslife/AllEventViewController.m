@@ -343,7 +343,7 @@
     NSError *error = nil;
     
     // Get the JSON data as a dictionary.
-    // Josh NOTE
+
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
     
     if (error) {
@@ -529,9 +529,7 @@
             
             int endDay = 0;
             
-            
-            //Change to check string length???
-            //Josh NOTE
+
             
             //Determine if the event isn't an all day event type.
             if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"dateTime"] != nil) {
