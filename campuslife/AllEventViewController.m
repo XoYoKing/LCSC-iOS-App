@@ -49,11 +49,13 @@
     NSDate *todaysDate = [[NSDate alloc] init];
     currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
     currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
-    events = [MonthlyEvents getSharedInstance];
+    events = [MonthlyEvents getAllEventsInstance];
     preferences = [Preferences getSharedInstance];
-    sortedArray = (NSMutableArray *)[events getEventsStartingToday];
+    [self loadEventsForWhatever];
+    NSArray *newEvents = [events getEventsForCurrentMonth: 1];
+    //NSLog([newEvents description]);
+    [sortedArray addObjectsFromArray:newEvents];
     displayedEvents = [[NSMutableArray alloc]init];
-    [self loadEventsForNextNMonths:7];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -366,12 +368,64 @@
 }
 */
 
-- (void) parseJSON:(NSData *)JSONAsData onMonth:(NSInteger)month1 onYear:(NSInteger)year1 {
+-(void)loadEventsForWhatever
+{
+    for(int i = 0; i <= 5; i++) {
+        [self incrementCurrentMonth];
+    }
+    
+    int toMonth = (int)currentMonth;
+    int toYear = (int)currentYear;
+    int endDay = [events getDaysOfMonth:toMonth :toYear];
+    
+    int curMonth = (int)[events getCurrentMonth];
+    int curYear = (int)[events getCurrentYear];
+    
+    for (NSString *name in [events getCategoryNames])
+    {
+        NSURL *url;
+        NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
+        NSString *urlString;
+        //NSLog(name);
+        
+        if(curMonth >= 10 && curMonth <= 12 && toMonth >= 10 && curMonth <= 12) {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+            
+        } else if(curMonth >= 10 && curMonth <= 12 && toMonth < 10 && curMonth > 12) {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+            
+        } else if(curMonth < 10 && curMonth > 12 && toMonth >= 10 && curMonth <= 12) {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+            
+        } else {
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+        }
+        
+        //NSLog(urlString);
+        
+        url = [NSURL URLWithString:urlString];
+        
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        //NSLog([data description]);
+        if (data != nil)
+        {
+            [self parseJSON:data];
+        }
+    }
+}
+
+- (void) parseJSON:(NSData *)JSONAsData {
     NSError *error = nil;
     
     // Get the JSON data as a dictionary.
-
+    
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
+    //NSLog([eventsInfoDict description]);
+    //NSLog([eventsInfoDict description]);
+    
+    
+    
+    
     
     if (error) {
         // This is the case that an error occured during converting JSON data to dictionary.
@@ -382,6 +436,98 @@
         //Get the events as an array
         
         NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"items"];
+        
+        NSMutableArray *holdDict = [eventsInfoDict valueForKeyPath:@"items"];
+        for (int i=0; i<holdDict.count; i++){
+            NSMutableDictionary *currentEventInfoo = holdDict[i];
+            
+            NSString *startTStuff = [[NSString alloc] init];
+            NSString *endTStuff = [[NSString alloc] init];
+            NSString *currentEndTime = [[currentEventInfoo objectForKey:@"end"] objectForKey:@"dateTime"];
+            NSString *currentStartTime = [[currentEventInfoo objectForKey:@"start"] objectForKey:@"dateTime"];
+            if (currentEndTime != nil) {
+                
+                startTStuff = [currentStartTime substringWithRange:NSMakeRange(10, [currentStartTime length]-10)];
+                endTStuff = [currentEndTime substringWithRange:NSMakeRange(10, [currentStartTime length]-10)];
+                int EnddayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
+                int StartdayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
+                
+                if (abs(EnddayHold-StartdayHold)>1){
+                    //NSLog(@"%@",currentEventInfoo);
+                    //NSLog(@"%d,%d",EnddayHold,StartdayHold);
+                    int yearHold = [[currentEndTime substringWithRange:NSMakeRange(0, 4)] intValue];
+                    int monthHold = [[currentEndTime substringWithRange:NSMakeRange(5, 2)] intValue];
+                    int dayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
+                    int daysInMonth = [events getDaysOfMonth:monthHold :yearHold];
+                    int amountOfDays = (EnddayHold-StartdayHold)+1;
+                    if (amountOfDays < 0){
+                        int startyearHold = [[currentStartTime substringWithRange:NSMakeRange(0, 4)] intValue];
+                        int startmonthHold = [[currentStartTime substringWithRange:NSMakeRange(5, 2)] intValue];
+                        int amountOfStartDays = [events getDaysOfMonth:startmonthHold :startyearHold];
+                        amountOfDays = amountOfStartDays-StartdayHold+EnddayHold;
+                    }
+                    int counter = 0;
+                    for (int i = amountOfDays; i>0 ; i--,amountOfDays--,counter++){
+                        
+                        int newDay = dayHold-amountOfDays+1;
+                        if (newDay <1){
+                            monthHold--;
+                            if (monthHold < 1){
+                                monthHold = 12;
+                                yearHold--;
+                            }
+                            daysInMonth = [events getDaysOfMonth:monthHold :yearHold];
+                            newDay  = daysInMonth+newDay;
+                        }
+                        NSString *SyearHold = [NSString stringWithFormat:@"%d",yearHold];
+                        NSString *sMonthHold = [[NSString alloc] init ];
+                        NSString *sDayHold = [[NSString alloc] init];
+                        if (monthHold < 10){
+                            sMonthHold = [NSString stringWithFormat:@"0%d",monthHold];
+                        }else{
+                            sMonthHold = [NSString stringWithFormat:@"%d",monthHold];
+                        }
+                        if (newDay < 10){
+                            sDayHold = [NSString stringWithFormat:@"0%d",newDay];
+                        }else{
+                            sDayHold = [NSString stringWithFormat:@"%d",newDay];
+                        }
+                        
+                        //NSLog(@"%@-%@-%@%@(%d)",SyearHold,sMonthHold,sDayHold,startTStuff,counter);
+                        NSString *newStartTime = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,startTStuff];
+                        // NSString *newEndDate = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,endTStuff];
+                        NSMutableDictionary *holdDictStart = [[NSMutableDictionary alloc] init];
+                        NSMutableDictionary *holdDictEnd = [[NSMutableDictionary alloc] init];
+                        [holdDictStart setObject:newStartTime forKey:@"dateTime"];
+                        //[holdDictEnd setObject:newEndDate forKey:@"dateTime"];
+                        //[currentEventInfoo setObject:holdDictStart forKey:@"start"];
+                        //[currentEventInfoo setObject:holdDictEnd forKey:@"end"];
+                        // NSLog(@"%@\n%@",holdDict[i], currentEventInfoo);
+                        if (counter == 0){
+                            // oldEventsInfo[i] = currentEventInfoo;
+                        }
+                        else{
+                            //[oldEventsInfo addObject:currentEventInfoo];
+                        }
+                        //NSLog(@"\n\n%@ | %@\n%@ | %@\n\n",currentStartTime,newStartTime,currentEndTime,newEndDate);
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                    //NSLog(@"%d,%d,%d",EnddayHold,StartdayHold,amountOfDays);
+                    //NSLog(@"%@,%d,%d,%d,%d",currentStartTime,yearHold,monthHold,dayHold,daysInMonth);
+                    //int newDay = dayHold-amountOfDays;
+                    
+                    
+                    
+                    //NSLog(@"%d",EdayHold-SdayHold);
+                    //NSLog(@"%@\n-------\n",holdDict[i]);
+                }
+            }
+        }
         
         
         if (oldEventsInfo == nil) {
@@ -395,133 +541,129 @@
             if ([cal getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
                 category = name;
                 
-            }
-            else{
+                
             }
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //  of the app.
+        //NSLog(@"%@",oldEventsInfo);
         NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
         for (int i=0; i<oldEventsInfo.count; i++)
         {
+            //These will store the information that's needed for the event.
+            NSString *startTime;
+            NSString *endTime;
+            //NSString *recur;
+            NSArray *recurrence;
+            NSString *location;
+            NSString *summary;
+            NSString *description;
             
-        //These will store the information that's needed for the event.
-        NSString *startTime;
-        NSString *endTime;
-        //NSString *recur;
-        NSArray *recurrence;
-        NSString *location;
-        NSString *summary;
-        NSString *description;
-        
-        if ([oldEventsInfo[i] valueForKey:@"start"] != nil)
-        {
-            if ([oldEventsInfo[i] valueForKeyPath:@"start.dateTime"] != nil) {
-                if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
-                    startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"dateTime"];
-                    endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"dateTime"];
+            if ([oldEventsInfo[i] valueForKey:@"start"] != nil)
+            {
+                if ([oldEventsInfo[i] valueForKeyPath:@"start.dateTime"] != nil) {
+                    if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"dateTime"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"dateTime"];
+                    }
+                    else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"dateTime"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"dateTime"];
+                    }
+                }else if ([oldEventsInfo[i] valueForKeyPath:@"start.date"] != nil){
+                    if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"date"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"date"];
+                    }
+                    else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
+                        startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"date"];
+                        endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"date"];
+                    }
                 }
-                else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
-                    startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"dateTime"];
-                    endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"dateTime"];
-                }
-            }else if ([oldEventsInfo[i] valueForKeyPath:@"start.date"] != nil){
-                if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSArray class]]) {
-                    startTime = [[oldEventsInfo[i] valueForKey:@"start"][0] valueForKey:@"date"];
-                    endTime = [[oldEventsInfo[i] valueForKey:@"end"][0] valueForKey:@"date"];
-                }
-                else if ([[oldEventsInfo[i] valueForKey:@"start"] isKindOfClass:[NSDictionary class]]){
-                    startTime = [[oldEventsInfo[i] valueForKey:@"start"] valueForKey:@"date"];
-                    endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"date"];
-                }
-            }
-            
-            if (endTime.length > 10){
-                NSString *endMoment = [endTime substringWithRange:NSMakeRange(10, 9)];
-                if ([endMoment isEqual: @"T00:00:00"]){
-                    NSString *endDayPart = [NSString stringWithFormat:@"%d",[[endTime substringWithRange:NSMakeRange(8, 2)] intValue]-1];
-                    if ([endDayPart intValue] >0){
-                        if (endDayPart.length < 2){
-                            endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(9, 1) withString:endDayPart];
-                        }else{
-                            endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(8, 2) withString:endDayPart];
+                
+                
+                
+                
+                
+                if (endTime.length > 10){
+                    NSString *endMoment = [endTime substringWithRange:NSMakeRange(10, 9)];
+                    if ([endMoment isEqual: @"T00:00:00"]){
+                        NSString *endDayPart = [NSString stringWithFormat:@"%d",[[endTime substringWithRange:NSMakeRange(8, 2)] intValue]-1];
+                        if ([endDayPart intValue] >0){
+                            if (endDayPart.length < 2){
+                                endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(9, 1) withString:endDayPart];
+                            }else{
+                                endTime = [endTime stringByReplacingCharactersInRange:NSMakeRange(8, 2) withString:endDayPart];
+                            }
+                            endTime = [endTime stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@"T23:59:00"];
+                            
                         }
-                        endTime = [endTime stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@"T23:59:00"];
-                        
                     }
                 }
             }
-        }
-        
-        if (([oldEventsInfo[i] valueForKey:@"location"] != nil))
-        {
-            location = [oldEventsInfo[i] valueForKey:@"location"];
             
-        }else{
-            location = @"No Location Provided";
-        }
-        
-        if ([oldEventsInfo[i] valueForKey:@"description"] != nil)
-        {
-            description = [oldEventsInfo[i] valueForKey:@"description"];
+            if (([oldEventsInfo[i] valueForKey:@"location"] != nil))
+            {
+                location = [oldEventsInfo[i] valueForKey:@"location"];
+                
+            }else{
+                location = @"No Location Provided";
+            }
             
-        }
-        else{
-            description = @"No Description Provided";
-        }
-        
-        if ([oldEventsInfo[i] valueForKey:@"summary"] != nil)
-        {
-            summary = [oldEventsInfo[i] valueForKey:@"summary"];
-        }
-        
-        //This will be the new dictionary for the current event.
-        NSDictionary *event;
-        NSDictionary *start;
-        NSDictionary *end;
-        //Is the event an all day event?
-        if ([startTime length] < 12)
-        {
-            start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"date"]];
-            end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"date"]];
-        }
-        else
-        {
-            start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"dateTime"]];
-            end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"dateTime"]];
-        }
-        
-        if (recurrence == nil)
-        {
-            event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description"]];
+            if ([oldEventsInfo[i] valueForKey:@"description"] != nil)
+            {
+                description = [oldEventsInfo[i] valueForKey:@"description"];
+                
+                
+            }
+            else{
+                description = @"No Description Provided";
+            }
             
-        }
-        else
-        {
-            event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description, recurrence] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description", @"recurrence"]];
-        }
-        
-        //Puts the new event into the new array of event dictionaries!
-        [eventsInfo addObject:event];
-    }
-    
-    /*
-    if (![_events getCalendarJsonReceivedForMonth:_curArrayId :category])
-    {
-        
-        
-        [_events setCalendarJsonReceivedForMonth:_curArrayId :category];
-        if (_curArrayId == 1)
-        {
-            _monthLabel.text = [NSString stringWithFormat:@"%@ %d", [_events getMonthBarDate], [_events getSelectedYear]];
+            if ([oldEventsInfo[i] valueForKey:@"summary"] != nil)
+            {
+                summary = [oldEventsInfo[i] valueForKey:@"summary"];
+                
+            }
             
+            //This will be the new dictionary for the current event.
+            NSDictionary *event;
+            NSDictionary *start;
+            NSDictionary *end;
+            //Is the event an all day event?
+            if ([startTime length] < 12)
+            {
+                start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"date"]];
+                end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"date"]];
+            }
+            else
+            {
+                start = [[NSDictionary alloc] initWithObjects:@[startTime] forKeys:@[@"dateTime"]];
+                end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"dateTime"]];
+            }
+            
+            if (recurrence == nil)
+            {
+                event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description"]];
+                
+            }
+            else
+            {
+                event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description, recurrence] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description", @"recurrence"]];
+            }
+            
+            //Puts the new event into the new array of event dictionaries!
+            [eventsInfo addObject:event];
         }
-     */
         
-        //int selectedMonth = month1 ;//[events getSelectedMonth] + (_curArrayId-1);
-        //int selectedYear = [events getSelectedYear];
-        int selectedYear = year1;
-        int selectedMonth = month1;
+            
+        
+        [events setCalendarJsonReceivedForMonth:1 :category];
+  
+        
+        
+        int selectedMonth = [events getSelectedMonth];
+        int selectedYear = [events getSelectedYear];
         
         
         if (selectedMonth == 0)
@@ -556,7 +698,8 @@
             
             int endDay = 0;
             
-
+            
+            
             
             //Determine if the event isn't an all day event type.
             if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"dateTime"] != nil) {
@@ -679,6 +822,9 @@
             float freq = 1.0;
             int repeat = 1;
             
+            //If an event is reocurring, then we must account for that.
+            
+            
             //This will hold the number of days into the next month.
             int wrappedDays = endDay-[events getDaysOfMonth:startMonth :startYear];
             
@@ -705,6 +851,7 @@
                         freq = 365;
                     }
                 }
+                
                 
                 //Here we setup the s and e variables for the for loop.
                 if (startYear == selectedYear) {
@@ -760,8 +907,8 @@
                     for (int day=s; day<e+1; day++) {
                         if (day != 0) {
                             //This then uses that day as an index and inserts the currentEvent into that indice's array.
-                            //[events AppendEvent:day :currentEventInfo :_curArrayId];
-                            [sortedArray addObject:currentEventInfo];
+                            //NSLog(@"\n\n\n\nAAAAAAAAA\n\n\n\n %@", [currentEventInfo description]);
+                            [events AppendEvent:day :currentEventInfo :1];
                         }
                     }
                 }
@@ -808,69 +955,12 @@
                 }
             }
             
-            
         }
-    /*
-        if ([_events isMonthDoneLoading:_curArrayId])
-        {
-            
-            if (_curArrayId == 1)
-            {
-                [_collectionView reloadData];
-                [_activityIndicator stopAnimating];
-                
-                
-                _curArrayId = 2;
-                if ([_events doesMonthNeedLoaded:_curArrayId])
-                {
-                    [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-                }
-                else
-                {
-                    _curArrayId = 0;
-                    if ([_events doesMonthNeedLoaded:_curArrayId])
-                    {
-                        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-                    }
-                    else
-                    {
-                        
-                        _screenLocked = NO;
-                        
-                        _loadCompleted = YES;
-                        [self.navigationItem setHidesBackButton:NO animated:YES];
-                        _failedReqs = 0;
-                    }
-                }
-            }
-            else if (_curArrayId == 2)
-            {
-                _curArrayId = 0;
-                if ([_events doesMonthNeedLoaded:_curArrayId])
-                {
-                    [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-                }
-                else
-                {
-                    _screenLocked = NO;
-                    _loadCompleted = YES;
-                    [self.navigationItem setHidesBackButton:NO animated:YES];
-                    _failedReqs = 0;
-                }
-            }
-            else
-            {
-                _screenLocked = NO;
-                _loadCompleted = YES;
-                [self.navigationItem setHidesBackButton:NO animated:YES];
-                _failedReqs = 0;
-            }*/
     }
 }
 
 
 
 
-
-
 @end
+

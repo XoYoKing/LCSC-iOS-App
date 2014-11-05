@@ -12,6 +12,7 @@
 
 
 +(MonthlyEvents *)getSharedInstance;
++(MonthlyEvents *) getAllEventsInstance;
 
 -(void)resetEvents;
 -(void)refreshArrayOfEvents:(int)arrayId;

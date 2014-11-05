@@ -875,8 +875,8 @@
                 int StartdayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
                 
                 if (abs(EnddayHold-StartdayHold)>1){
-                    NSLog(@"%@",currentEventInfoo);
-                    NSLog(@"%d,%d",EnddayHold,StartdayHold);
+                    //NSLog(@"%@",currentEventInfoo);
+                    //NSLog(@"%d,%d",EnddayHold,StartdayHold);
                     int yearHold = [[currentEndTime substringWithRange:NSMakeRange(0, 4)] intValue];
                     int monthHold = [[currentEndTime substringWithRange:NSMakeRange(5, 2)] intValue];
                     int dayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
@@ -970,7 +970,7 @@
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //  of the app.
-        NSLog(@"%@",oldEventsInfo);
+        //NSLog(@"%@",oldEventsInfo);
         NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
         for (int i=0; i<oldEventsInfo.count; i++)
         {
