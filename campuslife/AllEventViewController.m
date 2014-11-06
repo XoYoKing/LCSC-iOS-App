@@ -45,6 +45,7 @@
 {
     UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:0];
     cal = [navCont.childViewControllers objectAtIndex:0];
+    sortedArray = [[NSMutableArray alloc] init];
     //[cal rollbackEvents];
     NSDate *todaysDate = [[NSDate alloc] init];
     currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
@@ -52,10 +53,16 @@
     events = [MonthlyEvents getAllEventsInstance];
     preferences = [Preferences getSharedInstance];
     [self loadEventsForWhatever];
-    NSArray *newEvents = [events getEventsForCurrentMonth: 1];
+    //NSLog([sortedArray description]);
+    //NSArray *newEvents = [events getEventsForCurrentMonth: 1];
     //NSLog([newEvents description]);
-    [sortedArray addObjectsFromArray:newEvents];
-    displayedEvents = [[NSMutableArray alloc]init];
+    //[sortedArray addObjectsFromArray:newEvents];
+    displayedEvents = [[NSMutableArray alloc] init];
+    
+    // weird comparison thingy that sorts all the events
+    [sortedArray sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
+         return [self compareEvents:obj1 :obj2];
+     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -238,6 +245,82 @@
     return cell;
 }
 
+-(NSComparisonResult)compareEvents:(NSMutableDictionary *)event1 :(NSMutableDictionary *)event2
+{
+    NSComparisonResult comp;
+    int event1Year;
+    int event1Month;
+    int event1Day;
+    int event1Hour;
+    BOOL event1IsAllDay = ([[event1 objectForKey:@"start"] objectForKey:@"dateTime"] == nil);
+    
+    int event2Year;
+    int event2Month;
+    int event2Day;
+    int event2Hour;
+    BOOL event2IsAllDay = ([[event2 objectForKey:@"start"] objectForKey:@"dateTime"] == nil);
+    
+    if(!event1IsAllDay) {
+        NSString *timestamp = [[event1 objectForKey:@"start"] objectForKey:@"dateTime"];
+        event1Year = (int)[[timestamp substringWithRange:NSMakeRange(0, 4)] integerValue];
+        event1Month = (int)[[timestamp substringWithRange:NSMakeRange(5, 2)] integerValue];
+        event1Day = (int)[[timestamp substringWithRange:NSMakeRange(8, 2)] integerValue];
+        event1Hour = (int)[[timestamp substringWithRange:NSMakeRange(11, 2)] integerValue];
+    
+    } else {
+        NSString *timestamp = [[event1 objectForKey:@"start"] objectForKey:@"date"];
+        event1Year = (int)[[timestamp substringWithRange:NSMakeRange(0, 4)] integerValue];
+        event1Month = (int)[[timestamp substringWithRange:NSMakeRange(5, 2)] integerValue];
+        event1Day = (int)[[timestamp substringWithRange:NSMakeRange(8, 2)] integerValue];
+        event1Hour = 0;
+    }
+    
+    if(!event2IsAllDay) {
+        NSString *timestamp = [[event2 objectForKey:@"start"] objectForKey:@"dateTime"];
+        event2Year = (int)[[timestamp substringWithRange:NSMakeRange(0, 4)] integerValue];
+        event2Month = (int)[[timestamp substringWithRange:NSMakeRange(5, 2)] integerValue];
+        event2Day = (int)[[timestamp substringWithRange:NSMakeRange(8, 2)] integerValue];
+        event2Hour = (int)[[timestamp substringWithRange:NSMakeRange(11, 2)] integerValue];
+        
+    } else {
+        NSString *timestamp = [[event2 objectForKey:@"start"] objectForKey:@"date"];
+        event2Year = (int)[[timestamp substringWithRange:NSMakeRange(0, 4)] integerValue];
+        event2Month = (int)[[timestamp substringWithRange:NSMakeRange(5, 2)] integerValue];
+        event2Day = (int)[[timestamp substringWithRange:NSMakeRange(8, 2)] integerValue];
+        event2Hour = 0;
+    }
+    
+    if(event1Year < event2Year) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+    
+    } else if(event1Year > event2Year) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+    
+    } else if(event1Month < event2Month) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+    
+    } else if(event1Month > event2Month) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+        
+    } else if(event1Day < event2Day) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+    
+    } else if(event1Day > event2Day) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+    
+    } else if(event1Hour < event2Hour) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+    
+    } else if(event1Hour > event2Hour) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+    
+    } else {
+        comp = (NSComparisonResult )NSOrderedSame;
+    }
+    
+    return comp;
+}
+
 -(void)incrementCurrentMonth
 {
     ++currentMonth;
@@ -266,6 +349,7 @@
     NSArray *newEvents = [events getEventsForCurrentMonth: 1];
     //NSLog([newEvents description]);
     [sortedArray addObjectsFromArray:newEvents];
+    
     
 }
 
@@ -380,6 +464,14 @@
     
     int curMonth = (int)[events getCurrentMonth];
     int curYear = (int)[events getCurrentYear];
+    int curDay = (int)[events getCurrentDay];
+    NSString *curDayAsString;
+    if(curDay < 10) {
+        curDayAsString = [NSString stringWithFormat:@"0%d", curDay];
+    
+    } else {
+        curDayAsString = [NSString stringWithFormat:@"%d", curDay];
+    }
     
     for (NSString *name in [events getCategoryNames])
     {
@@ -389,16 +481,16 @@
         //NSLog(name);
         
         if(curMonth >= 10 && curMonth <= 12 && toMonth >= 10 && curMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-%@T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth, curDayAsString,toYear,toMonth,endDay];
             
         } else if(curMonth >= 10 && curMonth <= 12 && toMonth < 10 && curMonth > 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-%@T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth, curDayAsString,toYear,toMonth,endDay];
             
         } else if(curMonth < 10 && curMonth > 12 && toMonth >= 10 && curMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-0%@T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth, curDayAsString,toYear,toMonth,endDay];
             
         } else {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
+            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-%@T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth, curDayAsString,toYear,toMonth,endDay];
         }
         
         //NSLog(urlString);
@@ -406,7 +498,6 @@
         url = [NSURL URLWithString:urlString];
         
         NSData *data = [NSData dataWithContentsOfURL:url];
-        //NSLog([data description]);
         if (data != nil)
         {
             [self parseJSON:data];
@@ -422,10 +513,6 @@
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
     //NSLog([eventsInfoDict description]);
     //NSLog([eventsInfoDict description]);
-    
-    
-    
-    
     
     if (error) {
         // This is the case that an error occured during converting JSON data to dictionary.
@@ -541,7 +628,6 @@
             if ([cal getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
                 category = name;
                 
-                
             }
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
@@ -656,6 +742,7 @@
             [eventsInfo addObject:event];
         }
         
+        //[sortedArray addObjectsFromArray:eventsInfo];
             
         
         [events setCalendarJsonReceivedForMonth:1 :category];
@@ -678,6 +765,7 @@
             selectedYear += 1;
             
         }
+        //NSLog(@"Selected Month and Year: %ld and %ld", (long)selectedMonth, (long)selectedYear);
         //Loop through the events
         for (int i=0; i<[eventsInfo count]; i++) {
             
@@ -690,16 +778,11 @@
             
             [currentEventInfo setObject:category forKey:@"category"];
             
-            
-            
             int startDay = 0;
             int startMonth = 0;
             int startYear = 0;
             
             int endDay = 0;
-            
-            
-            
             
             //Determine if the event isn't an all day event type.
             if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"dateTime"] != nil) {
@@ -828,6 +911,7 @@
             //This will hold the number of days into the next month.
             int wrappedDays = endDay-[events getDaysOfMonth:startMonth :startYear];
             
+            //NSLog(@"Start Month and Year: %ld and %ld", (long)startMonth, (long)startYear);
             
             //The e variable isn't being set properly. So fix it!
             
@@ -908,7 +992,8 @@
                         if (day != 0) {
                             //This then uses that day as an index and inserts the currentEvent into that indice's array.
                             //NSLog(@"\n\n\n\nAAAAAAAAA\n\n\n\n %@", [currentEventInfo description]);
-                            [events AppendEvent:day :currentEventInfo :1];
+                            //[events AppendEvent:day :currentEventInfo :1];
+                            //[sortedArray addObject:currentEventInfo];
                         }
                     }
                 }
@@ -955,6 +1040,8 @@
                 }
             }
             
+            // for now, each currentEventInfo is just added to the sortedArray at the end of each iteration
+            [sortedArray addObject:currentEventInfo];
         }
     }
 }

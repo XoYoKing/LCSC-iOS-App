@@ -157,7 +157,7 @@
         self.condition = [[NSCondition alloc]init];
         
         
-        [_activityIndicator startAnimating];
+        //[_activityIndicator startAnimating];
         //UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:1];
         //AllEventViewController *aevc = [navCont.childViewControllers objectAtIndex:0];
         self.aThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadLoop) object:nil];
@@ -165,7 +165,6 @@
         
         [self rollbackEvents];
         _allEventsDidLoad = YES;
-        //[self.activityIndicator stopAnimating];
     }
 }
 
@@ -200,13 +199,12 @@
         self.lock = YES;
         [self.condition unlock];
     }
-    
 }
 //
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self rollbackEvents];
+    //[self rollbackEvents];
 }
 
 
@@ -1074,6 +1072,7 @@
             else
             {
                 event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description, recurrence] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description", @"recurrence"]];
+                
             }
             
             //Puts the new event into the new array of event dictionaries!
