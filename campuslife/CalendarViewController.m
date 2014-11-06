@@ -150,20 +150,17 @@
         
         _shouldRefresh = NO;
     }
+    
     if(!_allEventsDidLoad) {
         self.lock = YES;
         
         // create the NSCondition instance
         self.condition = [[NSCondition alloc]init];
         
-        
-        //[_activityIndicator startAnimating];
-        //UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:1];
-        //AllEventViewController *aevc = [navCont.childViewControllers objectAtIndex:0];
         self.aThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadLoop) object:nil];
         [self.aThread start];
         
-        [self rollbackEvents];
+        //[self rollbackEvents];
         _allEventsDidLoad = YES;
     }
 }
@@ -205,6 +202,11 @@
 {
     [super viewWillAppear:YES];
     //[self rollbackEvents];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 

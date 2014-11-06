@@ -53,6 +53,9 @@
     
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
     
+    //self.navigationController.navigationBar.topItem.title = @"";
+    
+    
     sortedArray = [self eventSorter:[events getEventsForDay:_day]];
     
     [self.tableView reloadData];
@@ -66,10 +69,8 @@
  */
 -(void)viewDidAppear:(BOOL)animated
 {
-
     _didSegue = NO;
 }
-
 
 
 - (void)didReceiveMemoryWarning

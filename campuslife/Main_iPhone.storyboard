@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hAo-Ec-eGI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hAo-Ec-eGI">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Calendar-->
@@ -26,7 +25,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="SLV-s7-n9l"/>
-                                    <barButtonItem enabled="NO" title="&gt;" id="4dy-g2-40z">
+                                    <barButtonItem enabled="NO" title=">" id="4dy-g2-40z">
                                         <connections>
                                             <action selector="forwardMonthOffset:" destination="vXZ-lx-hvc" id="Q1M-ZT-WZW"/>
                                         </connections>
@@ -298,6 +297,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="xAc-fc-j1e">
+                        <barButtonItem key="backBarButtonItem" title=" " id="mZi-Dh-sgD"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="iBk-o7-Bqm"/>
                     </navigationItem>
                     <connections>
@@ -395,6 +395,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Day Events" id="Ymu-IQ-gLR">
+                        <barButtonItem key="backBarButtonItem" title=" " id="uaf-pi-IgB"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="fve-S2-ufy"/>
                     </navigationItem>
                 </tableViewController>
@@ -402,7 +403,7 @@
             </objects>
             <point key="canvasLocation" x="-166" y="-379"/>
         </scene>
-        <!--Item-->
+        <!--Event Detail View Controller-->
         <scene sceneID="Egp-68-igS">
             <objects>
                 <viewController id="5sb-bb-V1f" customClass="EventDetailViewController" sceneMemberID="viewController">
@@ -445,8 +446,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Bv5-MP-w4w"/>
-                    <navigationItem key="navigationItem" id="Edf-cH-Fdp"/>
+                    <navigationItem key="navigationItem" id="Edf-cH-Fdp">
+                        <barButtonItem key="backBarButtonItem" title=" " id="gxQ-Tw-TFH"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="Description" destination="QTB-zv-Yfh" id="od0-pd-4Qi"/>
                         <outlet property="Location" destination="700-hq-3un" id="ePH-3V-1ms"/>
@@ -545,7 +547,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="All Events" id="MAy-EH-2mP"/>
+                    <navigationItem key="navigationItem" title="All Events" id="MAy-EH-2mP">
+                        <barButtonItem key="backBarButtonItem" title=" " id="DoT-Ze-2Bz"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="zst-gA-ldo" id="250-hr-9wb"/>
                     </connections>
@@ -605,6 +609,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kKn-JZ-pN7"/>
+        <segue reference="91h-l3-254"/>
     </inferredMetricsTieBreakers>
 </document>

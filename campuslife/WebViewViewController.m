@@ -42,6 +42,11 @@
     [self TearDownUIWebView];
 }
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     [self TearDownUIWebView];
