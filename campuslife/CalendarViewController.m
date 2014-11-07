@@ -111,6 +111,8 @@
     
     _swipeLeft.enabled = YES;
     _swipeRight.enabled = YES;
+    _swipeUp.enabled = YES;
+    _swipeDown.enabled = YES;
     
     
     _screenLocked = NO;
