@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="X4z-dN-CwA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="X4z-dN-CwA">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Calendar-->
@@ -39,7 +39,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EWa-JO-Uke">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EWa-JO-Uke">
                                 <rect key="frame" x="3" y="148" width="762" height="726"/>
                                 <color key="backgroundColor" red="0.88673867979999998" green="0.88673867979999998" blue="0.88673867979999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="kWe-X2-E3U">
@@ -284,6 +284,8 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="5go-iF-r37" appends="YES" id="91A-ah-uLm"/>
                             <outletCollection property="gestureRecognizers" destination="MTA-n5-25a" appends="YES" id="IS6-Gw-Qba"/>
+                            <outletCollection property="gestureRecognizers" destination="LxV-Qb-L79" appends="YES" id="6br-UM-sHw"/>
+                            <outletCollection property="gestureRecognizers" destination="Jmf-rk-Uld" appends="YES" id="c7s-fb-sC0"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="6cq-Y9-Vby">
@@ -302,8 +304,10 @@
                         <outlet property="leftArrow" destination="hbQ-y3-LPp" id="avV-qz-P7e"/>
                         <outlet property="monthLabel" destination="3p4-RS-72g" id="ov0-pZ-HfA"/>
                         <outlet property="rightArrow" destination="27t-8P-qmU" id="lD2-18-brU"/>
+                        <outlet property="swipeDown" destination="Jmf-rk-Uld" id="a5R-or-2iR"/>
                         <outlet property="swipeLeft" destination="5go-iF-r37" id="tvd-JO-LPg"/>
                         <outlet property="swipeRight" destination="MTA-n5-25a" id="xDy-XV-NLl"/>
+                        <outlet property="swipeUp" destination="LxV-Qb-L79" id="LxB-ff-wuJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uY-ZV-Xbf" sceneMemberID="firstResponder"/>
@@ -315,6 +319,16 @@
                 <swipeGestureRecognizer enabled="NO" cancelsTouchesInView="NO" direction="right" id="MTA-n5-25a">
                     <connections>
                         <action selector="backMonthOffset:" destination="DZS-au-tdA" id="a9W-3g-w5c"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer enabled="NO" cancelsTouchesInView="NO" direction="up" id="LxV-Qb-L79">
+                    <connections>
+                        <action selector="forwardMonthOffset:" destination="DZS-au-tdA" id="c5S-lf-t3o"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer enabled="NO" cancelsTouchesInView="NO" direction="down" id="Jmf-rk-Uld">
+                    <connections>
+                        <action selector="backMonthOffset:" destination="DZS-au-tdA" id="T0W-WL-ZaI"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
