@@ -118,24 +118,25 @@
     return time;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    NSString *timee = [[NSString alloc]init];
     events = [MonthlyEvents getSharedInstance];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
-
+    
     
     if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
     {
-        self.Time.text = @"All Day Event";
+        timee = @"All Day Event";
     }
     else
     {
-    NSString *startTimeHold = [[[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
-    NSString *endTimeHold = [[[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+        NSString *startTimeHold = [[[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+        NSString *endTimeHold = [[[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
         startTimeHold = [self twentyFourToTwelve:startTimeHold];
         endTimeHold = [self twentyFourToTwelve:endTimeHold];
-        self.Time.text = [NSString stringWithFormat:@"%@ - %@",startTimeHold,endTimeHold];
+        timee = [NSString stringWithFormat:@"%@ - %@",startTimeHold,endTimeHold];
     }
     
     
@@ -143,15 +144,41 @@
     titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@":" withString:@"\n"];
     titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@": " withString:@"\n"];
     titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@"(" withString:@"\n("];
-    self.Title.text = titleToParse;
+    
+    NSDictionary *titleDict = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"Helvetica-Bold" size:18.0] forKey:NSFontAttributeName];
+    NSDictionary *locationDict = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"Helvetica" size:15.0] forKey:NSFontAttributeName];
+    NSDictionary *timeDict = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"Helvetica" size:13.0] forKey:NSFontAttributeName];
+    NSDictionary *descDict = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"Helvetica" size:14.0] forKey:NSFontAttributeName];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSTextAlignmentCenter];
+    
+    NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n", titleToParse] attributes:titleDict];
+    
+    NSMutableAttributedString *attributedTime = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n", timee] attributes:timeDict];
+    
+    NSMutableAttributedString *attributedLocation = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n", [_eventDict objectForKey:@"location"]] attributes:locationDict];
+    
+    NSMutableAttributedString *attributedDesc = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n", [_eventDict objectForKey:@"description"]] attributes:descDict];
+    
+    [attributedTitle addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedTitle.length)];
+    [attributedLocation addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedLocation.length)];
+    [attributedTime addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedTime.length)];
     
     
-    self.Location.text = [_eventDict objectForKey:@"location"];
-    self.Description.text = [_eventDict objectForKey:@"description"];
-
-
-    // Do any additional setup after loading the view.
+    
+    
+    
+    NSMutableAttributedString *Final = [[NSMutableAttributedString alloc]init];
+    [Final appendAttributedString:attributedTitle];
+    [Final appendAttributedString:attributedLocation];
+    [Final appendAttributedString:attributedTime];
+    [Final appendAttributedString:attributedDesc];
+    
+    [self.Description setAttributedText:Final];
+    
 }
+
+
 
 - (void)viewDidAppear:(BOOL)animated {
     //[self.navigationController popToViewController:self animated:YES];
