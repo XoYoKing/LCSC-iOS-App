@@ -37,7 +37,7 @@
 @property (nonatomic, setter=setShouldRefresh:) BOOL shouldRefresh;
 
 
-//- (void)onTick:(NSTimer*)timer;
+
 - (void)onTickForDelay:(NSTimer*)timer;
 
 - (IBAction)radioSelected:(UIButton *)sender;

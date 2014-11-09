@@ -89,11 +89,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
     
 
-    /*_timer = [NSTimer scheduledTimerWithTimeInterval: 1
-                                             target: self
-                                            selector: @selector(onTick:)
-                                           userInfo: nil
-                                            repeats: YES];*/
 
     _monthNeedsLoaded = NO;
     
@@ -186,9 +181,6 @@
                        withObject:nil
                     waitUntilDone:NO];
             [self.condition wait];
-            
-            // the "did wait" will be printed only when you have signaled the condition change in the sendNewEvent method
-            //NSLog(@"Did Wait");
         }
         
 
@@ -212,40 +204,7 @@
 }
 
 
-/*- (void)onTick:(NSTimer*)timer
-{
-    if (_failedReqs == 3)
-    {
-        [_events resetEvents];
-        _curArrayId = 1;
-        
-        _screenLocked = YES;
-        
-        [_collectionView reloadData];
-        
-        [_activityIndicator startAnimating];
-        
-        _failedReqs = 0;
-        
-        //Resend the requests that failed.
-        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-    }
-    //Check a bunch of conditions that altogether mean that the json that we're expecting
-    //  hasn't been heard from for over 3 seconds. This hopefully means it won't be coming back.
-    
-    
-    if (!_loadCompleted
-        && _timeLastReqSent + (_failedReqs*2) + 2 < [[NSDate date] timeIntervalSince1970])
-    {
-        //[_events resetEvents];
-        //_curArrayId = 1;
-        
-        _failedReqs += 1;
-        
-        //Resend the requests that failed.
-        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-    }
-}*/
+
 
 - (void)onTickForDelay:(NSTimer*)timer
 {
@@ -845,7 +804,7 @@
     // Get the JSON data as a dictionary.
 
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
-    //NSLog([eventsInfoDict description]);
+
     
 
 
@@ -859,26 +818,23 @@
     else{
         //Get the events as an array
 
-        NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"items"];
+        NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKey:@"items"];
         
-        NSMutableArray *holdDict = [eventsInfoDict valueForKeyPath:@"items"];
+        
+
+        //////////////////////////////////////////
+        NSArray *holdDict = [oldEventsInfo copy];
         for (int i=0; i<holdDict.count; i++){
-            NSMutableDictionary *currentEventInfoo = holdDict[i];
-            
             NSString *startTStuff = [[NSString alloc] init];
             NSString *endTStuff = [[NSString alloc] init];
-            NSString *currentEndTime = [[currentEventInfoo objectForKey:@"end"] objectForKey:@"dateTime"];
-            NSString *currentStartTime = [[currentEventInfoo objectForKey:@"start"] objectForKey:@"dateTime"];
+            NSString *currentEndTime = [[holdDict[i] objectForKey:@"end"] objectForKey:@"dateTime"];
+            NSString *currentStartTime = [[holdDict[i] objectForKey:@"start"] objectForKey:@"dateTime"];
             if (currentEndTime != nil) {
-
                 startTStuff = [currentStartTime substringWithRange:NSMakeRange(10, [currentStartTime length]-10)];
                 endTStuff = [currentEndTime substringWithRange:NSMakeRange(10, [currentStartTime length]-10)];
                 int EnddayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
                 int StartdayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
-                
                 if (abs(EnddayHold-StartdayHold)>1){
-                    //NSLog(@"%@",currentEventInfoo);
-                    //NSLog(@"%d,%d",EnddayHold,StartdayHold);
                     int yearHold = [[currentEndTime substringWithRange:NSMakeRange(0, 4)] intValue];
                     int monthHold = [[currentEndTime substringWithRange:NSMakeRange(5, 2)] intValue];
                     int dayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
@@ -891,8 +847,10 @@
                         amountOfDays = amountOfStartDays-StartdayHold+EnddayHold;
                     }
                     int counter = 0;
-                    for (int i = amountOfDays; i>0 ; i--,amountOfDays--,counter++){
-
+                    NSDictionary *holdRecurEvent = holdDict[i];
+                
+                    for (int j = amountOfDays; j>0 ; j--,amountOfDays--,counter++){
+                        NSMutableDictionary *replacementEvent = [holdRecurEvent mutableCopy];
                         int newDay = dayHold-amountOfDays+1;
                         if (newDay <1){
                             monthHold--;
@@ -902,6 +860,7 @@
                             }
                             daysInMonth = [_events getDaysOfMonth:monthHold :yearHold];
                             newDay  = daysInMonth+newDay;
+
                         }
                         NSString *SyearHold = [NSString stringWithFormat:@"%d",yearHold];
                         NSString *sMonthHold = [[NSString alloc] init ];
@@ -916,43 +875,35 @@
                         }else{
                             sDayHold = [NSString stringWithFormat:@"%d",newDay];
                         }
-                        
-                        //NSLog(@"%@-%@-%@%@(%d)",SyearHold,sMonthHold,sDayHold,startTStuff,counter);
                         NSString *newStartTime = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,startTStuff];
-                       // NSString *newEndDate = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,endTStuff];
+                        NSString *newEndDate = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,endTStuff];
                         NSMutableDictionary *holdDictStart = [[NSMutableDictionary alloc] init];
                         NSMutableDictionary *holdDictEnd = [[NSMutableDictionary alloc] init];
                         [holdDictStart setObject:newStartTime forKey:@"dateTime"];
-                        //[holdDictEnd setObject:newEndDate forKey:@"dateTime"];
-                        //[currentEventInfoo setObject:holdDictStart forKey:@"start"];
-                        //[currentEventInfoo setObject:holdDictEnd forKey:@"end"];
-                       // NSLog(@"%@\n%@",holdDict[i], currentEventInfoo);
+                        [holdDictEnd setObject:newEndDate forKey:@"dateTime"];
+                        [replacementEvent setObject:holdDictStart forKey:@"start"];
+                        [replacementEvent setObject:holdDictEnd forKey:@"end"];
+
                         if (counter == 0){
-                           // oldEventsInfo[i] = currentEventInfoo;
+                            oldEventsInfo[i] = replacementEvent;
                         }
                         else{
-                            //[oldEventsInfo addObject:currentEventInfoo];
+                            [oldEventsInfo addObject: replacementEvent];
                         }
-                        //NSLog(@"\n\n%@ | %@\n%@ | %@\n\n",currentStartTime,newStartTime,currentEndTime,newEndDate);
-                        
+                        if (newDay == [_events getDaysOfMonth:monthHold :yearHold]) {
+                            monthHold++;
+                            if (monthHold > 12){
+                                monthHold = 1;
+                                yearHold++;
+                            }
+                            daysInMonth = [_events getDaysOfMonth:monthHold :yearHold];
+                            
+                        }
                     }
-                    
-                    
-                    
-                    
-                    
-                    //NSLog(@"%d,%d,%d",EnddayHold,StartdayHold,amountOfDays);
-                    //NSLog(@"%@,%d,%d,%d,%d",currentStartTime,yearHold,monthHold,dayHold,daysInMonth);
-                    //int newDay = dayHold-amountOfDays;
-                
-                
-            
-                //NSLog(@"%d",EdayHold-SdayHold);
-                //NSLog(@"%@\n-------\n",holdDict[i]);
                 }
             }
         }
-    
+        //////////////////////////////////////////
     
         if (oldEventsInfo == nil) {
             oldEventsInfo = [[NSMutableArray alloc] init];
@@ -972,7 +923,7 @@
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //  of the app.
-        //NSLog(@"%@",oldEventsInfo);
+
         NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
         for (int i=0; i<oldEventsInfo.count; i++)
         {
@@ -1458,67 +1409,6 @@
     }
 }
 
-/*
--(void)loadEventsForMonth:(NSInteger)month andYear:(NSInteger) year
-{
-    [_events offsetMonth:1];
-    _curArrayId = 1;
-    _monthNeedsLoaded = YES;
-    [self getEventsForMonth:month :year];
-}
-*/
-/*
--(void)loadEventsFromCurrentMonthToMonth:(NSInteger)month andYear:(NSInteger) year
-{
-    _curArrayId = 1;
-    [_events offsetMonth:6];
-    int toMonth = (int)month;
-    int toYear = (int)year;
-    int endDay = [_events getDaysOfMonth:toMonth :toYear];
-    
-    [_events setSelectedDay:endDay];
-    //[_events setMonth:toMonth];
-    //[_events setYear:toYear];
-    
-    int curMonth = (int)[_events getCurrentMonth];
-    int curYear = (int)[_events getCurrentYear];
-    
-    for (NSString *name in [_events getCategoryNames])
-    {
-        NSURL *url;
-        NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
-        NSString *urlString;
-        //NSLog(name);
-        
-        if(curMonth >= 10 && curMonth <= 12 && toMonth >= 10 && curMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
-        
-        } else if(curMonth >= 10 && curMonth <= 12 && toMonth < 10 && curMonth > 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
-        
-        } else if(curMonth < 10 && curMonth > 12 && toMonth >= 10 && curMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
-        
-        } else {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth,toYear,toMonth,endDay];
-        }
-        
-        //NSLog(urlString);
-        
-        url = [NSURL URLWithString:urlString];
-        
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        //NSLog([data description]);
-        if (data != nil)
-        {
-            NSLog(@"YAAAY");
-            [self parseJSON:data];
-        }
-        // IS THIS IMPORTANT????
-        //_timeLastReqSent = [[NSDate date] timeIntervalSince1970];
-    }
-}
-*/
 
 -(void)loadEventsForMonth:(int)month andYear:(int) year
 {
@@ -1534,7 +1424,7 @@
     {
         NSURL *url;
         NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
-        //NSLog(name);
+        
         
         NSString *urlString;
         if (month < 10 || month > 12){
@@ -1545,16 +1435,12 @@
             urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,year,month,year,month,endDay];
         }
         url = [NSURL URLWithString:urlString];
-        //NSLog(urlString);
         NSData *data = [NSData dataWithContentsOfURL:url];
         if (data != nil)
         {
-            //NSLog(@"YAAAY");
-            
             [self parseJSON:data];
         }
-        // IS THIS IMPORTANT????
-        //_timeLastReqSent = [[NSDate date] timeIntervalSince1970];
+
     }
 }
 

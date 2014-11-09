@@ -46,20 +46,14 @@
     UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:0];
     cal = [navCont.childViewControllers objectAtIndex:0];
     sortedArray = [[NSMutableArray alloc] init];
-    //[cal rollbackEvents];
     NSDate *todaysDate = [[NSDate alloc] init];
     currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
     currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
     events = [MonthlyEvents getAllEventsInstance];
     preferences = [Preferences getSharedInstance];
     [self loadEventsForWhatever];
-    //NSLog([sortedArray description]);
-    //NSArray *newEvents = [events getEventsForCurrentMonth: 1];
-    //NSLog([newEvents description]);
-    //[sortedArray addObjectsFromArray:newEvents];
     displayedEvents = [[NSMutableArray alloc] init];
-    
-    // weird comparison thingy that sorts all the events
+
     [sortedArray sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
          return [self compareEvents:obj1 :obj2];
      }];
@@ -69,14 +63,7 @@
 {
     [super viewWillAppear:YES];
     if(!wentToEvent){
-        //[cal rollbackEvents];
         [displayedEvents removeAllObjects];
-        //NSDate *todaysDate = [[NSDate alloc] init];
-        ///currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
-        //currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
-        //sortedArray = (NSMutableArray *)[events getEventsStartingToday];
-        //[self incrementCurrentMonth];
-        //[self loadEventsForNextSixMonths];
         [self removeCancelledEvents];
         [self.tableView reloadData];
     } else {
@@ -88,7 +75,6 @@
 {
     for(int i = 0; i < [sortedArray count]; ++i) {
         NSString *categoryName = [sortedArray[i] objectForKey:@"category"];
-        //NSLog(categoryName);
         for (NSString *name in [[MonthlyEvents getSharedInstance] getCategoryNames])
         {
             if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == YES)) {
@@ -103,22 +89,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    selectedRow = indexPath.row;
-    [self performSegueWithIdentifier:@"allEventToEventDetailTable" sender:self];
-}*/
-
-/*
--(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
-        wentToEvent = YES;
-        EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
-
-        [destViewController setEvent:[sortedArray objectAtIndex:selectedRow]];
-    }
-}
- */
 
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
@@ -144,22 +114,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //NSInteger rowCount = [displayedEvents count];
-    /*
-    if(indexPath.row >= (NSInteger)(rowCount * 0.8) && noEventsInMonthCount <= 6)
-    {
-        //self.tableView.scrollEnabled = NO;
-        //[self loadEventsForNextNMonths:2];
-        
-        if(noEventsInMonthCount <= 6) {
-            [self removeCancelledEvents];
-        }
-        
-        //[self.tableView reloadData];
-        //self.tableView.scrollEnabled = YES;
-    }
-    */
-    
     static NSString *CellIdentifier = @"EventCell";
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -347,7 +301,6 @@
     [cal loadEventsForMonth:(int)currentMonth andYear:(int)currentYear];
     
     NSArray *newEvents = [events getEventsForCurrentMonth: 1];
-    //NSLog([newEvents description]);
     [sortedArray addObjectsFromArray:newEvents];
     
     
@@ -478,7 +431,7 @@
         NSURL *url;
         NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
         NSString *urlString;
-        //NSLog(name);
+
         
         if(curMonth >= 10 && curMonth <= 12 && toMonth >= 10 && curMonth <= 12) {
             urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-%@T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth, curDayAsString,toYear,toMonth,endDay];
@@ -493,7 +446,7 @@
             urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-%@T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,curYear,curMonth, curDayAsString,toYear,toMonth,endDay];
         }
         
-        //NSLog(urlString);
+ 
         
         url = [NSURL URLWithString:urlString];
         
@@ -511,8 +464,7 @@
     // Get the JSON data as a dictionary.
     
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
-    //NSLog([eventsInfoDict description]);
-    //NSLog([eventsInfoDict description]);
+
     
     if (error) {
         // This is the case that an error occured during converting JSON data to dictionary.
@@ -524,24 +476,20 @@
         
         NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"items"];
         
-        NSMutableArray *holdDict = [eventsInfoDict valueForKeyPath:@"items"];
+        //clayton
+        //////////////////////////////////////////
+        NSArray *holdDict = [oldEventsInfo copy];
         for (int i=0; i<holdDict.count; i++){
-            NSMutableDictionary *currentEventInfoo = holdDict[i];
-            
             NSString *startTStuff = [[NSString alloc] init];
             NSString *endTStuff = [[NSString alloc] init];
-            NSString *currentEndTime = [[currentEventInfoo objectForKey:@"end"] objectForKey:@"dateTime"];
-            NSString *currentStartTime = [[currentEventInfoo objectForKey:@"start"] objectForKey:@"dateTime"];
+            NSString *currentEndTime = [[holdDict[i] objectForKey:@"end"] objectForKey:@"dateTime"];
+            NSString *currentStartTime = [[holdDict[i] objectForKey:@"start"] objectForKey:@"dateTime"];
             if (currentEndTime != nil) {
-                
                 startTStuff = [currentStartTime substringWithRange:NSMakeRange(10, [currentStartTime length]-10)];
                 endTStuff = [currentEndTime substringWithRange:NSMakeRange(10, [currentStartTime length]-10)];
                 int EnddayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
                 int StartdayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
-                
                 if (abs(EnddayHold-StartdayHold)>1){
-                    //NSLog(@"%@",currentEventInfoo);
-                    //NSLog(@"%d,%d",EnddayHold,StartdayHold);
                     int yearHold = [[currentEndTime substringWithRange:NSMakeRange(0, 4)] intValue];
                     int monthHold = [[currentEndTime substringWithRange:NSMakeRange(5, 2)] intValue];
                     int dayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
@@ -554,8 +502,10 @@
                         amountOfDays = amountOfStartDays-StartdayHold+EnddayHold;
                     }
                     int counter = 0;
-                    for (int i = amountOfDays; i>0 ; i--,amountOfDays--,counter++){
-                        
+                    NSDictionary *holdRecurEvent = holdDict[i];
+                    
+                    for (int j = amountOfDays; j>0 ; j--,amountOfDays--,counter++){
+                        NSMutableDictionary *replacementEvent = [holdRecurEvent mutableCopy];
                         int newDay = dayHold-amountOfDays+1;
                         if (newDay <1){
                             monthHold--;
@@ -565,6 +515,7 @@
                             }
                             daysInMonth = [events getDaysOfMonth:monthHold :yearHold];
                             newDay  = daysInMonth+newDay;
+                            
                         }
                         NSString *SyearHold = [NSString stringWithFormat:@"%d",yearHold];
                         NSString *sMonthHold = [[NSString alloc] init ];
@@ -579,43 +530,36 @@
                         }else{
                             sDayHold = [NSString stringWithFormat:@"%d",newDay];
                         }
-                        
-                        //NSLog(@"%@-%@-%@%@(%d)",SyearHold,sMonthHold,sDayHold,startTStuff,counter);
                         NSString *newStartTime = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,startTStuff];
-                        // NSString *newEndDate = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,endTStuff];
+                        NSString *newEndDate = [NSString stringWithFormat:@"%@-%@-%@%@",SyearHold,sMonthHold,sDayHold,endTStuff];
                         NSMutableDictionary *holdDictStart = [[NSMutableDictionary alloc] init];
                         NSMutableDictionary *holdDictEnd = [[NSMutableDictionary alloc] init];
                         [holdDictStart setObject:newStartTime forKey:@"dateTime"];
-                        //[holdDictEnd setObject:newEndDate forKey:@"dateTime"];
-                        //[currentEventInfoo setObject:holdDictStart forKey:@"start"];
-                        //[currentEventInfoo setObject:holdDictEnd forKey:@"end"];
-                        // NSLog(@"%@\n%@",holdDict[i], currentEventInfoo);
+                        [holdDictEnd setObject:newEndDate forKey:@"dateTime"];
+                        [replacementEvent setObject:holdDictStart forKey:@"start"];
+                        [replacementEvent setObject:holdDictEnd forKey:@"end"];
+                        
                         if (counter == 0){
-                            // oldEventsInfo[i] = currentEventInfoo;
+                            oldEventsInfo[i] = replacementEvent;
                         }
                         else{
-                            //[oldEventsInfo addObject:currentEventInfoo];
+                            [oldEventsInfo addObject: replacementEvent];
                         }
-                        //NSLog(@"\n\n%@ | %@\n%@ | %@\n\n",currentStartTime,newStartTime,currentEndTime,newEndDate);
-                        
+                        if (newDay == [events getDaysOfMonth:monthHold :yearHold]) {
+                            monthHold++;
+                            if (monthHold > 12){
+                                monthHold = 1;
+                                yearHold++;
+                            }
+                            daysInMonth = [events getDaysOfMonth:monthHold :yearHold];
+                            
+                        }
                     }
-                    
-                    
-                    
-                    
-                    
-                    //NSLog(@"%d,%d,%d",EnddayHold,StartdayHold,amountOfDays);
-                    //NSLog(@"%@,%d,%d,%d,%d",currentStartTime,yearHold,monthHold,dayHold,daysInMonth);
-                    //int newDay = dayHold-amountOfDays;
-                    
-                    
-                    
-                    //NSLog(@"%d",EdayHold-SdayHold);
-                    //NSLog(@"%@\n-------\n",holdDict[i]);
                 }
             }
         }
-        
+        //////////////////////////////////////////
+        //
         
         if (oldEventsInfo == nil) {
             oldEventsInfo = [[NSMutableArray alloc] init];
@@ -632,7 +576,7 @@
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //  of the app.
-        //NSLog(@"%@",oldEventsInfo);
+
         NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
         for (int i=0; i<oldEventsInfo.count; i++)
         {
@@ -765,7 +709,7 @@
             selectedYear += 1;
             
         }
-        //NSLog(@"Selected Month and Year: %ld and %ld", (long)selectedMonth, (long)selectedYear);
+
         //Loop through the events
         for (int i=0; i<[eventsInfo count]; i++) {
             
@@ -911,7 +855,7 @@
             //This will hold the number of days into the next month.
             int wrappedDays = endDay-[events getDaysOfMonth:startMonth :startYear];
             
-            //NSLog(@"Start Month and Year: %ld and %ld", (long)startMonth, (long)startYear);
+
             
             //The e variable isn't being set properly. So fix it!
             
@@ -990,10 +934,7 @@
                     //Add events for the startday all the way up to the end day.
                     for (int day=s; day<e+1; day++) {
                         if (day != 0) {
-                            //This then uses that day as an index and inserts the currentEvent into that indice's array.
-                            //NSLog(@"\n\n\n\nAAAAAAAAA\n\n\n\n %@", [currentEventInfo description]);
-                            //[events AppendEvent:day :currentEventInfo :1];
-                            //[sortedArray addObject:currentEventInfo];
+
                         }
                     }
                 }
