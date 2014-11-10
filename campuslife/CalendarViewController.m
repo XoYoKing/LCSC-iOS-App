@@ -50,6 +50,7 @@
 @property (nonatomic) BOOL allEventsDidLoad;
 
 @property (nonatomic) int failedReqs;
+@property (nonatomic, setter = setreach:) int reach;
 
 @property (strong, nonatomic) NSCondition *condition;
 @property (strong, nonatomic) NSThread *aThread;
@@ -138,6 +139,7 @@
     [super viewDidAppear:YES];
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
+    [self setreach:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     NSLog(@"%d",_reach);
     if (_shouldRefresh) {
@@ -174,9 +176,9 @@
     Reachability* reachability = notification.object;
     
     if(reachability.currentReachabilityStatus == NotReachable)
-        _reach = 0;
+        [self setreach:16];
     else
-        _reach = 1;
+        [self setreach:17];
 }
 
 -(void) updateOutput{

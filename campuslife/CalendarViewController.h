@@ -32,8 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnResidenceLife;
 @property (weak, nonatomic) IBOutlet UIButton *btnWarriorAthletics;
 @property (weak, nonatomic) IBOutlet UIButton *btnCampusRec;
-
-@property (nonatomic, setter = setreach:) bool reach;
 @property (nonatomic, setter=setShouldRefresh:) BOOL shouldRefresh;
 
 

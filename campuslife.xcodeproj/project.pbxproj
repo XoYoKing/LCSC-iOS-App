@@ -388,7 +388,7 @@
 				ORGANIZATIONNAME = LCSC;
 				TargetAttributes = {
 					C1E66DED183C333A00851B89 = {
-						DevelopmentTeam = T6XCFUKW5U;
+						DevelopmentTeam = Z3KN574S69;
 					};
 					C1E66E11183C333A00851B89 = {
 						TestTargetID = C1E66DED183C333A00851B89;
