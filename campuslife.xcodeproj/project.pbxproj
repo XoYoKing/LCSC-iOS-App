@@ -43,6 +43,8 @@
 		C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C105A29F18B6A992007C841C /* bigAlphaCircle.png */; };
 		C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */; };
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
+		C111951E1A113EE0001ED805 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C111951D1A113EE0001ED805 /* Reachability.m */; };
+		C11195211A113F35001ED805 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11195201A113F35001ED805 /* SystemConfiguration.framework */; };
 		C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */; };
 		C114505719172761005D1D99 /* hubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C114505619172761005D1D99 /* hubViewController.m */; };
 		C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7C9851A00380500252982 /* WebViewViewController.m */; };
@@ -118,6 +120,9 @@
 		C105A29F18B6A992007C841C /* bigAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigAlphaCircle.png; sourceTree = "<group>"; };
 		C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newAlphaCircle.png; sourceTree = "<group>"; };
+		C111951D1A113EE0001ED805 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = /Users/superstudent/Downloads/Reachability/Reachability/Reachability.m; sourceTree = "<absolute>"; };
+		C111951F1A113EFA001ED805 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		C11195201A113F35001ED805 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTableViewController.h; sourceTree = "<group>"; };
 		C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTableViewController.m; sourceTree = "<group>"; };
 		C114505519172761005D1D99 /* hubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hubViewController.h; sourceTree = "<group>"; };
@@ -160,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11195211A113F35001ED805 /* SystemConfiguration.framework in Frameworks */,
 				C1E66DF4183C333A00851B89 /* CoreGraphics.framework in Frameworks */,
 				C1E66DF6183C333A00851B89 /* UIKit.framework in Frameworks */,
 				C1E66DF2183C333A00851B89 /* Foundation.framework in Frameworks */,
@@ -260,6 +266,7 @@
 		C1E66DF0183C333A00851B89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C11195201A113F35001ED805 /* SystemConfiguration.framework */,
 				C1E66DF1183C333A00851B89 /* Foundation.framework */,
 				C1E66DF3183C333A00851B89 /* CoreGraphics.framework */,
 				C1E66DF5183C333A00851B89 /* UIKit.framework */,
@@ -293,6 +300,8 @@
 				C1E66E46183C33D000851B89 /* Preferences.m */,
 				C1A7C9841A00380500252982 /* WebViewViewController.h */,
 				C1A7C9851A00380500252982 /* WebViewViewController.m */,
+				C111951D1A113EE0001ED805 /* Reachability.m */,
+				C111951F1A113EFA001ED805 /* Reachability.h */,
 				99F6F39119FDC39500536DB8 /* Images.xcassets */,
 				C1E66DF8183C333A00851B89 /* Supporting Files */,
 			);
@@ -479,6 +488,7 @@
 				C114505719172761005D1D99 /* hubViewController.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
+				C111951E1A113EE0001ED805 /* Reachability.m in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,7 @@
 #import "AllEventViewController.h"
 #import "MonthlyEvents.h"
 #import "Preferences.h"
+#import "Reachability.h"
 //#import "AddEventParentViewController.h"
 
 @interface CalendarViewController ()
@@ -135,7 +136,10 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    NSLog(@"%d",_reach);
     if (_shouldRefresh) {
         //[_activityIndicator startAnimating];
         
@@ -164,6 +168,17 @@
 
 
 //
+
+- (void) reachabilityChanged:(NSNotification*) notification
+{
+    Reachability* reachability = notification.object;
+    
+    if(reachability.currentReachabilityStatus == NotReachable)
+        _reach = 0;
+    else
+        _reach = 1;
+}
+
 -(void) updateOutput{
     UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:1];
     AllEventViewController *aevc = [navCont.childViewControllers objectAtIndex:0];
