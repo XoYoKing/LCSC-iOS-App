@@ -63,6 +63,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.
     _events = [MonthlyEvents getSharedInstance];
     
@@ -136,6 +140,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
+    
 
     if (_shouldRefresh) {
         //[_activityIndicator startAnimating];

@@ -20,6 +20,33 @@
     
     // Override point for customization after application launch.
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+    
+    
+    internetReach = [Reachability reachabilityForInternetConnection];
+    [internetReach startNotifier];
+    NetworkStatus netStatus = [internetReach currentReachabilityStatus];
+    
+    switch (netStatus)
+    {
+        case ReachableViaWWAN:
+        {
+            [self setHasService:YES];
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            [self setHasService:YES];
+            break;
+        }
+        case NotReachable:
+        {
+            [self setHasService:YES];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time. Some functionality will be limited until a connection is made." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            break;
+        }
+            
+    }
     return YES;
 }
 							
@@ -47,28 +74,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    internetReach = [Reachability reachabilityForInternetConnection];
-    [internetReach startNotifier];
-    NetworkStatus netStatus = [internetReach currentReachabilityStatus];
-    
-    switch (netStatus)
-    {
-        case ReachableViaWWAN:
-        {
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            break;
-        }
-        case NotReachable:
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time. Some functionality will be limited until a connection is made." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
-            break;
-        }
-            
-    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
