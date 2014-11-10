@@ -14,7 +14,7 @@
 #import "AllEventViewController.h"
 #import "MonthlyEvents.h"
 #import "Preferences.h"
-#import "Reachability.h"
+
 //#import "AddEventParentViewController.h"
 
 @interface CalendarViewController ()
@@ -50,7 +50,7 @@
 @property (nonatomic) BOOL allEventsDidLoad;
 
 @property (nonatomic) int failedReqs;
-@property (nonatomic, setter = setreach:) int reach;
+
 
 @property (strong, nonatomic) NSCondition *condition;
 @property (strong, nonatomic) NSThread *aThread;
@@ -64,7 +64,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
     _events = [MonthlyEvents getSharedInstance];
     
     Preferences *prefs = [Preferences getSharedInstance];
@@ -137,11 +136,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    [reachability startNotifier];
-    [self setreach:0];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-    NSLog(@"%d",_reach);
+
     if (_shouldRefresh) {
         //[_activityIndicator startAnimating];
         
@@ -171,15 +166,7 @@
 
 //
 
-- (void) reachabilityChanged:(NSNotification*) notification
-{
-    Reachability* reachability = notification.object;
-    
-    if(reachability.currentReachabilityStatus == NotReachable)
-        [self setreach:16];
-    else
-        [self setreach:17];
-}
+
 
 -(void) updateOutput{
     UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:1];

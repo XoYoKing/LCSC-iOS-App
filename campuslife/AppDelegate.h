@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Reachability;
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+{
+    Reachability *internetReach;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
 @end
+
