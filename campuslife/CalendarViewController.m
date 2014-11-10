@@ -14,6 +14,7 @@
 #import "AllEventViewController.h"
 #import "MonthlyEvents.h"
 #import "Preferences.h"
+#import "AppDelegate.h"
 
 //#import "AddEventParentViewController.h"
 
@@ -62,109 +63,116 @@
 
 - (void)viewDidLoad
 {
+    AppDelegate *appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [super viewDidLoad];
     
 
     
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    _events = [MonthlyEvents getSharedInstance];
-    
-    Preferences *prefs = [Preferences getSharedInstance];
-    
-    //Here we load the actual state of the selected buttons.
-    [_btnEntertainment setSelected:[prefs getPreference:@"Entertainment"]];
-    [_btnAcademics setSelected:[prefs getPreference:@"Academics"]];
-    [_btnStudentActivities setSelected:[prefs getPreference:@"Student Activities"]];
-    [_btnResidenceLife setSelected:[prefs getPreference:@"Residence Life"]];
-    [_btnWarriorAthletics setSelected:[prefs getPreference:@"Warrior Athletics"]];
-    [_btnCampusRec setSelected:[prefs getPreference:@"Campus Rec"]];
-    
-    _leftArrow.enabled = NO;
-    _rightArrow.enabled = NO;
-    
-    _failedReqs = 0;
-
-    _curArrayId = 1;
-    
-    _shouldRefresh = NO;
-    
-    _loadCompleted = YES;
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
-    
-
-
-    _monthNeedsLoaded = NO;
-    
-    _timeLastMonthSwitch = 0;
-    _timeLastReqSent = 0;
-
-    _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
-                                              target: self
-                                            selector: @selector(onTickForDelay:)
-                                            userInfo: nil
-                                             repeats: YES];
-    
-    _leftArrow.enabled = YES;
-    _rightArrow.enabled = YES;
-    
-    _swipeLeft.enabled = YES;
-    _swipeRight.enabled = YES;
-    _swipeUp.enabled = YES;
-    _swipeDown.enabled = YES;
-    
-    
-    _screenLocked = NO;
-    
-    _allEventsDidLoad = NO;
-
-    
-    NSDate *date = [NSDate date];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-    NSInteger year = [dateComponents year];
-    NSInteger month = [dateComponents month];
-    
-    [_events setYear:(int)year];
-    [_events setMonth:(int)month];
-    
-    [_events resetEvents];
-    
-    [_activityIndicator startAnimating];
-    
-    [self.navigationItem setHidesBackButton:YES animated:YES];
-    
-    [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-
+    if ([appD getHasService]){
+        // Do any additional setup after loading the view, typically from a nib.
+        _events = [MonthlyEvents getSharedInstance];
+        
+        Preferences *prefs = [Preferences getSharedInstance];
+        
+        //Here we load the actual state of the selected buttons.
+        [_btnEntertainment setSelected:[prefs getPreference:@"Entertainment"]];
+        [_btnAcademics setSelected:[prefs getPreference:@"Academics"]];
+        [_btnStudentActivities setSelected:[prefs getPreference:@"Student Activities"]];
+        [_btnResidenceLife setSelected:[prefs getPreference:@"Residence Life"]];
+        [_btnWarriorAthletics setSelected:[prefs getPreference:@"Warrior Athletics"]];
+        [_btnCampusRec setSelected:[prefs getPreference:@"Campus Rec"]];
+        
+        _leftArrow.enabled = NO;
+        _rightArrow.enabled = NO;
+        
+        _failedReqs = 0;
+        
+        _curArrayId = 1;
+        
+        _shouldRefresh = NO;
+        
+        _loadCompleted = YES;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
+        
+        
+        
+        _monthNeedsLoaded = NO;
+        
+        _timeLastMonthSwitch = 0;
+        _timeLastReqSent = 0;
+        
+        _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
+                                                       target: self
+                                                     selector: @selector(onTickForDelay:)
+                                                     userInfo: nil
+                                                      repeats: YES];
+        
+        _leftArrow.enabled = YES;
+        _rightArrow.enabled = YES;
+        
+        _swipeLeft.enabled = YES;
+        _swipeRight.enabled = YES;
+        _swipeUp.enabled = YES;
+        _swipeDown.enabled = YES;
+        
+        
+        _screenLocked = NO;
+        
+        _allEventsDidLoad = NO;
+        
+        
+        NSDate *date = [NSDate date];
+        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
+        NSInteger year = [dateComponents year];
+        NSInteger month = [dateComponents month];
+        
+        [_events setYear:(int)year];
+        [_events setMonth:(int)month];
+        
+        [_events resetEvents];
+        
+        [_activityIndicator startAnimating];
+        
+        [self.navigationItem setHidesBackButton:YES animated:YES];
+        
+        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+    }else{
+        ///clayton add shit about the pop up
+    }
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    
+    AppDelegate *appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    if (_shouldRefresh) {
-        //[_activityIndicator startAnimating];
+    if ([appD getHasService]){
+        if (_shouldRefresh) {
+            //[_activityIndicator startAnimating];
+            
+            [_events resetEvents];
+            
+            _curArrayId = 1;
+            
+            [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+            
+            _shouldRefresh = NO;
+        }
         
-        [_events resetEvents];
-        
-        _curArrayId = 1;
-        
-        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-        
-        _shouldRefresh = NO;
-    }
-    
-    if(!_allEventsDidLoad) {
-        self.lock = YES;
-        
-        // create the NSCondition instance
-        self.condition = [[NSCondition alloc]init];
-        
-        self.aThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadLoop) object:nil];
-        [self.aThread start];
-        
-        //[self rollbackEvents];
-        _allEventsDidLoad = YES;
+        if(!_allEventsDidLoad) {
+            self.lock = YES;
+            
+            // create the NSCondition instance
+            self.condition = [[NSCondition alloc]init];
+            
+            self.aThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadLoop) object:nil];
+            [self.aThread start];
+            
+            //[self rollbackEvents];
+            _allEventsDidLoad = YES;
+        }
+    }else{
+        ///clayton add shit about the pop up
     }
 }
 
