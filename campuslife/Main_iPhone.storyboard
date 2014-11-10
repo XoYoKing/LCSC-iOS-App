@@ -76,6 +76,9 @@
                                             <constraint firstItem="2qw-fR-thY" firstAttribute="top" secondItem="VVp-Cc-46Y" secondAttribute="top" id="jm6-ox-0Q2"/>
                                         </constraints>
                                         <size key="customSize" width="44" height="45"/>
+                                        <connections>
+                                            <segue destination="JC5-6H-sxR" kind="push" identifier="CalendarToDayEvents" id="efw-WO-bEM"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CurrentDayCell" id="YoW-wD-a2g">
                                         <rect key="frame" x="45" y="1" width="45" height="45"/>
@@ -481,7 +484,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1097" y="-379"/>
+            <point key="canvasLocation" x="-1185" y="-410"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jxY-4S-7qQ">
@@ -741,5 +744,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="91h-l3-254"/>
+        <segue reference="efw-WO-bEM"/>
     </inferredMetricsTieBreakers>
 </document>

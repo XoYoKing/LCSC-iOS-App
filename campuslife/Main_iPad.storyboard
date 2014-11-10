@@ -194,6 +194,9 @@
                                         <color key="backgroundColor" red="0.88673867979999998" green="0.88673867979999998" blue="0.88673867979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <size key="customSize" width="108" height="121"/>
+                                        <connections>
+                                            <segue destination="07F-Tu-14M" kind="push" identifier="CalendarToDayEvents" id="ott-Su-N43"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CurrentDayCell" id="LsY-BT-aGu">
                                         <rect key="frame" x="109" y="0.0" width="109" height="127"/>
@@ -588,5 +591,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="RkC-Ht-X7J"/>
+        <segue reference="ott-Su-N43"/>
     </inferredMetricsTieBreakers>
 </document>
