@@ -52,6 +52,8 @@
 
 @property (nonatomic) int failedReqs;
 
+@property (nonatomic) AppDelegate *appD;
+
 
 @property (strong, nonatomic) NSCondition *condition;
 @property (strong, nonatomic) NSThread *aThread;
@@ -63,12 +65,9 @@
 
 - (void)viewDidLoad
 {
-    AppDelegate *appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    _appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [super viewDidLoad];
     
-
-    
-    if ([appD getHasService]){
         // Do any additional setup after loading the view, typically from a nib.
         _events = [MonthlyEvents getSharedInstance];
         
@@ -135,18 +134,19 @@
         [_activityIndicator startAnimating];
         
         [self.navigationItem setHidesBackButton:YES animated:YES];
-        
+    if ([_appD getHasService]){
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     }else{
         ///clayton add shit about the pop up
+        _shouldRefresh = YES;
     }
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    AppDelegate *appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    _appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    if ([appD getHasService]){
+    if ([_appD getHasService]){
         if (_shouldRefresh) {
             //[_activityIndicator startAnimating];
             
@@ -172,6 +172,7 @@
             _allEventsDidLoad = YES;
         }
     }else{
+        _shouldRefresh =YES;
         ///clayton add shit about the pop up
     }
 }
@@ -360,19 +361,11 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     int cells;
+    if ([_appD getHasService]){
     cells = 42;
-    /*
-    if (![_events doesMonthNeedLoaded:1]) {
-        cells = 35;
-      
-        
-        if ([_events getFirstWeekDay:1] + [_events getDaysOfMonth]-1 >= 35) {
-            cells = 42;
-        }
-    }
-    else {
+    }else{
         cells = 0;
-    }*/
+    }
     
     return cells;
 }

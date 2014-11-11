@@ -113,14 +113,17 @@
     {
         case ReachableViaWWAN:
         {
+            [self setHasService:YES];
             break;
         }
         case ReachableViaWiFi:
         {
+            [self setHasService:YES];
             break;
         }
         case NotReachable:
         {
+            [self setHasService:NO];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"We are unable to make a internet connection at this time. Some functionality will be limited until a connection is made." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
             break;
