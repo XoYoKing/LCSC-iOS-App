@@ -148,7 +148,7 @@
 
     if ([_appD getHasService]){
         if (_shouldRefresh) {
-            //[_activityIndicator startAnimating];
+            [_activityIndicator startAnimating];
             
             [_events resetEvents];
             
@@ -172,6 +172,7 @@
             _allEventsDidLoad = YES;
         }
     }else{
+        [_activityIndicator stopAnimating];
         _shouldRefresh =YES;
         ///clayton add shit about the pop up
     }
