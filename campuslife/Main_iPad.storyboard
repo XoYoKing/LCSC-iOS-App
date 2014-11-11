@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="X4z-dN-CwA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="X4z-dN-CwA">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Calendar-->
@@ -292,6 +291,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="6cq-Y9-Vby">
+                        <barButtonItem key="backBarButtonItem" title=" " id="bpv-X4-m0D"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="4aA-3f-mas"/>
                     </navigationItem>
                     <connections>
@@ -381,6 +381,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Day Events" id="UaK-ce-GjO">
+                        <barButtonItem key="backBarButtonItem" title=" " id="ikQ-pJ-IDI"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="fgp-ZM-xIL"/>
                     </navigationItem>
                 </tableViewController>
@@ -466,7 +467,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="All Events" id="QZH-qg-071"/>
+                    <navigationItem key="navigationItem" title="All Events" id="QZH-qg-071">
+                        <barButtonItem key="backBarButtonItem" title=" " id="JSk-pj-IUS"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="OsI-tx-WYo" id="ahE-m7-Gbj"/>
                     </connections>
@@ -501,7 +504,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="PeG-bh-jmn"/>
-                    <navigationItem key="navigationItem" id="LMh-7a-vff"/>
+                    <navigationItem key="navigationItem" id="LMh-7a-vff">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Et5-Vs-67W"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="Description" destination="MZs-Eg-GKc" id="VDS-bB-tMF"/>
                         <segue destination="9g9-CM-MGG" kind="push" identifier="showURL" id="WS4-Fi-xBF"/>
@@ -530,7 +535,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Y9y-zA-wgX"/>
+                    <navigationItem key="navigationItem" id="Y9y-zA-wgX">
+                        <barButtonItem key="backBarButtonItem" title=" " id="310-PN-5gi"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="Au1-SY-dZl" id="xbg-FY-eTn"/>
                     </connections>
@@ -590,7 +597,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RkC-Ht-X7J"/>
+        <segue reference="25V-IA-D7p"/>
         <segue reference="ott-Su-N43"/>
     </inferredMetricsTieBreakers>
 </document>
