@@ -533,6 +533,9 @@
                                 <rect key="frame" x="-8" y="0.0" width="788" height="975"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tOr-Jh-1Mb">
+                                <rect key="frame" x="376" y="478" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -540,6 +543,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="310-PN-5gi"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activity" destination="tOr-Jh-1Mb" id="PTw-sK-0ni"/>
                         <outlet property="webView" destination="Au1-SY-dZl" id="xbg-FY-eTn"/>
                     </connections>
                 </viewController>
