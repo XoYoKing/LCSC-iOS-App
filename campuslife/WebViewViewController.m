@@ -27,6 +27,8 @@
     if (netStatus == 0){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Website Unavailable" message:@"This website is not currently available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
+        [self TearDownUIWebView];
+
     }else{
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_url];
         [self.webView loadRequest:request];
