@@ -17,13 +17,10 @@
     MonthlyEvents *events;
     NSMutableArray *displayedEvents;
     NSMutableArray *sortedArray;
-    NSInteger selectedRow;
     CalendarViewController *cal;
     NSInteger currentMonth;
     NSInteger currentYear;
-    BOOL stopLoading;
     BOOL wentToEvent;
-    int noEventsInMonthCount;
     Preferences *preferences;
 }
 
@@ -34,10 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = 44;
-    stopLoading = NO;
     // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
     wentToEvent = NO;
-    noEventsInMonthCount = 0;
 
 }
 
@@ -51,7 +46,7 @@
     currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
     events = [MonthlyEvents getAllEventsInstance];
     preferences = [Preferences getSharedInstance];
-    [self loadEventsForWhatever];
+    [self loadAllEvents];
     displayedEvents = [[NSMutableArray alloc] init];
 
     [sortedArray sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
@@ -288,24 +283,6 @@
     [events offsetMonth:1];
 }
 
--(void)loadEventsForNextNMonths:(NSInteger) n
-{
-    for(int i = 0; i < n-1; ++i) {
-        [self loadEventsForNextMonth];
-    }
-}
-
--(void)loadEventsForNextMonth
-{
-    [self incrementCurrentMonth];
-    [cal loadEventsForMonth:(int)currentMonth andYear:(int)currentYear];
-    
-    NSArray *newEvents = [events getEventsForCurrentMonth: 1];
-    [sortedArray addObjectsFromArray:newEvents];
-    
-    
-}
-
  
 - (NSString *)twentyFourToTwelve:(NSString *)time
 {
@@ -397,15 +374,8 @@
     return monthAbr;
 }
 
-/*
--(void) loadEventsForMonth:(NSInteger)month onYear:(NSInteger)year
-{
-    [events setMonth:month];
-    [events setYear:year];
-}
-*/
 
--(void)loadEventsForWhatever
+-(void)loadAllEvents
 {
     for(int i = 0; i <= 5; i++) {
         [self incrementCurrentMonth];

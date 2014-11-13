@@ -49,7 +49,5 @@
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year;
 - (void) setMonthNeedsLoaded:(BOOL)monthNeedsLoaded;
 - (void) parseJSON:(NSData *) JSONAsString;
-- (void)loadEventsForMonth:(int)month andYear:(int) year;
-- (void)rollbackEvents;
 
 @end

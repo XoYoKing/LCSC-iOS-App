@@ -175,6 +175,7 @@
         [_activityIndicator stopAnimating];
         _shouldRefresh =YES;
         ///clayton add shit about the pop up
+        //WHOA! Watch your fucking language ^
     }
 }
 
@@ -1417,78 +1418,6 @@
                 }
             }
         }
-    }
-}
-
-
--(void)loadEventsForMonth:(int)month andYear:(int) year
-{
-    _curArrayId = 1;
-    int endDay = [_events getDaysOfMonth :month :year];
-    
-    [_events setSelectedDay:endDay];
-    [_events setMonth:month];
-    [_events setYear:year];
-    
-    
-    for (NSString *name in [_events getCategoryNames])
-    {
-        NSURL *url;
-        NSString *calendarID = [[MonthlyEvents getSharedInstance] getCalIds][name];
-        
-        
-        NSString *urlString;
-        if (month < 10 || month > 12){
-            
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-0%d-01T00:00:00-07:00&timeMax=%d-0%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,year,month,year,month,endDay];
-            
-        }else{
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%d-%d-01T00:00:00-07:00&timeMax=%d-%d-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID,year,month,year,month,endDay];
-        }
-        url = [NSURL URLWithString:urlString];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        if (data != nil)
-        {
-            [self parseJSON:data];
-        }
-
-    }
-}
-
-
-- (void)setMonthNeedsLoaded:(BOOL)monthNeedsLoaded
-{
-    _monthNeedsLoaded = monthNeedsLoaded;
-}
-
-// resets the MonthlyEvents instance to the current month and year if and only if
-// the MonthlyEvents instance isn't already at the current month and year
-- (void)rollbackEvents
-{
-    NSDate *date = [NSDate date];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-    NSInteger year = [dateComponents year];
-    NSInteger month = [dateComponents month];
-    NSInteger day = [dateComponents day];
-
-    if(year != [_events getSelectedYear] || month != [_events getSelectedMonth]) {
-        
-        [_events setYear:(int)year];
-        [_events setMonth:(int)month];
-        
-        [_events resetEvents];
-        
-        
-        [_activityIndicator startAnimating];
-        
-        [self.navigationItem setHidesBackButton:YES animated:YES];
-        _curArrayId = 1;
-        _monthNeedsLoaded = YES;
-        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
-        
-        
-        [_events setSelectedDay:(int)day];
-        [self.collectionView reloadData];
     }
 }
 

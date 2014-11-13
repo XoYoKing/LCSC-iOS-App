@@ -18,8 +18,6 @@
 -(void)refreshArrayOfEvents:(int)arrayId;
 -(void)AppendEvent:(NSInteger)day :(NSDictionary *)eventDict :(int)arrayId;
 -(NSArray *)getEventsForDay:(NSInteger)day;
--(NSArray *)getEventsStartingToday;
--(NSArray *)getEventsForCurrentMonth:(NSInteger) offset;
 -(int)getFirstWeekDay:(int)arrayId ;
 -(NSString *)getMonthBarDate;
 -(int)getDaysOfMonth;

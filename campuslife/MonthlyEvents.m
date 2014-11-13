@@ -389,44 +389,6 @@ static MonthlyEvents *allEventsInstance;
     return [components year];
 }
 
--(NSArray *)getEventsStartingToday
-{
-    NSMutableArray *allEvents = [[NSMutableArray alloc] init];
-    
-    int startAt = 0;
-    
-    for(int i = 1; i <= 1; i++) {
-        // if at current month set the day to start pulling starting at index current day - 1
-        if(i == 1) {
-            startAt = (int)[self getCurrentDay] - 1;
-        
-        } else {
-            startAt = 0;
-        }
-        int monthLength = (int)[_calendarEvents[i] count];
-        for(int j = startAt; j < monthLength; j++) {
-            [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[i] objectAtIndex:j]]];
-            //[allEvents addObjectsFromArray:[_calendarEvents[i] objectAtIndex:j]];
-        }
-    }
-    
-    return allEvents;
-}
-
--(NSArray *)getEventsForCurrentMonth:(NSInteger) offset
-{
-    NSMutableArray *allEvents = [[NSMutableArray alloc] init];
-
-    int monthLength = (int)[_calendarEvents[1] count];
-        for(int j = 0; j < monthLength; j++) {
-            [allEvents addObjectsFromArray:[self eventSorter:[_calendarEvents[1] objectAtIndex:j]]];
-            //[allEvents addObjectsFromArray:[_calendarEvents[1] objectAtIndex:j]];
-        }
-    
-    
-    return allEvents;
-}
-
 - (NSMutableArray *)eventSorter:(NSArray *)unsorted
 {
     NSMutableArray *newArray = [[NSMutableArray alloc] init];
