@@ -60,26 +60,11 @@
 		C1E66DFC183C333A00851B89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1E66DFA183C333A00851B89 /* InfoPlist.strings */; };
 		C1E66DFE183C333A00851B89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66DFD183C333A00851B89 /* main.m */; };
 		C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E01183C333A00851B89 /* AppDelegate.m */; };
-		C1E66E14183C333A00851B89 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E66E13183C333A00851B89 /* XCTest.framework */; };
-		C1E66E15183C333A00851B89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E66DF1183C333A00851B89 /* Foundation.framework */; };
-		C1E66E16183C333A00851B89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E66DF5183C333A00851B89 /* UIKit.framework */; };
-		C1E66E1E183C333B00851B89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1E66E1C183C333B00851B89 /* InfoPlist.strings */; };
-		C1E66E20183C333B00851B89 /* campuslifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E1F183C333B00851B89 /* campuslifeTests.m */; };
 		C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E3E183C33D000851B89 /* CalendarViewController.m */; };
 		C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E40183C33D000851B89 /* Day_Event_ViewController.m */; };
 		C1E66E4A183C33D000851B89 /* MonthlyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E44183C33D000851B89 /* MonthlyEvents.m */; };
 		C1E66E4B183C33D000851B89 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E46183C33D000851B89 /* Preferences.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C1E66E17183C333A00851B89 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1E66DE6183C333A00851B89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C1E66DED183C333A00851B89;
-			remoteInfo = campuslife;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
@@ -139,15 +124,14 @@
 		C1E66DF1183C333A00851B89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C1E66DF3183C333A00851B89 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C1E66DF5183C333A00851B89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		C1E66DF9183C333A00851B89 /* campuslife-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "campuslife-Info.plist"; sourceTree = "<group>"; };
+		C1E66DF9183C333A00851B89 /* LCSC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LCSC-Info.plist"; sourceTree = "<group>"; };
 		C1E66DFB183C333A00851B89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1E66DFD183C333A00851B89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C1E66DFF183C333A00851B89 /* campuslife-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "campuslife-Prefix.pch"; sourceTree = "<group>"; };
+		C1E66DFF183C333A00851B89 /* LCSC-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCSC-Prefix.pch"; sourceTree = "<group>"; };
 		C1E66E00183C333A00851B89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1E66E01183C333A00851B89 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C1E66E12183C333A00851B89 /* campuslifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = campuslifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E66E13183C333A00851B89 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		C1E66E1B183C333A00851B89 /* campuslifeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "campuslifeTests-Info.plist"; sourceTree = "<group>"; };
+		C1E66E1B183C333A00851B89 /* LCSCTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LCSCTests-Info.plist"; sourceTree = "<group>"; };
 		C1E66E1D183C333B00851B89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1E66E1F183C333B00851B89 /* campuslifeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = campuslifeTests.m; sourceTree = "<group>"; };
 		C1E66E3D183C33D000851B89 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
@@ -169,16 +153,6 @@
 				C1E66DF4183C333A00851B89 /* CoreGraphics.framework in Frameworks */,
 				C1E66DF6183C333A00851B89 /* UIKit.framework in Frameworks */,
 				C1E66DF2183C333A00851B89 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C1E66E0F183C333A00851B89 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1E66E14183C333A00851B89 /* XCTest.framework in Frameworks */,
-				C1E66E16183C333A00851B89 /* UIKit.framework in Frameworks */,
-				C1E66E15183C333A00851B89 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				C1E66DEE183C333A00851B89 /* Campus Life.app */,
-				C1E66E12183C333A00851B89 /* campuslifeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,10 +287,10 @@
 				99A580831A0048E70044CA5E /* Splash Screen */,
 				99DACA6B19FDC68B00CA76CB /* dot/tab icons */,
 				9925929C19FDC46B008946F8 /* Campus Life Icon */,
-				C1E66DF9183C333A00851B89 /* campuslife-Info.plist */,
+				C1E66DF9183C333A00851B89 /* LCSC-Info.plist */,
 				C1E66DFA183C333A00851B89 /* InfoPlist.strings */,
 				C1E66DFD183C333A00851B89 /* main.m */,
-				C1E66DFF183C333A00851B89 /* campuslife-Prefix.pch */,
+				C1E66DFF183C333A00851B89 /* LCSC-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -334,7 +307,7 @@
 		C1E66E1A183C333A00851B89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C1E66E1B183C333A00851B89 /* campuslifeTests-Info.plist */,
+				C1E66E1B183C333A00851B89 /* LCSCTests-Info.plist */,
 				C1E66E1C183C333B00851B89 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -343,9 +316,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C1E66DED183C333A00851B89 /* Campus Life */ = {
+		C1E66DED183C333A00851B89 /* LCSC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1E66E23183C333B00851B89 /* Build configuration list for PBXNativeTarget "Campus Life" */;
+			buildConfigurationList = C1E66E23183C333B00851B89 /* Build configuration list for PBXNativeTarget "LCSC" */;
 			buildPhases = (
 				C1E66DEA183C333A00851B89 /* Sources */,
 				C1E66DEB183C333A00851B89 /* Frameworks */,
@@ -355,28 +328,10 @@
 			);
 			dependencies = (
 			);
-			name = "Campus Life";
+			name = LCSC;
 			productName = campuslife;
 			productReference = C1E66DEE183C333A00851B89 /* Campus Life.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C1E66E11183C333A00851B89 /* campuslifeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C1E66E26183C333B00851B89 /* Build configuration list for PBXNativeTarget "campuslifeTests" */;
-			buildPhases = (
-				C1E66E0E183C333A00851B89 /* Sources */,
-				C1E66E0F183C333A00851B89 /* Frameworks */,
-				C1E66E10183C333A00851B89 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C1E66E18183C333A00851B89 /* PBXTargetDependency */,
-			);
-			name = campuslifeTests;
-			productName = campuslifeTests;
-			productReference = C1E66E12183C333A00851B89 /* campuslifeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -390,12 +345,9 @@
 					C1E66DED183C333A00851B89 = {
 						DevelopmentTeam = Z3KN574S69;
 					};
-					C1E66E11183C333A00851B89 = {
-						TestTargetID = C1E66DED183C333A00851B89;
-					};
 				};
 			};
-			buildConfigurationList = C1E66DE9183C333A00851B89 /* Build configuration list for PBXProject "campuslife" */;
+			buildConfigurationList = C1E66DE9183C333A00851B89 /* Build configuration list for PBXProject "LCSC" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -408,8 +360,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1E66DED183C333A00851B89 /* Campus Life */,
-				C1E66E11183C333A00851B89 /* campuslifeTests */,
+				C1E66DED183C333A00851B89 /* LCSC */,
 			);
 		};
 /* End PBXProject section */
@@ -463,14 +414,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1E66E10183C333A00851B89 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1E66E1E183C333B00851B89 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -493,23 +436,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1E66E0E183C333A00851B89 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1E66E20183C333B00851B89 /* campuslifeTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C1E66E18183C333A00851B89 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C1E66DED183C333A00851B89 /* Campus Life */;
-			targetProxy = C1E66E17183C333A00851B89 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C1E66DFA183C333A00851B89 /* InfoPlist.strings */ = {
@@ -611,8 +538,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "campuslife/campuslife-Prefix.pch";
-				INFOPLIST_FILE = "campuslife/campuslife-Info.plist";
+				GCC_PREFIX_HEADER = "campuslife/LCSC-Prefix.pch";
+				INFOPLIST_FILE = "campuslife/LCSC-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -628,8 +555,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "campuslife/campuslife-Prefix.pch";
-				INFOPLIST_FILE = "campuslife/campuslife-Info.plist";
+				GCC_PREFIX_HEADER = "campuslife/LCSC-Prefix.pch";
+				INFOPLIST_FILE = "campuslife/LCSC-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -637,50 +564,10 @@
 			};
 			name = Release;
 		};
-		C1E66E27183C333B00851B89 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "campuslife/campuslife-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "campuslifeTests/campuslifeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Campus Life.app/Campus Life";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		C1E66E28183C333B00851B89 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "campuslife/campuslife-Prefix.pch";
-				INFOPLIST_FILE = "campuslifeTests/campuslifeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Campus Life.app/Campus Life";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C1E66DE9183C333A00851B89 /* Build configuration list for PBXProject "campuslife" */ = {
+		C1E66DE9183C333A00851B89 /* Build configuration list for PBXProject "LCSC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1E66E21183C333B00851B89 /* Debug */,
@@ -689,20 +576,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1E66E23183C333B00851B89 /* Build configuration list for PBXNativeTarget "Campus Life" */ = {
+		C1E66E23183C333B00851B89 /* Build configuration list for PBXNativeTarget "LCSC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1E66E24183C333B00851B89 /* Debug */,
 				C1E66E25183C333B00851B89 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C1E66E26183C333B00851B89 /* Build configuration list for PBXNativeTarget "campuslifeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C1E66E27183C333B00851B89 /* Debug */,
-				C1E66E28183C333B00851B89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

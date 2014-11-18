@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1E66DED183C333A00851B89"
-               BuildableName = "Campus Life.app"
-               BlueprintName = "Campus Life"
-               ReferencedContainer = "container:campuslife.xcodeproj">
+               BuildableName = "LCSC.app"
+               BlueprintName = "LCSC"
+               ReferencedContainer = "container:LCSC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1E66E11183C333A00851B89"
-               BuildableName = "campuslifeTests.xctest"
-               BlueprintName = "campuslifeTests"
-               ReferencedContainer = "container:campuslife.xcodeproj">
+               BuildableName = "LCSCTests.xctest"
+               BlueprintName = "LCSCTests"
+               ReferencedContainer = "container:LCSC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1E66E11183C333A00851B89"
-               BuildableName = "campuslifeTests.xctest"
-               BlueprintName = "campuslifeTests"
-               ReferencedContainer = "container:campuslife.xcodeproj">
+               BuildableName = "LCSCTests.xctest"
+               BlueprintName = "LCSCTests"
+               ReferencedContainer = "container:LCSC.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1E66DED183C333A00851B89"
-            BuildableName = "Campus Life.app"
-            BlueprintName = "Campus Life"
-            ReferencedContainer = "container:campuslife.xcodeproj">
+            BuildableName = "LCSC.app"
+            BlueprintName = "LCSC"
+            ReferencedContainer = "container:LCSC.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1E66DED183C333A00851B89"
-            BuildableName = "Campus Life.app"
-            BlueprintName = "Campus Life"
-            ReferencedContainer = "container:campuslife.xcodeproj">
+            BuildableName = "LCSC.app"
+            BlueprintName = "LCSC"
+            ReferencedContainer = "container:LCSC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1E66DED183C333A00851B89"
-            BuildableName = "Campus Life.app"
-            BlueprintName = "Campus Life"
-            ReferencedContainer = "container:campuslife.xcodeproj">
+            BuildableName = "LCSC.app"
+            BlueprintName = "LCSC"
+            ReferencedContainer = "container:LCSC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
