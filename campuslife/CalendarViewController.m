@@ -137,7 +137,7 @@
     if ([_appD getHasService]){
         [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     }else{
-        ///clayton add shit about the pop up
+  
         _shouldRefresh = YES;
     }
 }
@@ -174,8 +174,6 @@
     }else{
         [_activityIndicator stopAnimating];
         _shouldRefresh =YES;
-        ///clayton add shit about the pop up
-        //WHOA! Watch your fucking language ^
     }
 }
 
@@ -847,9 +845,9 @@
                 int EnddayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
                 int StartdayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
                 if (abs(EnddayHold-StartdayHold)>1){
-                    int yearHold = [[currentEndTime substringWithRange:NSMakeRange(0, 4)] intValue];
-                    int monthHold = [[currentEndTime substringWithRange:NSMakeRange(5, 2)] intValue];
-                    int dayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
+                    int yearHold = [[currentStartTime substringWithRange:NSMakeRange(0, 4)] intValue];
+                    int monthHold = [[currentStartTime substringWithRange:NSMakeRange(5, 2)] intValue];
+                    //int dayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
                     int daysInMonth = [_events getDaysOfMonth:monthHold :yearHold];
                     int amountOfDays = (EnddayHold-StartdayHold)+1;
                     if (amountOfDays < 0){
@@ -860,20 +858,21 @@
                     }
                     int counter = 0;
                     NSDictionary *holdRecurEvent = holdDict[i];
-                
-                    for (int j = amountOfDays; j>0 ; j--,amountOfDays--,counter++){
+                    int newDay = StartdayHold;
+                    for (int j = 0; j<amountOfDays ; j++,counter++,newDay++){
                         NSMutableDictionary *replacementEvent = [holdRecurEvent mutableCopy];
-                        int newDay = dayHold-amountOfDays+1;
-                        if (newDay <1){
-                            monthHold--;
-                            if (monthHold < 1){
-                                monthHold = 12;
-                                yearHold--;
+                        if (newDay > daysInMonth){
+                            monthHold++;
+                            if (monthHold >12){
+                                monthHold = 1;
+                                yearHold++;
+                                j--;
                             }
+                            newDay = 1;
                             daysInMonth = [_events getDaysOfMonth:monthHold :yearHold];
-                            newDay  = daysInMonth+newDay;
-
+                            
                         }
+
                         NSString *SyearHold = [NSString stringWithFormat:@"%d",yearHold];
                         NSString *sMonthHold = [[NSString alloc] init ];
                         NSString *sDayHold = [[NSString alloc] init];
@@ -902,19 +901,19 @@
                         else{
                             [oldEventsInfo addObject: replacementEvent];
                         }
-                        if (newDay == [_events getDaysOfMonth:monthHold :yearHold]) {
-                            monthHold++;
-                            if (monthHold > 12){
-                                monthHold = 1;
-                                yearHold++;
-                            }
-                            daysInMonth = [_events getDaysOfMonth:monthHold :yearHold];
-                            
-                        }
                     }
                 }
             }
-        }
+            
+            //here is how you deal with jakes issue
+            currentStartTime = [[holdDict[i] objectForKey:@"start"] objectForKey:@"date"];
+            currentEndTime = [[holdDict[i] objectForKey:@"end"] objectForKey:@"date"];
+            if (currentEndTime != nil){}
+            }
+        
+        
+
+        
         //////////////////////////////////////////
     
         if (oldEventsInfo == nil) {
