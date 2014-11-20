@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.rowHeight = 75;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -52,14 +53,23 @@
         titleLabel.text = @"For Emergencies Only";
         numberLabel.text = @"911";
     }else if (indexPath.row == 1){
-        titleLabel.text = @"Campus Security (Non-Emergencies)";
+        titleLabel.text = @"Campus Security Mobile";
         numberLabel.text = @"208-792-2815";
     }else if (indexPath.row == 2){
-        titleLabel.text = @"Campus Emergency Information Line";
+        titleLabel.text = @"Campus Security Office";
         numberLabel.text = @"208-792-5272";
     }
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UILabel *nmbrLbl = (UILabel *)[cell viewWithTag:2];
+    NSString *numberAsString = [@"tel://" stringByAppendingString:nmbrLbl.text];
+    NSLog(numberAsString);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:numberAsString]];
 }
 
 
