@@ -461,7 +461,6 @@
                 if (abs(EnddayHold-StartdayHold)>1){
                     int yearHold = [[currentStartTime substringWithRange:NSMakeRange(0, 4)] intValue];
                     int monthHold = [[currentStartTime substringWithRange:NSMakeRange(5, 2)] intValue];
-                    //int dayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
                     int daysInMonth = [events getDaysOfMonth:monthHold :yearHold];
                     int amountOfDays = (EnddayHold-StartdayHold)+1;
                     if (amountOfDays < 0){
@@ -519,17 +518,102 @@
                 }
             }
             
-            //here is how you deal with jakes issue
+            //fix for all day events
             currentStartTime = [[holdDict[i] objectForKey:@"start"] objectForKey:@"date"];
             currentEndTime = [[holdDict[i] objectForKey:@"end"] objectForKey:@"date"];
-            if (currentEndTime != nil){}
+            if (currentEndTime != nil){
+                int EnddayHold = [[currentEndTime substringWithRange:NSMakeRange(8, 2)] intValue];
+                int StartdayHold = [[currentStartTime substringWithRange:NSMakeRange(8, 2)] intValue];
+                
+                if (abs(EnddayHold-StartdayHold)>1){
+                    
+                    int startyearHold = [[currentStartTime substringWithRange:NSMakeRange(0, 4)] intValue];
+                    int startmonthHold = [[currentStartTime substringWithRange:NSMakeRange(5, 2)] intValue];
+                    
+                    int daysInMonth = [events getDaysOfMonth:startmonthHold :startyearHold];
+                    int amountOfDays = (EnddayHold-StartdayHold)+1;
+                    if (amountOfDays < 0){
+                        
+                        int amountOfStartDays = [events getDaysOfMonth:startmonthHold :startyearHold];
+                        amountOfDays = amountOfStartDays-StartdayHold+EnddayHold;
+                    }
+                    if (amountOfDays >1) {
+                        int counter = 0;
+                        NSDictionary *holdRecurEvent = holdDict[i];
+                        int newDay = StartdayHold;
+                        int newEndDay = newDay + 1;
+                        int endMonthHold = startmonthHold;
+                        int endYearHold = startyearHold;
+                        int daysInEndMonth = [events getDaysOfMonth:endMonthHold :endYearHold];
+                        for (int j = 0; j<amountOfDays-1 ; j++,counter++,newDay++,newEndDay++){
+                            NSMutableDictionary *replacementEvent = [holdRecurEvent mutableCopy];
+                            if (newDay > daysInMonth){
+                                startmonthHold++;
+                                if (startmonthHold >12){
+                                    startmonthHold = 1;
+                                    startyearHold++;
+                                    j--;
+                                }
+                                newDay = 1;
+                                daysInMonth = [events getDaysOfMonth:startmonthHold :startyearHold];
+                            }
+                            if(newEndDay > daysInEndMonth){
+                                endMonthHold++;
+                                if (endMonthHold > 12){
+                                    endMonthHold = 1;
+                                    endYearHold++;
+                                }
+                                newEndDay = 1;
+                                daysInEndMonth = [events getDaysOfMonth:startmonthHold :startyearHold];
+                                
+                            }
+                            NSString *SyearHold = [NSString stringWithFormat:@"%d",startyearHold];
+                            NSString *sMonthHold = [[NSString alloc] init];
+                            NSString *sDayHold = [[NSString alloc] init];
+                            NSString *EyearHold = [NSString stringWithFormat:@"%d",endYearHold];
+                            NSString *eMonthHold = [[NSString alloc] init];
+                            NSString *eDayHold = [[NSString alloc] init];
+                            if (startmonthHold < 10){
+                                sMonthHold = [NSString stringWithFormat:@"0%d",startmonthHold];
+                            }else{
+                                sMonthHold = [NSString stringWithFormat:@"%d",startmonthHold];
+                            }
+                            if (newDay < 10){
+                                sDayHold = [NSString stringWithFormat:@"0%d",newDay];
+                            }else{
+                                sDayHold = [NSString stringWithFormat:@"%d",newDay];
+                            }
+                            if (endMonthHold < 10){
+                                eMonthHold = [NSString stringWithFormat:@"0%d",endMonthHold];
+                            }else{
+                                eMonthHold = [NSString stringWithFormat:@"%d",endMonthHold];
+                            }
+                            if (newEndDay < 10){
+                                eDayHold = [NSString stringWithFormat:@"0%d",newEndDay];
+                            }else{
+                                eDayHold = [NSString stringWithFormat:@"%d",newEndDay];
+                            }
+                            NSString *newStartTime = [NSString stringWithFormat:@"%@-%@-%@",SyearHold,sMonthHold,sDayHold];
+                            NSString *newEndDate = [NSString stringWithFormat:@"%@-%@-%@",EyearHold,eMonthHold,eDayHold];
+                            NSMutableDictionary *holdDictStart = [[NSMutableDictionary alloc] init];
+                            NSMutableDictionary *holdDictEnd = [[NSMutableDictionary alloc] init];
+                            [holdDictStart setObject:newStartTime forKey:@"date"];
+                            [holdDictEnd setObject:newEndDate forKey:@"date"];
+                            [replacementEvent setObject:holdDictStart forKey:@"start"];
+                            [replacementEvent setObject:holdDictEnd forKey:@"end"];
+                            
+                            if (counter == 0){
+                                oldEventsInfo[i] = replacementEvent;
+                            }
+                            else{
+                                [oldEventsInfo addObject: replacementEvent];
+                            }
+                        }
+                    }
+                }
+            }
         }
-        
-        
-        
-        
         //////////////////////////////////////////
-        
         if (oldEventsInfo == nil) {
             oldEventsInfo = [[NSMutableArray alloc] init];
         }
