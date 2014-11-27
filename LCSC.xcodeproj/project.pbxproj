@@ -254,8 +254,8 @@
 		C1E66DF7183C333A00851B89 /* campuslife */ = {
 			isa = PBXGroup;
 			children = (
-				9916368119F829BB007F7E47 /* AllEventViewController.m */,
 				9916368219F829BB007F7E47 /* AllEventViewController.h */,
+				9916368119F829BB007F7E47 /* AllEventViewController.m */,
 				C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */,
 				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
@@ -270,16 +270,16 @@
 				C1E66E3E183C33D000851B89 /* CalendarViewController.m */,
 				C1E66E3F183C33D000851B89 /* Day_Event_ViewController.h */,
 				C1E66E40183C33D000851B89 /* Day_Event_ViewController.m */,
-				C1E66E44183C33D000851B89 /* MonthlyEvents.m */,
 				C1E66E43183C33D000851B89 /* MonthlyEvents.h */,
+				C1E66E44183C33D000851B89 /* MonthlyEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
 				C1A7C9841A00380500252982 /* WebViewViewController.h */,
 				C1A7C9851A00380500252982 /* WebViewViewController.m */,
 				991048F91A1E656100C83570 /* ContactInfo.h */,
 				991048FA1A1E656100C83570 /* ContactInfo.m */,
-				C11195241A114473001ED805 /* Reachability.m */,
 				C111951F1A113EFA001ED805 /* Reachability.h */,
+				C11195241A114473001ED805 /* Reachability.m */,
 				99F6F39119FDC39500536DB8 /* Images.xcassets */,
 				C1E66DF8183C333A00851B89 /* Supporting Files */,
 			);

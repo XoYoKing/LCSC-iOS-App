@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.rowHeight = 75;
+    //self.tableView.rowHeight = 75;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -68,7 +68,6 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UILabel *nmbrLbl = (UILabel *)[cell viewWithTag:2];
     NSString *numberAsString = [@"tel://" stringByAppendingString:nmbrLbl.text];
-    NSLog(numberAsString);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:numberAsString]];
 }
 
