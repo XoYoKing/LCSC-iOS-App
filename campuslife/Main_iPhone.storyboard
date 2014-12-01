@@ -507,7 +507,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2396" y="-83"/>
+            <point key="canvasLocation" x="-3020" y="-111"/>
         </scene>
         <!--Day Events-->
         <scene sceneID="bdj-ao-PaR">
@@ -792,7 +792,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kc4-06-6wQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1629" y="1820"/>
+            <point key="canvasLocation" x="-2401" y="1944"/>
         </scene>
         <!--LCSC-->
         <scene sceneID="tvF-EI-cIS">
@@ -825,7 +825,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hoq-MR-czV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1165" y="315"/>
+            <point key="canvasLocation" x="-1733" y="1183"/>
         </scene>
         <!--Athletics-->
         <scene sceneID="lO7-y4-aCD">
@@ -858,7 +858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cw-Mv-MK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1165" y="1055"/>
+            <point key="canvasLocation" x="-1193" y="1439"/>
         </scene>
     </scenes>
     <resources>
