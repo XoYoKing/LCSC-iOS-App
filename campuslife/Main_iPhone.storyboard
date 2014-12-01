@@ -781,7 +781,7 @@
         <scene sceneID="hnT-5K-dwj">
             <objects>
                 <navigationController id="E8T-kD-dN5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Emergency" selectedImage="hospital-50.png" id="3ji-hN-Ry3"/>
+                    <tabBarItem key="tabBarItem" title="Emergency" image="hospital-32.png" selectedImage="hospital-50.png" id="3ji-hN-Ry3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jCb-kM-JJU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -816,7 +816,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="LCSC" id="xZP-po-DEf"/>
+                    <tabBarItem key="tabBarItem" title="LCSC" image="university-32.png" id="xZP-po-DEf"/>
                     <navigationItem key="navigationItem" id="WaU-86-aBD"/>
                     <connections>
                         <outlet property="activity" destination="TmU-eA-2fm" id="mST-4X-GKV"/>
@@ -849,7 +849,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Athletics" id="oBC-ct-Kgy"/>
+                    <tabBarItem key="tabBarItem" title="Athletics" image="trophy-32.png" id="oBC-ct-Kgy"/>
                     <navigationItem key="navigationItem" id="AgV-ou-jpB"/>
                     <connections>
                         <outlet property="activity" destination="6m9-2j-2C1" id="WB5-NU-jc0"/>
@@ -865,8 +865,11 @@
         <image name="calendar-32.png" width="32" height="32"/>
         <image name="day_view-32.png" width="32" height="32"/>
         <image name="dotEntertainment.png" width="20" height="20"/>
+        <image name="hospital-32.png" width="32" height="32"/>
         <image name="hospital-50.png" width="32" height="32"/>
         <image name="newAlphaCircle.png" width="13" height="13"/>
+        <image name="trophy-32.png" width="32" height="32"/>
+        <image name="university-32.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -31,6 +31,9 @@
 		9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899219E4F81D00D6AED4 /* calendar-32.png */; };
 		9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */; };
 		9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */; };
+		9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9271A2BF488004C08C9 /* hospital-32.png */; };
+		9995B92B1A2BF488004C08C9 /* university-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9281A2BF488004C08C9 /* university-32.png */; };
+		9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9291A2BF488004C08C9 /* trophy-32.png */; };
 		99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580841A0048E70044CA5E /* Default-568h@2x.png */; };
 		99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580851A0048E70044CA5E /* Default-667h@2x.png */; };
 		99A580901A0048E70044CA5E /* Default-Landscape-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580861A0048E70044CA5E /* Default-Landscape-736h@3x.png */; };
@@ -98,6 +101,9 @@
 		9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCWebViewController.m; sourceTree = "<group>"; };
 		9995B91D1A2BDE4A004C08C9 /* AthleticsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleticsWebViewController.h; sourceTree = "<group>"; };
 		9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleticsWebViewController.m; sourceTree = "<group>"; };
+		9995B9271A2BF488004C08C9 /* hospital-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hospital-32.png"; sourceTree = "<group>"; };
+		9995B9281A2BF488004C08C9 /* university-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "university-32.png"; sourceTree = "<group>"; };
+		9995B9291A2BF488004C08C9 /* trophy-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trophy-32.png"; sourceTree = "<group>"; };
 		99A580841A0048E70044CA5E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		99A580851A0048E70044CA5E /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		99A580861A0048E70044CA5E /* Default-Landscape-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape-736h@3x.png"; sourceTree = "<group>"; };
@@ -230,6 +236,9 @@
 			children = (
 				9995B9261A2BEF8E004C08C9 /* dots */,
 				9941899119E4F81D00D6AED4 /* day_view-32.png */,
+				9995B9271A2BF488004C08C9 /* hospital-32.png */,
+				9995B9281A2BF488004C08C9 /* university-32.png */,
+				9995B9291A2BF488004C08C9 /* trophy-32.png */,
 				9941899219E4F81D00D6AED4 /* calendar-32.png */,
 			);
 			name = "dot/tab icons";
@@ -407,6 +416,7 @@
 				99A580971A0048E70044CA5E /* Default@2x.png in Resources */,
 				C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */,
 				992592BD19FDC46B008946F8 /* Icon@2x.png in Resources */,
+				9995B92B1A2BF488004C08C9 /* university-32.png in Resources */,
 				992592B919FDC46B008946F8 /* Icon-Small-50@2x.png in Resources */,
 				C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */,
 				99A580911A0048E70044CA5E /* Default-Landscape.png in Resources */,
@@ -424,9 +434,11 @@
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
 				9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */,
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,
+				9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */,
 				C1E66DFC183C333A00851B89 /* InfoPlist.strings in Resources */,
 				992592AF19FDC46B008946F8 /* Icon-60@3x.png in Resources */,
 				992592B619FDC46B008946F8 /* Icon-Small-40@2x.png in Resources */,
+				9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */,
 				C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */,
 				992592AE19FDC46B008946F8 /* Icon-60@2x.png in Resources */,
 				992592B319FDC46B008946F8 /* Icon-76@2x.png in Resources */,
