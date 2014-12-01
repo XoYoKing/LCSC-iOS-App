@@ -10,17 +10,27 @@
 #import "Reachability.h"
 
 @interface AthWebViewController ()
+{
+    BOOL tornDown;
+}
 @end
 
 @implementation AthWebViewController
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    if (tornDown){
+        [self loadContent];
+    }
+}
+-(void)viewDidLoad{
     [self loadContent];
 }
 
 -(void)loadContent{
+    tornDown = false;
     [self setUrl:[NSURL URLWithString:@"http://www.lcwarriors.com"]];
+    
     
     [super viewDidLoad];
     _activity.hidden = NO;
@@ -59,10 +69,11 @@
     [[NSURLCache sharedURLCache] setMemoryCapacity:0];
     [self.activity stopAnimating];
     _activity.hidden = YES;
+    tornDown = true;
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-    [self TearDownUIWebView];
+    //[self TearDownUIWebView];
 }
 
 -(void) viewDidDisappear:(BOOL)animated
@@ -76,3 +87,4 @@
 }
 
 @end
+
