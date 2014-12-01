@@ -507,7 +507,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2408" y="-139"/>
+            <point key="canvasLocation" x="-2396" y="-83"/>
         </scene>
         <!--Day Events-->
         <scene sceneID="bdj-ao-PaR">
@@ -781,7 +781,7 @@
         <scene sceneID="hnT-5K-dwj">
             <objects>
                 <navigationController id="E8T-kD-dN5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Emergency" image="hospital-32.png" selectedImage="hospital-50.png" id="3ji-hN-Ry3"/>
+                    <tabBarItem key="tabBarItem" title="Emergency" image="hospital-32.png" id="3ji-hN-Ry3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jCb-kM-JJU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -866,7 +866,6 @@
         <image name="day_view-32.png" width="32" height="32"/>
         <image name="dotEntertainment.png" width="20" height="20"/>
         <image name="hospital-32.png" width="32" height="32"/>
-        <image name="hospital-50.png" width="32" height="32"/>
         <image name="newAlphaCircle.png" width="13" height="13"/>
         <image name="trophy-32.png" width="32" height="32"/>
         <image name="university-32.png" width="32" height="32"/>
