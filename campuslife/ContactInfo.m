@@ -21,8 +21,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Clayton2
-    //self.view.backgroundColor = [UIColor clearColor];
     if (IPAD == IDIOM)
     {
         self.tableView.rowHeight = 66;
