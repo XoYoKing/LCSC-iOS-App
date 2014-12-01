@@ -28,7 +28,6 @@
 - (void)viewDidLoad
 {
 
-    
     [super viewDidLoad];
     events = [MonthlyEvents getSharedInstance];
     [self setDay:[events getSelectedDay]];

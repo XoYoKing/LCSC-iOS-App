@@ -2,21 +2,35 @@
 //  ContactInfo.m
 //  LCSC
 //
-//  Created by Clayton Yager on 11/20/14.
+//  Created by Super Student on 11/20/14.
 //  Copyright (c) 2014 LCSC. All rights reserved.
 //
 
 #import "ContactInfo.h"
-
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+#define IPAD     UIUserInterfaceIdiomPad
 @interface ContactInfo ()
-
+{
+    NSString *numberToCall;
+}
 @end
 
 @implementation ContactInfo
-
+-(void)viewWillAppear:(BOOL)animated{
+    numberToCall = @"";
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.tableView.rowHeight = 75;
+    //Clayton2
+    //self.view.backgroundColor = [UIColor clearColor];
+    if (IPAD == IDIOM)
+    {
+        self.tableView.rowHeight = 66;
+    }
+    else
+    {
+        self.tableView.rowHeight = 44;
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -67,10 +81,27 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UILabel *nmbrLbl = (UILabel *)[cell viewWithTag:2];
+    UILabel *name = (UILabel *)[cell viewWithTag:1];
     NSString *numberAsString = [@"tel://" stringByAppendingString:nmbrLbl.text];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:numberAsString]];
+    numberToCall = numberAsString;
+    if (IPAD != IDIOM)
+    {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Call %@",name.text]
+                                                    message:[NSString stringWithFormat:@"%@",nmbrLbl.text]
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Call", nil];
+    [alert show];
+    }
 }
-
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != [alertView cancelButtonIndex]){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:numberToCall]];
+    }else{
+        numberToCall = @"";
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

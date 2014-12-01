@@ -29,6 +29,8 @@
 		992592BE19FDC46B008946F8 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992592AD19FDC46B008946F8 /* iTunesArtwork@2x.png */; };
 		9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899119E4F81D00D6AED4 /* day_view-32.png */; };
 		9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899219E4F81D00D6AED4 /* calendar-32.png */; };
+		9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */; };
+		9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */; };
 		99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580841A0048E70044CA5E /* Default-568h@2x.png */; };
 		99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580851A0048E70044CA5E /* Default-667h@2x.png */; };
 		99A580901A0048E70044CA5E /* Default-Landscape-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580861A0048E70044CA5E /* Default-Landscape-736h@3x.png */; };
@@ -92,6 +94,10 @@
 		992592AD19FDC46B008946F8 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		9941899119E4F81D00D6AED4 /* day_view-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "day_view-32.png"; sourceTree = "<group>"; };
 		9941899219E4F81D00D6AED4 /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-32.png"; sourceTree = "<group>"; };
+		9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCWebViewController.h; sourceTree = "<group>"; };
+		9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCWebViewController.m; sourceTree = "<group>"; };
+		9995B91D1A2BDE4A004C08C9 /* AthleticsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleticsWebViewController.h; sourceTree = "<group>"; };
+		9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AthleticsWebViewController.m; sourceTree = "<group>"; };
 		99A580841A0048E70044CA5E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		99A580851A0048E70044CA5E /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		99A580861A0048E70044CA5E /* Default-Landscape-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape-736h@3x.png"; sourceTree = "<group>"; };
@@ -186,6 +192,21 @@
 			path = "Campus Life Icon";
 			sourceTree = "<group>";
 		};
+		9995B9261A2BEF8E004C08C9 /* dots */ = {
+			isa = PBXGroup;
+			children = (
+				C1DEC8C518F4AC2700ECD591 /* dotAcademics.png */,
+				C1DEC8C618F4AC2700ECD591 /* dotActivities.png */,
+				C1DEC8C718F4AC2700ECD591 /* dotAthletics.png */,
+				C1DEC8C818F4AC2700ECD591 /* dotResidence.png */,
+				C1DEC8C918F4AC2700ECD591 /* dotEntertainment.png */,
+				C1DEC8CA18F4AC2700ECD591 /* dotCampusRec.png */,
+				C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */,
+				C105A29F18B6A992007C841C /* bigAlphaCircle.png */,
+			);
+			name = dots;
+			sourceTree = "<group>";
+		};
 		99A580831A0048E70044CA5E /* Splash Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,16 +228,9 @@
 		99DACA6B19FDC68B00CA76CB /* dot/tab icons */ = {
 			isa = PBXGroup;
 			children = (
-				C105A29F18B6A992007C841C /* bigAlphaCircle.png */,
+				9995B9261A2BEF8E004C08C9 /* dots */,
 				9941899119E4F81D00D6AED4 /* day_view-32.png */,
-				C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */,
 				9941899219E4F81D00D6AED4 /* calendar-32.png */,
-				C1DEC8C518F4AC2700ECD591 /* dotAcademics.png */,
-				C1DEC8C618F4AC2700ECD591 /* dotActivities.png */,
-				C1DEC8C718F4AC2700ECD591 /* dotAthletics.png */,
-				C1DEC8C818F4AC2700ECD591 /* dotResidence.png */,
-				C1DEC8C918F4AC2700ECD591 /* dotEntertainment.png */,
-				C1DEC8CA18F4AC2700ECD591 /* dotCampusRec.png */,
 			);
 			name = "dot/tab icons";
 			sourceTree = "<group>";
@@ -276,6 +290,10 @@
 				C1E66E46183C33D000851B89 /* Preferences.m */,
 				C1A7C9841A00380500252982 /* WebViewViewController.h */,
 				C1A7C9851A00380500252982 /* WebViewViewController.m */,
+				9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */,
+				9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */,
+				9995B91D1A2BDE4A004C08C9 /* AthleticsWebViewController.h */,
+				9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */,
 				991048F91A1E656100C83570 /* ContactInfo.h */,
 				991048FA1A1E656100C83570 /* ContactInfo.m */,
 				C111951F1A113EFA001ED805 /* Reachability.h */,
@@ -428,6 +446,7 @@
 			files = (
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
+				9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */,
 				C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */,
 				991048FB1A1E656100C83570 /* ContactInfo.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
@@ -436,6 +455,7 @@
 				C1E66E4A183C33D000851B89 /* MonthlyEvents.m in Sources */,
 				C114505719172761005D1D99 /* hubViewController.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
+				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
 				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
@@ -540,7 +560,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -557,7 +577,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

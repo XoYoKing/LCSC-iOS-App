@@ -66,6 +66,7 @@
 - (void)viewDidLoad
 {
     _appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     [super viewDidLoad];
     
         // Do any additional setup after loading the view, typically from a nib.
