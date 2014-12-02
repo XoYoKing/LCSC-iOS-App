@@ -13,6 +13,7 @@
 {
     BOOL tornDown;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *back;
 @end
 
 @implementation AthWebViewController
