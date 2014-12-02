@@ -404,9 +404,9 @@
                     <connections>
                         <segue destination="JPW-RL-VKX" kind="relationship" relationship="viewControllers" id="7F2-pZ-UwD"/>
                         <segue destination="azO-Rm-eXN" kind="relationship" relationship="viewControllers" id="heD-Jz-gYB"/>
-                        <segue destination="2gh-u5-1dG" kind="relationship" relationship="viewControllers" id="Eu7-46-4oi"/>
-                        <segue destination="CqP-Fc-1zA" kind="relationship" relationship="viewControllers" id="SVj-N1-Lf6"/>
                         <segue destination="ePe-Kh-sHI" kind="relationship" relationship="viewControllers" id="Fft-eL-xeq"/>
+                        <segue destination="iOv-dF-XWo" kind="relationship" relationship="viewControllers" id="riO-qt-d58"/>
+                        <segue destination="jxx-7D-Xwf" kind="relationship" relationship="viewControllers" id="vCX-Uz-D1Q"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKM-s8-NjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -590,7 +590,41 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozR-Mh-FNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="1297"/>
+            <point key="canvasLocation" x="466" y="973"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="im5-Oa-3Dq">
+            <objects>
+                <navigationController id="jxx-7D-Xwf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="MBD-ww-lGt"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="csd-wN-8zW">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2gh-u5-1dG" kind="relationship" relationship="rootViewController" id="ZEK-hU-G2z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qPo-CB-cka" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="723" y="3793"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="mqK-OJ-1vt">
+            <objects>
+                <navigationController id="iOv-dF-XWo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="1Kk-cz-5DO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Hi-Ql-WIS">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CqP-Fc-1zA" kind="relationship" relationship="rootViewController" id="IL3-5k-0bC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pbq-1u-yfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="743" y="2537"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="EtN-A7-wuy">
@@ -678,6 +712,16 @@
                     <tabBarItem key="tabBarItem" title="LCSC" image="university-32.png" id="WMe-39-eW5"/>
                     <navigationItem key="navigationItem" id="UQb-yP-nQq">
                         <barButtonItem key="backBarButtonItem" title=" " id="Hks-Hr-oSB"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="PQD-8M-hrE">
+                            <connections>
+                                <action selector="goBack" destination="2NE-Ec-DjF" id="0Lq-Xe-zfR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="EmD-Yd-Lci">
+                            <connections>
+                                <action selector="goForward" destination="2NE-Ec-DjF" id="5qL-Hl-6sf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="ubm-Ue-BPJ" id="vTF-cO-FZL"/>
@@ -686,7 +730,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpm-Qm-ZpV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="4215"/>
+            <point key="canvasLocation" x="1805" y="3879"/>
         </scene>
         <!--Athletics-->
         <scene sceneID="y5K-q5-MsI">
@@ -713,13 +757,25 @@
                     <tabBarItem key="tabBarItem" title="Athletics" image="trophy-32.png" id="xcA-wn-BSO"/>
                     <navigationItem key="navigationItem" id="SMn-4x-DQw">
                         <barButtonItem key="backBarButtonItem" title=" " id="URm-bX-xlb"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="PNj-Nx-14c">
+                            <connections>
+                                <action selector="goBack" destination="isf-yi-FnS" id="80e-5Z-Mni"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="2Qi-Fw-e0G">
+                            <connections>
+                                <action selector="goForward" destination="isf-yi-FnS" id="StC-nJ-o2U"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="grs-SY-ZxD" id="LPQ-0x-4mT"/>
+                        <outlet property="forward" destination="2Qi-Fw-e0G" id="pFL-JT-TIn"/>
                         <outlet property="webView" destination="isf-yi-FnS" id="dbA-ys-Q6C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNV-a6-OiU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Title" id="TNQ-Ak-fyb"/>
             </objects>
             <point key="canvasLocation" x="1721" y="2615"/>
         </scene>
@@ -739,7 +795,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="25V-IA-D7p"/>
         <segue reference="ott-Su-N43"/>
+        <segue reference="25V-IA-D7p"/>
     </inferredMetricsTieBreakers>
 </document>
