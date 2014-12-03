@@ -34,6 +34,8 @@
 		9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9271A2BF488004C08C9 /* hospital-32.png */; };
 		9995B92B1A2BF488004C08C9 /* university-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9281A2BF488004C08C9 /* university-32.png */; };
 		9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9291A2BF488004C08C9 /* trophy-32.png */; };
+		99A1B2381A2E7FD800F6B42A /* back-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A1B2361A2E7FD800F6B42A /* back-32.png */; };
+		99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A1B2371A2E7FD800F6B42A /* forward-32.png */; };
 		99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580841A0048E70044CA5E /* Default-568h@2x.png */; };
 		99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580851A0048E70044CA5E /* Default-667h@2x.png */; };
 		99A580901A0048E70044CA5E /* Default-Landscape-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A580861A0048E70044CA5E /* Default-Landscape-736h@3x.png */; };
@@ -104,6 +106,8 @@
 		9995B9271A2BF488004C08C9 /* hospital-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hospital-32.png"; sourceTree = "<group>"; };
 		9995B9281A2BF488004C08C9 /* university-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "university-32.png"; sourceTree = "<group>"; };
 		9995B9291A2BF488004C08C9 /* trophy-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trophy-32.png"; sourceTree = "<group>"; };
+		99A1B2361A2E7FD800F6B42A /* back-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-32.png"; sourceTree = "<group>"; };
+		99A1B2371A2E7FD800F6B42A /* forward-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward-32.png"; sourceTree = "<group>"; };
 		99A580841A0048E70044CA5E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		99A580851A0048E70044CA5E /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		99A580861A0048E70044CA5E /* Default-Landscape-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape-736h@3x.png"; sourceTree = "<group>"; };
@@ -316,6 +320,8 @@
 		C1E66DF8183C333A00851B89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				99A1B2361A2E7FD800F6B42A /* back-32.png */,
+				99A1B2371A2E7FD800F6B42A /* forward-32.png */,
 				99A580831A0048E70044CA5E /* Splash Screen */,
 				99DACA6B19FDC68B00CA76CB /* dot/tab icons */,
 				9925929C19FDC46B008946F8 /* Campus Life Icon */,
@@ -375,7 +381,7 @@
 				ORGANIZATIONNAME = LCSC;
 				TargetAttributes = {
 					C1E66DED183C333A00851B89 = {
-						DevelopmentTeam = Z3KN574S69;
+						DevelopmentTeam = 5322BWHJ7K;
 					};
 				};
 			};
@@ -414,6 +420,7 @@
 				992592B219FDC46B008946F8 /* Icon-76.png in Resources */,
 				992592B019FDC46B008946F8 /* Icon-72.png in Resources */,
 				99A580971A0048E70044CA5E /* Default@2x.png in Resources */,
+				99A1B2381A2E7FD800F6B42A /* back-32.png in Resources */,
 				C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */,
 				992592BD19FDC46B008946F8 /* Icon@2x.png in Resources */,
 				9995B92B1A2BF488004C08C9 /* university-32.png in Resources */,
@@ -429,6 +436,7 @@
 				992592B119FDC46B008946F8 /* Icon-72@2x.png in Resources */,
 				9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */,
 				99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */,
+				99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */,
 				99A580921A0048E70044CA5E /* Default-Landscape@2x.png in Resources */,
 				99A580951A0048E70044CA5E /* Default-Portrait@2x.png in Resources */,
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
