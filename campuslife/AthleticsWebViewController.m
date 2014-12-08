@@ -21,10 +21,14 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
+     self.navigationItem.rightBarButtonItem.enabled = NO;
+     self.navigationItem.leftBarButtonItem.enabled = NO;
     if (tornDown){
         [self loadContent];
     }
 }
+
+
 -(void)viewDidLoad{
     [self loadContent];
 }
@@ -57,6 +61,16 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.activity stopAnimating];
     _activity.hidden = YES;
+    if ([webView canGoBack]){
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+    }else{
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+    }
+    if ([webView canGoForward]){
+         self.navigationItem.rightBarButtonItem.enabled = YES;
+    }else{
+         self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 -(void) setUrl:(NSURL *)url {
     _url = url;

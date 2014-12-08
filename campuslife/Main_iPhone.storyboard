@@ -860,7 +860,7 @@
                                 <action selector="goBack" destination="Kz9-4G-uab" id="LY5-Fo-MvW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="forward-32.png" style="done" id="lRX-Qr-Gw1"/>
+                        <barButtonItem key="rightBarButtonItem" tag="1" image="forward-32.png" style="done" id="lRX-Qr-Gw1"/>
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="TmU-eA-2fm" id="mST-4X-GKV"/>
@@ -902,7 +902,7 @@
                                 <action selector="goBack" destination="WdP-gp-HYx" id="sh6-Zi-OGb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="forward-32.png" id="1az-HS-m0c">
+                        <barButtonItem key="rightBarButtonItem" tag="1" image="forward-32.png" id="1az-HS-m0c">
                             <connections>
                                 <action selector="goForward" destination="WdP-gp-HYx" id="n9f-0v-ffU"/>
                             </connections>
@@ -916,7 +916,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cw-Mv-MK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1851" y="1336"/>
+            <point key="canvasLocation" x="-1657" y="1410"/>
         </scene>
     </scenes>
     <resources>
