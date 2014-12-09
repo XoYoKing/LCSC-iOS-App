@@ -9,10 +9,25 @@
 #import "AppDelegate.h"
 #import "Preferences.h"
 #import "Reachability.h"
+
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+#define IPAD     UIUserInterfaceIdiomPad
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //Clayton 1
+    if (IPAD == IDIOM)
+    {
+        _window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"test.png"]];
+    }else{
+        _window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"test1.png"]];
+    }
+    
+    
+    
     // Let the device know we want to receive push notifications
 	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
     //        (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];

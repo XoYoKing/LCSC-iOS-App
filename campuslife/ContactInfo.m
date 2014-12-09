@@ -17,6 +17,8 @@
 
 @implementation ContactInfo
 -(void)viewWillAppear:(BOOL)animated{
+    //Clayton
+    self.view.backgroundColor = [UIColor clearColor];
     numberToCall = @"";
 }
 - (void)viewDidLoad {
@@ -29,6 +31,8 @@
     {
         self.tableView.rowHeight = 44;
     }
+    _contactTableiPad.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _contactTableiPhone.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
