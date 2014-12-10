@@ -21,19 +21,23 @@
 }
 - (void)viewDidLoad {
     self.view.backgroundColor = [UIColor whiteColor];
-    UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
-    CurrentImage.frame = self.view.bounds;
-    [[self view] addSubview:CurrentImage];
-    [CurrentImage.superview sendSubviewToBack:CurrentImage];
-    [super viewDidLoad];
     if (IPAD == IDIOM)
     {
         self.tableView.rowHeight = 66;
+        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad.jpg"]];
+        CurrentImage.frame = self.view.bounds;
+        [[self view] addSubview:CurrentImage];
+        [CurrentImage.superview sendSubviewToBack:CurrentImage];
     }
     else
     {
         self.tableView.rowHeight = 44;
+        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
+        CurrentImage.frame = self.view.bounds;
+        [[self view] addSubview:CurrentImage];
+        [CurrentImage.superview sendSubviewToBack:CurrentImage];
     }
+
     _contactTableiPad.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _contactTableiPhone.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     // Uncomment the following line to preserve selection between presentations.

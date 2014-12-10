@@ -11,6 +11,8 @@
 //#import "UpdateEventViewController.h"
 #import "CalendarViewController.h"
 #import "WebViewViewController.h"
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+#define IPAD     UIUserInterfaceIdiomPad
 
 
 @interface EventDetailViewController (){
@@ -24,10 +26,21 @@
 {
     
     self.view.backgroundColor = [UIColor whiteColor];
-    UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
-    CurrentImage.frame = self.view.bounds;
-    [[self view] addSubview:CurrentImage];
-    [CurrentImage.superview sendSubviewToBack:CurrentImage];
+    if (IPAD == IDIOM)
+    {
+        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad.jpg"]];
+        CurrentImage.frame = self.view.bounds;
+        [[self view] addSubview:CurrentImage];
+        [CurrentImage.superview sendSubviewToBack:CurrentImage];
+    }
+    else
+    {
+        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
+        CurrentImage.frame = self.view.bounds;
+        [[self view] addSubview:CurrentImage];
+        [CurrentImage.superview sendSubviewToBack:CurrentImage];
+    }
+
     
     NSArray *dateHold;
     // Date info in different places depending on whether or not event is all day
