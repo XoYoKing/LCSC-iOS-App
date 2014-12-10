@@ -21,8 +21,6 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-     self.navigationItem.rightBarButtonItem.enabled = NO;
-     self.navigationItem.leftBarButtonItem.enabled = NO;
     if (tornDown){
         [self loadContent];
     }
@@ -30,6 +28,8 @@
 
 
 -(void)viewDidLoad{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    self.navigationItem.leftBarButtonItem.enabled = NO;
     [self loadContent];
 }
 

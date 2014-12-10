@@ -22,6 +22,14 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    /*
+    self.view.backgroundColor = [UIColor whiteColor];
+    UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
+    CurrentImage.frame = self.view.bounds;
+    [[self view] addSubview:CurrentImage];
+    [CurrentImage.superview sendSubviewToBack:CurrentImage];
+     */
+    
     NSArray *dateHold;
     // Date info in different places depending on whether or not event is all day
     if([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]) {

@@ -916,6 +916,7 @@
                     <connections>
                         <outlet property="activity" destination="6m9-2j-2C1" id="WB5-NU-jc0"/>
                         <outlet property="back" destination="Y3e-PZ-W9u" id="Fto-EY-uT8"/>
+                        <outlet property="forward" destination="1az-HS-m0c" id="f5p-xZ-0LD"/>
                         <outlet property="webView" destination="WdP-gp-HYx" id="iOY-vp-SzA"/>
                     </connections>
                 </viewController>

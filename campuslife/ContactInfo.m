@@ -17,11 +17,14 @@
 
 @implementation ContactInfo
 -(void)viewWillAppear:(BOOL)animated{
-    //Clayton
-    self.view.backgroundColor = [UIColor clearColor];
     numberToCall = @"";
 }
 - (void)viewDidLoad {
+    self.view.backgroundColor = [UIColor whiteColor];
+    UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
+    CurrentImage.frame = self.view.bounds;
+    [[self view] addSubview:CurrentImage];
+    [CurrentImage.superview sendSubviewToBack:CurrentImage];
     [super viewDidLoad];
     if (IPAD == IDIOM)
     {
@@ -63,6 +66,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellCount" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor clearColor];
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *numberLabel = (UILabel *)[cell viewWithTag:2];
     if(indexPath.row == 0){

@@ -29,6 +29,7 @@
 		992592BE19FDC46B008946F8 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992592AD19FDC46B008946F8 /* iTunesArtwork@2x.png */; };
 		9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899119E4F81D00D6AED4 /* day_view-32.png */; };
 		9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899219E4F81D00D6AED4 /* calendar-32.png */; };
+		997268B81A37B224000FB68A /* iphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 997268B71A37B224000FB68A /* iphone.jpg */; };
 		9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */; };
 		9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */; };
 		9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9271A2BF488004C08C9 /* hospital-32.png */; };
@@ -48,8 +49,6 @@
 		99A580971A0048E70044CA5E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A5808D1A0048E70044CA5E /* Default@2x.png */; };
 		99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */; };
 		99F6F39219FDC39500536DB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99F6F39119FDC39500536DB8 /* Images.xcassets */; };
-		99F74B801A36D9F900D383BB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F74B7F1A36D9F900D383BB /* test.png */; };
-		99F74B821A36DB8200D383BB /* test1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F74B811A36DB8200D383BB /* test1.png */; };
 		C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C105A29F18B6A992007C841C /* bigAlphaCircle.png */; };
 		C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */; };
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
@@ -101,6 +100,7 @@
 		992592AD19FDC46B008946F8 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		9941899119E4F81D00D6AED4 /* day_view-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "day_view-32.png"; sourceTree = "<group>"; };
 		9941899219E4F81D00D6AED4 /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-32.png"; sourceTree = "<group>"; };
+		997268B71A37B224000FB68A /* iphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone.jpg; sourceTree = "<group>"; };
 		9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCWebViewController.h; sourceTree = "<group>"; };
 		9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCWebViewController.m; sourceTree = "<group>"; };
 		9995B91D1A2BDE4A004C08C9 /* AthleticsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleticsWebViewController.h; sourceTree = "<group>"; };
@@ -123,8 +123,6 @@
 		99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
 		99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		99F6F39119FDC39500536DB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		99F74B7F1A36D9F900D383BB /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
-		99F74B811A36DB8200D383BB /* test1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test1.png; sourceTree = "<group>"; };
 		C105A29F18B6A992007C841C /* bigAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigAlphaCircle.png; sourceTree = "<group>"; };
 		C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newAlphaCircle.png; sourceTree = "<group>"; };
@@ -324,8 +322,7 @@
 		C1E66DF8183C333A00851B89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				99F74B7F1A36D9F900D383BB /* test.png */,
-				99F74B811A36DB8200D383BB /* test1.png */,
+				997268B71A37B224000FB68A /* iphone.jpg */,
 				99A1B2361A2E7FD800F6B42A /* back-32.png */,
 				99A1B2371A2E7FD800F6B42A /* forward-32.png */,
 				99A580831A0048E70044CA5E /* Splash Screen */,
@@ -443,7 +440,7 @@
 				9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */,
 				99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */,
 				99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */,
-				99F74B821A36DB8200D383BB /* test1.png in Resources */,
+				997268B81A37B224000FB68A /* iphone.jpg in Resources */,
 				99A580921A0048E70044CA5E /* Default-Landscape@2x.png in Resources */,
 				99A580951A0048E70044CA5E /* Default-Portrait@2x.png in Resources */,
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
@@ -451,7 +448,6 @@
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,
 				9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */,
 				C1E66DFC183C333A00851B89 /* InfoPlist.strings in Resources */,
-				99F74B801A36D9F900D383BB /* test.png in Resources */,
 				992592AF19FDC46B008946F8 /* Icon-60@3x.png in Resources */,
 				992592B619FDC46B008946F8 /* Icon-Small-40@2x.png in Resources */,
 				9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */,
