@@ -65,6 +65,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    self.tableView.separatorColor = [UIColor clearColor];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellCount" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
