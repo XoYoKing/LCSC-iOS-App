@@ -765,6 +765,9 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="phone2-32.png" translatesAutoresizingMaskIntoConstraints="NO" id="a9r-19-Evy">
+                                            <rect key="frame" x="291" y="12" width="21" height="20"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -933,6 +936,7 @@
         <image name="forward-32.png" width="32" height="32"/>
         <image name="hospital-32.png" width="32" height="32"/>
         <image name="newAlphaCircle.png" width="13" height="13"/>
+        <image name="phone2-32.png" width="80" height="80"/>
         <image name="trophy-32.png" width="32" height="32"/>
         <image name="university-32.png" width="32" height="32"/>
     </resources>
