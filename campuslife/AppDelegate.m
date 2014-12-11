@@ -17,27 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    /*
-    //Clayton 1
-    if (IPAD == IDIOM)
-    {
-        //_window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"test.png"]];
-        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imageName.png"]];
-    }else{
-        //_window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iphone.jpg"]];
-        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
-    }
-    
-    //UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"imageName.png"]];
-    CurrentImage.frame = self.view.bounds;
-    //[[self view] addSubview:CurrentImage];
-    //[CurrentImage.superview sendSubviewToBack:CurrentImage];
-    */
-    // Let the device know we want to receive push notifications
-	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-    //        (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    
-    // Override point for customization after application launch.
+
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     
     
