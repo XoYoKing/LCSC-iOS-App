@@ -627,7 +627,7 @@
             </objects>
             <point key="canvasLocation" x="743" y="2537"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Emergency-->
         <scene sceneID="EtN-A7-wuy">
             <objects>
                 <tableViewController id="W3u-cH-HQW" customClass="ContactInfo" sceneMemberID="viewController">
@@ -666,7 +666,7 @@
                             <outlet property="delegate" destination="W3u-cH-HQW" id="vt1-nH-JXy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Uto-F2-6UU"/>
+                    <navigationItem key="navigationItem" title="Emergency" id="Uto-F2-6UU"/>
                     <connections>
                         <outlet property="contactTableiPad" destination="uyg-LT-39Q" id="v1d-6e-kWY"/>
                     </connections>
@@ -730,6 +730,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="ubm-Ue-BPJ" id="vTF-cO-FZL"/>
+                        <outlet property="back" destination="PQD-8M-hrE" id="7tV-Br-B8r"/>
+                        <outlet property="forward" destination="EmD-Yd-Lci" id="p33-64-Jft"/>
                         <outlet property="webView" destination="2NE-Ec-DjF" id="FJv-eE-X6l"/>
                     </connections>
                 </viewController>
@@ -775,6 +777,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="grs-SY-ZxD" id="LPQ-0x-4mT"/>
+                        <outlet property="back" destination="PNj-Nx-14c" id="kay-8f-t5N"/>
                         <outlet property="forward" destination="2Qi-Fw-e0G" id="pFL-JT-TIn"/>
                         <outlet property="webView" destination="isf-yi-FnS" id="dbA-ys-Q6C"/>
                     </connections>

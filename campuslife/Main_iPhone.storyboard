@@ -872,7 +872,11 @@
                                 <action selector="goBack" destination="Kz9-4G-uab" id="LY5-Fo-MvW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" tag="1" image="forward-32.png" style="done" id="lRX-Qr-Gw1"/>
+                        <barButtonItem key="rightBarButtonItem" tag="1" image="forward-32.png" style="done" id="lRX-Qr-Gw1">
+                            <connections>
+                                <action selector="goForward" destination="Kz9-4G-uab" id="paj-Im-YOM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="TmU-eA-2fm" id="mST-4X-GKV"/>
