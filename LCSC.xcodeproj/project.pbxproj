@@ -29,9 +29,11 @@
 		992592BE19FDC46B008946F8 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992592AD19FDC46B008946F8 /* iTunesArtwork@2x.png */; };
 		9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899119E4F81D00D6AED4 /* day_view-32.png */; };
 		9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941899219E4F81D00D6AED4 /* calendar-32.png */; };
-		997268B81A37B224000FB68A /* iphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 997268B71A37B224000FB68A /* iphone.jpg */; };
+		994589EB1A396F7800853E3E /* ipadE.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 994589EA1A396F7800853E3E /* ipadE.jpg */; };
+		994589ED1A396F9F00853E3E /* iphoneDetails.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 994589EC1A396F9F00853E3E /* iphoneDetails.jpg */; };
+		997268B81A37B224000FB68A /* iphoneE.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 997268B71A37B224000FB68A /* iphoneE.jpg */; };
 		997451A21A38D81500EA9B7C /* phone2-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 997451A11A38D81500EA9B7C /* phone2-32.png */; };
-		997451A41A38D93F00EA9B7C /* ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 997451A31A38D93F00EA9B7C /* ipad.jpg */; };
+		997451A41A38D93F00EA9B7C /* ipadDetails.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 997451A31A38D93F00EA9B7C /* ipadDetails.jpg */; };
 		9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */; };
 		9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */; };
 		9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9995B9271A2BF488004C08C9 /* hospital-32.png */; };
@@ -102,9 +104,11 @@
 		992592AD19FDC46B008946F8 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		9941899119E4F81D00D6AED4 /* day_view-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "day_view-32.png"; sourceTree = "<group>"; };
 		9941899219E4F81D00D6AED4 /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-32.png"; sourceTree = "<group>"; };
-		997268B71A37B224000FB68A /* iphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone.jpg; sourceTree = "<group>"; };
+		994589EA1A396F7800853E3E /* ipadE.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipadE.jpg; sourceTree = "<group>"; };
+		994589EC1A396F9F00853E3E /* iphoneDetails.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphoneDetails.jpg; sourceTree = "<group>"; };
+		997268B71A37B224000FB68A /* iphoneE.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphoneE.jpg; sourceTree = "<group>"; };
 		997451A11A38D81500EA9B7C /* phone2-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone2-32.png"; sourceTree = "<group>"; };
-		997451A31A38D93F00EA9B7C /* ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad.jpg; sourceTree = "<group>"; };
+		997451A31A38D93F00EA9B7C /* ipadDetails.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipadDetails.jpg; sourceTree = "<group>"; };
 		9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCWebViewController.h; sourceTree = "<group>"; };
 		9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCWebViewController.m; sourceTree = "<group>"; };
 		9995B91D1A2BDE4A004C08C9 /* AthleticsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AthleticsWebViewController.h; sourceTree = "<group>"; };
@@ -329,8 +333,10 @@
 		C1E66DF8183C333A00851B89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				997268B71A37B224000FB68A /* iphone.jpg */,
-				997451A31A38D93F00EA9B7C /* ipad.jpg */,
+				997268B71A37B224000FB68A /* iphoneE.jpg */,
+				994589EC1A396F9F00853E3E /* iphoneDetails.jpg */,
+				994589EA1A396F7800853E3E /* ipadE.jpg */,
+				997451A31A38D93F00EA9B7C /* ipadDetails.jpg */,
 				99A580831A0048E70044CA5E /* Splash Screen */,
 				99DACA6B19FDC68B00CA76CB /* dot/tab icons */,
 				9925929C19FDC46B008946F8 /* Campus Life Icon */,
@@ -420,6 +426,7 @@
 				C1DEC8CF18F4AC2700ECD591 /* dotEntertainment.png in Resources */,
 				99A580901A0048E70044CA5E /* Default-Landscape-736h@3x.png in Resources */,
 				992592B719FDC46B008946F8 /* Icon-Small-40@3x.png in Resources */,
+				994589EB1A396F7800853E3E /* ipadE.jpg in Resources */,
 				992592BA19FDC46B008946F8 /* Icon-Small@2x.png in Resources */,
 				992592B819FDC46B008946F8 /* Icon-Small-50.png in Resources */,
 				992592B419FDC46B008946F8 /* Icon-small-29.png in Resources */,
@@ -446,11 +453,12 @@
 				992592B119FDC46B008946F8 /* Icon-72@2x.png in Resources */,
 				9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */,
 				99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */,
-				997451A41A38D93F00EA9B7C /* ipad.jpg in Resources */,
+				997451A41A38D93F00EA9B7C /* ipadDetails.jpg in Resources */,
 				99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */,
-				997268B81A37B224000FB68A /* iphone.jpg in Resources */,
+				997268B81A37B224000FB68A /* iphoneE.jpg in Resources */,
 				99A580921A0048E70044CA5E /* Default-Landscape@2x.png in Resources */,
 				99A580951A0048E70044CA5E /* Default-Portrait@2x.png in Resources */,
+				994589ED1A396F9F00853E3E /* iphoneDetails.jpg in Resources */,
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
 				9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */,
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,

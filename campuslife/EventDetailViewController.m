@@ -24,18 +24,19 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+ 
     self.view.backgroundColor = [UIColor whiteColor];
+    
     if (IPAD == IDIOM)
     {
-        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad.jpg"]];
+        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipadDetails.jpg"]];
         CurrentImage.frame = self.view.bounds;
         [[self view] addSubview:CurrentImage];
         [CurrentImage.superview sendSubviewToBack:CurrentImage];
     }
     else
     {
-        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone.jpg"]];
+        UIImageView *CurrentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphoneDetails.jpg"]];
         CurrentImage.frame = self.view.bounds;
         [[self view] addSubview:CurrentImage];
         [CurrentImage.superview sendSubviewToBack:CurrentImage];
