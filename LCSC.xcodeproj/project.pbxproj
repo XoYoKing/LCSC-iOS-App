@@ -53,6 +53,7 @@
 		99A580971A0048E70044CA5E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A5808D1A0048E70044CA5E /* Default@2x.png */; };
 		99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */; };
 		99F6F39219FDC39500536DB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99F6F39119FDC39500536DB8 /* Images.xcassets */; };
+		99F94B441A3A59CE00F3AADE /* Main_iPhone4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */; };
 		C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C105A29F18B6A992007C841C /* bigAlphaCircle.png */; };
 		C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */; };
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
@@ -131,6 +132,7 @@
 		99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
 		99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		99F6F39119FDC39500536DB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone4.storyboard; sourceTree = "<group>"; };
 		C105A29F18B6A992007C841C /* bigAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigAlphaCircle.png; sourceTree = "<group>"; };
 		C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newAlphaCircle.png; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
+				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
 				C114505519172761005D1D99 /* hubViewController.h */,
 				C114505619172761005D1D99 /* hubViewController.m */,
@@ -472,6 +475,7 @@
 				992592B319FDC46B008946F8 /* Icon-76@2x.png in Resources */,
 				992592BC19FDC46B008946F8 /* Icon.png in Resources */,
 				992592BB19FDC46B008946F8 /* Icon-Small@3x.png in Resources */,
+				99F94B441A3A59CE00F3AADE /* Main_iPhone4.storyboard in Resources */,
 				990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */,
 				C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */,
 			);

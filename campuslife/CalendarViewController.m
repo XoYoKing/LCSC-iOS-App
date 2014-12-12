@@ -53,7 +53,9 @@
 @property (nonatomic) int failedReqs;
 
 @property (nonatomic) AppDelegate *appD;
-
+@property (nonatomic) NSString *currentDateDay;
+@property (nonatomic) NSString *currentDateMonth;
+@property (nonatomic) NSString *currentDateYear;
 
 @property (strong, nonatomic) NSCondition *condition;
 @property (strong, nonatomic) NSThread *aThread;
@@ -398,10 +400,30 @@
     else {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"CurrentDayCell" forIndexPath:indexPath];
         
+        /*
+         CLAYTON 2
+         if the table view cells border or shade on current day ever quits working look here.
+         the if loop that controls the length of holdViewDay was written in december and I assumed
+         that _currentDateMonth will be 01 - 09 for single digit months. if it turns out not to be
+         come january then the check for length and appending a 0 to the string needs to be deleted
+         */
+        
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
-        
         dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1]];
-        
+        if ([dayLbl.text isEqualToString:_currentDateDay]){
+            NSString *holdViewDay = [NSString stringWithFormat:@"%d",[_events getSelectedMonth]];
+            if (holdViewDay.length != _currentDateMonth.length){
+                holdViewDay = [NSString stringWithFormat:@"0%@",holdViewDay];
+            }
+            if ([holdViewDay isEqualToString: _currentDateMonth]){
+                if ([[NSString stringWithFormat:@"%d",[_events getSelectedYear]] isEqualToString: _currentDateYear]){
+                    ///edit the cell
+                    //cell.layer.borderWidth=0.5f;
+                    //cell.layer.borderColor=[UIColor blueColor].CGColor;
+                    //cell.backgroundColor = [UIColor colorWithRed:240.0/256.0 green:240.0/256.0 blue:240.0/256.0 alpha:1.0];
+                }
+            }
+        }
         //Grab the squares for each category.
         UIView *entertainment = (UIView *)[cell viewWithTag:11];
         if (!entertainment.hidden) {
@@ -488,7 +510,6 @@
             }
         }
     }
-    
     return cell;
 }
 
@@ -677,6 +698,16 @@
 }
 
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year {
+    
+    //CLAYTON 1
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"dd"];
+    _currentDateDay =[DateFormatter stringFromDate:[NSDate date]];
+    [DateFormatter setDateFormat:@"MM"];
+    _currentDateMonth =[DateFormatter stringFromDate:[NSDate date]];
+    [DateFormatter setDateFormat:@"yyyy"];
+    _currentDateYear =[DateFormatter stringFromDate:[NSDate date]];
+    
     if (month+(_curArrayId-1) == 0)
     {
         _firstDateOfMonth = [self returnDateForMonth:12 year:year-1 day:1];

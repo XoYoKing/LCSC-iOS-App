@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    [self initializeStoryBoardBasedOnScreenSize];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     
     
@@ -48,6 +48,39 @@
     }
     return YES;
 }
+
+-(void)initializeStoryBoardBasedOnScreenSize {
+    UIStoryboard *storyboard = nil;
+    storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {    // The iOS device = iPhone or iPod Touch
+        CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
+        if (iOSDeviceScreenSize.height == 480)
+        {   // iPhone 3GS, 4, and 4S and iPod Touch 3rd and 4th generation: 3.5 inch screen (diagonally measured)
+
+            // Instantiate a new storyboard object using the storyboard file named MainStoryboard_iPhone
+            storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone4" bundle:nil];
+        }
+    }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        // The iOS device = iPad
+        // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone35
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    
+    }
+    // Instantiate the initial view controller object from the storyboard
+    UIViewController *initialViewController = [storyboard instantiateInitialViewController];
+    
+    // Instantiate a UIWindow object and initialize it with the screen size of the iOS device
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Set the initial view controller to be the root view controller of the window object
+    self.window.rootViewController  = initialViewController;
+    
+    // Set the window object to be the key window and show it
+    [self.window makeKeyAndVisible];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

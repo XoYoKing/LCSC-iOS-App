@@ -496,7 +496,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="MZs-Eg-GKc">
-                                <rect key="frame" x="16" y="0.0" width="736" height="967"/>
+                                <rect key="frame" x="16" y="64" width="736" height="903"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -730,8 +730,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="ubm-Ue-BPJ" id="vTF-cO-FZL"/>
-                        <outlet property="back" destination="PQD-8M-hrE" id="7tV-Br-B8r"/>
-                        <outlet property="forward" destination="EmD-Yd-Lci" id="p33-64-Jft"/>
+                        <outlet property="back" destination="PQD-8M-hrE" id="B16-GI-whH"/>
+                        <outlet property="forward" destination="EmD-Yd-Lci" id="WOE-cE-low"/>
                         <outlet property="webView" destination="2NE-Ec-DjF" id="FJv-eE-X6l"/>
                     </connections>
                 </viewController>
@@ -777,7 +777,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="grs-SY-ZxD" id="LPQ-0x-4mT"/>
-                        <outlet property="back" destination="PNj-Nx-14c" id="kay-8f-t5N"/>
+                        <outlet property="back" destination="PNj-Nx-14c" id="hIt-zx-RWt"/>
                         <outlet property="forward" destination="2Qi-Fw-e0G" id="pFL-JT-TIn"/>
                         <outlet property="webView" destination="isf-yi-FnS" id="dbA-ys-Q6C"/>
                     </connections>

@@ -77,7 +77,7 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *numberLabel = (UILabel *)[cell viewWithTag:2];
     if(indexPath.row == 0){
-        titleLabel.text = @"For Emergencies Only";
+        titleLabel.text = @"Emergency Services";
         numberLabel.text = @"911";
     }else if (indexPath.row == 1){
         titleLabel.text = @"Campus Security Mobile";
