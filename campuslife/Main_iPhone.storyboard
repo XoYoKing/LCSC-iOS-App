@@ -586,9 +586,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Edf-cH-Fdp">
                         <barButtonItem key="backBarButtonItem" title=" " id="gxQ-Tw-TFH"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="z5L-ES-OZk">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zYa-vi-PZd">
+                                <rect key="frame" x="233" y="7" width="87" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="date_to-32.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddEventToCal:" destination="5sb-bb-V1f" eventType="touchUpInside" id="Vdr-VB-M9t"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="Description" destination="QTB-zv-Yfh" id="od0-pd-4Qi"/>
                         <segue destination="UZU-fc-uCS" kind="push" identifier="showURL" id="bo0-7s-029"/>
@@ -935,6 +949,7 @@
     <resources>
         <image name="back-32.png" width="32" height="32"/>
         <image name="calendar-32.png" width="32" height="32"/>
+        <image name="date_to-32.png" width="32" height="32"/>
         <image name="day_view-32.png" width="32" height="32"/>
         <image name="dotEntertainment.png" width="20" height="20"/>
         <image name="forward-32.png" width="32" height="32"/>

@@ -128,7 +128,7 @@
         NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
         NSInteger year = [dateComponents year];
         NSInteger month = [dateComponents month];
-        
+    
         [_events setYear:(int)year];
         [_events setMonth:(int)month];
         
@@ -181,15 +181,12 @@
 }
 
 
-//
-
-
-
 -(void) updateOutput{
     UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:1];
     AllEventViewController *aevc = [navCont.childViewControllers objectAtIndex:0];
     [aevc loadAllData];
 }
+
 -(void)threadLoop
 {
     while([[NSThread currentThread] isCancelled] == NO)
@@ -401,7 +398,7 @@
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"CurrentDayCell" forIndexPath:indexPath];
         
         /*
-         CLAYTON 2
+         //CLAYTON 2
          if the table view cells border or shade on current day ever quits working look here.
          the if loop that controls the length of holdViewDay was written in december and I assumed
          that _currentDateMonth will be 01 - 09 for single digit months. if it turns out not to be
@@ -414,15 +411,32 @@
             NSString *holdViewDay = [NSString stringWithFormat:@"%d",[_events getSelectedMonth]];
             if (holdViewDay.length != _currentDateMonth.length){
                 holdViewDay = [NSString stringWithFormat:@"0%@",holdViewDay];
+            }else{
+                //Add it here
+                cell.layer.borderWidth=0.0f;
+                cell.layer.borderColor=[UIColor clearColor].CGColor;
             }
             if ([holdViewDay isEqualToString: _currentDateMonth]){
                 if ([[NSString stringWithFormat:@"%d",[_events getSelectedYear]] isEqualToString: _currentDateYear]){
                     ///edit the cell
-                    //cell.layer.borderWidth=0.5f;
-                    //cell.layer.borderColor=[UIColor blueColor].CGColor;
+                    cell.layer.borderWidth=0.5f;
+                    cell.layer.borderColor=[UIColor blueColor].CGColor;
                     //cell.backgroundColor = [UIColor colorWithRed:240.0/256.0 green:240.0/256.0 blue:240.0/256.0 alpha:1.0];
+                }else{
+                    //add it here
+                    cell.layer.borderWidth=0.0f;
+                    cell.layer.borderColor=[UIColor clearColor].CGColor;
                 }
+            }else{
+                //add it here
+                cell.layer.borderWidth=0.0f;
+                cell.layer.borderColor=[UIColor clearColor].CGColor;
             }
+        }
+        else{
+            //add it here
+            cell.layer.borderWidth=0.0f;
+            cell.layer.borderColor=[UIColor clearColor].CGColor;
         }
         //Grab the squares for each category.
         UIView *entertainment = (UIView *)[cell viewWithTag:11];
@@ -620,7 +634,6 @@
 //  for a key if the user has permission to change events.)
 -(NSDictionary *)parseSummaryForKey:(NSDictionary *)eventDict :(NSString *)newKey :(NSArray *)possibleKeys {
     NSMutableDictionary *dCurrentEvent = [[NSMutableDictionary alloc] initWithDictionary:eventDict];
-    
     NSString *summary = [dCurrentEvent objectForKey:@"summary"];
     
     BOOL substringFound = NO;
@@ -1086,10 +1099,7 @@
                     }
                 }
                 
-                
-                
-                
-                
+
                 if (endTime.length > 10){
                 NSString *endMoment = [endTime substringWithRange:NSMakeRange(10, 9)];
                     if ([endMoment isEqual: @"T00:00:00"]){

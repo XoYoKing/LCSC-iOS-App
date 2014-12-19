@@ -11,6 +11,7 @@
 //#import "UpdateEventViewController.h"
 #import "CalendarViewController.h"
 #import "WebViewViewController.h"
+#import <EventKit/EventKit.h>
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
 
@@ -52,8 +53,6 @@
         dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"date"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
     }
     
-    //NSArray *dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
-    //substringWithRange:NSMakeRange(10, 9);
     NSString *yearHold = dateHold[0];
     NSString *dayHold = dateHold[2];
     NSString *monthHold = dateHold[1];
@@ -146,7 +145,6 @@
     events = [MonthlyEvents getSharedInstance];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
     
-    
     if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
     {
         timee = @"All Day Event";
@@ -200,7 +198,43 @@
     _Description.backgroundColor = [UIColor clearColor];
 }
 
+-(IBAction)AddEventToCal:(UIBarButtonItem *)sender{
+    EKEventStore *store = [[EKEventStore alloc] init];
+    //CLAYTON YOU NEED TO FIGURE THIS OUT!
+    bool restricted = false;
+    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(bool granted, NSError *error) {
+        if (!granted) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
+                                                            message:@"SFG"
+                                                           delegate:nil cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return;}
+        EKEvent *event = [EKEvent eventWithEventStore:store];
+        event.title = @"Event Title";
+        event.startDate = [NSDate date]; //today
+        event.endDate = [event.startDate dateByAddingTimeInterval:60*60];  //set 1 hour meeting
+        [event setCalendar:[store defaultCalendarForNewEvents]];
+        NSError *err = nil;
+        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
+    }];
+}
 
+/*-(void)addEventToUserCalendar{
+    EKEventStore *store = [[EKEventStore alloc] init];
+    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        if (!granted) { return; }
+        EKEvent *event = [EKEvent eventWithEventStore:store];
+        event.title = @"Event Title";
+        event.startDate = [NSDate date]; //today
+        event.endDate = [event.startDate dateByAddingTimeInterval:60*60];  //set 1 hour meeting
+        [event setCalendar:[store defaultCalendarForNewEvents]];
+        NSError *err = nil;
+        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
+    }];
+}*/
 
 - (void)viewDidAppear:(BOOL)animated {
     //[self.navigationController popToViewController:self animated:YES];
