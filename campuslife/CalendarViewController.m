@@ -398,13 +398,11 @@
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"CurrentDayCell" forIndexPath:indexPath];
         
         /*
-         //CLAYTON 2
          if the table view cells border or shade on current day ever quits working look here.
          the if loop that controls the length of holdViewDay was written in december and I assumed
          that _currentDateMonth will be 01 - 09 for single digit months. if it turns out not to be
          come january then the check for length and appending a 0 to the string needs to be deleted
          */
-        
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
         dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1]];
         if ([dayLbl.text isEqualToString:_currentDateDay]){
@@ -711,8 +709,7 @@
 }
 
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year {
-    
-    //CLAYTON 1
+
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"dd"];
     _currentDateDay =[DateFormatter stringFromDate:[NSDate date]];

@@ -194,14 +194,13 @@
     [Final appendAttributedString:attributedDesc];
     
     [self.Description setAttributedText:Final];
-    //myTextView.backgroundColor = [UIColor clearColor];
     _Description.backgroundColor = [UIColor clearColor];
 }
 
 -(IBAction)AddEventToCal:(UIBarButtonItem *)sender{
     EKEventStore *store = [[EKEventStore alloc] init];
     //CLAYTON YOU NEED TO FIGURE THIS OUT!
-    bool restricted = false;
+    //bool restricted = false;
     [store requestAccessToEntityType:EKEntityTypeEvent completion:^(bool granted, NSError *error) {
         if (!granted) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
@@ -211,9 +210,42 @@
             [alert show];
             return;}
         EKEvent *event = [EKEvent eventWithEventStore:store];
-        event.title = @"Event Title";
-        event.startDate = [NSDate date]; //today
-        event.endDate = [event.startDate dateByAddingTimeInterval:60*60];  //set 1 hour meeting
+        event.title = [_eventDict objectForKey:@"summary"];//solved
+        
+        
+        if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
+        {
+            event.allDay = true;
+            event.startDate = [NSDate date];
+            event.endDate = [NSDate date];
+        }
+        else
+        {
+            event.allDay = false;
+
+            NSArray *startDateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
+            NSArray *endDateHold = [[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
+            NSString *startTimeHold = [[[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+            NSString *endTimeHold = [[[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSLog(@"%@",[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]);
+            
+            
+            NSDate *startDate = [df dateFromString:[NSString stringWithFormat:@"%@-%@-%@ %@:00",startDateHold[0],startDateHold[1],startDateHold[2],startTimeHold]];
+            event.startDate = startDate;
+            
+            NSDate *endDate = [df dateFromString:[NSString stringWithFormat:@"%@-%@-%@ %@:00",endDateHold[0],endDateHold[1],endDateHold[2],endTimeHold]];
+            event.endDate = endDate;
+            NSLog(@"%@",startTimeHold);
+            NSLog(@"%@\n",event.startDate);
+            NSLog(@"%@",endTimeHold);
+            NSLog(@"%@\n\n",event.endDate);
+        }
+        
+        event.location = [_eventDict objectForKey:@"location"];
+        event.notes = [_eventDict objectForKey:@"description"];
+
         [event setCalendar:[store defaultCalendarForNewEvents]];
         NSError *err = nil;
         [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
