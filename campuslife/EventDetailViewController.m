@@ -197,20 +197,84 @@
     _Description.backgroundColor = [UIColor clearColor];
 }
 
+///clayton
 -(IBAction)AddEventToCal:(UIBarButtonItem *)sender{
-    EKEventStore *store = [[EKEventStore alloc] init];
-    //CLAYTON YOU NEED TO FIGURE THIS OUT!
-    //bool restricted = false;
-    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(bool granted, NSError *error) {
-        if (!granted) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
-                                                            message:@"SFG"
-                                                           delegate:nil cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            return;}
-        EKEvent *event = [EKEvent eventWithEventStore:store];
-        event.title = [_eventDict objectForKey:@"summary"];//solved
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add To Calendar" message:@"Add Event To Device Calendar?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil];
+    [alert show];
+
+}
+
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger) buttonIndex{
+    if (buttonIndex == 1) {
+        EKEventStore *store = [[EKEventStore alloc] init];
+        
+
+        [store requestAccessToEntityType:EKEntityTypeEvent completion:^(bool granted, NSError *error) {
+            if (!granted) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calendar Access Not Granted"
+                                                                message:@"Go to\nSettings > Privacy > Calendars\nand enable access to LCSC to add events to your personal calendar."
+                                                               delegate:nil cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                return;
+            }
+            else{
+                EKEvent *event = [EKEvent eventWithEventStore:store];
+                [event setTitle:[_eventDict objectForKey:@"summary"]];//solved
+                [event setLocation:[_eventDict objectForKey:@"location"]];//solved
+                [event setNotes:[_eventDict objectForKey:@"description"]];//solved
+
+                
+                if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
+                {
+                    [event setAllDay:true];
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    
+                    NSString *startDateString = [[_eventDict objectForKey:@"start"] objectForKey:@"date"];
+                    //NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"date"];
+                    
+                    NSDate *start = [[NSDate alloc] init];
+                    //NSDate *end = [[NSDate alloc] init];
+                    
+                    start = [dateFormatter dateFromString:startDateString];
+                    //end = [dateFormatter dateFromString:endDateString];
+                    
+                    [event setStartDate:start];
+                    /*
+                     This is a bad way to do it, but trying to get an end date was weird.
+                    so I just set both to the same day. I guess you can't save multi day events.
+                    sorry but I'm lazy and junk and it was a hot mess
+                    I'll leave the code commented out for the end date stuff <3
+                     */
+                    [event setEndDate:start];
+                }
+                else{
+                    //not all day event
+                }
+
+                
+                
+                
+                
+                
+                NSLog(@"%@",event);
+                [event setCalendar:[store defaultCalendarForNewEvents]];
+                NSError *err = nil;
+                [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+                //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
+                
+                
+                
+            }
+        }];
+    }
+}
+/*
+-(IBAction)AddEventToCall:(UIBarButtonItem *)sender{
+
         
         
         if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
@@ -252,7 +316,7 @@
         //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
     }];
 }
-
+*/
 /*-(void)addEventToUserCalendar{
     EKEventStore *store = [[EKEventStore alloc] init];
     [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {

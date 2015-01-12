@@ -394,33 +394,7 @@ static MonthlyEvents *allEventsInstance;
     NSMutableArray *newArray = [[NSMutableArray alloc] init];
     
     [newArray addObjectsFromArray:unsorted];
-    
-
         
-    //Preferences *preferences = [Preferences getSharedInstance];
-    
-    //int currentPos = 0;
-    /*
-    while (currentPos < [newArray count])
-    {
-        NSString *categoryName = [newArray[currentPos] objectForKey:@"category"];
-        BOOL removedSomething = NO;
-        for (NSString *name in [[MonthlyEvents getSharedInstance] getCategoryNames])
-        {
-            if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == NO))
-            {
-                [newArray removeObjectAtIndex:currentPos];
-                
-                removedSomething = YES;
-            }
-        }
-        
-        if(!removedSomething)
-        {
-            currentPos++;
-        }
-    }*/
-    
     if ([newArray count] > 1)
     {
         int currentPos = 0;
