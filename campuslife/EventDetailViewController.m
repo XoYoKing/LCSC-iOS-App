@@ -197,7 +197,7 @@
     _Description.backgroundColor = [UIColor clearColor];
 }
 
-///clayton
+
 -(IBAction)AddEventToCal:(UIBarButtonItem *)sender{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add To Calendar" message:@"Add Event To Device Calendar?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil];
     [alert show];
@@ -246,21 +246,44 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     /*
                      This is a bad way to do it, but trying to get an end date was weird.
                     so I just set both to the same day. I guess you can't save multi day events.
-                    sorry but I'm lazy and junk and it was a hot mess
-                    I'll leave the code commented out for the end date stuff <3
+                    sorry but I'm lazy and junk and it was a hot mess. In the end we don't really
+                    want to work with the recurrance stuff that is provided in the jsons anyway so 
+                    there is no good way to do multi day all day events.
+                    I'll leave the code commented out for the end date stuff incase someone has
+                    a weird breakthrough on how to do it in the future! <3
                      */
                     [event setEndDate:start];
                 }
                 else{
                     //not all day event
+
+                    [event setAllDay:false];
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
+
+            //clayton
+                    NSString *startDateString = [[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"];
+                    NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"];
+                    
+                    NSMutableString *mutableStartDate = [startDateString mutableCopy];
+                    NSMutableString *mutableEndDate = [endDateString mutableCopy];
+                    
+                    //Dont ask. adding the .000 made it a lot easier
+                    //Me and date formatters do not get along :(
+                    [mutableStartDate insertString:@".000" atIndex:19];
+                    [mutableEndDate insertString:@".000" atIndex:19];
+                    
+            
+                    [mutableStartDate deleteCharactersInRange:NSMakeRange(mutableStartDate.length - 3, 1)];
+                    [mutableEndDate deleteCharactersInRange:NSMakeRange(mutableEndDate.length - 3, 1)];
+
+
+                    NSDate *start = [dateFormatter dateFromString:mutableStartDate];
+                    NSDate *end = [dateFormatter dateFromString:mutableEndDate];
+                    [event setStartDate:start];
+                    [event setEndDate:end];
                 }
 
-                
-                
-                
-                
-                
-                NSLog(@"%@",event);
                 [event setCalendar:[store defaultCalendarForNewEvents]];
                 NSError *err = nil;
                 [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
@@ -272,65 +295,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
         }];
     }
 }
-/*
--(IBAction)AddEventToCall:(UIBarButtonItem *)sender{
 
-        
-        
-        if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
-        {
-            event.allDay = true;
-            event.startDate = [NSDate date];
-            event.endDate = [NSDate date];
-        }
-        else
-        {
-            event.allDay = false;
-
-            NSArray *startDateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
-            NSArray *endDateHold = [[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
-            NSString *startTimeHold = [[[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
-            NSString *endTimeHold = [[[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
-            NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            NSLog(@"%@",[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]);
-            
-            
-            NSDate *startDate = [df dateFromString:[NSString stringWithFormat:@"%@-%@-%@ %@:00",startDateHold[0],startDateHold[1],startDateHold[2],startTimeHold]];
-            event.startDate = startDate;
-            
-            NSDate *endDate = [df dateFromString:[NSString stringWithFormat:@"%@-%@-%@ %@:00",endDateHold[0],endDateHold[1],endDateHold[2],endTimeHold]];
-            event.endDate = endDate;
-            NSLog(@"%@",startTimeHold);
-            NSLog(@"%@\n",event.startDate);
-            NSLog(@"%@",endTimeHold);
-            NSLog(@"%@\n\n",event.endDate);
-        }
-        
-        event.location = [_eventDict objectForKey:@"location"];
-        event.notes = [_eventDict objectForKey:@"description"];
-
-        [event setCalendar:[store defaultCalendarForNewEvents]];
-        NSError *err = nil;
-        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
-        //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
-    }];
-}
-*/
-/*-(void)addEventToUserCalendar{
-    EKEventStore *store = [[EKEventStore alloc] init];
-    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        if (!granted) { return; }
-        EKEvent *event = [EKEvent eventWithEventStore:store];
-        event.title = @"Event Title";
-        event.startDate = [NSDate date]; //today
-        event.endDate = [event.startDate dateByAddingTimeInterval:60*60];  //set 1 hour meeting
-        [event setCalendar:[store defaultCalendarForNewEvents]];
-        NSError *err = nil;
-        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
-        NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
-    }];
-}*/
 
 - (void)viewDidAppear:(BOOL)animated {
     //[self.navigationController popToViewController:self animated:YES];

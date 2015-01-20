@@ -402,6 +402,9 @@
          the if loop that controls the length of holdViewDay was written in december and I assumed
          that _currentDateMonth will be 01 - 09 for single digit months. if it turns out not to be
          come january then the check for length and appending a 0 to the string needs to be deleted
+         
+         all of the resets to cell layer and border were probably not needed, but I just wanted
+         to be super through.
          */
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
         dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1]];
@@ -410,7 +413,6 @@
             if (holdViewDay.length != _currentDateMonth.length){
                 holdViewDay = [NSString stringWithFormat:@"0%@",holdViewDay];
             }else{
-                //Add it here
                 cell.layer.borderWidth=0.0f;
                 cell.layer.borderColor=[UIColor clearColor].CGColor;
             }
@@ -418,21 +420,23 @@
                 if ([[NSString stringWithFormat:@"%d",[_events getSelectedYear]] isEqualToString: _currentDateYear]){
                     ///edit the cell
                     cell.layer.borderWidth=0.5f;
-                    cell.layer.borderColor=[UIColor blueColor].CGColor;
+                    cell.layer.borderColor=[UIColor grayColor].CGColor;
+                    
+                    //This is how you edit the color of the cell and not just the border.
                     //cell.backgroundColor = [UIColor colorWithRed:240.0/256.0 green:240.0/256.0 blue:240.0/256.0 alpha:1.0];
                 }else{
-                    //add it here
+       
                     cell.layer.borderWidth=0.0f;
                     cell.layer.borderColor=[UIColor clearColor].CGColor;
                 }
             }else{
-                //add it here
+          
                 cell.layer.borderWidth=0.0f;
                 cell.layer.borderColor=[UIColor clearColor].CGColor;
             }
         }
         else{
-            //add it here
+
             cell.layer.borderWidth=0.0f;
             cell.layer.borderColor=[UIColor clearColor].CGColor;
         }
