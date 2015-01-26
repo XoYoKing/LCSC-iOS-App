@@ -420,7 +420,7 @@
                 if ([[NSString stringWithFormat:@"%d",[_events getSelectedYear]] isEqualToString: _currentDateYear]){
                     ///edit the cell
                     cell.layer.borderWidth=0.5f;
-                    cell.layer.borderColor=[UIColor grayColor].CGColor;
+                    cell.layer.borderColor=[UIColor blueColor].CGColor;
                     
                     //This is how you edit the color of the cell and not just the border.
                     //cell.backgroundColor = [UIColor colorWithRed:240.0/256.0 green:240.0/256.0 blue:240.0/256.0 alpha:1.0];
@@ -1078,6 +1078,7 @@
             NSString *summary;
             NSString *description;
    
+            //This fix for days probably will cause a new years issue if the event goes till midnight on the first
             if ([oldEventsInfo[i] valueForKey:@"start"] != nil)
             {
                 if ([oldEventsInfo[i] valueForKeyPath:@"start.dateTime"] != nil) {

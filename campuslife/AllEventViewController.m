@@ -512,7 +512,10 @@
                             oldEventsInfo[i] = replacementEvent;
                         }
                         else{
+                            //clayton spring break is broken in both code bases for all evetns and calendar
+                            
                             [oldEventsInfo addObject: replacementEvent];
+                           
                         }
                     }
                 }
@@ -607,6 +610,7 @@
                             }
                             else{
                                 [oldEventsInfo addObject: replacementEvent];
+                        
                             }
                         }
                     }

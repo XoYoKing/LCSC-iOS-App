@@ -6,31 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/EventDetailViewController.m"
-            timestampString = "441455919.641374"
+            timestampString = "443992026.593655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "campuslife/EventDetailViewController.m"
-            timestampString = "443438119.056978"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "campuslife/EventDetailViewController.m"
-            timestampString = "443438392.477824"
+            filePath = "campuslife/AllEventViewController.m"
+            timestampString = "443991697.157934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
-            landmarkName = "-alertView:clickedButtonAtIndex:"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
+            landmarkName = "-parseJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "campuslife/EventDetailViewController.m"
-            timestampString = "443438442.583938"
+            filePath = "campuslife/AllEventViewController.m"
+            timestampString = "443991697.157934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
-            landmarkName = "-alertView:clickedButtonAtIndex:"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
+            landmarkName = "-parseJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +57,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "campuslife/EventDetailViewController.m"
-            timestampString = "443438639.716542"
+            filePath = "campuslife/AllEventViewController.m"
+            timestampString = "443991697.157934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-alertView:clickedButtonAtIndex:"
+            startingLineNumber = "480"
+            endingLineNumber = "480"
+            landmarkName = "-parseJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "campuslife/EventDetailViewController.m"
-            timestampString = "443438642.972645"
+            filePath = "campuslife/CalendarViewController.m"
+            timestampString = "443992269.690817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
-            landmarkName = "-alertView:clickedButtonAtIndex:"
+            startingLineNumber = "1168"
+            endingLineNumber = "1168"
+            landmarkName = "-parseJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

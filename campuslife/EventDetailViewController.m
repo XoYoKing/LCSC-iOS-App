@@ -268,8 +268,12 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     NSMutableString *mutableStartDate = [startDateString mutableCopy];
                     NSMutableString *mutableEndDate = [endDateString mutableCopy];
                     
-                    //Dont ask. adding the .000 made it a lot easier
+                    
+                    //Dont ask. adding the .000 made it a lot easier (I followed a stackOverflow article)
                     //Me and date formatters do not get along :(
+                    //I'm sorry if this causes issues in the future
+                    //It only will if google changes formats with api v4 or something
+                    //BUT THAT WILL BE SO MANY OTHER PROBLEMS WHO CARES ABOUT THIS ONE
                     [mutableStartDate insertString:@".000" atIndex:19];
                     [mutableEndDate insertString:@".000" atIndex:19];
                     
