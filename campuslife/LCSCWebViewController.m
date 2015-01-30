@@ -37,7 +37,7 @@
 -(void)loadContent{
     tornDown = false;
     [self setUrl:[NSURL URLWithString:@"http://www.lcsc.edu"]];
-    
+
     [super viewDidLoad];
     _activity.hidden = NO;
     [self.activity startAnimating];

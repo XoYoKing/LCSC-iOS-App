@@ -244,13 +244,13 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     
                     [event setStartDate:start];
                     /*
-                     This is a bad way to do it, but trying to get an end date was weird.
+                     This is not the best way do to it, but trying to get an end date was weird.
                     so I just set both to the same day. I guess you can't save multi day events.
                     sorry but I'm lazy and junk and it was a hot mess. In the end we don't really
                     want to work with the recurrance stuff that is provided in the jsons anyway so 
                     there is no good way to do multi day all day events.
                     I'll leave the code commented out for the end date stuff incase someone has
-                    a weird breakthrough on how to do it in the future! <3
+                    a weird breakthrough on how to do it in the future!
                      */
                     [event setEndDate:start];
                 }
@@ -271,9 +271,6 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     
                     //Dont ask. adding the .000 made it a lot easier (I followed a stackOverflow article)
                     //Me and date formatters do not get along :(
-                    //I'm sorry if this causes issues in the future
-                    //It only will if google changes formats with api v4 or something
-                    //BUT THAT WILL BE SO MANY OTHER PROBLEMS WHO CARES ABOUT THIS ONE
                     [mutableStartDate insertString:@".000" atIndex:19];
                     [mutableEndDate insertString:@".000" atIndex:19];
                     
