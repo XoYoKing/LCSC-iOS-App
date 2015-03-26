@@ -37,6 +37,7 @@
 -(void)loadContent{
     tornDown = false;
     [self setUrl:[NSURL URLWithString:@"http://www.lcsc.edu"]];
+    //[self setUrl:[NSURL URLWithString:@"http://isoptera.lcsc.edu/~cmyager/"]];
 
     [super viewDidLoad];
     _activity.hidden = NO;

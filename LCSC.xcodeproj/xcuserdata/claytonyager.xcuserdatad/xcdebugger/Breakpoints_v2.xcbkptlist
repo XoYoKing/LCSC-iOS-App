@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/AllEventViewController.m"
-            timestampString = "443991697.157934"
+            timestampString = "445551682.397505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "455"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/AllEventViewController.m"
-            timestampString = "443991697.157934"
+            timestampString = "445551682.397505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "476"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "campuslife/AllEventViewController.m"
-            timestampString = "443991697.157934"
+            timestampString = "445551682.397505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "480"
@@ -80,6 +80,22 @@
             startingLineNumber = "1168"
             endingLineNumber = "1168"
             landmarkName = "-parseJSON:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "campuslife/LCSCWebViewController.m"
+            timestampString = "445887720.728976"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-loadContent"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

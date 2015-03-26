@@ -1064,7 +1064,7 @@
             }
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
-        //  of the app.
+        //of the app.
 
         NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
         for (int i=0; i<oldEventsInfo.count; i++)
