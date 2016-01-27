@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -82,6 +83,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FE5FA781C594BA80024CEFB /* CalendarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfo.h; sourceTree = "<group>"; };
+		3FE5FA791C594BA80024CEFB /* CalendarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfo.m; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
+				3FE5FA781C594BA80024CEFB /* CalendarInfo.h */,
+				3FE5FA791C594BA80024CEFB /* CalendarInfo.m */,
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
@@ -507,6 +512,7 @@
 				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
+				3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
