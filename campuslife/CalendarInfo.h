@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface CalendarInfo : NSObject
-
++(int)getDaysOfMonth:(int)month :(int)year;
++(NSArray *)getDaysOfAllMonths:(int)year;
++(NSInteger)getCurrentDay;
++(NSInteger)getCurrentMonth;
++(NSInteger)getCurrentYear;
 @end
