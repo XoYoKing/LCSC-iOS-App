@@ -371,24 +371,6 @@ static MonthlyEvents *allEventsInstance;
     return daysOfMonth;
 }
 
--(NSInteger)getCurrentDay
-{
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    return [components day];
-}
-
--(NSInteger)getCurrentMonth
-{
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    return [components month];
-}
-
--(NSInteger)getCurrentYear
-{
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    return [components year];
-}
-
 - (NSMutableArray *)eventSorter:(NSArray *)unsorted
 {
     NSMutableArray *newArray = [[NSMutableArray alloc] init];

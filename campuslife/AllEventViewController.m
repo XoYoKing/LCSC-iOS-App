@@ -10,6 +10,7 @@
 #import "MonthlyEvents.h"
 #import "EventDetailTableViewController.h"
 #import "CalendarViewController.h"
+#import "CalendarInfo.h"
 #import "Preferences.h"
 
 @interface AllEventViewController ()
@@ -33,7 +34,6 @@
     self.tableView.rowHeight = 44;
     // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
     wentToEvent = NO;
-
 }
 
 -(void)loadAllData
@@ -385,9 +385,9 @@
     int toYear = (int)currentYear;
     int endDay = [events getDaysOfMonth:toMonth :toYear];
     
-    int curMonth = (int)[events getCurrentMonth];
-    int curYear = (int)[events getCurrentYear];
-    int curDay = (int)[events getCurrentDay];
+    int curMonth = (int)[CalendarInfo getCurrentMonth];
+    int curYear = (int)[CalendarInfo getCurrentYear];
+    int curDay = (int)[CalendarInfo getCurrentDay];
     NSString *curDayAsString;
     if(curDay < 10) {
         curDayAsString = [NSString stringWithFormat:@"0%d", curDay];
