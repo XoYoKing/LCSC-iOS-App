@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CalendarInfo : NSObject
-+(int)getDaysOfMonth:(int)month :(int)year;
++(int)getDaysOfMonth:(int)month ofYear:(int)year;
 +(NSArray *)getDaysOfAllMonthsInYear:(int)year;
 
 // Methods for getting the information on category names and Calendar Ids

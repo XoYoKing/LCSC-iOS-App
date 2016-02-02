@@ -7,6 +7,7 @@
 //
 
 #import "MonthFactory.h"
+#import "CalendarInfo.h"
 
 @implementation MonthFactory
 

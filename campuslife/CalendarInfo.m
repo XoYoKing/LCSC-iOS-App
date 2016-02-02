@@ -17,15 +17,26 @@ static NSMutableArray *daysInMonth;
 static NSDictionary *calendarIds;
 static NSArray *categoryNames;
 
++(void)initialize
+{
+    daysInMonth = [[NSMutableArray alloc] initWithArray:@[@31, @28, @31, @30, @31, @30, @31, @31, @30, @31, @30, @31]];
+    
+    categoryNames = [[NSMutableArray alloc] initWithArray:@[@"Entertainment", @"Academics", @"Student Activities", @"Residence Life", @"Warrior Athletics", @"Campus Rec"]];
+    
+    calendarIds = [[NSDictionary alloc]
+                   initWithObjectsAndKeys:@"0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com", @"Academics",
+                   @"l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com", @"Student Activities",
+                   @"d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com", @"Warrior Athletics",
+                   @"m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com", @"Entertainment",
+                   @"gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com", @"Residence Life",
+                   @"h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com", @"Campus Rec", nil];
+}
+
 //@param month An integer in [1,12]
 //@param year An integer that represents the exact year. No offsets here...
 //@return Should be an integer in [28,31].
-+(int)getDaysOfMonth:(int)month :(int)year {
-    //account for leap year.
-    
-    if(!daysInMonth || [daysInMonth count] == 0) {
-        daysInMonth = [[NSMutableArray alloc] initWithArray:@[@31, @28, @31, @30, @31, @30, @31, @31, @30, @31, @30, @31]];
-    }
++(int)getDaysOfMonth:(int)month ofYear:(int)year
+{
     int daysOfMonth = 0;
     //Account for leap year when dealing with February.
     if (year%4 == 0
@@ -41,9 +52,6 @@ static NSArray *categoryNames;
 +(NSArray *)getDaysOfAllMonthsInYear:(int)year
 {
     NSMutableArray *daysOfMonths;
-    if(!daysInMonth || [daysInMonth count] == 0) {
-        daysInMonth = [[NSMutableArray alloc] initWithArray:@[@31, @28, @31, @30, @31, @30, @31, @31, @30, @31, @30, @31]];
-    }
     (void)[daysOfMonths initWithArray:daysInMonth copyItems:YES];
     
     // account for leap year
@@ -56,42 +64,16 @@ static NSArray *categoryNames;
 
 +(NSArray *)getCategoryNames
 {
-    if(!categoryNames || [categoryNames count] == 0)
-    {
-        categoryNames = [[NSMutableArray alloc] initWithArray:@[@"Entertainment", @"Academics", @"Student Activities", @"Residence Life", @"Warrior Athletics", @"Campus Rec"]];
-    }
     return [[NSArray alloc] initWithArray:categoryNames copyItems:YES];
 }
 
 +(NSString *)getCalIdOfCategory:(NSString *)category
 {
-    if(!calendarIds || [calendarIds count] == 0)
-    {
-        calendarIds = [[NSDictionary alloc]
-                       initWithObjectsAndKeys:@"0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com", @"Academics",
-                       @"l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com", @"Student Activities",
-                       @"d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com", @"Warrior Athletics",
-                       @"m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com", @"Entertainment",
-                       @"gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com", @"Residence Life",
-                       @"h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com", @"Campus Rec", nil];
-    }
-    
     return calendarIds[category];
 }
 
 +(NSDictionary *)getCalIds
 {
-    if(!calendarIds || [calendarIds count] == 0)
-    {
-        calendarIds = [[NSDictionary alloc]
-                       initWithObjectsAndKeys:@"0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com", @"Academics",
-                       @"l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com", @"Student Activities",
-                       @"d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com", @"Warrior Athletics",
-                       @"m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com", @"Entertainment",
-                       @"gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com", @"Residence Life",
-                       @"h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com", @"Campus Rec", nil];
-    }
-    
     return [[NSDictionary alloc] initWithDictionary:calendarIds copyItems:YES];
 }
 
@@ -114,7 +96,7 @@ static NSArray *categoryNames;
 }
 
 //Gets a string that represents the current month.
-+(NSString *)getMonthBarDateForMonth:(NSInteger)selectedMonth {
++(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth {
     NSString *month;
     switch (selectedMonth) {
         case 1:

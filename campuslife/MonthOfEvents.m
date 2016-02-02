@@ -7,7 +7,25 @@
 //
 
 #import "MonthOfEvents.h"
+#import "CalendarInfo.h"
+
+@interface MonthOfEvents ()
+    @property (atomic, strong) NSMutableArray *days;
+@end
 
 @implementation MonthOfEvents
+-(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year
+{
+    int number_of_days = [CalendarInfo getDaysOfMonth:(int)month ofYear:(int)year];
+    _days = [[NSMutableArray alloc] initWithCapacity:number_of_days];
+    _month = month;
+    _year = year;
+    
+    return self;
+}
 
+-(NSDictionary *)getEventOnDay:(int)day
+{
+    return (NSDictionary *)[_days objectAtIndex:day-1];
+}
 @end
