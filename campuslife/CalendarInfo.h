@@ -22,4 +22,5 @@
 +(NSInteger)getCurrentMonth;
 +(NSInteger)getCurrentYear;
 
++(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth;
 @end
