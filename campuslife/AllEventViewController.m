@@ -12,6 +12,7 @@
 #import "CalendarViewController.h"
 #import "CalendarInfo.h"
 #import "Preferences.h"
+#import "EventHelper.h"
 
 @interface AllEventViewController ()
 {
@@ -48,10 +49,7 @@
     preferences = [Preferences getSharedInstance];
     [self loadAllEvents];
     displayedEvents = [[NSMutableArray alloc] init];
-
-    [sortedArray sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
-         return [self compareEvents:obj1 :obj2];
-     }];
+    [EventHelper sortEventsInArray:sortedArray];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -10,6 +10,7 @@
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
+		40EE7B131C67F4DC0061524C /* EventHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40EE7B121C67F4DC0061524C /* EventHelper.m */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -91,6 +92,8 @@
 		40AC32EB1C60294B003468F8 /* MonthOfEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthOfEvents.m; sourceTree = "<group>"; };
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
 		40AC32F11C6029F2003468F8 /* MonthFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFactory.m; sourceTree = "<group>"; };
+		40EE7B111C67F4DC0061524C /* EventHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHelper.h; sourceTree = "<group>"; };
+		40EE7B121C67F4DC0061524C /* EventHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHelper.m; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
+				40EE7B111C67F4DC0061524C /* EventHelper.h */,
+				40EE7B121C67F4DC0061524C /* EventHelper.m */,
 				3FE5FA781C594BA80024CEFB /* CalendarInfo.h */,
 				3FE5FA791C594BA80024CEFB /* CalendarInfo.m */,
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
@@ -507,6 +512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40EE7B131C67F4DC0061524C /* EventHelper.m in Sources */,
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
 				9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */,
