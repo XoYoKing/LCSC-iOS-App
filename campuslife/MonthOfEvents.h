@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface MonthOfEvents : NSObject
--(NSDictionary *)getEventOnDay:(int)day;
--(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year;
+-(NSArray *)getEventsForDay:(NSInteger)day;
+-(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year andEventsArray:(NSArray *)events;
 
 @property (nonatomic, readonly, getter=getMonth) NSInteger month;
 @property (nonatomic, readonly, getter=getYear) NSInteger year;

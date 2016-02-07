@@ -80,6 +80,7 @@
     return timestamp;
 }
 
+// These methods allow us to get other important information about the events
 +(NSString *)getEventCategory:(NSDictionary *)event
 {
     return [event objectForKey:@"category"];
