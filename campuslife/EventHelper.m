@@ -151,6 +151,5 @@
     [eventsArray sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
         return [self compareEvents:obj1 :obj2];
     }];
-    //NSLog(@"%@", eventsArray);
 }
 @end
