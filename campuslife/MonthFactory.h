@@ -14,7 +14,7 @@
 /** Manufactures and returns a MonthOfEvents object for events in the month and year
   * specified by date
   */
-+(MonthOfEvents *) getMonthOfEventsFromDate:(NSDate *) date;
++(MonthOfEvents *) getMonthOfEventsFromMonth:(NSInteger)month andYear:(NSInteger)year;
 
 /** Manufactures and returns MonthOfEvents objects for events in the months and years
   * specified by the date range
