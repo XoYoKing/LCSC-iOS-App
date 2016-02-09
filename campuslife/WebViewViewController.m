@@ -10,6 +10,8 @@
 #import "Reachability.h"
 
 @interface WebViewViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *back;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *forward;
 
 @end
 

@@ -32,7 +32,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 4;
 }
 
 #pragma mark - Navigation
@@ -40,20 +40,25 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     WebViewViewController *dest = (WebViewViewController *)[segue destinationViewController];
-    NSString *url;
+    NSString *url, *title;
     if([segue.identifier  isEqualToString: @"LCSC"]) {
         url = @"http://www.lcsc.edu";
+        title = @"LCSC";
         
     } else if([segue.identifier isEqualToString:@"Athletics"]) {
         url = @"http://www.lcwarriors.com";
+        title = @"Warrior Athletics";
         
     } else if([segue.identifier isEqualToString:@"WarriorWeb"]) {
         url = @"http://www.lcsc.edu/warriorweb";
+        title = @"Warrior Web";
         
     } else if ([segue.identifier isEqualToString:@"LCMail"]) {
         url = @"http://www.lcsc.edu/lcmail/";
+        title = @"LC Mail";
     }
     [dest setUrl:[NSURL URLWithString:url]];
+    [dest setTitle:title];
 }
 
 /*
@@ -102,6 +107,12 @@
 
 
 
+
+
+
+- (IBAction)goBack:(id)sender {
+    [self setTitle:@"Important Links 'n Shit"];
+}
 
 
 @end

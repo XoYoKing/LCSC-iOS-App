@@ -500,8 +500,8 @@
                     <connections>
                         <segue destination="uar-4W-Ymn" kind="relationship" relationship="viewControllers" id="Iwm-vG-bSo"/>
                         <segue destination="pcG-gU-rIb" kind="relationship" relationship="viewControllers" id="ndn-xx-smT"/>
-                        <segue destination="E8T-kD-dN5" kind="relationship" relationship="viewControllers" id="SgL-o0-lmK"/>
                         <segue destination="lMR-kF-57F" kind="relationship" relationship="viewControllers" id="Xu4-P3-IHa"/>
+                        <segue destination="E8T-kD-dN5" kind="relationship" relationship="viewControllers" id="SgL-o0-lmK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2p-t6-FJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -825,15 +825,15 @@
         <scene sceneID="svA-5e-7ZY">
             <objects>
                 <tableViewController title="Resources" id="YHc-uI-bkV" customClass="ResourcesTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q6g-TC-K3A">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Q6g-TC-K3A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="Resources" id="jqw-oK-mzV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="3JF-Xd-Gr5">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="114" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3JF-Xd-Gr5" id="XuR-sv-w8h">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -845,6 +845,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8va-bt-7Ge">
+                                                    <rect key="frame" x="210" y="10" width="38" height="30"/>
+                                                    <state key="normal" title=" ">
+                                                        <color key="titleColor" red="0.97694689938949719" green="1" blue="0.98752397228626809" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="goBack:" destination="YHc-uI-bkV" eventType="touchUpInside" id="iEU-4u-fj9"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -852,7 +861,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="grV-gA-5mE">
-                                        <rect key="frame" x="0.0" y="136" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="158" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="grV-gA-5mE" id="RRc-3D-fVM">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -871,7 +880,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="RlM-jt-HJS">
-                                        <rect key="frame" x="0.0" y="180" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="202" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RlM-jt-HJS" id="YJE-2b-PWO">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -890,7 +899,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="hSc-fe-vxS">
-                                        <rect key="frame" x="0.0" y="224" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="246" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSc-fe-vxS" id="4AU-LQ-xP4">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1033,10 +1042,10 @@
             </objects>
             <point key="canvasLocation" x="-2380" y="715"/>
         </scene>
-        <!-- -->
+        <!--WebView-->
         <scene sceneID="CsO-pk-hbK">
             <objects>
-                <viewController title=" " id="ZRg-o5-Mzc" customClass="WebViewViewController" sceneMemberID="viewController">
+                <viewController title="WebView" id="ZRg-o5-Mzc" customClass="WebViewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x3k-o4-VvO"/>
                         <viewControllerLayoutGuide type="bottom" id="PtJ-rj-MWA"/>
@@ -1069,6 +1078,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="38c-bn-w4a" id="Zgn-cA-vox"/>
+                        <outlet property="back" destination="Btq-gf-tLc" id="pf9-eR-pjc"/>
+                        <outlet property="forward" destination="gq0-KG-I61" id="ziP-9N-c6m"/>
                         <outlet property="webView" destination="gvd-7S-B7k" id="m52-vX-Vn5"/>
                     </connections>
                 </viewController>

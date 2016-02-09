@@ -17,5 +17,4 @@
 
 -(void) TearDownUIWebView;
 -(void) setUrl:(NSURL *)url;
-
 @end
