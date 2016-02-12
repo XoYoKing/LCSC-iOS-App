@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
+		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
 		40EE7B131C67F4DC0061524C /* EventHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40EE7B121C67F4DC0061524C /* EventHelper.m */; };
@@ -91,6 +92,8 @@
 		3FE5FA791C594BA80024CEFB /* CalendarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfo.m; sourceTree = "<group>"; };
 		400AC86D1C698D55003FC6E3 /* ResourcesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesTableViewController.h; sourceTree = "<group>"; };
 		400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesTableViewController.m; sourceTree = "<group>"; };
+		400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCEvent.h; sourceTree = "<group>"; };
+		400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCEvent.m; sourceTree = "<group>"; };
 		40AC32EA1C60294B003468F8 /* MonthOfEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthOfEvents.h; sourceTree = "<group>"; };
 		40AC32EB1C60294B003468F8 /* MonthOfEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthOfEvents.m; sourceTree = "<group>"; };
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
+				400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */,
+				400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */,
 				40EE7B111C67F4DC0061524C /* EventHelper.h */,
 				40EE7B121C67F4DC0061524C /* EventHelper.m */,
 				3FE5FA781C594BA80024CEFB /* CalendarInfo.h */,
@@ -536,6 +541,7 @@
 				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
+				400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */,
 				3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
