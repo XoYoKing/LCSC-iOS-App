@@ -13,6 +13,8 @@
 #import "CalendarInfo.h"
 #import "Preferences.h"
 #import "EventHelper.h"
+#import "MonthFactory.h"
+#import "MonthOfEvents.h"
 
 @interface AllEventViewController ()
 {
@@ -39,6 +41,7 @@
 
 -(void)loadAllData
 {
+    //MonthOfEvents *whocares = [MonthFactory getMonthOfEventsFromMonth:2 andYear:2016];
     UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:0];
     cal = [navCont.childViewControllers objectAtIndex:0];
     sortedArray = [[NSMutableArray alloc] init];

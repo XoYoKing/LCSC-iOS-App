@@ -6,23 +6,88 @@
 //  Copyright (c) 2016 LCSC. All rights reserved.
 //
 
+// TODO: Integrate the setJsonDictsReceived thing from MonthlyEvents into this
+
 #import "MonthFactory.h"
 #import "CalendarInfo.h"
+#import "MonthOfEvents.h"
+#import "LCSCEvent.h"
 
 @implementation MonthFactory
+
+static NSMutableDictionary *monthCache;
+
++(void)initialize
+{
+    monthCache = [[NSMutableDictionary alloc] init];
+}
+
+
++(NSString *)getIndexStr:(NSInteger)month :(NSInteger)year
+{
+    return [NSString stringWithFormat:@"%ld-%ld", year, month];
+}
+
+
++(BOOL) checkCacheForMonth:(NSInteger)month andYear:(NSInteger)year
+{
+    return [monthCache objectForKey:[MonthFactory getIndexStr:month :year]];
+}
+
+
 +(MonthOfEvents *) getMonthOfEventsFromMonth:(NSInteger)month andYear:(NSInteger)year
 {
-    NSArray *events = [MonthFactory loadEventsFromMonth:month andYear:year toMonth:month andYear:year];
-    return [[MonthOfEvents alloc] initWithMonth:month andYear:year andEventsArray:events];
+    NSString *searchStr = [MonthFactory getIndexStr:month :year];
+    MonthOfEvents *thisMonth;
+    
+    if([MonthFactory checkCacheForMonth:month andYear:year]) {
+        thisMonth = (MonthOfEvents *)[monthCache objectForKey:searchStr];
+    
+    } else {
+        NSArray *events = [MonthFactory loadEventsFromMonth:month andYear:year toMonth:month andYear:year];
+        thisMonth = [[MonthOfEvents alloc] initWithMonth:month andYear:year andEventsArray:events];
+        [monthCache setObject:thisMonth forKey:searchStr];
+    }
+    
+    return thisMonth;
 }
+
+
++(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
+                                      toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
+{
+    NSMutableArray *monthsOfEvents = [[NSMutableArray alloc] init];
+    NSInteger curYear = startYear;
+    NSInteger curMonth = startMonth;
+    while (curMonth <= endMonth && curYear <= startYear) {
+        NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+        if([MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
+            [monthsOfEvents addObject:[monthCache objectForKey:indexStr]];
+            
+        } else {
+            MonthOfEvents *thisMonth = [MonthFactory getMonthOfEventsFromMonth:curMonth andYear:curYear];
+            [monthCache setObject:thisMonth forKey:indexStr];
+        }
+        
+        if(curMonth >= 12) {
+            curMonth = 1;
+            curYear++;
+        } else {
+            curMonth++;
+        }
+    }
+    
+    return monthsOfEvents;
+}
+
 
 +(NSArray *)loadEventsFromMonth:(NSInteger) startMonth andYear:(NSInteger)startYear toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
 {
-    NSMutableArray *events;
+    NSMutableArray *events = [[NSMutableArray alloc] init];
     // the first day of the start month
     int startDay = 1;
     // the last day of the end month
-    int endDay = [CalendarInfo getDaysOfMonth:endMonth ofYear:endYear];
+    int endDay = [CalendarInfo getDaysOfMonth:(int)endMonth ofYear:(int)endYear];
     
     NSString *curDayAsString;
     if(startDay < 10) {
@@ -53,7 +118,7 @@
         }
         
         
-        
+        // take this out of the loop
         url = [NSURL URLWithString:urlString];
         
         NSData *data = [NSData dataWithContentsOfURL:url];
@@ -66,9 +131,10 @@
     return events;
 }
 
+
 +(NSMutableArray *)parseJSON:(NSData *)JSONAsData :(NSInteger)endMonth :(NSInteger)endYear
 {
-    NSMutableArray *parsedEvents;
+    NSMutableArray *parsedEvents = [[NSMutableArray alloc] init];
     NSError *error = nil;
     
     // Get the JSON data as a dictionary.
@@ -383,8 +449,8 @@
         }
         
         
-        int selectedMonth = endMonth;
-        int selectedYear = endYear;
+        int selectedMonth = (int)endMonth;
+        int selectedYear = (int)endYear;
         
         
         if (selectedMonth == 0)
@@ -671,8 +737,7 @@
                 }
             }
             
-            // for now, each currentEventInfo is just added to the sortedArray at the end of each iteration
-            [parsedEvents addObject:currentEventInfo];
+            [parsedEvents addObject:[[LCSCEvent alloc] initWithNSDictionary:currentEventInfo]];
         }
     }
     

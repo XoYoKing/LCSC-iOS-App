@@ -19,6 +19,7 @@
 /** Manufactures and returns MonthOfEvents objects for events in the months and years
   * specified by the date range
   */
-+(NSMutableArray *) getMonthOfEventsFromDate:(NSDate *)from_date toDate:(NSDate *) to_date;
++(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
+                                      toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
 
 @end
