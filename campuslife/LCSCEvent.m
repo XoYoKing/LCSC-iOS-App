@@ -36,4 +36,49 @@
     
     return self;
 }
+
+// TODO: Needs to compare down to hours and minutes
+-(NSComparisonResult)compare:(LCSCEvent *)otherEvent;
+{
+    NSComparisonResult comp;
+    NSInteger event1Year = [self getStartYear];
+    NSInteger event1Month = [self getStartMonth];
+    NSInteger event1Day = [self getStartDay];
+    NSInteger event1Hour = 0;
+    
+    NSInteger event2Year = [otherEvent getStartYear];
+    NSInteger event2Month = [otherEvent getStartYear];
+    NSInteger event2Day = [otherEvent getStartYear];
+    NSInteger event2Hour = 0;
+    
+    if(event1Year < event2Year) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+        
+    } else if(event1Year > event2Year) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+        
+    } else if(event1Month < event2Month) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+        
+    } else if(event1Month > event2Month) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+        
+    } else if(event1Day < event2Day) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+        
+    } else if(event1Day > event2Day) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+        
+    } else if(event1Hour < event2Hour) {
+        comp = (NSComparisonResult )NSOrderedAscending;
+        
+    } else if(event1Hour > event2Hour) {
+        comp = (NSComparisonResult )NSOrderedDescending;
+        
+    } else {
+        comp = (NSComparisonResult )NSOrderedSame;
+    }
+    
+    return comp;
+}
 @end

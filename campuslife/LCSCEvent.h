@@ -12,9 +12,10 @@
 
 // This constructor initializes the LCSCEvent object using the old NSDictionary structure
 -(id)initWithNSDictionary:(NSDictionary *)dict;
+-(NSComparisonResult)compare:(LCSCEvent *)otherEvent;
+
 
 @property (readonly, getter=isAllDay) BOOL allDay;
-
 @property (readonly, getter=getStartDay) NSInteger startDay;
 @property (readonly, getter=getStartMonth) NSInteger startMonth;
 @property (readonly, getter=getStartYear) NSInteger startYear;
