@@ -59,16 +59,17 @@ static NSMutableDictionary *monthCache;
     NSMutableArray *monthsOfEvents = [[NSMutableArray alloc] init];
     NSInteger curYear = startYear;
     NSInteger curMonth = startMonth;
+    MonthOfEvents *thisMonth;
     while (curMonth <= endMonth && curYear <= startYear) {
         NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
         if([MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
-            [monthsOfEvents addObject:[monthCache objectForKey:indexStr]];
+            thisMonth = [monthCache objectForKey:indexStr];
             
         } else {
-            MonthOfEvents *thisMonth = [MonthFactory getMonthOfEventsFromMonth:curMonth andYear:curYear];
+            thisMonth = [MonthFactory getMonthOfEventsFromMonth:curMonth andYear:curYear];
             [monthCache setObject:thisMonth forKey:indexStr];
         }
-        
+        [monthsOfEvents addObject:thisMonth];
         if(curMonth >= 12) {
             curMonth = 1;
             curYear++;

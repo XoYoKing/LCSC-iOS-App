@@ -9,6 +9,7 @@
 #import "MonthOfEvents.h"
 #import "CalendarInfo.h"
 #import "EventHelper.h"
+#import "LCSCEvent.h"
 
 @interface MonthOfEvents ()
     @property (atomic, strong) NSMutableArray *days;
@@ -41,7 +42,7 @@
 /** Adds event event to day of the month
   * Should probably keep these in order based upon time in the future
   */
--(void)addEvent:(NSDictionary *)event toDay:(NSInteger)day
+-(void)addEvent:(LCSCEvent *)event toDay:(NSInteger)day
 {
     NSMutableArray *dayArray = [_days objectAtIndex:day-1];
     [dayArray addObject:event];
@@ -50,10 +51,10 @@
 -(void)loadEventsFromArray:(NSArray *)events
 {
     NSInteger eventStartDay, eventStartMonth, eventStartYear;
-    for(NSDictionary *event in events) {
-        eventStartDay = [EventHelper getEventStartDay:event];
-        eventStartMonth = [EventHelper getEventStartMonth:event];
-        eventStartYear  = [EventHelper getEventStartYear:event];
+    for(LCSCEvent *event in events) {
+        eventStartDay = [event getStartDay];
+        eventStartMonth = [event getStartMonth];
+        eventStartYear  = [event getStartYear];
         
         // check that the event actually occurs in this month and year before adding it
         if(eventStartMonth == _month && eventStartYear == _year) {
