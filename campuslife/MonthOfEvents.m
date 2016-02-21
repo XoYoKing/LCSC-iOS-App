@@ -62,4 +62,14 @@
     }
 }
 
+- (NSUInteger) countByEnumeratingWithState: (NSFastEnumerationState *) enumerationState
+                                   objects: (id __unsafe_unretained []) stackBuffer
+                                     count: (NSUInteger) length
+{
+    return [_days countByEnumeratingWithState:enumerationState
+                                      objects:stackBuffer
+                                        count:length];
+}
+
+
 @end
