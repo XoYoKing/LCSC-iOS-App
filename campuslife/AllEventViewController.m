@@ -7,7 +7,6 @@
 //1
 
 #import "AllEventViewController.h"
-#import "MonthlyEvents.h"
 #import "EventDetailTableViewController.h"
 #import "CalendarViewController.h"
 #import "CalendarInfo.h"
@@ -42,9 +41,10 @@
 {
     sortedArray = [[NSMutableArray alloc] init];
     preferences = [Preferences getSharedInstance];
+    NSLog(@"Starting loadAllEvents...\n");
     [self loadAllEvents];
+    NSLog(@"Done");
     displayedEvents = [[NSMutableArray alloc] init];
-    //[EventHelper sortEventsInArray:sortedArray];
 }
 
 
@@ -199,9 +199,9 @@
 
 -(void)loadAllEvents
 {
-    NSDate *todaysDate = [[NSDate alloc] init];
-    NSInteger currentMonth = [[[todaysDate description] substringWithRange:NSMakeRange(5, 2)] intValue];
-    NSInteger currentYear = [[[todaysDate description] substringWithRange:NSMakeRange(0, 5)] intValue];
+    NSInteger currentMonth = [CalendarInfo getCurrentMonth];
+    NSInteger currentYear = [CalendarInfo getCurrentYear];
+    NSInteger currentDay = [CalendarInfo getCurrentDay];
     
     NSInteger monthsAhead = 6;
     NSInteger endMonth = (currentYear * 12 + currentMonth + monthsAhead) % 12;
@@ -209,8 +209,17 @@
     NSArray *months = [MonthFactory getMonthOfEventsFromMonth:currentMonth andYear:currentYear
                                                       toMonth:endMonth andYear:endYear];
     for(MonthOfEvents *month in months) {
+        NSInteger curMonthDay = 1;
         for(NSArray *day in month) {
-            [sortedArray addObjectsFromArray:day];
+            if([month getMonth] == currentMonth && [month getYear] == currentYear) {
+                if(curMonthDay >= currentDay) {
+                    [sortedArray addObjectsFromArray:day];
+                }
+            }
+            else {
+                [sortedArray addObjectsFromArray:day];
+            }
+            curMonthDay++;
         }
     }
 }

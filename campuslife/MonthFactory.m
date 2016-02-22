@@ -25,7 +25,7 @@ static NSMutableDictionary *monthCache;
 
 +(NSString *)getIndexStr:(NSInteger)month :(NSInteger)year
 {
-    return [NSString stringWithFormat:@"%ld-%ld", year, month];
+    return [NSString stringWithFormat:@"%ld-%ld", (long)year, (long)month];
 }
 
 
@@ -162,7 +162,6 @@ static NSMutableDictionary *monthCache;
         
         // take this out of the loop
         url = [NSURL URLWithString:urlString];
-        NSLog(@"%@\n", urlString);
         NSData *data = [NSData dataWithContentsOfURL:url];
         if (data != nil)
         {
