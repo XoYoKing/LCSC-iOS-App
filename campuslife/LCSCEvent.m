@@ -47,8 +47,8 @@
     NSInteger event1Hour = 0;
     
     NSInteger event2Year = [otherEvent getStartYear];
-    NSInteger event2Month = [otherEvent getStartYear];
-    NSInteger event2Day = [otherEvent getStartYear];
+    NSInteger event2Month = [otherEvent getStartMonth];
+    NSInteger event2Day = [otherEvent getStartDay];
     NSInteger event2Hour = 0;
     
     if(event1Year < event2Year) {
