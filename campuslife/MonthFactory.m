@@ -31,7 +31,7 @@ static NSMutableDictionary *monthCache;
 
 +(BOOL) checkCacheForMonth:(NSInteger)month andYear:(NSInteger)year
 {
-    return [monthCache objectForKey:[MonthFactory getIndexStr:month :year]];
+    return ([monthCache objectForKey:[MonthFactory getIndexStr:month :year]] != nil);
 }
 
 
@@ -57,24 +57,65 @@ static NSMutableDictionary *monthCache;
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
 {
     NSMutableArray *monthsOfEvents = [[NSMutableArray alloc] init];
-    NSInteger curYear = startYear;
-    NSInteger curMonth = startMonth;
-    MonthOfEvents *thisMonth;
-    while (curMonth <= endMonth && curYear <= startYear) {
-        NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
-        if([MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
-            thisMonth = [monthCache objectForKey:indexStr];
-            
-        } else {
-            thisMonth = [MonthFactory getMonthOfEventsFromMonth:curMonth andYear:curYear];
-            [monthCache setObject:thisMonth forKey:indexStr];
+    NSInteger pullMonthStart = startMonth;
+    NSInteger pullYearStart = startYear;
+    NSInteger pullMonthStop = endMonth;
+    NSInteger pullYearStop = endYear;
+    
+    // Search for the month and year we need to start the pull from
+    while(pullMonthStart < pullMonthStop && pullYearStart < pullYearStop) {
+        if(![MonthFactory checkCacheForMonth:pullMonthStart andYear:pullYearStart]) {
+            break;
         }
-        [monthsOfEvents addObject:thisMonth];
-        if(curMonth >= 12) {
-            curMonth = 1;
-            curYear++;
-        } else {
-            curMonth++;
+        [CalendarInfo incrementMonth:&pullMonthStart :&pullYearStart];
+    }
+    
+    // Now search for the month and year we need to stop pulling from
+    while(pullMonthStop > pullMonthStart && pullYearStop > pullYearStart) {
+        if(![MonthFactory checkCacheForMonth:pullMonthStop andYear:pullYearStop]) {
+            break;
+        }
+        [CalendarInfo decrementMonth:&pullMonthStop :&pullYearStop];
+    }
+    
+    // pull needed data from google calendars and put it in the cache
+    NSMutableArray *events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:
+                              pullMonthStart andYear:pullYearStart
+                                toMonth:pullMonthStop andYear:pullYearStop];
+    
+    [events sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
+        return [obj1 compare:obj2];
+    }];
+    
+    NSInteger curMonth = startMonth;
+    NSInteger curYear = startYear;
+    NSInteger curIndex = 0;
+    while(curMonth <= endMonth && curYear <= endYear && curIndex < [events count]) {
+        MonthOfEvents *newMonth;
+        NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+        if(![MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
+            NSMutableArray *monthEvents = [[NSMutableArray alloc] init];
+            for(; curIndex < [events count]; curIndex++) {
+                LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];
+                if([curEvent getStartMonth] == curMonth) {
+                    [monthEvents addObject:curEvent];
+                } else {
+                    break;
+                }
+            }
+            
+            if([monthEvents count] > 0) {
+                newMonth = [[MonthOfEvents alloc] initWithMonth:curMonth andYear:curYear andEventsArray:monthEvents];
+                [monthCache setObject:newMonth forKey:[MonthFactory getIndexStr:curMonth :curYear]];
+            }
+            [CalendarInfo incrementMonth:&curMonth :&curYear];
+        }
+        else {
+            newMonth = [monthCache objectForKey:indexStr];
+        }
+        
+        if(newMonth != nil) {
+            [monthsOfEvents addObject:newMonth];
         }
     }
     
@@ -121,7 +162,7 @@ static NSMutableDictionary *monthCache;
         
         // take this out of the loop
         url = [NSURL URLWithString:urlString];
-        
+        NSLog(@"%@\n", urlString);
         NSData *data = [NSData dataWithContentsOfURL:url];
         if (data != nil)
         {
@@ -141,7 +182,6 @@ static NSMutableDictionary *monthCache;
     // Get the JSON data as a dictionary.
     
     NSDictionary *eventsInfoDict = [NSJSONSerialization JSONObjectWithData:JSONAsData options:NSJSONReadingMutableContainers error:&error];
-    
     
     if (error) {
         // This is the case that an error occured during converting JSON data to dictionary.
@@ -332,9 +372,10 @@ static NSMutableDictionary *monthCache;
         
         for (NSString *name in [CalendarInfo getCategoryNames])
         {
-            if ([CalendarInfo getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
+            //if ([CalendarInfo getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
+            if([name rangeOfString:[eventsInfoDict valueForKeyPath:@"summary"]].location != NSNotFound) {
                 category = name;
-                
+                break;
             }
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
