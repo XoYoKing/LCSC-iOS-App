@@ -22,7 +22,10 @@
 +(NSInteger)getCurrentMonth;
 +(NSInteger)getCurrentYear;
 
++(void) incrementMonth:(NSInteger *)month :(NSInteger *)year;
++(void) decrementMonth:(NSInteger *)month :(NSInteger *)year;
+
 +(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth;
 
-+(int)getIndexOfSubstringInString:(NSString *)substring :(NSString *)string;
+//+(int)getIndexOfSubstringInString:(NSString *)substring :(NSString *)string;
 @end

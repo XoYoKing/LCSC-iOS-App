@@ -95,6 +95,28 @@ static NSArray *categoryNames;
     return [components year];
 }
 
+
++(void) incrementMonth:(NSInteger *)month :(NSInteger *)year
+{
+    if(*month >= 12) {
+        *month = 1;
+        *year += 1;
+    } else {
+        *month += 1;
+    }
+}
+
+
++(void) decrementMonth:(NSInteger *)month :(NSInteger *)year
+{
+    if(*month <= 1) {
+        *month = 12;
+        *year -= 1;
+    } else {
+        *month -= 1;
+    }
+}
+
 //Gets a string that represents the current month.
 +(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth {
     NSString *month;
