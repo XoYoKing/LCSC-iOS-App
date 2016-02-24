@@ -41,9 +41,7 @@
 {
     sortedArray = [[NSMutableArray alloc] init];
     preferences = [Preferences getSharedInstance];
-    NSLog(@"Starting loadAllEvents...\n");
     [self loadAllEvents];
-    NSLog(@"Done");
     displayedEvents = [[NSMutableArray alloc] init];
 }
 

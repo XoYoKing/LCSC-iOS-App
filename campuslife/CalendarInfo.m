@@ -32,6 +32,7 @@ static NSArray *categoryNames;
                    @"h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com", @"Campus Rec", nil];
 }
 
+
 //@param month An integer in [1,12]
 //@param year An integer that represents the exact year. No offsets here...
 //@return Should be an integer in [28,31].
@@ -49,6 +50,7 @@ static NSArray *categoryNames;
     return daysOfMonth;
 }
 
+
 +(NSArray *)getDaysOfAllMonthsInYear:(int)year
 {
     NSMutableArray *daysOfMonths;
@@ -62,20 +64,24 @@ static NSArray *categoryNames;
     return daysOfMonths;
 }
 
+
 +(NSArray *)getCategoryNames
 {
     return [[NSArray alloc] initWithArray:categoryNames copyItems:YES];
 }
+
 
 +(NSString *)getCalIdOfCategory:(NSString *)category
 {
     return calendarIds[category];
 }
 
+
 +(NSDictionary *)getCalIds
 {
     return [[NSDictionary alloc] initWithDictionary:calendarIds copyItems:YES];
 }
+
 
 +(NSInteger)getCurrentDay
 {
@@ -83,16 +89,47 @@ static NSArray *categoryNames;
     return [components day];
 }
 
+
 +(NSInteger)getCurrentMonth
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     return [components month];
 }
 
+
 +(NSInteger)getCurrentYear
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     return [components year];
+}
+
+
++(NSInteger)getWeekdayOfMonth:(NSInteger)month andDay:(NSInteger)day andYear:(NSInteger)year
+{
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setDay:day];
+    [dateComps setMonth:month];
+    [dateComps setYear:year];
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *date = [gregorian dateFromComponents:dateComps];
+    NSDateComponents *weekdayComponents =
+    [gregorian components:NSWeekdayCalendarUnit fromDate:date];
+    return [weekdayComponents weekday];
+}
+
+
++(NSInteger)getFirstWeekdayOfMonth:(NSInteger)month andYear:(NSInteger)year
+{
+    return [CalendarInfo getWeekdayOfMonth:month andDay:1 andYear:year];
+}
+
+
++(NSInteger)getLastWeekdayOfMonth:(NSInteger)month andYear:(NSInteger)year
+{
+    return [CalendarInfo getWeekdayOfMonth:month
+                                    andDay:[CalendarInfo getDaysOfMonth:month ofYear:year]
+                                   andYear:year];
 }
 
 
@@ -116,6 +153,7 @@ static NSArray *categoryNames;
         *month -= 1;
     }
 }
+
 
 //Gets a string that represents the current month.
 +(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth {
@@ -162,49 +200,5 @@ static NSArray *categoryNames;
     return month;
 }
 
-+(int)getIndexOfSubstringInString:(NSString *)substring :(NSString *)string
-{
-    BOOL substringFound = NO;
-    
-    int substringStartIndex = -1;
-    
-    //Iterate through the string to find the first character in the substring.
-    for (int i=0; i<[string length]; i++) {
-        //Check to see if the substring character has been found.
-        if ([string characterAtIndex:i] == [substring characterAtIndex:0]) {
-            //If the substring length is greater than the remaining characters in the string,
-            //  there is no possible way that the substring exists there (and an exception will be thrown.)
-            //Only search for the substring if the remaining chars is >= to the substring length.
-            if ([string length] - i >= [substring length]) {
-                //Check to see if the following characters in the string are also in the substring.
-                //  This can start at 1 because the 0th index of the substring has already been determined
-                //  to be in the string.
-                for (int j=1; j<[substring length]; j++) {
-                    //Check if one the following characters in the substring aren't within the string.
-                    if ([string characterAtIndex:i+j] != [substring characterAtIndex:j]) {
-                        //If this is true, then i isn't the index of the first character in the substring
-                        //  within the string.
-                        break;
-                    }
-                    else {
-                        //If this was the very last character in the substring and it's in the string, the
-                        //  substring has been found. (The loop stops when it finds a char in the substring that's
-                        //  not in the string.)
-                        if (j == [substring length]-1) {
-                            substringFound = YES;
-                            substringStartIndex = i;
-                        }
-                    }
-                }
-            }
-            //If we've found the substring, we can stop the loop.
-            if (substringFound) {
-                break;
-            }
-        }
-    }
-    
-    return substringStartIndex;
-}
 
 @end

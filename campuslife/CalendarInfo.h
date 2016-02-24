@@ -22,6 +22,10 @@
 +(NSInteger)getCurrentMonth;
 +(NSInteger)getCurrentYear;
 
+// Monday = 1, Tuesday = 2, ...
++(NSInteger)getFirstWeekdayOfMonth:(NSInteger)month andYear:(NSInteger)year;
++(NSInteger)getLastWeekdayOfMonth:(NSInteger)month andYear:(NSInteger)year;
+
 +(void) incrementMonth:(NSInteger *)month :(NSInteger *)year;
 +(void) decrementMonth:(NSInteger *)month :(NSInteger *)year;
 
