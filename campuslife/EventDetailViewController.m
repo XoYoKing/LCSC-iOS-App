@@ -211,7 +211,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
     if (buttonIndex == 1) {
         EKEventStore *store = [[EKEventStore alloc] init];
         
-
+/*
         [store requestAccessToEntityType:EKEntityTypeEvent completion:^(bool granted, NSError *error) {
             if (!granted) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calendar Access Not Granted"
@@ -252,7 +252,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     there is no good way to do multi day all day events.
                     I'll leave the code commented out for the end date stuff incase someone has
                     a weird breakthrough on how to do it in the future!
-                    */
+ 
                     [event setEndDate:start];
                 }
                 else{
@@ -294,7 +294,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                 
                 
             }
-        }];
+        }];*/
     }
     
 }

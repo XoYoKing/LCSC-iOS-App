@@ -15,8 +15,10 @@
 #import "MonthlyEvents.h"
 #import "Preferences.h"
 #import "AppDelegate.h"
-
-//#import "AddEventParentViewController.h"
+#import "MonthFactory.h"
+#import "MonthOfEvents.h"
+#import "LCSCEvent.h"
+#import "CalendarInfo.h"
 
 @interface CalendarViewController ()
 
@@ -61,6 +63,10 @@
 @property (strong, nonatomic) NSThread *aThread;
 @property (nonatomic) BOOL lock;
 
+@property NSInteger currentMonth;
+@property NSInteger currentYear;
+@property MonthOfEvents *viewingMonth;
+
 @end
 
 @implementation CalendarViewController
@@ -71,74 +77,79 @@
     
     [super viewDidLoad];
     
-        // Do any additional setup after loading the view, typically from a nib.
-        _events = [MonthlyEvents getSharedInstance];
-        
-        Preferences *prefs = [Preferences getSharedInstance];
-        
-        //Here we load the actual state of the selected buttons.
-        [_btnEntertainment setSelected:[prefs getPreference:@"Entertainment"]];
-        [_btnAcademics setSelected:[prefs getPreference:@"Academics"]];
-        [_btnStudentActivities setSelected:[prefs getPreference:@"Student Activities"]];
-        [_btnResidenceLife setSelected:[prefs getPreference:@"Residence Life"]];
-        [_btnWarriorAthletics setSelected:[prefs getPreference:@"Warrior Athletics"]];
-        [_btnCampusRec setSelected:[prefs getPreference:@"Campus Rec"]];
-        
-        _leftArrow.enabled = NO;
-        _rightArrow.enabled = NO;
-        
-        _failedReqs = 0;
-        
-        _curArrayId = 1;
-        
-        _shouldRefresh = NO;
-        
-        _loadCompleted = YES;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
-        
-        
-        
-        _monthNeedsLoaded = NO;
-        
-        _timeLastMonthSwitch = 0;
-        _timeLastReqSent = 0;
-        
-        _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
-                                                       target: self
-                                                     selector: @selector(onTickForDelay:)
-                                                     userInfo: nil
-                                                      repeats: YES];
-        
-        _leftArrow.enabled = YES;
-        _rightArrow.enabled = YES;
-        
-        _swipeLeft.enabled = YES;
-        _swipeRight.enabled = YES;
-        _swipeUp.enabled = YES;
-        _swipeDown.enabled = YES;
-        
-        
-        _screenLocked = NO;
-        
-        _allEventsDidLoad = NO;
-        
-        
-        NSDate *date = [NSDate date];
-        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-        NSInteger year = [dateComponents year];
-        NSInteger month = [dateComponents month];
+    // Do any additional setup after loading the view, typically from a nib.
+    _events = [MonthlyEvents getSharedInstance];
     
-        [_events setYear:(int)year];
-        [_events setMonth:(int)month];
-        
-        [_events resetEvents];
-        
-        [_activityIndicator startAnimating];
-        
-        [self.navigationItem setHidesBackButton:YES animated:YES];
+    Preferences *prefs = [Preferences getSharedInstance];
+    
+    //Here we load the actual state of the selected buttons.
+    [_btnEntertainment setSelected:[prefs getPreference:@"Entertainment"]];
+    [_btnAcademics setSelected:[prefs getPreference:@"Academics"]];
+    [_btnStudentActivities setSelected:[prefs getPreference:@"Student Activities"]];
+    [_btnResidenceLife setSelected:[prefs getPreference:@"Residence Life"]];
+    [_btnWarriorAthletics setSelected:[prefs getPreference:@"Warrior Athletics"]];
+    [_btnCampusRec setSelected:[prefs getPreference:@"Campus Rec"]];
+    
+    _leftArrow.enabled = NO;
+    _rightArrow.enabled = NO;
+    
+    _failedReqs = 0;
+    
+    _curArrayId = 1;
+    
+    _shouldRefresh = NO;
+    
+    _loadCompleted = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    
+    
+    _monthNeedsLoaded = NO;
+    
+    _timeLastMonthSwitch = 0;
+    _timeLastReqSent = 0;
+    
+    
+    /*_delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
+                                                   target: self
+                                                 selector: @selector(onTickForDelay:)
+                                                 userInfo: nil
+                                                  repeats: YES];*/
+    
+    _leftArrow.enabled = YES;
+    _rightArrow.enabled = YES;
+    
+    _swipeLeft.enabled = YES;
+    _swipeRight.enabled = YES;
+    _swipeUp.enabled = YES;
+    _swipeDown.enabled = YES;
+    
+    
+    _screenLocked = NO;
+    
+    _allEventsDidLoad = NO;
+    
+    _currentMonth = [CalendarInfo getCurrentMonth];
+    _currentYear = [CalendarInfo getCurrentYear];
+    
+    NSDate *date = [NSDate date];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
+    NSInteger year = [dateComponents year];
+    NSInteger month = [dateComponents month];
+
+    [_events setYear:(int)year];
+    [_events setMonth:(int)month];
+    
+    [_events resetEvents];
+    
+    [_activityIndicator startAnimating];
+    
+    [self.navigationItem setHidesBackButton:YES animated:YES];
     if ([_appD getHasService]){
-        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+        _viewingMonth = [MonthFactory getMonthOfEventsFromMonth:_currentMonth andYear:_currentYear];
+        
+        //[self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     }else{
   
         _shouldRefresh = YES;
@@ -375,25 +386,28 @@
     UICollectionViewCell *cell;
     
 
-    
     //Check to see if this cell is for a day of the previous month
+    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_currentMonth andYear:_currentYear];
+    NSInteger daysOfMonth = [CalendarInfo getDaysOfMonth:(int)_currentMonth ofYear:(int)_currentYear];
+    NSInteger daysOfPrevMonth = [CalendarInfo getDaysOfPreviousMonth:(int)_currentMonth ofYear:(int)_currentYear];
     
-    if (indexPath.row+1 - [_events getFirstWeekDay:1] <= 0) {
+    if (indexPath.row+1 - firstWeekDay <= 0) {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"OtherMonthCell" forIndexPath:indexPath];
         
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
         
-        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1] + [_events getDaysOfPreviousMonth]];
+        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay + daysOfPrevMonth];
     }
-    //Check to see if this cell is for a day of the next month
     
-    else if (indexPath.row+1 - [_events getFirstWeekDay:1] > [_events getDaysOfMonth]) {
+    //Check to see if this cell is for a day of the next month
+    else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:(int)_currentMonth ofYear:(int)_currentYear]) {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"OtherMonthCell" forIndexPath:indexPath];
         
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
        
-        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1] - [_events getDaysOfMonth]];
+        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay - daysOfMonth];
     }
+    
     else {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"CurrentDayCell" forIndexPath:indexPath];
         
@@ -407,9 +421,9 @@
          to be super through.
          */
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
-        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1]];
+        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay];
         if ([dayLbl.text isEqualToString:_currentDateDay]){
-            NSString *holdViewDay = [NSString stringWithFormat:@"%d",[_events getSelectedMonth]];
+            NSString *holdViewDay = [NSString stringWithFormat:@"%ld", (long)_currentMonth];
             if (holdViewDay.length != _currentDateMonth.length){
                 holdViewDay = [NSString stringWithFormat:@"0%@",holdViewDay];
             }else{
@@ -417,7 +431,7 @@
                 cell.layer.borderColor=[UIColor clearColor].CGColor;
             }
             if ([holdViewDay isEqualToString: _currentDateMonth]){
-                if ([[NSString stringWithFormat:@"%d",[_events getSelectedYear]] isEqualToString: _currentDateYear]){
+                if ([[NSString stringWithFormat:@"%ld", (long)_currentYear] isEqualToString: _currentDateYear]){
                     ///edit the cell
                     cell.layer.borderWidth=0.5f;
                     cell.layer.borderColor=[UIColor blueColor].CGColor;
@@ -470,62 +484,69 @@
         Preferences *prefs = [Preferences getSharedInstance];
         
         //Showing relevant category by making the colorful squares not hidden anymore.
-        NSArray *dayEvents = [_events getEventsForDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
+        //NSArray *dayEvents = [_events getEventsForDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
+        NSArray *dayEvents = [_viewingMonth getEventsForDay:(int)indexPath.row+1 - firstWeekDay];
         
         //Iterate through all events and determine categories that are present.
-        for (int i=0; i<[dayEvents count]; i++) {
-
+        for(LCSCEvent *event in dayEvents) {
+            NSString *eventCategory = [event getCategory];
             
-            if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Entertainment"]) {
+            if ([eventCategory isEqualToString:@"Entertainment"]) {
                 if (entertainment.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         entertainment.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Academics"]) {
+            
+            else if ([eventCategory isEqualToString:@"Academics"]) {
                 if (academics.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         academics.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Student Activities"]) {
+            
+            else if ([eventCategory isEqualToString:@"Student Activities"]) {
                 if (studentActivities.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         studentActivities.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Residence Life"]) {
+            
+            else if ([eventCategory isEqualToString:@"Resident Life"]) {
                 if (residenceLife.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         residenceLife.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Warrior Athletics"]) {
+            
+            else if ([eventCategory isEqualToString:@"Warrior Athletics"]) {
                 if (warriorAthletics.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         warriorAthletics.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Campus Rec"]) {
+            
+            else if ([eventCategory isEqualToString:@"Campus Rec"]) {
                 if (campusRec.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         campusRec.hidden = NO;
                     }
                 }
             }
         }
     }
+    
     return cell;
 }
 
