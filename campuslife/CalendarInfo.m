@@ -51,6 +51,15 @@ static NSArray *categoryNames;
 }
 
 
++(int)getDaysOfPreviousMonth:(int)month ofYear:(int)year
+{
+    NSInteger lastMonth = month;
+    NSInteger lastYear = year;
+    [CalendarInfo decrementMonth:&lastMonth :&lastYear];
+    return [CalendarInfo getDaysOfMonth:(int)lastMonth ofYear:(int)lastYear];
+}
+
+
 +(NSArray *)getDaysOfAllMonthsInYear:(int)year
 {
     NSMutableArray *daysOfMonths;
@@ -115,7 +124,7 @@ static NSArray *categoryNames;
     NSDate *date = [gregorian dateFromComponents:dateComps];
     NSDateComponents *weekdayComponents =
     [gregorian components:NSWeekdayCalendarUnit fromDate:date];
-    return [weekdayComponents weekday];
+    return [weekdayComponents weekday]-1;
 }
 
 

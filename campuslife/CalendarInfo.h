@@ -10,6 +10,7 @@
 
 @interface CalendarInfo : NSObject
 +(int)getDaysOfMonth:(int)month ofYear:(int)year;
++(int)getDaysOfPreviousMonth:(int)month ofYear:(int)year;
 +(NSArray *)getDaysOfAllMonthsInYear:(int)year;
 
 // Methods for getting the information on category names and Calendar Ids
