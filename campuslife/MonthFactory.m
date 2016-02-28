@@ -34,6 +34,10 @@ static NSMutableDictionary *monthCache;
     return ([monthCache objectForKey:[MonthFactory getIndexStr:month :year]] != nil);
 }
 
++(void) insertIntoCache:(NSArray *)events forMonth:(NSInteger)month andYear:(NSInteger)year
+{
+}
+
 
 +(MonthOfEvents *) getMonthOfEventsFromMonth:(NSInteger)month andYear:(NSInteger)year
 {
@@ -63,7 +67,7 @@ static NSMutableDictionary *monthCache;
     NSInteger pullYearStop = endYear;
     
     // Search for the month and year we need to start the pull from
-    while(pullMonthStart < pullMonthStop && pullYearStart < pullYearStop) {
+    while(pullMonthStart < pullMonthStop && pullYearStart <= pullYearStop) {
         if(![MonthFactory checkCacheForMonth:pullMonthStart andYear:pullYearStart]) {
             break;
         }
@@ -71,39 +75,41 @@ static NSMutableDictionary *monthCache;
     }
     
     // Now search for the month and year we need to stop pulling from
-    while(pullMonthStop > pullMonthStart && pullYearStop > pullYearStart) {
+    while(pullMonthStop > pullMonthStart && pullYearStop >= pullYearStart) {
         if(![MonthFactory checkCacheForMonth:pullMonthStop andYear:pullYearStop]) {
             break;
         }
         [CalendarInfo decrementMonth:&pullMonthStop :&pullYearStop];
     }
     
-    // pull needed data from google calendars and put it in the cache
+    // pull needed data from google calendars
     NSMutableArray *events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:
                               pullMonthStart andYear:pullYearStart
                                 toMonth:pullMonthStop andYear:pullYearStop];
     
-    [events sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
-        return [obj1 compare:obj2];
-    }];
-    
+    // put the data into the cache
     NSInteger curMonth = startMonth;
     NSInteger curYear = startYear;
     NSInteger curIndex = 0;
+    
+    // This loop iterates over the long list of events we just generated and inserts them in the cache if that month
+    // needs updated
     while(curMonth <= endMonth && curYear <= endYear && curIndex < [events count]) {
         MonthOfEvents *newMonth;
         NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+        
         if(![MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
             NSMutableArray *monthEvents = [[NSMutableArray alloc] init];
-            for(; curIndex < [events count]; curIndex++) {
+            while(curIndex < [events count]) {
                 LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];
                 NSInteger eventStartMonth = [curEvent getStartMonth];
-                if([curEvent getStartMonth] == curMonth) {
+                if(eventStartMonth == curMonth) {
                     [monthEvents addObject:curEvent];
                     
-                } else if([curEvent getStartMonth > curMonth]){
+                } else if(eventStartMonth > curMonth){
                     break;
                 }
+                curIndex++;
             }
             
             if([monthEvents count] > 0) {
@@ -171,6 +177,9 @@ static NSMutableDictionary *monthCache;
         }
     }
     
+    [events sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
+        return [obj1 compare:obj2];
+    }];
     return events;
 }
 

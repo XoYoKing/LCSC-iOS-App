@@ -32,5 +32,4 @@
 
 +(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth;
 
-//+(int)getIndexOfSubstringInString:(NSString *)substring :(NSString *)string;
 @end
