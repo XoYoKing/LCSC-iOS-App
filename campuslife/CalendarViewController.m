@@ -111,11 +111,11 @@
     _timeLastReqSent = 0;
     
     
-    /*_delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
+    _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
                                                    target: self
                                                  selector: @selector(onTickForDelay:)
                                                  userInfo: nil
-                                                  repeats: YES];*/
+                                                  repeats: YES];
     
     _leftArrow.enabled = YES;
     _rightArrow.enabled = YES;
@@ -147,7 +147,7 @@
     
     [self.navigationItem setHidesBackButton:YES animated:YES];
     if ([_appD getHasService]){
-        _viewingMonth = [MonthFactory getMonthOfEventsFromMonth:_currentMonth andYear:_currentYear];
+        [self loadEvents];
         
         //[self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     }else{
@@ -167,8 +167,8 @@
             [_events resetEvents];
             
             _curArrayId = 1;
-            
-            [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+            [self loadEvents];
+            //[self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
             
             _shouldRefresh = NO;
         }
@@ -212,20 +212,19 @@
             [self.condition wait];
         }
         
-
-        
-        
         // lock the condition again
         self.lock = YES;
         [self.condition unlock];
     }
 }
-//
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     //[self rollbackEvents];
 }
+
 
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -233,13 +232,19 @@
 }
 
 
-
-
 - (void)onTickForDelay:(NSTimer*)timer
 {
     if (_monthNeedsLoaded
         && _timeLastMonthSwitch + 0.2 < [[NSDate date] timeIntervalSince1970])
     {
+        
+        [self loadEvents];
+        _monthNeedsLoaded = NO;
+        
+        /*
+         
+         WTF is this code doing?
+         
         _curArrayId = 1;
         if ([_events doesMonthNeedLoaded:_curArrayId])
         {
@@ -273,8 +278,7 @@
                 }
             }
         }
-        
-        _monthNeedsLoaded = NO;
+         */
     }
 }
 
@@ -338,30 +342,37 @@
     [_collectionView reloadData];
 }
 
+
+// Runs when user clicks the back button on the calendar
+// Set back the current month and year (if needed) and reload the events
 - (IBAction)backMonthOffset:(id)sender {
     if (!_screenLocked)
     {
 
         [_activityIndicator startAnimating];
+        [CalendarInfo decrementMonth:&_currentMonth :&_currentYear];
+        //[_events offsetMonth:-1];
         
-        [_events offsetMonth:-1];
-        
-        _monthLabel.text = [NSString stringWithFormat:@"%@ %d", [_events getMonthBarDate], [_events getSelectedYear]];
+        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
         
         _timeLastMonthSwitch = [[NSDate date] timeIntervalSince1970];
         _monthNeedsLoaded = YES;
     }
 }
 
+// Runs when user clicks the forward button on the calendar
+// Set forward the current month and year (if needed), change the display thingy, and reload the events
 - (IBAction)forwardMonthOffset:(id)sender {
     if (!_screenLocked)
     {
 
         [_activityIndicator startAnimating];
+        [CalendarInfo incrementMonth:&_currentMonth :&_currentYear];
         
-        [_events offsetMonth:1];
         
-        _monthLabel.text = [NSString stringWithFormat:@"%@ %d", [_events getMonthBarDate], [_events getSelectedYear]];
+        //[_events offsetMonth:1];
+        
+        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
         
         _timeLastMonthSwitch = [[NSDate date] timeIntervalSince1970];
         _monthNeedsLoaded = YES;
@@ -597,119 +608,6 @@
 }
 
 
-//This is strictly for locating things like Category: and ShortDesc: within
-//  the summary of the.
-- (int)getIndexOfSubstringInString:(NSString *)substring :(NSString *)string {
-    BOOL substringFound = NO;
-    
-    int substringStartIndex = -1;
-    
-    //Iterate through the string to find the first character in the substring.
-    for (int i=0; i<[string length]; i++) {
-        //Check to see if the substring character has been found.
-        if ([string characterAtIndex:i] == [substring characterAtIndex:0]) {
-            //If the substring length is greater than the remaining characters in the string,
-            //  there is no possible way that the substring exists there (and an exception will be thrown.)
-            //Only search for the substring if the remaining chars is >= to the substring length.
-            if ([string length] - i >= [substring length]) {
-                //Check to see if the following characters in the string are also in the substring.
-                //  This can start at 1 because the 0th index of the substring has already been determined
-                //  to be in the string.
-                for (int j=1; j<[substring length]; j++) {
-                    //Check if one the following characters in the substring aren't within the string.
-                    if ([string characterAtIndex:i+j] != [substring characterAtIndex:j]) {
-                        //If this is true, then i isn't the index of the first character in the substring
-                        //  within the string.
-                        break;
-                    }
-                    else {
-                        //If this was the very last character in the substring and it's in the string, the
-                        //  substring has been found. (The loop stops when it finds a char in the substring that's
-                        //  not in the string.)
-                        if (j == [substring length]-1) {
-                            substringFound = YES;
-                            substringStartIndex = i;
-                        }
-                    }
-                }
-            }
-            //If we've found the substring, we can stop the loop.
-            if (substringFound) {
-                break;
-            }
-        }
-    }
-    
-    return substringStartIndex;
-}
-
-
-//This is meant for parsing the summary, pulling out a chunk of information and putting it back
-//  into the dictionary under a new key.
-//@param eventDict This dictionary represents a single event that was received from Google Calendar's
-//  json that will be given to us. The summary exists within this under the "summary" key.
-//@param newKey This will be the key for the information that is pulled out of the summary and
-//  placed back into the dictionary.
-//@param possibleKeys Since human error is bound to happen, these are all the possible keys for
-//  the single chunk of information that we're pulling out of the summary and placing back into
-//  the dictionary under a new key.
-//@return eventDict will be returned, but it will possibly have a new key (or an altered object
-//  for a key if the user has permission to change events.)
--(NSDictionary *)parseSummaryForKey:(NSDictionary *)eventDict :(NSString *)newKey :(NSArray *)possibleKeys {
-    NSMutableDictionary *dCurrentEvent = [[NSMutableDictionary alloc] initWithDictionary:eventDict];
-    NSString *summary = [dCurrentEvent objectForKey:@"summary"];
-    
-    BOOL substringFound = NO;
-    int substringStartIndex = 0;
-    //This is the length of the key that was found to exist in the summary.
-    int foundKeyLength = 0;
-    
-    //Loop through each possible key looking for the substring.
-    //Then we'll break out of the look when it's found.
-    for (int i=0; i<[possibleKeys count]; i++) {
-        substringStartIndex = [self getIndexOfSubstringInString:[possibleKeys objectAtIndex:i] :summary];
-        
-        //-1 means a substring wasn't found.
-        if (substringStartIndex != -1) {
-            substringFound = YES;
-            foundKeyLength = (int)[[possibleKeys objectAtIndex:i] length];
-            break;
-        }
-    }
-    
-    if (substringFound) {
-        //This block gets the first word after the "Category:", which is the category.
-        NSString *infoWithExtraStuff = [summary substringWithRange:NSMakeRange(substringStartIndex+foundKeyLength,
-                                                                               [summary length] - (substringStartIndex+foundKeyLength))];
-        NSString *info = [[infoWithExtraStuff componentsSeparatedByString:@";"] objectAtIndex:0];
-        
-        int trailingSpaces = 0;
-        
-        //Determine number of trailing spaces, so we can not include them in the category.
-        for (int j=(int)[info length]-1; j>=0; j--) {
-            if ([info characterAtIndex:j] != ';') {
-                break;
-            }
-            else {
-                trailingSpaces += 1;
-            }
-        }
-        
-        //Add the category item to the dictionary.
-        [dCurrentEvent setObject:[info substringWithRange:NSMakeRange(0, [info length] - trailingSpaces)]
-                          forKey:newKey];
-    }
-    else {
-        //If none of the possible keys were valid, then we can just assume say that there's
-        //  no category and move on essentially.
-        [dCurrentEvent setObject:@"N/A" forKey:newKey];
-    }
-    
-    return (NSDictionary *)dCurrentEvent;
-}
-
-
-
 - (NSDate *)returnDateForMonth:(NSInteger)month year:(NSInteger)year day:(NSInteger)day {
     
     NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -731,6 +629,13 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
     NSString* sDateTime = [dateFormatter stringFromDate:dateTime];
     return sDateTime;
+}
+
+-(void) loadEvents
+{
+    _viewingMonth = [MonthFactory getMonthOfEventsFromMonth:_currentMonth andYear:_currentYear];
+    [_collectionView reloadData];
+    [_activityIndicator stopAnimating];
 }
 
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year {
@@ -1076,13 +981,13 @@
 
         for (NSString *name in [_events getCategoryNames])
         {
-            if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
+            //if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
                 category = name;
                
                 
-            }
-            else{
-            }
+            //}
+            //else{
+            //}
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //of the app.

@@ -97,9 +97,11 @@ static NSMutableDictionary *monthCache;
             NSMutableArray *monthEvents = [[NSMutableArray alloc] init];
             for(; curIndex < [events count]; curIndex++) {
                 LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];
+                NSInteger eventStartMonth = [curEvent getStartMonth];
                 if([curEvent getStartMonth] == curMonth) {
                     [monthEvents addObject:curEvent];
-                } else {
+                    
+                } else if([curEvent getStartMonth > curMonth]){
                     break;
                 }
             }
@@ -108,7 +110,6 @@ static NSMutableDictionary *monthCache;
                 newMonth = [[MonthOfEvents alloc] initWithMonth:curMonth andYear:curYear andEventsArray:monthEvents];
                 [monthCache setObject:newMonth forKey:[MonthFactory getIndexStr:curMonth :curYear]];
             }
-            [CalendarInfo incrementMonth:&curMonth :&curYear];
         }
         else {
             newMonth = [monthCache objectForKey:indexStr];
@@ -117,6 +118,7 @@ static NSMutableDictionary *monthCache;
         if(newMonth != nil) {
             [monthsOfEvents addObject:newMonth];
         }
+        [CalendarInfo incrementMonth:&curMonth :&curYear];
     }
     
     return monthsOfEvents;
