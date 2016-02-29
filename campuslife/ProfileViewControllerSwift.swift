@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc class ProfileViewController: UIViewController {
+@objc class ProfileViewControllerSwift: UIViewController {
 
     var auth = Authorization()
     

@@ -33,6 +33,14 @@ class Authorization{
             }
         }
         return false
-}
+    }
+    
+    func getUsername() -> String{
+        return prefs.stringForKey("login")!
+    }
+    
+    func getPassword() -> String{
+        return prefs.stringForKey("password")!
+    }
 
 }
