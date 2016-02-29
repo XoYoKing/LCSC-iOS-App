@@ -26,13 +26,13 @@
 //This variable corresponds to the array id from MonthlyEvents.h/m
 @property (nonatomic) int curArrayId;
 
-@property (nonatomic) MonthlyEvents *events;
+//@property (nonatomic) MonthlyEvents *events;
 
 @property (nonatomic) NSDate *start;
 
-@property (nonatomic) NSDate * firstDateOfMonth;
+@property (nonatomic) NSDate *firstDateOfMonth;
 
-@property (nonatomic) NSDate * lastDateOfMonth;
+@property (nonatomic) NSDate *lastDateOfMonth;
 
 @property (nonatomic) BOOL screenLocked;
 
@@ -78,7 +78,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
-    _events = [MonthlyEvents getSharedInstance];
+//    _events = [MonthlyEvents getSharedInstance];
     
     Preferences *prefs = [Preferences getSharedInstance];
     
@@ -133,15 +133,15 @@
     _currentMonth = [CalendarInfo getCurrentMonth];
     _currentYear = [CalendarInfo getCurrentYear];
     
-    NSDate *date = [NSDate date];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-    NSInteger year = [dateComponents year];
-    NSInteger month = [dateComponents month];
+//    NSDate *date = [NSDate date];
+//    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
+//    NSInteger year = [dateComponents year];
+//    NSInteger month = [dateComponents month];
 
-    [_events setYear:(int)year];
-    [_events setMonth:(int)month];
+//    [_events setYear:(int)year];
+//    [_events setMonth:(int)month];
     
-    [_events resetEvents];
+//    [_events resetEvents];
     
     [_activityIndicator startAnimating];
     
@@ -164,7 +164,7 @@
         if (_shouldRefresh) {
             [_activityIndicator startAnimating];
             
-            [_events resetEvents];
+//            [_events resetEvents];
             
             _curArrayId = 1;
             [self loadEvents];
@@ -182,7 +182,6 @@
             self.aThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadLoop) object:nil];
             [self.aThread start];
             
-            //[self rollbackEvents];
             _allEventsDidLoad = YES;
         }
     }else{
@@ -290,11 +289,11 @@
 }
 
 
-
 - (void)returnToCalendar
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 
 - (IBAction)radioSelected:(UIButton *)sender
 {
@@ -348,10 +347,8 @@
 - (IBAction)backMonthOffset:(id)sender {
     if (!_screenLocked)
     {
-
         [_activityIndicator startAnimating];
         [CalendarInfo decrementMonth:&_currentMonth :&_currentYear];
-        //[_events offsetMonth:-1];
         
         _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
         
@@ -359,18 +356,15 @@
         _monthNeedsLoaded = YES;
     }
 }
+
 
 // Runs when user clicks the forward button on the calendar
 // Set forward the current month and year (if needed), change the display thingy, and reload the events
 - (IBAction)forwardMonthOffset:(id)sender {
     if (!_screenLocked)
     {
-
         [_activityIndicator startAnimating];
         [CalendarInfo incrementMonth:&_currentMonth :&_currentYear];
-        
-        
-        //[_events offsetMonth:1];
         
         _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
         
@@ -378,7 +372,6 @@
         _monthNeedsLoaded = YES;
     }
 }
-
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -396,12 +389,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell;
     
-
     //Check to see if this cell is for a day of the previous month
     NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_currentMonth andYear:_currentYear];
     NSInteger daysOfMonth = [CalendarInfo getDaysOfMonth:(int)_currentMonth ofYear:(int)_currentYear];
     NSInteger daysOfPrevMonth = [CalendarInfo getDaysOfPreviousMonth:(int)_currentMonth ofYear:(int)_currentYear];
     
+    // The cell is for a day of the previous month
     if (indexPath.row+1 - firstWeekDay <= 0) {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"OtherMonthCell" forIndexPath:indexPath];
         
@@ -410,7 +403,7 @@
         dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay + daysOfPrevMonth];
     }
     
-    //Check to see if this cell is for a day of the next month
+    // The cell represents a day in the next month
     else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:(int)_currentMonth ofYear:(int)_currentYear]) {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"OtherMonthCell" forIndexPath:indexPath];
         
@@ -570,21 +563,25 @@
         
         //[destViewController setDay:indexPath.row+1 - [events getFirstWeekDay] ];
         
-        [_events setSelectedDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
-
+        NSInteger selectedDay = indexPath.row+1 - [CalendarInfo getFirstWeekdayOfMonth:_currentMonth
+                                                                               andYear:_currentYear];
+        
+        //[_events setSelectedDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
     }
 }
 
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     BOOL canSegue = YES;
+    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_currentMonth
+                                                          andYear:_currentYear];
     
     if ([identifier isEqualToString:@"CalendarToDayEvents"]) {
         NSArray *indexPaths = [_collectionView indexPathsForSelectedItems];
         NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
         
         //Check to see if this cell is for a day of the previous month
-        if (indexPath.row+1 - [_events getFirstWeekDay:1] <= 0) {
+        if (indexPath.row+1 - firstWeekDay <= 0) {
             if (!_screenLocked) {
                 //Offset month if a previous month's cell is clicked
                 [self backMonthOffset:nil];
@@ -593,7 +590,7 @@
             canSegue = NO;
         }
         //Check to see if this cell is for a day of the next month
-        else if (indexPath.row+1 - [_events getFirstWeekDay:1] > [_events getDaysOfMonth]) {
+        else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:_currentMonth ofYear:_currentYear]) {
             
             if (!_screenLocked) {
                 //Offset month if a future month's cell is clicked
@@ -638,6 +635,7 @@
     [_activityIndicator stopAnimating];
 }
 
+/*
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year {
 
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
@@ -769,7 +767,7 @@
         }
     }
 }
-
+*/
 
 #pragma mark - GoogleOAuth class delegate method implementation
 
@@ -778,7 +776,7 @@
 }
 
 
-
+/*
 //-(void)responseFromServiceWasReceived:(NSString *)responseJSONAsString andResponseJSONAsData:(NSData *)responseJSONAsData {
 - (void) parseJSON:(NSData *)JSONAsData {
     NSError *error = nil;
@@ -1475,7 +1473,7 @@
         }
     }
 }
-
+*/
 
 
 
