@@ -10,6 +10,7 @@
 
 @interface CalendarInfo : NSObject
 +(int)getDaysOfMonth:(int)month ofYear:(int)year;
++(int)getDaysOfPreviousMonth:(int)month ofYear:(int)year;
 +(NSArray *)getDaysOfAllMonthsInYear:(int)year;
 
 // Methods for getting the information on category names and Calendar Ids
@@ -22,10 +23,12 @@
 +(NSInteger)getCurrentMonth;
 +(NSInteger)getCurrentYear;
 
+// Monday = 1, Tuesday = 2, ...
++(NSInteger)getFirstWeekdayOfMonth:(NSInteger)month andYear:(NSInteger)year;
++(NSInteger)getLastWeekdayOfMonth:(NSInteger)month andYear:(NSInteger)year;
+
 +(void) incrementMonth:(NSInteger *)month :(NSInteger *)year;
 +(void) decrementMonth:(NSInteger *)month :(NSInteger *)year;
 
 +(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth;
-
-//+(int)getIndexOfSubstringInString:(NSString *)substring :(NSString *)string;
 @end

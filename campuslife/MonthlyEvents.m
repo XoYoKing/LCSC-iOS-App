@@ -11,7 +11,6 @@
 
 
 static MonthlyEvents *sharedInstance;
-static MonthlyEvents *allEventsInstance;
 
 @interface MonthlyEvents ()
 
@@ -96,59 +95,6 @@ static MonthlyEvents *allEventsInstance;
     return sharedInstance;
 }
 
-+(MonthlyEvents *) getAllEventsInstance {
-    if (!allEventsInstance) {
-        allEventsInstance = [[MonthlyEvents alloc] init];
-        
-        NSDate *date = [NSDate date];
-        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-        NSInteger year = [dateComponents year];
-        NSInteger month = [dateComponents month];
-        
-        [allEventsInstance setYear:(int)year];
-        [allEventsInstance setMonth:(int)month];
-        
-        //account for leap year.
-        if (year % 4 == 0) {
-            [allEventsInstance setDaysInMonth:[[NSMutableArray alloc] initWithArray:@[@31, @29, @31, @30, @31, @30, @31, @31, @30, @31, @30, @31]]];
-        }
-        else {
-            [allEventsInstance setDaysInMonth:[[NSMutableArray alloc] initWithArray:@[@31, @28, @31, @30, @31, @30, @31, @31, @30, @31, @30, @31]]];
-        }
-        
-        [allEventsInstance setKnownOffsetForJan2013:2];
-        
-        [allEventsInstance setCategoryNames:@[@"Entertainment", @"Academics", @"Student Activities", @"Residence Life", @"Warrior Athletics", @"Campus Rec"]];
-        
-        [allEventsInstance setCalIds:[[NSDictionary alloc] initWithObjectsAndKeys:@"0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com", @"Academics",
-                                   @"l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com", @"Student Activities",
-                                   @"d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com", @"Warrior Athletics",
-                                   @"m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com", @"Entertainment",
-                                   @"gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com", @"Residence Life",
-                                   @"h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com", @"Campus Rec", nil]];
-
-        
-        
-        [allEventsInstance setCalendarEvents:[[NSMutableArray alloc]initWithArray:@[[NSNull null], [NSNull null], [NSNull null]]]];
-        
-        
-        NSMutableArray *jsonsReceived = [[NSMutableArray alloc] init];
-        
-        
-        for (int i=0; i<3; i++)
-        {
-            NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] init];
-            for (int j=0; j<[[allEventsInstance getCategoryNames] count]; j++)
-            {
-                [jsonDict setObject:@0 forKey:[allEventsInstance getCategoryNames][j]];
-            }
-            [jsonsReceived addObject:jsonDict];
-        }
-        [allEventsInstance setJsonReceivedDicts:jsonsReceived];
-    }
-    
-    return allEventsInstance;
-}
 
 
 -(void)resetEvents {

@@ -34,6 +34,10 @@ static NSMutableDictionary *monthCache;
     return ([monthCache objectForKey:[MonthFactory getIndexStr:month :year]] != nil);
 }
 
++(void) insertIntoCache:(NSArray *)events forMonth:(NSInteger)month andYear:(NSInteger)year
+{
+}
+
 
 +(MonthOfEvents *) getMonthOfEventsFromMonth:(NSInteger)month andYear:(NSInteger)year
 {
@@ -63,7 +67,7 @@ static NSMutableDictionary *monthCache;
     NSInteger pullYearStop = endYear;
     
     // Search for the month and year we need to start the pull from
-    while(pullMonthStart < pullMonthStop && pullYearStart < pullYearStop) {
+    while(pullMonthStart < pullMonthStop && pullYearStart <= pullYearStop) {
         if(![MonthFactory checkCacheForMonth:pullMonthStart andYear:pullYearStart]) {
             break;
         }
@@ -71,44 +75,47 @@ static NSMutableDictionary *monthCache;
     }
     
     // Now search for the month and year we need to stop pulling from
-    while(pullMonthStop > pullMonthStart && pullYearStop > pullYearStart) {
+    while(pullMonthStop > pullMonthStart && pullYearStop >= pullYearStart) {
         if(![MonthFactory checkCacheForMonth:pullMonthStop andYear:pullYearStop]) {
             break;
         }
         [CalendarInfo decrementMonth:&pullMonthStop :&pullYearStop];
     }
     
-    // pull needed data from google calendars and put it in the cache
+    // pull needed data from google calendars
     NSMutableArray *events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:
                               pullMonthStart andYear:pullYearStart
                                 toMonth:pullMonthStop andYear:pullYearStop];
     
-    [events sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
-        return [obj1 compare:obj2];
-    }];
-    
+    // put the data into the cache
     NSInteger curMonth = startMonth;
     NSInteger curYear = startYear;
     NSInteger curIndex = 0;
+    
+    // This loop iterates over the long list of events we just generated and inserts them in the cache if that month
+    // needs updated
     while(curMonth <= endMonth && curYear <= endYear && curIndex < [events count]) {
         MonthOfEvents *newMonth;
         NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+        
         if(![MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
             NSMutableArray *monthEvents = [[NSMutableArray alloc] init];
-            for(; curIndex < [events count]; curIndex++) {
+            while(curIndex < [events count]) {
                 LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];
-                if([curEvent getStartMonth] == curMonth) {
+                NSInteger eventStartMonth = [curEvent getStartMonth];
+                if(eventStartMonth == curMonth) {
                     [monthEvents addObject:curEvent];
-                } else {
+                    
+                } else if(eventStartMonth > curMonth){
                     break;
                 }
+                curIndex++;
             }
             
             if([monthEvents count] > 0) {
                 newMonth = [[MonthOfEvents alloc] initWithMonth:curMonth andYear:curYear andEventsArray:monthEvents];
                 [monthCache setObject:newMonth forKey:[MonthFactory getIndexStr:curMonth :curYear]];
             }
-            [CalendarInfo incrementMonth:&curMonth :&curYear];
         }
         else {
             newMonth = [monthCache objectForKey:indexStr];
@@ -117,6 +124,7 @@ static NSMutableDictionary *monthCache;
         if(newMonth != nil) {
             [monthsOfEvents addObject:newMonth];
         }
+        [CalendarInfo incrementMonth:&curMonth :&curYear];
     }
     
     return monthsOfEvents;
@@ -132,11 +140,26 @@ static NSMutableDictionary *monthCache;
     int endDay = [CalendarInfo getDaysOfMonth:(int)endMonth ofYear:(int)endYear];
     
     NSString *curDayAsString;
+    NSString *startMonthAsString;
+    NSString *endMonthAsString;
+    
     if(startDay < 10) {
         curDayAsString = [NSString stringWithFormat:@"0%d", startDay];
         
     } else {
         curDayAsString = [NSString stringWithFormat:@"%d", startDay];
+    }
+    
+    if(startMonth < 10) {
+        startMonthAsString = [NSString stringWithFormat:@"0%ld", (long)startMonth];
+    } else {
+        startMonthAsString = [NSString stringWithFormat:@"%ld", (long)startMonth];
+    }
+    
+    if(endMonth < 10) {
+        endMonthAsString = [NSString stringWithFormat:@"0%ld", (long)endMonth];
+    } else {
+        endMonthAsString = [NSString stringWithFormat:@"%ld", (long)endMonth];
     }
     
     for (NSString *name in [CalendarInfo getCategoryNames])
@@ -145,20 +168,8 @@ static NSMutableDictionary *monthCache;
         NSString *calendarID = [CalendarInfo getCalIdOfCategory:name];
         NSString *urlString;
         
-        
-        if(startMonth >= 10 && startMonth <= 12 && endMonth >= 10 && startMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-0%ld-%@T00:00:00-07:00&timeMax=%ld-0%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-            
-        } else if(startMonth >= 10 && startMonth <= 12 && endMonth < 10 && startMonth > 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-0%ld-%@T00:00:00-07:00&timeMax=%ld-%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-            
-        } else if(startMonth < 10 && startMonth > 12 && endMonth >= 10 && startMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-%ld-0%@T00:00:00-07:00&timeMax=%ld-0%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-            
-        } else {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-%ld-%@T00:00:00-07:00&timeMax=%ld-%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-        }
-        
+        urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-%@-%@T00:00:00-07:00&timeMax=%ld-%@-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",
+                     calendarID, (long)startYear, startMonthAsString, curDayAsString, (long)endYear, endMonthAsString, endDay];
         
         // take this out of the loop
         url = [NSURL URLWithString:urlString];
@@ -169,6 +180,9 @@ static NSMutableDictionary *monthCache;
         }
     }
     
+    [events sortUsingComparator: ^NSComparisonResult(id obj1, id obj2){
+        return [obj1 compare:obj2];
+    }];
     return events;
 }
 
