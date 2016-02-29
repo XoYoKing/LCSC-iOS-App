@@ -44,7 +44,6 @@
 - (IBAction)forwardMonthOffset:(id)sender;
 
 - (NSDate *)returnDateForMonth:(NSInteger)month year:(NSInteger)year day:(NSInteger)day;
-- (NSString*)toStringFromDateTime:(NSDate*)datetime;
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year;
 - (void) setMonthNeedsLoaded:(BOOL)monthNeedsLoaded;
 - (void) parseJSON:(NSData *) JSONAsString;

@@ -618,18 +618,9 @@
     return [gregorian dateFromComponents:components];
 }
 
-- (NSString*)toStringFromDateTime:(NSDate*)dateTime {
-    // Purpose: Return a string of the specified date-time in UTC (Zulu) time zone in ISO 8601 format.
-    // Example: 2013-10-25T06:59:43.431Z
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    //[dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
-    NSString* sDateTime = [dateFormatter stringFromDate:dateTime];
-    return sDateTime;
-}
-
 -(void) loadEvents
 {
+    _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
     _viewingMonth = [MonthFactory getMonthOfEventsFromMonth:_currentMonth andYear:_currentYear];
     [_collectionView reloadData];
     [_activityIndicator stopAnimating];

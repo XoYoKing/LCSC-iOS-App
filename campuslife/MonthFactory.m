@@ -171,8 +171,6 @@ static NSMutableDictionary *monthCache;
         urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-%@-%@T00:00:00-07:00&timeMax=%ld-%@-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",
                      calendarID, (long)startYear, startMonthAsString, curDayAsString, (long)endYear, endMonthAsString, endDay];
         
-        NSLog(urlString);
-        
         // take this out of the loop
         url = [NSURL URLWithString:urlString];
         NSData *data = [NSData dataWithContentsOfURL:url];

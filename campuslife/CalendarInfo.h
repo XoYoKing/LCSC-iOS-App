@@ -31,5 +31,4 @@
 +(void) decrementMonth:(NSInteger *)month :(NSInteger *)year;
 
 +(NSString *)getMonthBarDateOfMonth:(NSInteger)selectedMonth;
-
 @end
