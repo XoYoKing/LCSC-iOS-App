@@ -24,16 +24,6 @@
 
 
 //This variable corresponds to the array id from MonthlyEvents.h/m
-@property (nonatomic) int curArrayId;
-
-//@property (nonatomic) MonthlyEvents *events;
-
-@property (nonatomic) NSDate *start;
-
-@property (nonatomic) NSDate *firstDateOfMonth;
-
-@property (nonatomic) NSDate *lastDateOfMonth;
-
 @property (nonatomic) BOOL screenLocked;
 
 //This is for delaying requests each time you switch between months.
@@ -44,7 +34,6 @@
 @property (nonatomic) BOOL monthNeedsLoaded;
 
 //These are for keeping track of the jsons that aren't being sent back to us.
-@property (nonatomic) NSTimer *timer;
 
 @property (nonatomic) NSTimeInterval timeLastReqSent;
 
@@ -52,19 +41,20 @@
 
 @property (nonatomic) BOOL allEventsDidLoad;
 
-@property (nonatomic) int failedReqs;
+//@property (nonatomic) int failedReqs;
 
 @property (nonatomic) AppDelegate *appD;
 @property (nonatomic) NSString *currentDateDay;
 @property (nonatomic) NSString *currentDateMonth;
 @property (nonatomic) NSString *currentDateYear;
 
+// threading stuff
 @property (strong, nonatomic) NSCondition *condition;
 @property (strong, nonatomic) NSThread *aThread;
 @property (nonatomic) BOOL lock;
 
-@property NSInteger currentMonth;
-@property NSInteger currentYear;
+@property NSInteger selectedMonth;
+@property NSInteger selectedYear;
 @property MonthOfEvents *viewingMonth;
 
 @end
@@ -93,9 +83,9 @@
     _leftArrow.enabled = NO;
     _rightArrow.enabled = NO;
     
-    _failedReqs = 0;
+//    _failedReqs = 0;
     
-    _curArrayId = 1;
+//    _curArrayId = 1;
     
     _shouldRefresh = NO;
     
@@ -130,18 +120,8 @@
     
     _allEventsDidLoad = NO;
     
-    _currentMonth = [CalendarInfo getCurrentMonth];
-    _currentYear = [CalendarInfo getCurrentYear];
-    
-//    NSDate *date = [NSDate date];
-//    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-//    NSInteger year = [dateComponents year];
-//    NSInteger month = [dateComponents month];
-
-//    [_events setYear:(int)year];
-//    [_events setMonth:(int)month];
-    
-//    [_events resetEvents];
+    _selectedMonth = [CalendarInfo getCurrentMonth];
+    _selectedYear = [CalendarInfo getCurrentYear];
     
     [_activityIndicator startAnimating];
     
@@ -149,9 +129,7 @@
     if ([_appD getHasService]){
         [self loadEvents];
         
-        //[self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
     }else{
-  
         _shouldRefresh = YES;
     }
 }
@@ -166,7 +144,7 @@
             
 //            [_events resetEvents];
             
-            _curArrayId = 1;
+//            _curArrayId = 1;
             [self loadEvents];
             //[self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
             
@@ -348,9 +326,9 @@
     if (!_screenLocked)
     {
         [_activityIndicator startAnimating];
-        [CalendarInfo decrementMonth:&_currentMonth :&_currentYear];
+        [CalendarInfo decrementMonth:&_selectedMonth :&_selectedYear];
         
-        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
+        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_selectedMonth], (long)_selectedYear];
         
         _timeLastMonthSwitch = [[NSDate date] timeIntervalSince1970];
         _monthNeedsLoaded = YES;
@@ -364,9 +342,9 @@
     if (!_screenLocked)
     {
         [_activityIndicator startAnimating];
-        [CalendarInfo incrementMonth:&_currentMonth :&_currentYear];
+        [CalendarInfo incrementMonth:&_selectedMonth :&_selectedYear];
         
-        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
+        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_selectedMonth], (long)_selectedYear];
         
         _timeLastMonthSwitch = [[NSDate date] timeIntervalSince1970];
         _monthNeedsLoaded = YES;
@@ -390,9 +368,9 @@
     UICollectionViewCell *cell;
     
     //Check to see if this cell is for a day of the previous month
-    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_currentMonth andYear:_currentYear];
-    NSInteger daysOfMonth = [CalendarInfo getDaysOfMonth:(int)_currentMonth ofYear:(int)_currentYear];
-    NSInteger daysOfPrevMonth = [CalendarInfo getDaysOfPreviousMonth:(int)_currentMonth ofYear:(int)_currentYear];
+    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth andYear:_selectedYear];
+    NSInteger daysOfMonth = [CalendarInfo getDaysOfMonth:(int)_selectedMonth ofYear:(int)_selectedYear];
+    NSInteger daysOfPrevMonth = [CalendarInfo getDaysOfPreviousMonth:(int)_selectedMonth ofYear:(int)_selectedYear];
     
     // The cell is for a day of the previous month
     if (indexPath.row+1 - firstWeekDay <= 0) {
@@ -404,7 +382,7 @@
     }
     
     // The cell represents a day in the next month
-    else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:(int)_currentMonth ofYear:(int)_currentYear]) {
+    else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:(int)_selectedMonth ofYear:(int)_selectedYear]) {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"OtherMonthCell" forIndexPath:indexPath];
         
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
@@ -427,7 +405,7 @@
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
         dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay];
         if ([dayLbl.text isEqualToString:_currentDateDay]){
-            NSString *holdViewDay = [NSString stringWithFormat:@"%ld", (long)_currentMonth];
+            NSString *holdViewDay = [NSString stringWithFormat:@"%ld", (long)_selectedMonth];
             if (holdViewDay.length != _currentDateMonth.length){
                 holdViewDay = [NSString stringWithFormat:@"0%@",holdViewDay];
             }else{
@@ -435,7 +413,7 @@
                 cell.layer.borderColor=[UIColor clearColor].CGColor;
             }
             if ([holdViewDay isEqualToString: _currentDateMonth]){
-                if ([[NSString stringWithFormat:@"%ld", (long)_currentYear] isEqualToString: _currentDateYear]){
+                if ([[NSString stringWithFormat:@"%ld", (long)_selectedYear] isEqualToString: _currentDateYear]){
                     ///edit the cell
                     cell.layer.borderWidth=0.5f;
                     cell.layer.borderColor=[UIColor blueColor].CGColor;
@@ -563,8 +541,8 @@
         
         //[destViewController setDay:indexPath.row+1 - [events getFirstWeekDay] ];
         
-        NSInteger selectedDay = indexPath.row+1 - [CalendarInfo getFirstWeekdayOfMonth:_currentMonth
-                                                                               andYear:_currentYear];
+        NSInteger selectedDay = indexPath.row+1 - [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth
+                                                                               andYear:_selectedYear];
         
         //[_events setSelectedDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
     }
@@ -573,8 +551,8 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     BOOL canSegue = YES;
-    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_currentMonth
-                                                          andYear:_currentYear];
+    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth
+                                                          andYear:_selectedYear];
     
     if ([identifier isEqualToString:@"CalendarToDayEvents"]) {
         NSArray *indexPaths = [_collectionView indexPathsForSelectedItems];
@@ -590,7 +568,7 @@
             canSegue = NO;
         }
         //Check to see if this cell is for a day of the next month
-        else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:_currentMonth ofYear:_currentYear]) {
+        else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:_selectedMonth ofYear:_selectedYear]) {
             
             if (!_screenLocked) {
                 //Offset month if a future month's cell is clicked
@@ -620,8 +598,8 @@
 
 -(void) loadEvents
 {
-    _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_currentMonth], (long)_currentYear];
-    _viewingMonth = [MonthFactory getMonthOfEventsFromMonth:_currentMonth andYear:_currentYear];
+    _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_selectedMonth], (long)_selectedYear];
+    _viewingMonth = [MonthFactory getMonthOfEventsFromMonth:_selectedMonth andYear:_selectedYear];
     [_collectionView reloadData];
     [_activityIndicator stopAnimating];
 }
