@@ -15,23 +15,15 @@
 #import "MonthlyEvents.h"
 #import "Preferences.h"
 #import "AppDelegate.h"
-
-//#import "AddEventParentViewController.h"
+#import "MonthFactory.h"
+#import "MonthOfEvents.h"
+#import "LCSCEvent.h"
+#import "CalendarInfo.h"
 
 @interface CalendarViewController ()
 
 
 //This variable corresponds to the array id from MonthlyEvents.h/m
-@property (nonatomic) int curArrayId;
-
-@property (nonatomic) MonthlyEvents *events;
-
-@property (nonatomic) NSDate *start;
-
-@property (nonatomic) NSDate * firstDateOfMonth;
-
-@property (nonatomic) NSDate * lastDateOfMonth;
-
 @property (nonatomic) BOOL screenLocked;
 
 //This is for delaying requests each time you switch between months.
@@ -42,7 +34,6 @@
 @property (nonatomic) BOOL monthNeedsLoaded;
 
 //These are for keeping track of the jsons that aren't being sent back to us.
-@property (nonatomic) NSTimer *timer;
 
 @property (nonatomic) NSTimeInterval timeLastReqSent;
 
@@ -50,16 +41,21 @@
 
 @property (nonatomic) BOOL allEventsDidLoad;
 
-@property (nonatomic) int failedReqs;
+//@property (nonatomic) int failedReqs;
 
 @property (nonatomic) AppDelegate *appD;
 @property (nonatomic) NSString *currentDateDay;
 @property (nonatomic) NSString *currentDateMonth;
 @property (nonatomic) NSString *currentDateYear;
 
+// threading stuff
 @property (strong, nonatomic) NSCondition *condition;
 @property (strong, nonatomic) NSThread *aThread;
 @property (nonatomic) BOOL lock;
+
+@property NSInteger selectedMonth;
+@property NSInteger selectedYear;
+@property MonthOfEvents *viewingMonth;
 
 @end
 
@@ -71,76 +67,69 @@
     
     [super viewDidLoad];
     
-        // Do any additional setup after loading the view, typically from a nib.
-        _events = [MonthlyEvents getSharedInstance];
-        
-        Preferences *prefs = [Preferences getSharedInstance];
-        
-        //Here we load the actual state of the selected buttons.
-        [_btnEntertainment setSelected:[prefs getPreference:@"Entertainment"]];
-        [_btnAcademics setSelected:[prefs getPreference:@"Academics"]];
-        [_btnStudentActivities setSelected:[prefs getPreference:@"Student Activities"]];
-        [_btnResidenceLife setSelected:[prefs getPreference:@"Residence Life"]];
-        [_btnWarriorAthletics setSelected:[prefs getPreference:@"Warrior Athletics"]];
-        [_btnCampusRec setSelected:[prefs getPreference:@"Campus Rec"]];
-        
-        _leftArrow.enabled = NO;
-        _rightArrow.enabled = NO;
-        
-        _failedReqs = 0;
-        
-        _curArrayId = 1;
-        
-        _shouldRefresh = NO;
-        
-        _loadCompleted = YES;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
-        
-        
-        
-        _monthNeedsLoaded = NO;
-        
-        _timeLastMonthSwitch = 0;
-        _timeLastReqSent = 0;
-        
-        _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
-                                                       target: self
-                                                     selector: @selector(onTickForDelay:)
-                                                     userInfo: nil
-                                                      repeats: YES];
-        
-        _leftArrow.enabled = YES;
-        _rightArrow.enabled = YES;
-        
-        _swipeLeft.enabled = YES;
-        _swipeRight.enabled = YES;
-        _swipeUp.enabled = YES;
-        _swipeDown.enabled = YES;
-        
-        
-        _screenLocked = NO;
-        
-        _allEventsDidLoad = NO;
-        
-        
-        NSDate *date = [NSDate date];
-        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:date];
-        NSInteger year = [dateComponents year];
-        NSInteger month = [dateComponents month];
+    // Do any additional setup after loading the view, typically from a nib.
+//    _events = [MonthlyEvents getSharedInstance];
     
-        [_events setYear:(int)year];
-        [_events setMonth:(int)month];
-        
-        [_events resetEvents];
-        
-        [_activityIndicator startAnimating];
-        
-        [self.navigationItem setHidesBackButton:YES animated:YES];
+    Preferences *prefs = [Preferences getSharedInstance];
+    
+    //Here we load the actual state of the selected buttons.
+    [_btnEntertainment setSelected:[prefs getPreference:@"Entertainment"]];
+    [_btnAcademics setSelected:[prefs getPreference:@"Academics"]];
+    [_btnStudentActivities setSelected:[prefs getPreference:@"Student Activities"]];
+    [_btnResidenceLife setSelected:[prefs getPreference:@"Residence Life"]];
+    [_btnWarriorAthletics setSelected:[prefs getPreference:@"Warrior Athletics"]];
+    [_btnCampusRec setSelected:[prefs getPreference:@"Campus Rec"]];
+    
+    _leftArrow.enabled = NO;
+    _rightArrow.enabled = NO;
+    
+//    _failedReqs = 0;
+    
+//    _curArrayId = 1;
+    
+    _shouldRefresh = NO;
+    
+    _loadCompleted = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnToCalendar)name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    
+    
+    _monthNeedsLoaded = NO;
+    
+    _timeLastMonthSwitch = 0;
+    _timeLastReqSent = 0;
+    
+    
+    _delayTimer = [NSTimer scheduledTimerWithTimeInterval: 0.1
+                                                   target: self
+                                                 selector: @selector(onTickForDelay:)
+                                                 userInfo: nil
+                                                  repeats: YES];
+    
+    _leftArrow.enabled = YES;
+    _rightArrow.enabled = YES;
+    
+    _swipeLeft.enabled = YES;
+    _swipeRight.enabled = YES;
+    _swipeUp.enabled = YES;
+    _swipeDown.enabled = YES;
+    
+    
+    _screenLocked = NO;
+    
+    _allEventsDidLoad = NO;
+    
+    _selectedMonth = [CalendarInfo getCurrentMonth];
+    _selectedYear = [CalendarInfo getCurrentYear];
+    
+    [_activityIndicator startAnimating];
+    
+    [self.navigationItem setHidesBackButton:YES animated:YES];
     if ([_appD getHasService]){
-        [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+        [self loadEvents];
+        
     }else{
-  
         _shouldRefresh = YES;
     }
 }
@@ -153,11 +142,11 @@
         if (_shouldRefresh) {
             [_activityIndicator startAnimating];
             
-            [_events resetEvents];
+//            [_events resetEvents];
             
-            _curArrayId = 1;
-            
-            [self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
+//            _curArrayId = 1;
+            [self loadEvents];
+            //[self getEventsForMonth:[_events getSelectedMonth] :[_events getSelectedYear]];
             
             _shouldRefresh = NO;
         }
@@ -171,7 +160,6 @@
             self.aThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadLoop) object:nil];
             [self.aThread start];
             
-            //[self rollbackEvents];
             _allEventsDidLoad = YES;
         }
     }else{
@@ -201,20 +189,19 @@
             [self.condition wait];
         }
         
-
-        
-        
         // lock the condition again
         self.lock = YES;
         [self.condition unlock];
     }
 }
-//
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     //[self rollbackEvents];
 }
+
 
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -222,13 +209,19 @@
 }
 
 
-
-
 - (void)onTickForDelay:(NSTimer*)timer
 {
     if (_monthNeedsLoaded
         && _timeLastMonthSwitch + 0.2 < [[NSDate date] timeIntervalSince1970])
     {
+        
+        [self loadEvents];
+        _monthNeedsLoaded = NO;
+        
+        /*
+         
+         WTF is this code doing?
+         
         _curArrayId = 1;
         if ([_events doesMonthNeedLoaded:_curArrayId])
         {
@@ -262,8 +255,7 @@
                 }
             }
         }
-        
-        _monthNeedsLoaded = NO;
+         */
     }
 }
 
@@ -275,11 +267,11 @@
 }
 
 
-
 - (void)returnToCalendar
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 
 - (IBAction)radioSelected:(UIButton *)sender
 {
@@ -327,36 +319,37 @@
     [_collectionView reloadData];
 }
 
+
+// Runs when user clicks the back button on the calendar
+// Set back the current month and year (if needed) and reload the events
 - (IBAction)backMonthOffset:(id)sender {
     if (!_screenLocked)
     {
-
         [_activityIndicator startAnimating];
+        [CalendarInfo decrementMonth:&_selectedMonth :&_selectedYear];
         
-        [_events offsetMonth:-1];
-        
-        _monthLabel.text = [NSString stringWithFormat:@"%@ %d", [_events getMonthBarDate], [_events getSelectedYear]];
+        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_selectedMonth], (long)_selectedYear];
         
         _timeLastMonthSwitch = [[NSDate date] timeIntervalSince1970];
         _monthNeedsLoaded = YES;
     }
 }
 
+
+// Runs when user clicks the forward button on the calendar
+// Set forward the current month and year (if needed), change the display thingy, and reload the events
 - (IBAction)forwardMonthOffset:(id)sender {
     if (!_screenLocked)
     {
-
         [_activityIndicator startAnimating];
+        [CalendarInfo incrementMonth:&_selectedMonth :&_selectedYear];
         
-        [_events offsetMonth:1];
-        
-        _monthLabel.text = [NSString stringWithFormat:@"%@ %d", [_events getMonthBarDate], [_events getSelectedYear]];
+        _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_selectedMonth], (long)_selectedYear];
         
         _timeLastMonthSwitch = [[NSDate date] timeIntervalSince1970];
         _monthNeedsLoaded = YES;
     }
 }
-
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -374,26 +367,29 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell;
     
-
-    
     //Check to see if this cell is for a day of the previous month
+    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth andYear:_selectedYear];
+    NSInteger daysOfMonth = [CalendarInfo getDaysOfMonth:(int)_selectedMonth ofYear:(int)_selectedYear];
+    NSInteger daysOfPrevMonth = [CalendarInfo getDaysOfPreviousMonth:(int)_selectedMonth ofYear:(int)_selectedYear];
     
-    if (indexPath.row+1 - [_events getFirstWeekDay:1] <= 0) {
+    // The cell is for a day of the previous month
+    if (indexPath.row+1 - firstWeekDay <= 0) {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"OtherMonthCell" forIndexPath:indexPath];
         
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
         
-        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1] + [_events getDaysOfPreviousMonth]];
+        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay + daysOfPrevMonth];
     }
-    //Check to see if this cell is for a day of the next month
     
-    else if (indexPath.row+1 - [_events getFirstWeekDay:1] > [_events getDaysOfMonth]) {
+    // The cell represents a day in the next month
+    else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:(int)_selectedMonth ofYear:(int)_selectedYear]) {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"OtherMonthCell" forIndexPath:indexPath];
         
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
        
-        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1] - [_events getDaysOfMonth]];
+        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay - daysOfMonth];
     }
+    
     else {
         cell = (UICollectionViewCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"CurrentDayCell" forIndexPath:indexPath];
         
@@ -407,9 +403,9 @@
          to be super through.
          */
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
-        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - [_events getFirstWeekDay:1]];
+        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay];
         if ([dayLbl.text isEqualToString:_currentDateDay]){
-            NSString *holdViewDay = [NSString stringWithFormat:@"%d",[_events getSelectedMonth]];
+            NSString *holdViewDay = [NSString stringWithFormat:@"%ld", (long)_selectedMonth];
             if (holdViewDay.length != _currentDateMonth.length){
                 holdViewDay = [NSString stringWithFormat:@"0%@",holdViewDay];
             }else{
@@ -417,7 +413,7 @@
                 cell.layer.borderColor=[UIColor clearColor].CGColor;
             }
             if ([holdViewDay isEqualToString: _currentDateMonth]){
-                if ([[NSString stringWithFormat:@"%d",[_events getSelectedYear]] isEqualToString: _currentDateYear]){
+                if ([[NSString stringWithFormat:@"%ld", (long)_selectedYear] isEqualToString: _currentDateYear]){
                     ///edit the cell
                     cell.layer.borderWidth=0.5f;
                     cell.layer.borderColor=[UIColor blueColor].CGColor;
@@ -470,62 +466,69 @@
         Preferences *prefs = [Preferences getSharedInstance];
         
         //Showing relevant category by making the colorful squares not hidden anymore.
-        NSArray *dayEvents = [_events getEventsForDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
+        //NSArray *dayEvents = [_events getEventsForDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
+        NSArray *dayEvents = [_viewingMonth getEventsForDay:(int)indexPath.row+1 - firstWeekDay];
         
         //Iterate through all events and determine categories that are present.
-        for (int i=0; i<[dayEvents count]; i++) {
-
+        for(LCSCEvent *event in dayEvents) {
+            NSString *eventCategory = [event getCategory];
             
-            if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Entertainment"]) {
+            if ([eventCategory isEqualToString:@"Entertainment"]) {
                 if (entertainment.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         entertainment.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Academics"]) {
+            
+            else if ([eventCategory isEqualToString:@"Academics"]) {
                 if (academics.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         academics.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Student Activities"]) {
+            
+            else if ([eventCategory isEqualToString:@"Student Activities"]) {
                 if (studentActivities.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         studentActivities.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Residence Life"]) {
+            
+            else if ([eventCategory isEqualToString:@"Resident Life"]) {
                 if (residenceLife.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         residenceLife.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Warrior Athletics"]) {
+            
+            else if ([eventCategory isEqualToString:@"Warrior Athletics"]) {
                 if (warriorAthletics.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         warriorAthletics.hidden = NO;
                     }
                 }
             }
-            else if ([[[dayEvents objectAtIndex:i] objectForKey:@"category"] isEqualToString:@"Campus Rec"]) {
+            
+            else if ([eventCategory isEqualToString:@"Campus Rec"]) {
                 if (campusRec.hidden) {
                     //Check to see if this category is selected.
-                    if ([prefs getPreference:[[dayEvents objectAtIndex:i] objectForKey:@"category"]]) {
+                    if ([prefs getPreference:eventCategory]) {
                         campusRec.hidden = NO;
                     }
                 }
             }
         }
     }
+    
     return cell;
 }
 
@@ -538,21 +541,25 @@
         
         //[destViewController setDay:indexPath.row+1 - [events getFirstWeekDay] ];
         
-        [_events setSelectedDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
-
+        NSInteger selectedDay = indexPath.row+1 - [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth
+                                                                               andYear:_selectedYear];
+        
+        //[_events setSelectedDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
     }
 }
 
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     BOOL canSegue = YES;
+    NSInteger firstWeekDay = [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth
+                                                          andYear:_selectedYear];
     
     if ([identifier isEqualToString:@"CalendarToDayEvents"]) {
         NSArray *indexPaths = [_collectionView indexPathsForSelectedItems];
         NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
         
         //Check to see if this cell is for a day of the previous month
-        if (indexPath.row+1 - [_events getFirstWeekDay:1] <= 0) {
+        if (indexPath.row+1 - firstWeekDay <= 0) {
             if (!_screenLocked) {
                 //Offset month if a previous month's cell is clicked
                 [self backMonthOffset:nil];
@@ -561,7 +568,7 @@
             canSegue = NO;
         }
         //Check to see if this cell is for a day of the next month
-        else if (indexPath.row+1 - [_events getFirstWeekDay:1] > [_events getDaysOfMonth]) {
+        else if (indexPath.row+1 - firstWeekDay > [CalendarInfo getDaysOfMonth:_selectedMonth ofYear:_selectedYear]) {
             
             if (!_screenLocked) {
                 //Offset month if a future month's cell is clicked
@@ -574,119 +581,6 @@
     
     return canSegue;
 }
-
-
-//This is strictly for locating things like Category: and ShortDesc: within
-//  the summary of the.
-- (int)getIndexOfSubstringInString:(NSString *)substring :(NSString *)string {
-    BOOL substringFound = NO;
-    
-    int substringStartIndex = -1;
-    
-    //Iterate through the string to find the first character in the substring.
-    for (int i=0; i<[string length]; i++) {
-        //Check to see if the substring character has been found.
-        if ([string characterAtIndex:i] == [substring characterAtIndex:0]) {
-            //If the substring length is greater than the remaining characters in the string,
-            //  there is no possible way that the substring exists there (and an exception will be thrown.)
-            //Only search for the substring if the remaining chars is >= to the substring length.
-            if ([string length] - i >= [substring length]) {
-                //Check to see if the following characters in the string are also in the substring.
-                //  This can start at 1 because the 0th index of the substring has already been determined
-                //  to be in the string.
-                for (int j=1; j<[substring length]; j++) {
-                    //Check if one the following characters in the substring aren't within the string.
-                    if ([string characterAtIndex:i+j] != [substring characterAtIndex:j]) {
-                        //If this is true, then i isn't the index of the first character in the substring
-                        //  within the string.
-                        break;
-                    }
-                    else {
-                        //If this was the very last character in the substring and it's in the string, the
-                        //  substring has been found. (The loop stops when it finds a char in the substring that's
-                        //  not in the string.)
-                        if (j == [substring length]-1) {
-                            substringFound = YES;
-                            substringStartIndex = i;
-                        }
-                    }
-                }
-            }
-            //If we've found the substring, we can stop the loop.
-            if (substringFound) {
-                break;
-            }
-        }
-    }
-    
-    return substringStartIndex;
-}
-
-
-//This is meant for parsing the summary, pulling out a chunk of information and putting it back
-//  into the dictionary under a new key.
-//@param eventDict This dictionary represents a single event that was received from Google Calendar's
-//  json that will be given to us. The summary exists within this under the "summary" key.
-//@param newKey This will be the key for the information that is pulled out of the summary and
-//  placed back into the dictionary.
-//@param possibleKeys Since human error is bound to happen, these are all the possible keys for
-//  the single chunk of information that we're pulling out of the summary and placing back into
-//  the dictionary under a new key.
-//@return eventDict will be returned, but it will possibly have a new key (or an altered object
-//  for a key if the user has permission to change events.)
--(NSDictionary *)parseSummaryForKey:(NSDictionary *)eventDict :(NSString *)newKey :(NSArray *)possibleKeys {
-    NSMutableDictionary *dCurrentEvent = [[NSMutableDictionary alloc] initWithDictionary:eventDict];
-    NSString *summary = [dCurrentEvent objectForKey:@"summary"];
-    
-    BOOL substringFound = NO;
-    int substringStartIndex = 0;
-    //This is the length of the key that was found to exist in the summary.
-    int foundKeyLength = 0;
-    
-    //Loop through each possible key looking for the substring.
-    //Then we'll break out of the look when it's found.
-    for (int i=0; i<[possibleKeys count]; i++) {
-        substringStartIndex = [self getIndexOfSubstringInString:[possibleKeys objectAtIndex:i] :summary];
-        
-        //-1 means a substring wasn't found.
-        if (substringStartIndex != -1) {
-            substringFound = YES;
-            foundKeyLength = (int)[[possibleKeys objectAtIndex:i] length];
-            break;
-        }
-    }
-    
-    if (substringFound) {
-        //This block gets the first word after the "Category:", which is the category.
-        NSString *infoWithExtraStuff = [summary substringWithRange:NSMakeRange(substringStartIndex+foundKeyLength,
-                                                                               [summary length] - (substringStartIndex+foundKeyLength))];
-        NSString *info = [[infoWithExtraStuff componentsSeparatedByString:@";"] objectAtIndex:0];
-        
-        int trailingSpaces = 0;
-        
-        //Determine number of trailing spaces, so we can not include them in the category.
-        for (int j=(int)[info length]-1; j>=0; j--) {
-            if ([info characterAtIndex:j] != ';') {
-                break;
-            }
-            else {
-                trailingSpaces += 1;
-            }
-        }
-        
-        //Add the category item to the dictionary.
-        [dCurrentEvent setObject:[info substringWithRange:NSMakeRange(0, [info length] - trailingSpaces)]
-                          forKey:newKey];
-    }
-    else {
-        //If none of the possible keys were valid, then we can just assume say that there's
-        //  no category and move on essentially.
-        [dCurrentEvent setObject:@"N/A" forKey:newKey];
-    }
-    
-    return (NSDictionary *)dCurrentEvent;
-}
-
 
 
 - (NSDate *)returnDateForMonth:(NSInteger)month year:(NSInteger)year day:(NSInteger)day {
@@ -702,16 +596,15 @@
     return [gregorian dateFromComponents:components];
 }
 
-- (NSString*)toStringFromDateTime:(NSDate*)dateTime {
-    // Purpose: Return a string of the specified date-time in UTC (Zulu) time zone in ISO 8601 format.
-    // Example: 2013-10-25T06:59:43.431Z
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    //[dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
-    NSString* sDateTime = [dateFormatter stringFromDate:dateTime];
-    return sDateTime;
+-(void) loadEvents
+{
+    _monthLabel.text = [NSString stringWithFormat:@"%@ %ld", [CalendarInfo getMonthBarDateOfMonth:_selectedMonth], (long)_selectedYear];
+    _viewingMonth = [MonthFactory getMonthOfEventsFromMonth:_selectedMonth andYear:_selectedYear];
+    [_collectionView reloadData];
+    [_activityIndicator stopAnimating];
 }
 
+/*
 - (void) getEventsForMonth:(NSInteger) month :(NSInteger) year {
 
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
@@ -843,7 +736,7 @@
         }
     }
 }
-
+*/
 
 #pragma mark - GoogleOAuth class delegate method implementation
 
@@ -852,7 +745,7 @@
 }
 
 
-
+/*
 //-(void)responseFromServiceWasReceived:(NSString *)responseJSONAsString andResponseJSONAsData:(NSData *)responseJSONAsData {
 - (void) parseJSON:(NSData *)JSONAsData {
     NSError *error = nil;
@@ -1055,13 +948,13 @@
 
         for (NSString *name in [_events getCategoryNames])
         {
-            if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
+            //if ([self getIndexOfSubstringInString:name :[eventsInfoDict valueForKeyPath:@"summary"]] != -1) {
                 category = name;
                
                 
-            }
-            else{
-            }
+            //}
+            //else{
+            //}
         }
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //of the app.
@@ -1549,7 +1442,7 @@
         }
     }
 }
-
+*/
 
 
 
