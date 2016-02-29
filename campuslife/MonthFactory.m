@@ -140,11 +140,26 @@ static NSMutableDictionary *monthCache;
     int endDay = [CalendarInfo getDaysOfMonth:(int)endMonth ofYear:(int)endYear];
     
     NSString *curDayAsString;
+    NSString *startMonthAsString;
+    NSString *endMonthAsString;
+    
     if(startDay < 10) {
         curDayAsString = [NSString stringWithFormat:@"0%d", startDay];
         
     } else {
         curDayAsString = [NSString stringWithFormat:@"%d", startDay];
+    }
+    
+    if(startMonth < 10) {
+        startMonthAsString = [NSString stringWithFormat:@"0%ld", (long)startMonth];
+    } else {
+        startMonthAsString = [NSString stringWithFormat:@"%ld", (long)startMonth];
+    }
+    
+    if(endMonth < 10) {
+        endMonthAsString = [NSString stringWithFormat:@"0%ld", (long)endMonth];
+    } else {
+        endMonthAsString = [NSString stringWithFormat:@"%ld", (long)endMonth];
     }
     
     for (NSString *name in [CalendarInfo getCategoryNames])
@@ -153,20 +168,10 @@ static NSMutableDictionary *monthCache;
         NSString *calendarID = [CalendarInfo getCalIdOfCategory:name];
         NSString *urlString;
         
+        urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-%@-%@T00:00:00-07:00&timeMax=%ld-%@-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",
+                     calendarID, (long)startYear, startMonthAsString, curDayAsString, (long)endYear, endMonthAsString, endDay];
         
-        if(startMonth >= 10 && startMonth <= 12 && endMonth >= 10 && startMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-0%ld-%@T00:00:00-07:00&timeMax=%ld-0%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-            
-        } else if(startMonth >= 10 && startMonth <= 12 && endMonth < 10 && startMonth > 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-0%ld-%@T00:00:00-07:00&timeMax=%ld-%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-            
-        } else if(startMonth < 10 && startMonth > 12 && endMonth >= 10 && startMonth <= 12) {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-%ld-0%@T00:00:00-07:00&timeMax=%ld-0%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-            
-        } else {
-            urlString = [NSString stringWithFormat:@"https://www.googleapis.com/calendar/v3/calendars/%@/events?maxResults=2500&timeMin=%ld-%ld-%@T00:00:00-07:00&timeMax=%ld-%ld-%dT11:59:59-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0",calendarID, (long)startYear,(long)startMonth, curDayAsString, (long)endYear, (long)endMonth, endDay];
-        }
-        
+        NSLog(urlString);
         
         // take this out of the loop
         url = [NSURL URLWithString:urlString];
