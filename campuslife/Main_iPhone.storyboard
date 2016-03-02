@@ -1196,8 +1196,8 @@
         <image name="university-32.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="efw-WO-bEM"/>
         <segue reference="WrE-J3-9b0"/>
-        <segue reference="91h-l3-254"/>
+        <segue reference="efw-WO-bEM"/>
+        <segue reference="kKn-JZ-pN7"/>
     </inferredMetricsTieBreakers>
 </document>

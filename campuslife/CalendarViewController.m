@@ -19,6 +19,7 @@
 #import "MonthOfEvents.h"
 #import "LCSCEvent.h"
 #import "CalendarInfo.h"
+#import "Day_Event_ViewController.h"
 
 @interface CalendarViewController ()
 
@@ -537,13 +538,12 @@
         NSArray *indexPaths = [_collectionView indexPathsForSelectedItems];
         NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
         
-        //Day_Event_ViewController *destViewController = (Day_Event_ViewController *)[segue destinationViewController];
-        
-        //[destViewController setDay:indexPath.row+1 - [events getFirstWeekDay] ];
+        Day_Event_ViewController *destViewController = (Day_Event_ViewController *)[segue destinationViewController];
         
         NSInteger selectedDay = indexPath.row+1 - [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth
                                                                                andYear:_selectedYear];
-        
+        [destViewController setDay:selectedDay];
+        [destViewController setEvents:[_viewingMonth getEventsForDay:selectedDay]];
         //[_events setSelectedDay:(int)indexPath.row+1 - [_events getFirstWeekDay:1]];
     }
 }

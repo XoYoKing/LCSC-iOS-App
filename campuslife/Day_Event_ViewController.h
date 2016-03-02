@@ -14,5 +14,5 @@
  *  Contains the index for month array.
  */
 @property (nonatomic, setter=setDay:) NSInteger day;
-
+@property (nonatomic, setter=setEvents:) NSArray *dayEvents;
 @end

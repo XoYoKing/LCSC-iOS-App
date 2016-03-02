@@ -8,10 +8,11 @@
 
 #import "EventDetailViewController.h"
 #import "MonthlyEvents.h"
-//#import "UpdateEventViewController.h"
 #import "CalendarViewController.h"
 #import "WebViewViewController.h"
+#import "LCSCEvent.h"
 #import <EventKit/EventKit.h>
+
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
 
@@ -46,6 +47,7 @@
     
     NSArray *dateHold;
     // Date info in different places depending on whether or not event is all day
+    
     if([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]) {
         dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
     

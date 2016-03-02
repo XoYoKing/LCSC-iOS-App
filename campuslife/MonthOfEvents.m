@@ -8,7 +8,6 @@
 
 #import "MonthOfEvents.h"
 #import "CalendarInfo.h"
-#import "EventHelper.h"
 #import "LCSCEvent.h"
 
 @interface MonthOfEvents ()

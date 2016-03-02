@@ -16,7 +16,6 @@
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
-		40EE7B131C67F4DC0061524C /* EventHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40EE7B121C67F4DC0061524C /* EventHelper.m */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -70,7 +69,6 @@
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
 		C11195211A113F35001ED805 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11195201A113F35001ED805 /* SystemConfiguration.framework */; };
 		C11195251A114473001ED805 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C11195241A114473001ED805 /* Reachability.m */; };
-		C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */; };
 		C114505719172761005D1D99 /* hubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C114505619172761005D1D99 /* hubViewController.m */; };
 		C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7C9851A00380500252982 /* WebViewViewController.m */; };
 		C1DEC8CB18F4AC2700ECD591 /* dotAcademics.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DEC8C518F4AC2700ECD591 /* dotAcademics.png */; };
@@ -108,8 +106,6 @@
 		40AC32EB1C60294B003468F8 /* MonthOfEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthOfEvents.m; sourceTree = "<group>"; };
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
 		40AC32F11C6029F2003468F8 /* MonthFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFactory.m; sourceTree = "<group>"; };
-		40EE7B111C67F4DC0061524C /* EventHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHelper.h; sourceTree = "<group>"; };
-		40EE7B121C67F4DC0061524C /* EventHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventHelper.m; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -169,8 +165,6 @@
 		C111951F1A113EFA001ED805 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		C11195201A113F35001ED805 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C11195241A114473001ED805 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailTableViewController.h; sourceTree = "<group>"; };
-		C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailTableViewController.m; sourceTree = "<group>"; };
 		C114505519172761005D1D99 /* hubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hubViewController.h; sourceTree = "<group>"; };
 		C114505619172761005D1D99 /* hubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hubViewController.m; sourceTree = "<group>"; };
 		C1A7C9841A00380500252982 /* WebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewViewController.h; sourceTree = "<group>"; };
@@ -328,16 +322,12 @@
 			children = (
 				9916368219F829BB007F7E47 /* AllEventViewController.h */,
 				9916368119F829BB007F7E47 /* AllEventViewController.m */,
-				C111B76B18C6929200B957F2 /* EventDetailTableViewController.h */,
-				C111B76C18C6929200B957F2 /* EventDetailTableViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
 				07484B181C84CD45007D1ADC /* ProfileViewController.h */,
 				07484B191C84CD45007D1ADC /* ProfileViewController.m */,
 				400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */,
 				400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */,
-				40EE7B111C67F4DC0061524C /* EventHelper.h */,
-				40EE7B121C67F4DC0061524C /* EventHelper.m */,
 				3FE5FA781C594BA80024CEFB /* CalendarInfo.h */,
 				3FE5FA791C594BA80024CEFB /* CalendarInfo.m */,
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
@@ -539,7 +529,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40EE7B131C67F4DC0061524C /* EventHelper.m in Sources */,
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
 				9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */,
@@ -559,7 +548,6 @@
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
 				07B2989B1C83C51B00BA787F /* Authorization2.swift in Sources */,
-				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
 				400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */,

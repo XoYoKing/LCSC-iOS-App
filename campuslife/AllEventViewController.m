@@ -7,7 +7,7 @@
 //1
 
 #import "AllEventViewController.h"
-#import "EventDetailTableViewController.h"
+#import "EventDetailViewController.h"
 #import "CalendarViewController.h"
 #import "CalendarInfo.h"
 #import "Preferences.h"
@@ -90,7 +90,7 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         wentToEvent = YES;
         //Instantiate your next view controller!
-        EventDetailTableViewController *destViewController = (EventDetailTableViewController *)[segue destinationViewController];
+        EventDetailViewController *destViewController = (EventDetailViewController *)[segue destinationViewController];
         
         [destViewController setEvent:[displayedEvents objectAtIndex:indexPath.row]];
     }
