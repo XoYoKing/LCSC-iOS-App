@@ -7,7 +7,6 @@
 //
 
 #import "EventDetailViewController.h"
-#import "MonthlyEvents.h"
 #import "CalendarViewController.h"
 #import "WebViewViewController.h"
 #import "LCSCEvent.h"
@@ -17,9 +16,8 @@
 #define IPAD     UIUserInterfaceIdiomPad
 
 
-@interface EventDetailViewController (){
-    MonthlyEvents *events;
-}
+@interface EventDetailViewController ()
+
 @end
 
 @implementation EventDetailViewController
@@ -48,16 +46,15 @@
     NSArray *dateHold;
     // Date info in different places depending on whether or not event is all day
     
-    if([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]) {
-        dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
+    dateHold = [[[_selectedEvent getStartTimestamp] componentsSeparatedByString:@"T"][0]
+                componentsSeparatedByString:@"-"];
     
-    } else {
-        dateHold = [[[[_eventDict objectForKey:@"start"] objectForKey:@"date"]componentsSeparatedByString:@"T"][0] componentsSeparatedByString:@"-"];
-    }
+
     
-    NSString *yearHold = dateHold[0];
-    NSString *dayHold = dateHold[2];
-    NSString *monthHold = dateHold[1];
+    NSString *yearHold = [NSString stringWithFormat:@"%ld", (long)[_selectedEvent getStartYear]];
+    NSString *dayHold = [NSString stringWithFormat:@"%ld", (long)[_selectedEvent getStartDay]];
+    NSString *monthHold = [NSString stringWithFormat:@"%ld", (long)[_selectedEvent getStartMonth]];
+    
     monthHold = [self convertMonthNumberToString:monthHold];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@, %@", monthHold, dayHold,yearHold];
 }
@@ -144,24 +141,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *timee = [[NSString alloc]init];
-    events = [MonthlyEvents getSharedInstance];
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
+    //self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
     
-    if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
+    if ([_selectedEvent isAllDay])
     {
         timee = @"All Day Event";
     }
     else
     {
-        NSString *startTimeHold = [[[[[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
-        NSString *endTimeHold = [[[[[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+        NSString *startTimeHold = [[[[_selectedEvent getStartTimestamp] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
+        NSString *endTimeHold = [[[[_selectedEvent getEndTimestamp] componentsSeparatedByString:@"T"][1] componentsSeparatedByString:@"."][0] substringWithRange:NSMakeRange(0, 5)];
         startTimeHold = [self twentyFourToTwelve:startTimeHold];
         endTimeHold = [self twentyFourToTwelve:endTimeHold];
         timee = [NSString stringWithFormat:@"%@ - %@",startTimeHold,endTimeHold];
     }
     
     
-    NSString *titleToParse = [_eventDict objectForKey:@"summary"];
+    NSString *titleToParse = [_selectedEvent getSummary];
     titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@":" withString:@"\n"];
     titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@": " withString:@"\n"];
     titleToParse = [titleToParse stringByReplacingOccurrencesOfString:@"(" withString:@"\n("];
@@ -177,9 +173,9 @@
     
     NSMutableAttributedString *attributedTime = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n", timee] attributes:timeDict];
     
-    NSMutableAttributedString *attributedLocation = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n", [_eventDict objectForKey:@"location"]] attributes:locationDict];
+    NSMutableAttributedString *attributedLocation = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n", [_selectedEvent getLocation]] attributes:locationDict];
     
-    NSMutableAttributedString *attributedDesc = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n", [_eventDict objectForKey:@"description"]] attributes:descDict];
+    NSMutableAttributedString *attributedDesc = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n", [_selectedEvent getDescription]] attributes:descDict];
     
     [attributedTitle addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedTitle.length)];
     [attributedLocation addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedLocation.length)];
@@ -225,12 +221,12 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
             }
             else{
                 EKEvent *event = [EKEvent eventWithEventStore:store];
-                [event setTitle:[_eventDict objectForKey:@"summary"]];//solved
-                [event setLocation:[_eventDict objectForKey:@"location"]];//solved
-                [event setNotes:[_eventDict objectForKey:@"description"]];//solved
+                [event setTitle:[_selectedEvent getSummary]];//solved
+                [event setLocation:[_selectedEvent getLocation]];//solved
+                [event setNotes:[_selectedEvent getDescription]];//solved
 
                 
-                if ([[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"] == nil)
+                if ([_selectedEvent isAllDay])
                 {
                     [event setAllDay:true];
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
