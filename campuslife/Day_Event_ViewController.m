@@ -7,7 +7,6 @@
 //
 
 #import "Day_Event_ViewController.h"
-#import "MonthlyEvents.h"
 #import "Preferences.h"
 #import "EventDetailViewController.h"
 #import "CalendarViewController.h"
@@ -15,10 +14,6 @@
 
 
 @interface Day_Event_ViewController ()
-{
-    
-    MonthlyEvents *events;
-}
 
 @property (nonatomic) BOOL didSegue;
 
