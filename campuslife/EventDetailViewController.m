@@ -232,7 +232,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                     
-                    NSString *startDateString = [[_eventDict objectForKey:@"start"] objectForKey:@"date"];
+                    NSString *startDateString = [_selectedEvent getStartTimestamp];
                     //NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"date"];
                     
                     NSDate *start = [[NSDate alloc] init];
@@ -259,10 +259,12 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     [event setAllDay:false];
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
+                    
+/* This code causes errors for some reason? - Kyle
 
             //clayton
-                    NSString *startDateString = [[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"];
-                    NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"];
+          //          NSString *startDateString = [[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"];
+            //        NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"];
                     
                     NSMutableString *mutableStartDate = [startDateString mutableCopy];
                     NSMutableString *mutableEndDate = [endDateString mutableCopy];
@@ -282,6 +284,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     NSDate *end = [dateFormatter dateFromString:mutableEndDate];
                     [event setStartDate:start];
                     [event setEndDate:end];
+ */
                 }
 
                 [event setCalendar:[store defaultCalendarForNewEvents]];
