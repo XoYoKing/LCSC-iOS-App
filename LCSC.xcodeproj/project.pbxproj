@@ -84,7 +84,6 @@
 		C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E01183C333A00851B89 /* AppDelegate.m */; };
 		C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E3E183C33D000851B89 /* CalendarViewController.m */; };
 		C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E40183C33D000851B89 /* Day_Event_ViewController.m */; };
-		C1E66E4A183C33D000851B89 /* MonthlyEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E44183C33D000851B89 /* MonthlyEvents.m */; };
 		C1E66E4B183C33D000851B89 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E66E46183C33D000851B89 /* Preferences.m */; };
 /* End PBXBuildFile section */
 
@@ -190,8 +189,6 @@
 		C1E66E3E183C33D000851B89 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		C1E66E3F183C33D000851B89 /* Day_Event_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day_Event_ViewController.h; sourceTree = "<group>"; };
 		C1E66E40183C33D000851B89 /* Day_Event_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day_Event_ViewController.m; sourceTree = "<group>"; };
-		C1E66E43183C33D000851B89 /* MonthlyEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyEvents.h; sourceTree = "<group>"; };
-		C1E66E44183C33D000851B89 /* MonthlyEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyEvents.m; sourceTree = "<group>"; };
 		C1E66E45183C33D000851B89 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		C1E66E46183C33D000851B89 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -340,8 +337,6 @@
 				40AC32F11C6029F2003468F8 /* MonthFactory.m */,
 				40AC32EA1C60294B003468F8 /* MonthOfEvents.h */,
 				40AC32EB1C60294B003468F8 /* MonthOfEvents.m */,
-				C1E66E43183C33D000851B89 /* MonthlyEvents.h */,
-				C1E66E44183C33D000851B89 /* MonthlyEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
 				C1A7C9841A00380500252982 /* WebViewViewController.h */,
@@ -537,7 +532,6 @@
 				40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */,
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
-				C1E66E4A183C33D000851B89 /* MonthlyEvents.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
