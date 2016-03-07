@@ -69,7 +69,6 @@
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
 		C11195211A113F35001ED805 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11195201A113F35001ED805 /* SystemConfiguration.framework */; };
 		C11195251A114473001ED805 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C11195241A114473001ED805 /* Reachability.m */; };
-		C114505719172761005D1D99 /* hubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C114505619172761005D1D99 /* hubViewController.m */; };
 		C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7C9851A00380500252982 /* WebViewViewController.m */; };
 		C1DEC8CB18F4AC2700ECD591 /* dotAcademics.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DEC8C518F4AC2700ECD591 /* dotAcademics.png */; };
 		C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DEC8C618F4AC2700ECD591 /* dotActivities.png */; };
@@ -165,8 +164,6 @@
 		C111951F1A113EFA001ED805 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		C11195201A113F35001ED805 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C11195241A114473001ED805 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		C114505519172761005D1D99 /* hubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hubViewController.h; sourceTree = "<group>"; };
-		C114505619172761005D1D99 /* hubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hubViewController.m; sourceTree = "<group>"; };
 		C1A7C9841A00380500252982 /* WebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewViewController.h; sourceTree = "<group>"; };
 		C1A7C9851A00380500252982 /* WebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewViewController.m; sourceTree = "<group>"; };
 		C1DEC8C518F4AC2700ECD591 /* dotAcademics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotAcademics.png; sourceTree = "<group>"; };
@@ -335,8 +332,6 @@
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
-				C114505519172761005D1D99 /* hubViewController.h */,
-				C114505619172761005D1D99 /* hubViewController.m */,
 				C1E66E3D183C33D000851B89 /* CalendarViewController.h */,
 				C1E66E3E183C33D000851B89 /* CalendarViewController.m */,
 				C1E66E3F183C33D000851B89 /* Day_Event_ViewController.h */,
@@ -543,7 +538,6 @@
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
 				C1E66E4A183C33D000851B89 /* MonthlyEvents.m in Sources */,
-				C114505719172761005D1D99 /* hubViewController.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
