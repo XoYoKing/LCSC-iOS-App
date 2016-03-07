@@ -7,7 +7,7 @@
 //
 
 #import "Preferences.h"
-#import "MonthlyEvents.h"
+#import "CalendarInfo.h"
 
 @implementation Preferences
 
@@ -34,11 +34,12 @@ static Preferences *_sharedInstance;
 {
     _prefs = [[NSMutableDictionary alloc] init];
     
-    NSUInteger keyCount = [[[MonthlyEvents getSharedInstance] getCategoryNames] count];
+    NSArray *categoryNames = [CalendarInfo getCategoryNames];
+    NSUInteger keyCount = [categoryNames count];
     
     for ( int i = 0; i < keyCount; i++ )
     {
-        [_prefs setObject:@0 forKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]];
+        [_prefs setObject:@0 forKey:categoryNames[i]];
     }
 }
 
@@ -85,11 +86,12 @@ static Preferences *_sharedInstance;
     NSUInteger each = [_prefs count];
     
     //Load all of the prefences for the categories that are selected.
+    NSArray *categoryNames = [CalendarInfo getCategoryNames];
     for (int i = 0; i < each; i++)
     {
-        NSNumber *prefActive = [NSNumber numberWithBool:![defaults boolForKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]]];
+        NSNumber *prefActive = [NSNumber numberWithBool:![defaults boolForKey:categoryNames[i]]];
         
-        [_prefs setValue:prefActive forKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]];
+        [_prefs setValue:prefActive forKey:categoryNames[i]];
     }
 }
 
@@ -107,13 +109,14 @@ static Preferences *_sharedInstance;
     NSUInteger each = [_prefs count];
     
     //Save the preferences for future sessions of the app.
+    NSArray *categoryNames = [CalendarInfo getCategoryNames];
     for (int i = 0; i < each; i++)
     {
         //Retrieves current value for key, or if none exists returns 0 - then typecasted into Bool.
-        BOOL prefActive = [[_prefs valueForKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]] boolValue];
+        BOOL prefActive = [[_prefs valueForKey:categoryNames[i]] boolValue];
         
         //Sets the boolean value for key.
-        [defaults setBool:!prefActive forKey:[[MonthlyEvents getSharedInstance] getCategoryNames][i]];
+        [defaults setBool:!prefActive forKey:categoryNames[i]];
     }
     
     [defaults synchronize];

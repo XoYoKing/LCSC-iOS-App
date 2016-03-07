@@ -12,7 +12,6 @@
 
 #import "CalendarViewController.h"
 #import "AllEventViewController.h"
-#import "MonthlyEvents.h"
 #import "Preferences.h"
 #import "AppDelegate.h"
 #import "MonthFactory.h"
