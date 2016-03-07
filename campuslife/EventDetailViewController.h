@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LCSCEvent.h"
 
 @interface EventDetailViewController : UIViewController<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *Time;
@@ -15,5 +16,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *Description;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (weak, nonatomic) NSURL *urlSelected;
-@property (copy, nonatomic,setter = setEvent:) NSDictionary *eventDict;
+@property (nonatomic,setter = setEvent:) LCSCEvent *selectedEvent;
 @end
