@@ -16,7 +16,6 @@
 #import "Preferences.h"
 #import "AppDelegate.h"
 #import "MonthFactory.h"
-#import "MonthOfEvents.h"
 #import "LCSCEvent.h"
 #import "CalendarInfo.h"
 #import "Day_Event_ViewController.h"
