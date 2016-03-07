@@ -54,7 +54,7 @@
             title = @"Warrior Athletics";
             
         } else if([segue.identifier isEqualToString:@"WarriorWeb"]) {
-            url = @"http://www.lcsc.edu/warriorweb";
+            url = @"https://warriorwebss.lcsc.edu/Student/Account/Login?ReturnUrl=%2fStudent%2fPlanning%2fDegreePlans";
             title = @"Warrior Web";
             
         } else if ([segue.identifier isEqualToString:@"LCMail"]) {

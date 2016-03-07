@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		07484B1A1C84CD45007D1ADC /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07484B191C84CD45007D1ADC /* ProfileViewController.m */; };
 		07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07484B1B1C84CF84007D1ADC /* Authentication.swift */; };
-		07B298991C83C49200BA787F /* ProfileViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B298981C83C49200BA787F /* ProfileViewControllerSwift.swift */; };
-		07B2989B1C83C51B00BA787F /* Authorization2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2989A1C83C51B00BA787F /* Authorization2.swift */; };
+		07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC95651C877BC900C05BB0 /* ScriptWebView.swift */; };
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
@@ -96,8 +95,7 @@
 		07484B191C84CD45007D1ADC /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		07484B1B1C84CF84007D1ADC /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		07B298971C83C49200BA787F /* LCSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCSC-Bridging-Header.h"; sourceTree = "<group>"; };
-		07B298981C83C49200BA787F /* ProfileViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerSwift.swift; sourceTree = "<group>"; };
-		07B2989A1C83C51B00BA787F /* Authorization2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authorization2.swift; sourceTree = "<group>"; };
+		07CC95651C877BC900C05BB0 /* ScriptWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptWebView.swift; sourceTree = "<group>"; };
 		3FE5FA781C594BA80024CEFB /* CalendarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfo.h; sourceTree = "<group>"; };
 		3FE5FA791C594BA80024CEFB /* CalendarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfo.m; sourceTree = "<group>"; };
 		400AC86D1C698D55003FC6E3 /* ResourcesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesTableViewController.h; sourceTree = "<group>"; };
@@ -346,6 +344,7 @@
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
 				C114505519172761005D1D99 /* hubViewController.h */,
+				07CC95651C877BC900C05BB0 /* ScriptWebView.swift */,
 				C114505619172761005D1D99 /* hubViewController.m */,
 				C1E66E3D183C33D000851B89 /* CalendarViewController.h */,
 				C1E66E3E183C33D000851B89 /* CalendarViewController.m */,
@@ -371,8 +370,6 @@
 				991048FA1A1E656100C83570 /* ContactInfo.m */,
 				C111951F1A113EFA001ED805 /* Reachability.h */,
 				C11195241A114473001ED805 /* Reachability.m */,
-				07B298981C83C49200BA787F /* ProfileViewControllerSwift.swift */,
-				07B2989A1C83C51B00BA787F /* Authorization2.swift */,
 				07484B1B1C84CF84007D1ADC /* Authentication.swift */,
 				99F6F39119FDC39500536DB8 /* Images.xcassets */,
 				C1E66DF8183C333A00851B89 /* Supporting Files */,
@@ -543,7 +540,6 @@
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
 				9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */,
-				07B298991C83C49200BA787F /* ProfileViewControllerSwift.swift in Sources */,
 				C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */,
 				991048FB1A1E656100C83570 /* ContactInfo.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
@@ -558,9 +554,9 @@
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
-				07B2989B1C83C51B00BA787F /* Authorization2.swift in Sources */,
 				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
+				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
 				400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */,
 				3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */,
