@@ -16,7 +16,7 @@
 		409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 409B8EE61C9103FB00F4361D /* frontpage.jpg */; };
 		409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EE81C91077C00F4361D /* BackTableVC.swift */; };
 		409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EEA1C91077C00F4361D /* SWRevealViewController.m */; };
-		409B8EEF1C91096F00F4361D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EEE1C91096F00F4361D /* MenuViewController.swift */; };
+		409B8EF61C911B9200F4361D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EF51C911B9200F4361D /* MenuViewController.m */; };
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
@@ -105,8 +105,9 @@
 		409B8EE81C91077C00F4361D /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		409B8EE91C91077C00F4361D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		409B8EEA1C91077C00F4361D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		409B8EEE1C91096F00F4361D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		409B8EF01C910AC700F4361D /* LCSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LCSC-Bridging-Header.h"; path = "../LCSC-Bridging-Header.h"; sourceTree = "<group>"; };
+		409B8EF41C911B9200F4361D /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		409B8EF51C911B9200F4361D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		40AC32EA1C60294B003468F8 /* MonthOfEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthOfEvents.h; sourceTree = "<group>"; };
 		40AC32EB1C60294B003468F8 /* MonthOfEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthOfEvents.m; sourceTree = "<group>"; };
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
@@ -215,13 +216,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		40D218CE1C90A47A0056A6A7 /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = SWRevealViewController;
-			sourceTree = "<group>";
-		};
 		9925929C19FDC46B008946F8 /* Campus Life Icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,7 +322,6 @@
 		C1E66DF7183C333A00851B89 /* campuslife */ = {
 			isa = PBXGroup;
 			children = (
-				40D218CE1C90A47A0056A6A7 /* SWRevealViewController */,
 				9916368219F829BB007F7E47 /* AllEventViewController.h */,
 				9916368119F829BB007F7E47 /* AllEventViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
@@ -344,7 +337,8 @@
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
-				409B8EEE1C91096F00F4361D /* MenuViewController.swift */,
+				409B8EF41C911B9200F4361D /* MenuViewController.h */,
+				409B8EF51C911B9200F4361D /* MenuViewController.m */,
 				409B8EE81C91077C00F4361D /* BackTableVC.swift */,
 				409B8EE91C91077C00F4361D /* SWRevealViewController.h */,
 				409B8EEA1C91077C00F4361D /* SWRevealViewController.m */,
@@ -546,7 +540,6 @@
 				991048FB1A1E656100C83570 /* ContactInfo.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
 				400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */,
-				409B8EEF1C91096F00F4361D /* MenuViewController.swift in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,
 				07484B1A1C84CD45007D1ADC /* ProfileViewController.m in Sources */,
 				40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */,
@@ -558,6 +551,7 @@
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
+				409B8EF61C911B9200F4361D /* MenuViewController.m in Sources */,
 				400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */,
 				409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */,
 				3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */,
