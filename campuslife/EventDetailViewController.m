@@ -10,7 +10,6 @@
 #import "CalendarViewController.h"
 #import "WebViewViewController.h"
 #import "LCSCEvent.h"
-#import "SWRevealViewController.h"
 #import <EventKit/EventKit.h>
 
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
@@ -18,7 +17,6 @@
 
 
 @interface EventDetailViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
 @end
 
@@ -142,11 +140,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _menuButton.target = [self revealViewController];
-    _menuButton.action = @selector(revealToggle:);
-    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
-    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     
     NSString *timee = [[NSString alloc]init];
     //self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];

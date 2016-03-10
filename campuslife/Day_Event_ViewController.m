@@ -10,7 +10,6 @@
 #import "Preferences.h"
 #import "EventDetailViewController.h"
 #import "CalendarViewController.h"
-#import "SWRevealViewController.h"
 
 
 @interface Day_Event_ViewController ()
@@ -35,11 +34,7 @@
 {
     
     [super viewDidLoad];
-    
-    _menuButton.target = [self revealViewController];
-    _menuButton.action = @selector(revealToggle:);
-    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
-    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+
     self.tableView.rowHeight = 44;
     //self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
     
