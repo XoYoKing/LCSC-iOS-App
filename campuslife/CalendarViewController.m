@@ -11,7 +11,6 @@
 #define IPAD     UIUserInterfaceIdiomPad
 
 #import "CalendarViewController.h"
-#import "AllEventViewController.h"
 #import "Preferences.h"
 #import "AppDelegate.h"
 #import "MonthFactory.h"
@@ -35,17 +34,10 @@
 
 @property (nonatomic) BOOL loadCompleted;
 
-@property (nonatomic) BOOL allEventsDidLoad;
-
 @property (nonatomic) AppDelegate *appD;
 @property (nonatomic) NSString *currentDateDay;
 @property (nonatomic) NSString *currentDateMonth;
 @property (nonatomic) NSString *currentDateYear;
-
-// threading stuff
-@property (strong, nonatomic) NSCondition *condition;
-@property (strong, nonatomic) NSThread *aThread;
-@property (nonatomic) BOOL lock;
 
 @property NSInteger selectedMonth;
 @property NSInteger selectedYear;
@@ -103,8 +95,6 @@
     
     _screenLocked = NO;
     
-    _allEventsDidLoad = NO;
-    
     _selectedMonth = [CalendarInfo getCurrentMonth];
     _selectedYear = [CalendarInfo getCurrentYear];
     
@@ -131,48 +121,10 @@
             
             _shouldRefresh = NO;
         }
-        
-        if(!_allEventsDidLoad) {
-            self.lock = YES;
-            
-            // create the NSCondition instance
-            self.condition = [[NSCondition alloc]init];
-            
-            self.aThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadLoop) object:nil];
-            [self.aThread start];
-            
-            _allEventsDidLoad = YES;
-        }
+
     }else{
         [_activityIndicator stopAnimating];
         _shouldRefresh =YES;
-    }
-}
-
-
--(void) updateOutput{
-    UINavigationController *navCont = [self.tabBarController.childViewControllers objectAtIndex:1];
-    AllEventViewController *aevc = [navCont.childViewControllers objectAtIndex:0];
-    [aevc loadAllData];
-}
-
--(void)threadLoop
-{
-    while([[NSThread currentThread] isCancelled] == NO)
-    {
-        [self.condition lock];
-        while(self.lock)
-        {
-            [self performSelector:@selector(updateOutput)
-                         onThread:[NSThread mainThread]
-                       withObject:nil
-                    waitUntilDone:NO];
-            [self.condition wait];
-        }
-        
-        // lock the condition again
-        self.lock = YES;
-        [self.condition unlock];
     }
 }
 

@@ -31,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadAllData];
     self.tableView.rowHeight = 44;
     // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
     wentToEvent = NO;
