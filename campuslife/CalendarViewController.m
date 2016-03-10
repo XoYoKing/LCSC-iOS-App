@@ -17,9 +17,11 @@
 #import "LCSCEvent.h"
 #import "CalendarInfo.h"
 #import "Day_Event_ViewController.h"
+#import "SWRevealViewController.h"
 
 @interface CalendarViewController ()
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
 @property (nonatomic) BOOL screenLocked;
 
@@ -52,6 +54,11 @@
     _appD = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [super viewDidLoad];
+    
+    _menuButton.target = [self revealViewController];
+    _menuButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
+    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     
     // Do any additional setup after loading the view, typically from a nib.
     Preferences *prefs = [Preferences getSharedInstance];

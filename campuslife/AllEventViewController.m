@@ -14,6 +14,7 @@
 #import "MonthFactory.h"
 #import "MonthOfEvents.h"
 #import "LCSCEvent.h"
+#import "SWRevealViewController.h"
 
 @interface AllEventViewController ()
 {
@@ -24,6 +25,7 @@
     BOOL wentToEvent;
     Preferences *preferences;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
 @end
 
@@ -31,6 +33,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _menuButton.target = [self revealViewController];
+    _menuButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
+    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     [self loadAllData];
     self.tableView.rowHeight = 44;
     // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController

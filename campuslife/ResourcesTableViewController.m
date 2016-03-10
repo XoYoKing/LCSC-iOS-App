@@ -8,16 +8,22 @@
 
 #import "ResourcesTableViewController.h"
 #import "WebViewViewController.h"
+#import "SWRevealViewController.h"
 
 @interface ResourcesTableViewController ()
 {
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 @end
 
 @implementation ResourcesTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _menuButton.target = [self revealViewController];
+    _menuButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
+    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
 }
 
 - (void)didReceiveMemoryWarning {
