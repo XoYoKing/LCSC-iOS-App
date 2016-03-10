@@ -13,6 +13,7 @@
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
+		409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 409B8EE61C9103FB00F4361D /* frontpage.jpg */; };
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
@@ -98,6 +99,7 @@
 		400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesTableViewController.m; sourceTree = "<group>"; };
 		400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCEvent.h; sourceTree = "<group>"; };
 		400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCEvent.m; sourceTree = "<group>"; };
+		409B8EE61C9103FB00F4361D /* frontpage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frontpage.jpg; sourceTree = "<group>"; };
 		40AC32EA1C60294B003468F8 /* MonthOfEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthOfEvents.h; sourceTree = "<group>"; };
 		40AC32EB1C60294B003468F8 /* MonthOfEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthOfEvents.m; sourceTree = "<group>"; };
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
@@ -206,6 +208,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40D218CE1C90A47A0056A6A7 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		9925929C19FDC46B008946F8 /* Campus Life Icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +321,7 @@
 		C1E66DF7183C333A00851B89 /* campuslife */ = {
 			isa = PBXGroup;
 			children = (
+				40D218CE1C90A47A0056A6A7 /* SWRevealViewController */,
 				9916368219F829BB007F7E47 /* AllEventViewController.h */,
 				9916368119F829BB007F7E47 /* AllEventViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
@@ -327,9 +337,7 @@
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
-				C114505519172761005D1D99 /* hubViewController.h */,
 				07CC95651C877BC900C05BB0 /* ScriptWebView.swift */,
-				C114505619172761005D1D99 /* hubViewController.m */,
 				C1E66E3D183C33D000851B89 /* CalendarViewController.h */,
 				C1E66E3E183C33D000851B89 /* CalendarViewController.m */,
 				C1E66E3F183C33D000851B89 /* Day_Event_ViewController.h */,
@@ -340,6 +348,7 @@
 				40AC32EB1C60294B003468F8 /* MonthOfEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
+				409B8EE61C9103FB00F4361D /* frontpage.jpg */,
 				C1A7C9841A00380500252982 /* WebViewViewController.h */,
 				C1A7C9851A00380500252982 /* WebViewViewController.m */,
 				9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */,
@@ -493,6 +502,7 @@
 				99A580951A0048E70044CA5E /* Default-Portrait@2x.png in Resources */,
 				994589ED1A396F9F00853E3E /* iphoneDetails.jpg in Resources */,
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
+				409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */,
 				9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */,
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,
 				9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */,
@@ -533,7 +543,6 @@
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
-				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
