@@ -46,7 +46,7 @@
         [self changeDisplaytext:newLogin andPassword:newPassword];
         _alert = [[UIAlertView alloc] init];
         _alert.title = @"Success!";
-        _alert.message = @"Your username or password were saved.";
+        _alert.message = @"Your username and password were saved.";
         _alert.delegate = self;
         [_alert addButtonWithTitle:@"Ok"];
         [_alert show];
@@ -54,7 +54,7 @@
     } else {
         _alert = [[UIAlertView alloc] init];
         _alert.title = @"Fail!";
-        _alert.message = @"Your username or password have an invalide input.";
+        _alert.message = @"Your username and password have or invalide input.";
         _alert.delegate = self;
         [_alert addButtonWithTitle:@"Ok"];
         [_alert show];
