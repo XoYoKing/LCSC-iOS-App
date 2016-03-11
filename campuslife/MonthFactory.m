@@ -122,9 +122,19 @@ static NSMutableDictionary *monthCache;
         }
         
         if(newMonth != nil) {
-            [monthsOfEvents addObject:newMonth];
+            //[monthsOfEvents addObject:newMonth];
         }
         [CalendarInfo incrementMonth:&curMonth :&curYear];
+    }
+    NSInteger month_i = startMonth;
+    NSInteger year_i = startYear;
+    while(month_i <= endMonth && year_i <= endYear) {
+        NSString *indexStr = [MonthFactory getIndexStr:month_i :year_i];
+        MonthOfEvents *whatever = [monthCache objectForKey:indexStr];
+        [CalendarInfo incrementMonth:&month_i :&year_i];
+        if(whatever != nil) {
+            [monthsOfEvents addObject:whatever];
+        }
     }
     
     return monthsOfEvents;
