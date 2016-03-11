@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LCSC-swift.h"
 
 @interface MenuViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;

@@ -13,6 +13,11 @@
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
+		4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4071E64D1C925144002E0D8E /* twitterViewController.m */; };
+		4071E6541C925655002E0D8E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6501C925654002E0D8E /* Fabric.framework */; };
+		4071E6551C925655002E0D8E /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6511C925654002E0D8E /* TwitterKit.framework */; };
+		4071E6561C925655002E0D8E /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4071E6521C925654002E0D8E /* TwitterKitResources.bundle */; };
+		4071E6571C925655002E0D8E /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6531C925655002E0D8E /* TwitterCore.framework */; };
 		409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 409B8EE61C9103FB00F4361D /* frontpage.jpg */; };
 		409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EE81C91077C00F4361D /* BackTableVC.swift */; };
 		409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EEA1C91077C00F4361D /* SWRevealViewController.m */; };
@@ -102,6 +107,12 @@
 		400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesTableViewController.m; sourceTree = "<group>"; };
 		400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCEvent.h; sourceTree = "<group>"; };
 		400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCEvent.m; sourceTree = "<group>"; };
+		4071E64C1C925144002E0D8E /* twitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitterViewController.h; sourceTree = "<group>"; };
+		4071E64D1C925144002E0D8E /* twitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twitterViewController.m; sourceTree = "<group>"; };
+		4071E6501C925654002E0D8E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		4071E6511C925654002E0D8E /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		4071E6521C925654002E0D8E /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
+		4071E6531C925655002E0D8E /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		409B8EE61C9103FB00F4361D /* frontpage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frontpage.jpg; sourceTree = "<group>"; };
 		409B8EE81C91077C00F4361D /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		409B8EE91C91077C00F4361D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -209,9 +220,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C11195211A113F35001ED805 /* SystemConfiguration.framework in Frameworks */,
+				4071E6541C925655002E0D8E /* Fabric.framework in Frameworks */,
+				4071E6571C925655002E0D8E /* TwitterCore.framework in Frameworks */,
 				C1E66DF4183C333A00851B89 /* CoreGraphics.framework in Frameworks */,
 				C1E66DF6183C333A00851B89 /* UIKit.framework in Frameworks */,
 				C1E66DF2183C333A00851B89 /* Foundation.framework in Frameworks */,
+				4071E6551C925655002E0D8E /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +355,12 @@
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
 				409B8EF41C911B9200F4361D /* MenuViewController.h */,
 				409B8EF51C911B9200F4361D /* MenuViewController.m */,
+				4071E6501C925654002E0D8E /* Fabric.framework */,
+				4071E6511C925654002E0D8E /* TwitterKit.framework */,
+				4071E6521C925654002E0D8E /* TwitterKitResources.bundle */,
+				4071E6531C925655002E0D8E /* TwitterCore.framework */,
+				4071E64C1C925144002E0D8E /* twitterViewController.h */,
+				4071E64D1C925144002E0D8E /* twitterViewController.m */,
 				409B8EE81C91077C00F4361D /* BackTableVC.swift */,
 				409B8EE91C91077C00F4361D /* SWRevealViewController.h */,
 				409B8EEA1C91077C00F4361D /* SWRevealViewController.m */,
@@ -424,6 +444,7 @@
 				C1E66DEA183C333A00851B89 /* Sources */,
 				C1E66DEB183C333A00851B89 /* Frameworks */,
 				C1E66DEC183C333A00851B89 /* Resources */,
+				4071E64F1C9255CF002E0D8E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -480,6 +501,7 @@
 				992592B819FDC46B008946F8 /* Icon-Small-50.png in Resources */,
 				992592B419FDC46B008946F8 /* Icon-small-29.png in Resources */,
 				C1DEC8D018F4AC2700ECD591 /* dotCampusRec.png in Resources */,
+				4071E6561C925655002E0D8E /* TwitterKitResources.bundle in Resources */,
 				99A580931A0048E70044CA5E /* Default-Portrait-736h@3x.png in Resources */,
 				99F6F39219FDC39500536DB8 /* Images.xcassets in Resources */,
 				992592B219FDC46B008946F8 /* Icon-76.png in Resources */,
@@ -532,12 +554,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4071E64F1C9255CF002E0D8E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 5d2a63c06bb27b25af085bd88544fd23e179f969 b7545c926ec22718a0305dab736fe9d3aa9cca4bb030dbffc80ba808fb0f73f0";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C1E66DEA183C333A00851B89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
+				4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
 				9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */,
 				C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */,
@@ -666,6 +705,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/campuslife",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "campuslife/LCSC-Prefix.pch";
 				INFOPLIST_FILE = "campuslife/LCSC-Info.plist";
@@ -688,6 +731,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/campuslife",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "campuslife/LCSC-Prefix.pch";
 				INFOPLIST_FILE = "campuslife/LCSC-Info.plist";

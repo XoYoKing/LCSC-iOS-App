@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "SWRevealViewController.h"
+#import <TwitterKit/TwitterKit.h>
 
 @implementation MenuViewController
 -(void)viewDidLoad
@@ -16,5 +17,7 @@
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+//    [[Twitter sharedInstance] startWithConsumerKey:@"LCSC" consumerSecret: "@client"];
+//    [Fabric with:@[[Twitter sharedInstance]]];
 }
 @end
