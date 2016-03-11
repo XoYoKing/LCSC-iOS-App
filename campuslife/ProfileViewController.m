@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameDisplay;
 @property (weak, nonatomic) IBOutlet UITextField *passwordDisplay;
 @property (strong, nonatomic) Authentication *auth;
+@property (strong, nonatomic) UIAlertView *alert;
 @end
 
 @implementation ProfileViewController
@@ -38,7 +39,30 @@
     [self changeDisplaytext:@"" andPassword:@""];
 }
 
-- (IBAction)signinTapped:(id)sender {
+- (IBAction)signingTapped:(id)sender {
+    if ([_auth setProfile:_usernameDisplay.text newPassword:_passwordDisplay.text]){
+        NSString *newLogin = [_auth getUsername];
+        NSString *newPassword = [_auth getPassword];
+        [self changeDisplaytext:newLogin andPassword:newPassword];
+        _alert = [[UIAlertView alloc] init];
+        _alert.title = @"Success!";
+        _alert.message = @"Your username or password were saved.";
+        _alert.delegate = self;
+        [_alert addButtonWithTitle:@"Ok"];
+        [_alert show];
+        [self performSegueWithIdentifier:@"signinTapped" sender:sender];
+    } else {
+        _alert = [[UIAlertView alloc] init];
+        _alert.title = @"Fail!";
+        _alert.message = @"Your username or password have an invalide input.";
+        _alert.delegate = self;
+        [_alert addButtonWithTitle:@"Ok"];
+        [_alert show];
+    }
+    
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if (![_auth setProfile:_usernameDisplay.text newPassword:_passwordDisplay.text]){
         NSString *newLogin = [_auth getUsername];
         NSString *newPassword = [_auth getPassword];
@@ -53,13 +77,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
