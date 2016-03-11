@@ -18,6 +18,10 @@
 		4071E6551C925655002E0D8E /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6511C925654002E0D8E /* TwitterKit.framework */; };
 		4071E6561C925655002E0D8E /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4071E6521C925654002E0D8E /* TwitterKitResources.bundle */; };
 		4071E6571C925655002E0D8E /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6531C925655002E0D8E /* TwitterCore.framework */; };
+		4071E6591C926B7B002E0D8E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4071E6581C926B7B002E0D8E /* background.png */; };
+		4071E65B1C926B89002E0D8E /* HomeButton top bar small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */; };
+		4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */; };
+		4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65E1C927CCC002E0D8E /* overlayed front.jpg */; };
 		409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 409B8EE61C9103FB00F4361D /* frontpage.jpg */; };
 		409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EE81C91077C00F4361D /* BackTableVC.swift */; };
 		409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EEA1C91077C00F4361D /* SWRevealViewController.m */; };
@@ -113,6 +117,10 @@
 		4071E6511C925654002E0D8E /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		4071E6521C925654002E0D8E /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
 		4071E6531C925655002E0D8E /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
+		4071E6581C926B7B002E0D8E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "HomeButton top bar small.jpg"; sourceTree = "<group>"; };
+		4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rsz_homebutton_top_bar_small.jpg; sourceTree = "<group>"; };
+		4071E65E1C927CCC002E0D8E /* overlayed front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "overlayed front.jpg"; sourceTree = "<group>"; };
 		409B8EE61C9103FB00F4361D /* frontpage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frontpage.jpg; sourceTree = "<group>"; };
 		409B8EE81C91077C00F4361D /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		409B8EE91C91077C00F4361D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -375,6 +383,10 @@
 				40AC32EB1C60294B003468F8 /* MonthOfEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
+				4071E65E1C927CCC002E0D8E /* overlayed front.jpg */,
+				4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */,
+				4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */,
+				4071E6581C926B7B002E0D8E /* background.png */,
 				409B8EE61C9103FB00F4361D /* frontpage.jpg */,
 				40F73D231C91348300A75F72 /* menu.png */,
 				C1A7C9841A00380500252982 /* WebViewViewController.h */,
@@ -516,6 +528,7 @@
 				C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */,
 				99A580911A0048E70044CA5E /* Default-Landscape.png in Resources */,
 				C1DEC8CD18F4AC2700ECD591 /* dotAthletics.png in Resources */,
+				4071E65B1C926B89002E0D8E /* HomeButton top bar small.jpg in Resources */,
 				99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */,
 				992592BE19FDC46B008946F8 /* iTunesArtwork@2x.png in Resources */,
 				C1DEC8CB18F4AC2700ECD591 /* dotAcademics.png in Resources */,
@@ -526,6 +539,7 @@
 				9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */,
 				99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */,
 				997451A41A38D93F00EA9B7C /* ipadDetails.jpg in Resources */,
+				4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */,
 				99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */,
 				997268B81A37B224000FB68A /* iphoneE.jpg in Resources */,
 				99A580921A0048E70044CA5E /* Default-Landscape@2x.png in Resources */,
@@ -542,8 +556,10 @@
 				992592B619FDC46B008946F8 /* Icon-Small-40@2x.png in Resources */,
 				9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */,
 				C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */,
+				4071E6591C926B7B002E0D8E /* background.png in Resources */,
 				992592AE19FDC46B008946F8 /* Icon-60@2x.png in Resources */,
 				992592B319FDC46B008946F8 /* Icon-76@2x.png in Resources */,
+				4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */,
 				992592BC19FDC46B008946F8 /* Icon.png in Resources */,
 				992592BB19FDC46B008946F8 /* Icon-Small@3x.png in Resources */,
 				99F94B441A3A59CE00F3AADE /* Main_iPhone4.storyboard in Resources */,
