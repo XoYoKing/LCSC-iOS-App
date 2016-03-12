@@ -14,7 +14,7 @@ class BackTableVC: UITableViewController {
     var TableArray = [String]()
     
     override func viewDidLoad() {
-        TableArray = ["Main Page", "All Events","Calendar","Resources", "Emergency"]
+        TableArray = ["🏠 Main Page","🎉 All Events","🗓 Calendar","🗂 Resources","📞 Emergency","💳 WarriorCard"]
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

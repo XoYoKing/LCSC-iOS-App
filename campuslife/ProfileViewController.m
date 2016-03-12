@@ -8,7 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "LCSC-Swift.h"
-
+#import "SWRevealViewController.h"
 
 @interface ProfileViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameDisplay;
@@ -28,6 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _menuButton.target = [self revealViewController];
+    _menuButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
+    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     _auth = [[Authentication alloc] init];
     NSString *username = [_auth getUsername];
     NSString *password = [_auth getPassword];

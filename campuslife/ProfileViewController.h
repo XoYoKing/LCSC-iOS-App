@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
 @end

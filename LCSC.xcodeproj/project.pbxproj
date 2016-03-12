@@ -29,6 +29,7 @@
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
 		40F73D241C91348300A75F72 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F73D231C91348300A75F72 /* menu.png */; };
+		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -133,6 +134,7 @@
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
 		40AC32F11C6029F2003468F8 /* MonthFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFactory.m; sourceTree = "<group>"; };
 		40F73D231C91348300A75F72 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		448A28AF1C93D957000436AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
+				448A28AF1C93D957000436AA /* CardViewController.swift */,
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
 				409B8EF41C911B9200F4361D /* MenuViewController.h */,
@@ -591,6 +594,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				448A28B01C93D957000436AA /* CardViewController.swift in Sources */,
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
