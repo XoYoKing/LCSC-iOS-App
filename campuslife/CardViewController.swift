@@ -23,35 +23,35 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
         presentViewController((imagePicker), animated: true, completion: nil)
     }
     
+    func promptAlet(title: String, message: String){
+        let alert:UIAlertView = UIAlertView()
+        alert.title = title
+        alert.message = message
+        alert.delegate = self
+        alert.addButtonWithTitle("Ok")
+        alert.show()
+    }
+    
+    func saveImage(image: UIImage){
+        NSUserDefaults.standardUserDefaults().setObject(UIImageJPEGRepresentation(image,1), forKey: "card")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         let image = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
-        
-        
-        NSUserDefaults.standardUserDefaults().setObject(UIImagePNGRepresentation(image), forKey: "card")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        let alert:UIAlertView = UIAlertView()
-        alert.title = "Success!"
-        alert.message = "Your card picture was saved."
-        alert.delegate = self
-        alert.addButtonWithTitle("Ok")
-        alert.show()
-        checkAndLoadCard()
+        saveImage(image)
+        promptAlet("Success!", message: "Your card picture was saved.")
+        checkAndLoadCardPicture()
     }
+    
 
-    func checkAndLoadCard(){
+    func checkAndLoadCardPicture(){
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         if let imageToLoad = NSUserDefaults.standardUserDefaults().objectForKey("card"){
             imageView.image = UIImage(data: imageToLoad as! NSData)
         } else {
-            let alert:UIAlertView = UIAlertView()
-            alert.title = "No card picture is registered!"
-            alert.message = "You can regiter your card picture by taping the camera button."
-            alert.delegate = self
-            alert.addButtonWithTitle("Ok")
-            alert.show()
+            promptAlet("No card picture is registered!", message: "You can regiter your card picture by taping the camera button.")
         }
     }
     
@@ -64,6 +64,6 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
-        checkAndLoadCard()
+        checkAndLoadCardPicture()
     }
 }
