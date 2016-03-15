@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
-class CardViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+
+
+class CardViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageCropViewControllerDelegate {
+    
+    
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
@@ -22,6 +27,7 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
         imagePicker.sourceType = .Camera
         presentViewController((imagePicker), animated: true, completion: nil)
     }
+    
     
     func promptAlet(title: String, message: String){
         let alert:UIAlertView = UIAlertView()
@@ -36,14 +42,31 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
         NSUserDefaults.standardUserDefaults().setObject(UIImageJPEGRepresentation(image,1), forKey: "card")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
+
     
+    func ImageCropViewControllerSuccess(controller: UIViewController!, didFinishCroppingImage croppedImage: UIImage!) {
+        saveImage(croppedImage)
+        promptAlet("Success!", message: "Your card picture was saved.")
+        checkAndLoadCardPicture()
+        navigationController?.popViewControllerAnimated(true)
+    }
+
+    func ImageCropViewControllerDidCancel(controller: UIViewController!) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         let image = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         saveImage(image)
-        promptAlet("Success!", message: "Your card picture was saved.")
         checkAndLoadCardPicture()
+        let controller = ImageCropViewController(image: image)
+        controller.delegate = self
+        navigationController?.pushViewController(controller, animated: true)
     }
+    
+    
     
 
     func checkAndLoadCardPicture(){

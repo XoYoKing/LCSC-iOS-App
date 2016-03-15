@@ -29,6 +29,8 @@
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
 		40F73D241C91348300A75F72 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F73D231C91348300A75F72 /* menu.png */; };
+		443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECA1C97718200B6FC58 /* ImageCropView.m */; };
+		443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECD1C97787F00B6FC58 /* FXBlurView.m */; };
 		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
@@ -134,6 +136,10 @@
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
 		40AC32F11C6029F2003468F8 /* MonthFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFactory.m; sourceTree = "<group>"; };
 		40F73D231C91348300A75F72 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		443C4EC91C97718100B6FC58 /* ImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropView.h; sourceTree = "<group>"; };
+		443C4ECA1C97718200B6FC58 /* ImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropView.m; sourceTree = "<group>"; };
+		443C4ECC1C97787F00B6FC58 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		443C4ECD1C97787F00B6FC58 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		448A28AF1C93D957000436AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
@@ -366,6 +372,10 @@
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
 				409B8EF41C911B9200F4361D /* MenuViewController.h */,
 				409B8EF51C911B9200F4361D /* MenuViewController.m */,
+				443C4ECC1C97787F00B6FC58 /* FXBlurView.h */,
+				443C4ECD1C97787F00B6FC58 /* FXBlurView.m */,
+				443C4EC91C97718100B6FC58 /* ImageCropView.h */,
+				443C4ECA1C97718200B6FC58 /* ImageCropView.m */,
 				4071E6501C925654002E0D8E /* Fabric.framework */,
 				4071E6511C925654002E0D8E /* TwitterKit.framework */,
 				4071E6521C925654002E0D8E /* TwitterKitResources.bundle */,
@@ -594,6 +604,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */,
 				448A28B01C93D957000436AA /* CardViewController.swift in Sources */,
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */,
@@ -619,6 +630,7 @@
 				409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */,
 				3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */,
 				409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */,
+				443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

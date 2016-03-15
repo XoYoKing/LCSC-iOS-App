@@ -9,5 +9,6 @@
 #ifndef LCSC_Bridging_Header_h
 #define LCSC_Bridging_Header_h
 #import "SWRevealViewController.h"
+#import "ImageCropView.h"
 
 #endif /* LCSC_Bridging_Header_h */
