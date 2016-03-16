@@ -13,34 +13,54 @@ import UIKit
     
     override init(){
         super.init()
-        if (prefs.stringForKey("login") == nil || prefs.stringForKey("password") == nil){
+        if (prefs.stringForKey("wwlogin") == nil || prefs.stringForKey("wwpassword") == nil){
             clearProfile()
         }
     }
     
     func clearProfile(){
-        prefs.setObject("", forKey: "login")
-        prefs.setObject("", forKey: "password")
+        prefs.setObject("", forKey: "wwlogin")
+        prefs.setObject("", forKey: "wwpassword")
         prefs.synchronize()
     }
     
-    func setProfile(newLogin: String?, newPassword: String?) -> Bool{
-        if (newLogin != ""){
-            if (newPassword != ""){
-                prefs.setObject(newLogin!, forKey: "login")
-                prefs.setObject(newPassword!, forKey: "password")
-                prefs.synchronize()
-                return true
+    func setProfile(destination: String, newLogin: String?, newPassword: String?) -> Bool{
+        if destination == "warriorweb"{
+            if (newLogin != ""){
+                if (newPassword != ""){
+                    prefs.setObject(newLogin!, forKey: "wwlogin")
+                    prefs.setObject(newPassword!, forKey: "wwpassword")
+                    prefs.synchronize()
+                    return true
+                }
+            }
+        }
+        else if destination == "blackboard"{
+            if (newLogin != ""){
+                if (newPassword != ""){
+                    prefs.setObject(newLogin!, forKey: "bblogin")
+                    prefs.setObject(newPassword!, forKey: "bbpassword")
+                    prefs.synchronize()
+                    return true
+                }
             }
         }
         return false
     }
     
-    func getUsername() -> String{
-        return prefs.stringForKey("login")!
+    func getWarriorWebUsername() -> String{
+        return prefs.stringForKey("wwlogin")!
     }
     
-    func getPassword() -> String{
-        return prefs.stringForKey("password")!
+    func getWarriorWebPassword() -> String{
+        return prefs.stringForKey("wwpassword")!
+    }
+    
+    func getBlackBoardUsername() -> String{
+        return prefs.stringForKey("bblogin")!
+    }
+    
+    func getBlackBoardPassword() -> String{
+        return prefs.stringForKey("bbpassword")!
     }
 }

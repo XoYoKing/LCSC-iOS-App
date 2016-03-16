@@ -9,6 +9,8 @@
 #import "ResourcesTableViewController.h"
 #import "WebViewViewController.h"
 #import "SWRevealViewController.h"
+#import "LCSC-swift.h"
+#import "ProfileViewController.h"
 
 @interface ResourcesTableViewController ()
 {
@@ -60,6 +62,11 @@
             title = @"Warrior Athletics";
             
         } else if([segue.identifier isEqualToString:@"WarriorWeb"]) {
+            Authentication *auth = [[Authentication alloc] init];
+            if ([[auth getWarriorWebPassword]  isEqual: @""] || [[auth getWarriorWebUsername]  isEqual: @""]) {
+                ProfileViewController *newView = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
+                [self presentViewController:newView animated:YES completion:nil];
+            }
             url = @"https://warriorwebss.lcsc.edu/Student/Account/Login?ReturnUrl=%2fStudent%2fPlanning%2fDegreePlans";
             title = @"Warrior Web";
             

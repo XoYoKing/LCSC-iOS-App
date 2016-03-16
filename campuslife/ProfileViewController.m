@@ -33,8 +33,8 @@
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     _auth = [[Authentication alloc] init];
-    NSString *username = [_auth getUsername];
-    NSString *password = [_auth getPassword];
+    NSString *username = [_auth getWarriorWebUsername];
+    NSString *password = [_auth getWarriorWebPassword];
     [self changeDisplaytext:username andPassword:password];
 }
 
@@ -44,9 +44,9 @@
 }
 
 - (IBAction)signingTapped:(id)sender {
-    if ([_auth setProfile:_usernameDisplay.text newPassword:_passwordDisplay.text]){
-        NSString *newLogin = [_auth getUsername];
-        NSString *newPassword = [_auth getPassword];
+    if ([_auth setProfile:@"warriorweb" newLogin:_usernameDisplay.text newPassword:_passwordDisplay.text]){
+        NSString *newLogin = [_auth getWarriorWebUsername];
+        NSString *newPassword = [_auth getWarriorWebPassword];
         [self changeDisplaytext:newLogin andPassword:newPassword];
         _alert = [[UIAlertView alloc] init];
         _alert.title = @"Success!";
@@ -67,9 +67,9 @@
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if (![_auth setProfile:_usernameDisplay.text newPassword:_passwordDisplay.text]){
-        NSString *newLogin = [_auth getUsername];
-        NSString *newPassword = [_auth getPassword];
+    if (![_auth setProfile:@"warriorweb" newLogin:_usernameDisplay.text newPassword:_passwordDisplay.text]){
+        NSString *newLogin = [_auth getWarriorWebUsername];
+        NSString *newPassword = [_auth getWarriorWebPassword];
         [self changeDisplaytext:newLogin andPassword:newPassword];
     }
 }

@@ -32,6 +32,8 @@
 		443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECA1C97718200B6FC58 /* ImageCropView.m */; };
 		443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECD1C97787F00B6FC58 /* FXBlurView.m */; };
 		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
+		44DF21581C99DD36003A0C3A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21571C99DD36003A0C3A /* MapViewController.swift */; };
+		44DF215E1C99E00B003A0C3A /* Campus Map.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 44DF215D1C99E00B003A0C3A /* Campus Map.pdf */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -141,6 +143,8 @@
 		443C4ECC1C97787F00B6FC58 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		443C4ECD1C97787F00B6FC58 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		448A28AF1C93D957000436AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		44DF21571C99DD36003A0C3A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		44DF215D1C99E00B003A0C3A /* Campus Map.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Campus Map.pdf"; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -363,10 +367,12 @@
 				400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */,
 				400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */,
 				3FE5FA781C594BA80024CEFB /* CalendarInfo.h */,
+				44DF215D1C99E00B003A0C3A /* Campus Map.pdf */,
 				3FE5FA791C594BA80024CEFB /* CalendarInfo.m */,
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
+				44DF21571C99DD36003A0C3A /* MapViewController.swift */,
 				448A28AF1C93D957000436AA /* CardViewController.swift */,
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
@@ -566,6 +572,7 @@
 				9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */,
 				C1E66DFC183C333A00851B89 /* InfoPlist.strings in Resources */,
 				992592AF19FDC46B008946F8 /* Icon-60@3x.png in Resources */,
+				44DF215E1C99E00B003A0C3A /* Campus Map.pdf in Resources */,
 				992592B619FDC46B008946F8 /* Icon-Small-40@2x.png in Resources */,
 				9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */,
 				C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */,
@@ -631,6 +638,7 @@
 				3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */,
 				409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */,
 				443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */,
+				44DF21581C99DD36003A0C3A /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

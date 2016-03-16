@@ -19,11 +19,13 @@ class ScriptWebView: Authentication{
 
     
     func getScript(url: String) -> String {
-        let savedUsername = super.getUsername()
-        let savedPassword = super.getPassword()
         if url == warriorURL{
+            let savedUsername = super.getWarriorWebUsername()
+            let savedPassword = super.getWarriorWebPassword()
             return "var pwd=\"\(savedPassword)\"; var usr=\"\(savedUsername)\"; document.getElementById(\"UserName\").value = usr; document.getElementById(\"Password\").value = pwd;document.getElementsByClassName(\"login-partial-input form\")[0].click()"
         }else if url == blackboardURL{
+            let savedUsername = super.getBlackBoardUsername()
+            let savedPassword = super.getBlackBoardPassword()
             return "var pwd=\"\(savedPassword)\"; var usr=\"\(savedUsername)\"; document.getElementById(\"user_id\").value=usr; document.getElementById(\"password\").value=pwd;document.getElementById('entry-login').click();"
         }else{
             return ""
