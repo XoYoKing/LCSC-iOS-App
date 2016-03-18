@@ -34,6 +34,8 @@
 		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
 		44DF21581C99DD36003A0C3A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21571C99DD36003A0C3A /* MapViewController.swift */; };
 		44DF215E1C99E00B003A0C3A /* Campus Map.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 44DF215D1C99E00B003A0C3A /* Campus Map.pdf */; };
+		44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF215F1C99EB30003A0C3A /* RadioViewController.swift */; };
+		44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -145,6 +147,8 @@
 		448A28AF1C93D957000436AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		44DF21571C99DD36003A0C3A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		44DF215D1C99E00B003A0C3A /* Campus Map.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Campus Map.pdf"; sourceTree = "<group>"; };
+		44DF215F1C99EB30003A0C3A /* RadioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioViewController.swift; sourceTree = "<group>"; };
+		44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleticsViewController.swift; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
+				44DF215F1C99EB30003A0C3A /* RadioViewController.swift */,
 				44DF21571C99DD36003A0C3A /* MapViewController.swift */,
 				448A28AF1C93D957000436AA /* CardViewController.swift */,
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
@@ -389,6 +394,7 @@
 				4071E64C1C925144002E0D8E /* twitterViewController.h */,
 				4071E64D1C925144002E0D8E /* twitterViewController.m */,
 				409B8EE81C91077C00F4361D /* BackTableVC.swift */,
+				44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */,
 				409B8EE91C91077C00F4361D /* SWRevealViewController.h */,
 				409B8EEA1C91077C00F4361D /* SWRevealViewController.m */,
 				07CC95651C877BC900C05BB0 /* ScriptWebView.swift */,
@@ -626,10 +632,12 @@
 				40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */,
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
+				44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
+				44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */,
 				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
 				409B8EF61C911B9200F4361D /* MenuViewController.m in Sources */,
