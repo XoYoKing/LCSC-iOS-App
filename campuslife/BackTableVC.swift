@@ -30,5 +30,21 @@ class BackTableVC: UITableViewController {
         return cell
     }
     
+    @IBAction func gotoInstagram(sender: AnyObject) {
+        if let url = NSURL(string: "http://www.instagram.com/lewisclarkstate/") {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
     
+    @IBAction func gotoFacebook(sender: AnyObject) {
+        if let url = NSURL(string: "http://www.facebook.com/LewisClarkState") {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
+    @IBAction func gotoTwitter(sender: AnyObject) {
+        if let url = NSURL(string: "http://twitter.com/LCSC") {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
 }
