@@ -10,17 +10,53 @@ import UIKit
 
 @objc class Authentication: NSObject {
     private var prefs = NSUserDefaults.standardUserDefaults()
-    
     override init(){
         super.init()
-        if (prefs.stringForKey("wwlogin") == nil || prefs.stringForKey("wwpassword") == nil){
+        if (((prefs.stringForKey("wwlogin") == nil || prefs.stringForKey("wwpassword") == nil || prefs.stringForKey("bblogin") == nil || prefs.stringForKey("bbpassword") == nil))){
             clearProfile()
+        }
+        if (prefs.stringForKey("userHaveEverBeenAtResourcesPage") == nil){
+            prefs.setObject("false", forKey: "userHaveEverBeenAtResourcesPage")
+            prefs.synchronize()
         }
     }
     
     func clearProfile(){
+        clearWarriorWebProfile()
+        clearBlackBoardProfile()
+        prefs.synchronize()
+    }
+    
+    func clearWarriorWebProfile(){
         prefs.setObject("", forKey: "wwlogin")
         prefs.setObject("", forKey: "wwpassword")
+    }
+    
+    func clearBlackBoardProfile(){
+        prefs.setObject("", forKey: "bblogin")
+        prefs.setObject("", forKey: "bbpassword")
+    }
+    
+    func clearLCMailProfile(){
+        prefs.setObject("", forKey: "lcmlogin")
+        prefs.setObject("", forKey: "lcmpasswor")
+    }
+    
+    func userHaveEverBeenAtResourcesPage() -> Bool{
+        print(prefs.stringForKey("userHaveEverBeenAtResourcesPage"))
+        let bool = prefs.stringForKey("userHaveEverBeenAtResourcesPage")
+        if bool == "false"{
+            return false
+        }else if bool == "true"{
+            return true
+        }
+        return false
+    }
+    
+    func setUserHaveEverBeenAtResourcesPage(bool: String){
+        if (bool != "true" && bool != "false") {return}
+        prefs.setObject(bool, forKey: "userHaveEverBeenAtResourcesPage")
+        print("changed for \(bool)")
         prefs.synchronize()
     }
     
@@ -62,5 +98,13 @@ import UIKit
     
     func getBlackBoardPassword() -> String{
         return prefs.stringForKey("bbpassword")!
+    }
+    
+    func getLCMailUsername() -> String{
+        return prefs.stringForKey("lcmlogin")!
+    }
+    
+    func getLCMailPassword() -> String{
+        return prefs.stringForKey("lcmpassword")!
     }
 }

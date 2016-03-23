@@ -6,18 +6,18 @@
 //  Copyright © 2016 LCSC. All rights reserved.
 //
 
-#import "ProfileViewController.h"
+#import "WarriorWebProfileViewController.h"
 #import "LCSC-Swift.h"
-#import "SWRevealViewController.h"
+//#import "SWRevealViewController.h"
 
-@interface ProfileViewController ()
+@interface WarriorWebProfileViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameDisplay;
 @property (weak, nonatomic) IBOutlet UITextField *passwordDisplay;
 @property (strong, nonatomic) Authentication *auth;
 @property (strong, nonatomic) UIAlertView *alert;
 @end
 
-@implementation ProfileViewController
+@implementation WarriorWebProfileViewController
 
 
 - (void)changeDisplaytext:(NSString*)newLogin andPassword:(NSString*)newPassword{
@@ -28,10 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _menuButton.target = [self revealViewController];
-    _menuButton.action = @selector(revealToggle:);
-    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
-    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+//    _menuButton.target = [self revealViewController];
+//    _menuButton.action = @selector(revealToggle:);
+//    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
+//    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     _auth = [[Authentication alloc] init];
     NSString *username = [_auth getWarriorWebUsername];
     NSString *password = [_auth getWarriorWebPassword];
@@ -50,11 +50,11 @@
         [self changeDisplaytext:newLogin andPassword:newPassword];
         _alert = [[UIAlertView alloc] init];
         _alert.title = @"Success!";
-        _alert.message = @"Your username and password were saved.";
+        _alert.message = @"Your WarriorWeb username and password were saved.";
         _alert.delegate = self;
         [_alert addButtonWithTitle:@"Ok"];
         [_alert show];
-        [self performSegueWithIdentifier:@"signinTapped" sender:sender];
+        [self.navigationController popViewControllerAnimated:YES];
     } else {
         _alert = [[UIAlertView alloc] init];
         _alert.title = @"Fail!";

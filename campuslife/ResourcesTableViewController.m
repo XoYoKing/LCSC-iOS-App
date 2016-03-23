@@ -10,7 +10,7 @@
 #import "WebViewViewController.h"
 #import "SWRevealViewController.h"
 #import "LCSC-swift.h"
-#import "ProfileViewController.h"
+#import "WarriorWebProfileViewController.h"
 
 @interface ResourcesTableViewController ()
 {
@@ -26,6 +26,33 @@
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+    Authentication* auth = [[Authentication alloc] init];
+//    NSLog(@"%d and %d",[self checkProfile], (![auth userHaveEverBeenAtResourcesPage]));
+    if ([self checkProfile] && ![auth userHaveEverBeenAtResourcesPage]){
+        [auth setUserHaveEverBeenAtResourcesPage:@"true"];
+        [self promptAlert:@"Your Profile is not set!" message:@"Some functions may not work.\nDo you want to set you profile now?"];
+    }
+}
+
+- (BOOL)checkProfile{
+    Authentication* auth = [[Authentication alloc] init];
+    return [[auth getWarriorWebPassword] isEqualToString:@""] || [[auth getWarriorWebUsername] isEqualToString:@""] || [[auth getBlackBoardPassword] isEqualToString:@"" ] || [[auth getBlackBoardUsername] isEqualToString:@""];
+}
+
+- (void)promptAlert:(NSString *)title message:(NSString *)message{
+    UIAlertView* alert = [[UIAlertView alloc] init];
+    alert.title = title;
+    alert.message = message;
+    alert.delegate = self;
+    [alert addButtonWithTitle:@"No"];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ( buttonIndex == 1){
+       [self performSegueWithIdentifier:@"Profile Alert" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,23 +77,20 @@
     if ([segue.identifier isEqualToString:@"Profile"]) {
         
     }
+    else if([segue.identifier isEqualToString:@"Profile Alert"]){
+    }
     else {
         WebViewViewController *dest = (WebViewViewController *)[segue destinationViewController];
         NSString *url, *title;
         if([segue.identifier  isEqualToString: @"LCSC"]) {
             url = @"http://www.lcsc.edu";
             title = @"LCSC";
-            
+        
         } else if([segue.identifier isEqualToString:@"Athletics"]) {
             url = @"http://www.lcwarriors.com";
             title = @"Warrior Athletics";
             
         } else if([segue.identifier isEqualToString:@"WarriorWeb"]) {
-            Authentication *auth = [[Authentication alloc] init];
-            if ([[auth getWarriorWebPassword]  isEqual: @""] || [[auth getWarriorWebUsername]  isEqual: @""]) {
-                ProfileViewController *newView = [[ProfileViewController alloc] initWithNibName:nil bundle:nil];
-                [self presentViewController:newView animated:YES completion:nil];
-            }
             url = @"https://warriorwebss.lcsc.edu/Student/Account/Login?ReturnUrl=%2fStudent%2fPlanning%2fDegreePlans";
             title = @"Warrior Web";
             
