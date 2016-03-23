@@ -67,7 +67,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 #pragma mark - Navigation
@@ -97,6 +97,9 @@
         } else if ([segue.identifier isEqualToString:@"LCMail"]) {
             url = @"http://www.lcsc.edu/lcmail/";
             title = @"LC Mail";
+        } else if([segue.identifier isEqualToString:@"blackboard"]){
+            url = @"https://lcsc.blackboard.com";
+            title = @"BlackBoard";
         }
         [dest setUrl:[NSURL URLWithString:url]];
         [dest setTitle:title];
