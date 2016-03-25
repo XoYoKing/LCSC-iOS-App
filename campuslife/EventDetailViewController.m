@@ -140,6 +140,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     NSString *timee = [[NSString alloc]init];
     //self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
     

@@ -12,9 +12,9 @@
 #import "CalendarViewController.h"
 
 
-
 @interface Day_Event_ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 @property (nonatomic) BOOL didSegue;
 
 @end
@@ -34,6 +34,7 @@
 {
     
     [super viewDidLoad];
+
     self.tableView.rowHeight = 44;
     //self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
     

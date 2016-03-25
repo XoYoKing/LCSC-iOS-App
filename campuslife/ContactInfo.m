@@ -7,12 +7,14 @@
 //
 
 #import "ContactInfo.h"
+#import "SWRevealViewController.h"
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
 @interface ContactInfo ()
 {
     NSString *numberToCall;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 @end
 
 @implementation ContactInfo
@@ -22,7 +24,11 @@
 - (void)viewDidLoad {
 
     self.view.backgroundColor = [UIColor whiteColor];
-
+    _menuButton.target = [self revealViewController];
+    _menuButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
+    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+    
     if (IPAD == IDIOM)
     {
         self.tableView.rowHeight = 66;

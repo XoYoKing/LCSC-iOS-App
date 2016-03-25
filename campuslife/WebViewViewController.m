@@ -47,8 +47,10 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.activity stopAnimating];
     _activity.hidden = YES;
+    //runs a javascript based on the page the webView is
     [_webView stringByEvaluatingJavaScriptFromString:[_script getScript:_currentURL]];
 }
+
 -(void) setUrl:(NSURL *)url {
     _url = url;
 }

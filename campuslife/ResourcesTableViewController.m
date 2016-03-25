@@ -8,16 +8,49 @@
 
 #import "ResourcesTableViewController.h"
 #import "WebViewViewController.h"
+#import "SWRevealViewController.h"
+#import "LCSC-Swift.h"
+#import "WarriorWebProfileViewController.h"
 
 @interface ResourcesTableViewController ()
 {
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 @end
 
 @implementation ResourcesTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //loads the slide menu function
+    _menuButton.target = [self revealViewController];
+    _menuButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
+    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+    //check if user have ever been at this page before and displays an alert case it is true
+    Authentication* auth = [[Authentication alloc] init];
+    if (![auth userHaveEverBeenAtResourcesPage]){
+        [auth setUserHaveEverBeenAtResourcesPage:true];
+        [self promptAlert:@"Your Profile is not set!" message:@"Some functions may not work.\nDo you want to set you profile now?"];
+    }
+}
+
+
+- (void)promptAlert:(NSString *)title message:(NSString *)message{
+    UIAlertView* alert = [[UIAlertView alloc] init];
+    alert.title = title;
+    alert.message = message;
+    alert.delegate = self;
+    [alert addButtonWithTitle:@"No"];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert show];
+}
+
+//choose the action based on which button the user presses in the alertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ( buttonIndex == 1){
+       [self performSegueWithIdentifier:@"Profile Alert" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,7 +65,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 #pragma mark - Navigation
@@ -42,13 +75,15 @@
     if ([segue.identifier isEqualToString:@"Profile"]) {
         
     }
+    else if([segue.identifier isEqualToString:@"Profile Alert"]){
+    }
     else {
         WebViewViewController *dest = (WebViewViewController *)[segue destinationViewController];
         NSString *url, *title;
         if([segue.identifier  isEqualToString: @"LCSC"]) {
             url = @"http://www.lcsc.edu";
             title = @"LCSC";
-            
+        
         } else if([segue.identifier isEqualToString:@"Athletics"]) {
             url = @"http://www.lcwarriors.com";
             title = @"Warrior Athletics";
@@ -58,8 +93,11 @@
             title = @"Warrior Web";
             
         } else if ([segue.identifier isEqualToString:@"LCMail"]) {
-            url = @"http://www.lcsc.edu/lcmail/";
+            url = @"https://accounts.google.com/AddSession?continue=https%3A%2F%2Faccounts.google.com%2Fb%2F0%2FAddMailService#identifier";
             title = @"LC Mail";
+        } else if([segue.identifier isEqualToString:@"blackboard"]){
+            url = @"https://lcsc.blackboard.com";
+            title = @"BlackBoard";
         }
         [dest setUrl:[NSURL URLWithString:url]];
         [dest setTitle:title];

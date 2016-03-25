@@ -7,14 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07484B1A1C84CD45007D1ADC /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07484B191C84CD45007D1ADC /* ProfileViewController.m */; };
+		07484B1A1C84CD45007D1ADC /* WarriorWebProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */; };
 		07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07484B1B1C84CF84007D1ADC /* Authentication.swift */; };
 		07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC95651C877BC900C05BB0 /* ScriptWebView.swift */; };
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
+		4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4071E64D1C925144002E0D8E /* twitterViewController.m */; };
+		4071E6541C925655002E0D8E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6501C925654002E0D8E /* Fabric.framework */; };
+		4071E6551C925655002E0D8E /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6511C925654002E0D8E /* TwitterKit.framework */; };
+		4071E6561C925655002E0D8E /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4071E6521C925654002E0D8E /* TwitterKitResources.bundle */; };
+		4071E6571C925655002E0D8E /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6531C925655002E0D8E /* TwitterCore.framework */; };
+		4071E6591C926B7B002E0D8E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4071E6581C926B7B002E0D8E /* background.png */; };
+		4071E65B1C926B89002E0D8E /* HomeButton top bar small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */; };
+		4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */; };
+		4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65E1C927CCC002E0D8E /* overlayed front.jpg */; };
+		409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 409B8EE61C9103FB00F4361D /* frontpage.jpg */; };
+		409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EE81C91077C00F4361D /* BackTableVC.swift */; };
+		409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EEA1C91077C00F4361D /* SWRevealViewController.m */; };
+		409B8EF61C911B9200F4361D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EF51C911B9200F4361D /* MenuViewController.m */; };
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
+		40F73D241C91348300A75F72 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F73D231C91348300A75F72 /* menu.png */; };
+		443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECA1C97718200B6FC58 /* ImageCropView.m */; };
+		443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECD1C97787F00B6FC58 /* FXBlurView.m */; };
+		445F6D6A1CA3A5EB0098371C /* LCMailProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445F6D691CA3A5EB0098371C /* LCMailProfileViewController.m */; };
+		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
+		44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */; };
+		44C0A7C71CA4EE1D0021E16D /* HangoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */; };
+		44C0A7D01CA518C00021E16D /* CampusMap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44C0A7CF1CA518C00021E16D /* CampusMap.jpg */; };
+		44DF21581C99DD36003A0C3A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21571C99DD36003A0C3A /* MapViewController.swift */; };
+		44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF215F1C99EB30003A0C3A /* RadioViewController.swift */; };
+		44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */; };
+		44EAFBD31CA31AD800BE6200 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAFBD21CA31AD800BE6200 /* ProfileViewController.swift */; };
 		990FBA111A01E16400FB54A6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -87,10 +112,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07484B181C84CD45007D1ADC /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		07484B191C84CD45007D1ADC /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		07484B181C84CD45007D1ADC /* WarriorWebProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarriorWebProfileViewController.h; sourceTree = "<group>"; };
+		07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarriorWebProfileViewController.m; sourceTree = "<group>"; };
 		07484B1B1C84CF84007D1ADC /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		07B298971C83C49200BA787F /* LCSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LCSC-Bridging-Header.h"; sourceTree = "<group>"; };
 		07CC95651C877BC900C05BB0 /* ScriptWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptWebView.swift; sourceTree = "<group>"; };
 		3FE5FA781C594BA80024CEFB /* CalendarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfo.h; sourceTree = "<group>"; };
 		3FE5FA791C594BA80024CEFB /* CalendarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfo.m; sourceTree = "<group>"; };
@@ -98,10 +122,43 @@
 		400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesTableViewController.m; sourceTree = "<group>"; };
 		400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCEvent.h; sourceTree = "<group>"; };
 		400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCEvent.m; sourceTree = "<group>"; };
+		4071E64C1C925144002E0D8E /* twitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitterViewController.h; sourceTree = "<group>"; };
+		4071E64D1C925144002E0D8E /* twitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twitterViewController.m; sourceTree = "<group>"; };
+		4071E6501C925654002E0D8E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		4071E6511C925654002E0D8E /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		4071E6521C925654002E0D8E /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
+		4071E6531C925655002E0D8E /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
+		4071E6581C926B7B002E0D8E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "HomeButton top bar small.jpg"; sourceTree = "<group>"; };
+		4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rsz_homebutton_top_bar_small.jpg; sourceTree = "<group>"; };
+		4071E65E1C927CCC002E0D8E /* overlayed front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "overlayed front.jpg"; sourceTree = "<group>"; };
+		409B8EE61C9103FB00F4361D /* frontpage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frontpage.jpg; sourceTree = "<group>"; };
+		409B8EE81C91077C00F4361D /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
+		409B8EE91C91077C00F4361D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		409B8EEA1C91077C00F4361D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		409B8EF01C910AC700F4361D /* LCSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LCSC-Bridging-Header.h"; path = "../LCSC-Bridging-Header.h"; sourceTree = "<group>"; };
+		409B8EF41C911B9200F4361D /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		409B8EF51C911B9200F4361D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		40AC32EA1C60294B003468F8 /* MonthOfEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthOfEvents.h; sourceTree = "<group>"; };
 		40AC32EB1C60294B003468F8 /* MonthOfEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthOfEvents.m; sourceTree = "<group>"; };
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
 		40AC32F11C6029F2003468F8 /* MonthFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFactory.m; sourceTree = "<group>"; };
+		40F73D231C91348300A75F72 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		443C4EC91C97718100B6FC58 /* ImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropView.h; sourceTree = "<group>"; };
+		443C4ECA1C97718200B6FC58 /* ImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropView.m; sourceTree = "<group>"; };
+		443C4ECC1C97787F00B6FC58 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		443C4ECD1C97787F00B6FC58 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		445F6D681CA3A5EB0098371C /* LCMailProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMailProfileViewController.h; sourceTree = "<group>"; };
+		445F6D691CA3A5EB0098371C /* LCMailProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMailProfileViewController.m; sourceTree = "<group>"; };
+		448A28AF1C93D957000436AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		44A8E2BD1CA1E11600C4435D /* BlackBoardProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackBoardProfileViewController.h; sourceTree = "<group>"; };
+		44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackBoardProfileViewController.m; sourceTree = "<group>"; };
+		44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangoutsViewController.swift; sourceTree = "<group>"; };
+		44C0A7CF1CA518C00021E16D /* CampusMap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CampusMap.jpg; sourceTree = "<group>"; };
+		44DF21571C99DD36003A0C3A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		44DF215F1C99EB30003A0C3A /* RadioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioViewController.swift; sourceTree = "<group>"; };
+		44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleticsViewController.swift; sourceTree = "<group>"; };
+		44EAFBD21CA31AD800BE6200 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -197,9 +254,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C11195211A113F35001ED805 /* SystemConfiguration.framework in Frameworks */,
+				4071E6541C925655002E0D8E /* Fabric.framework in Frameworks */,
+				4071E6571C925655002E0D8E /* TwitterCore.framework in Frameworks */,
 				C1E66DF4183C333A00851B89 /* CoreGraphics.framework in Frameworks */,
 				C1E66DF6183C333A00851B89 /* UIKit.framework in Frameworks */,
 				C1E66DF2183C333A00851B89 /* Foundation.framework in Frameworks */,
+				4071E6551C925655002E0D8E /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,8 +376,8 @@
 				9916368119F829BB007F7E47 /* AllEventViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
-				07484B181C84CD45007D1ADC /* ProfileViewController.h */,
-				07484B191C84CD45007D1ADC /* ProfileViewController.m */,
+				07484B181C84CD45007D1ADC /* WarriorWebProfileViewController.h */,
+				07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */,
 				400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */,
 				400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */,
 				3FE5FA781C594BA80024CEFB /* CalendarInfo.h */,
@@ -325,11 +385,34 @@
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main_iPhone.storyboard */,
+				44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */,
+				445F6D681CA3A5EB0098371C /* LCMailProfileViewController.h */,
+				445F6D691CA3A5EB0098371C /* LCMailProfileViewController.m */,
+				44EAFBD21CA31AD800BE6200 /* ProfileViewController.swift */,
+				44A8E2BD1CA1E11600C4435D /* BlackBoardProfileViewController.h */,
+				44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */,
+				44DF215F1C99EB30003A0C3A /* RadioViewController.swift */,
+				44DF21571C99DD36003A0C3A /* MapViewController.swift */,
+				448A28AF1C93D957000436AA /* CardViewController.swift */,
 				99F94B431A3A59CE00F3AADE /* Main_iPhone4.storyboard */,
 				990FBA101A01E16400FB54A6 /* Main_iPad.storyboard */,
-				C114505519172761005D1D99 /* hubViewController.h */,
+				409B8EF41C911B9200F4361D /* MenuViewController.h */,
+				409B8EF51C911B9200F4361D /* MenuViewController.m */,
+				443C4ECC1C97787F00B6FC58 /* FXBlurView.h */,
+				443C4ECD1C97787F00B6FC58 /* FXBlurView.m */,
+				443C4EC91C97718100B6FC58 /* ImageCropView.h */,
+				443C4ECA1C97718200B6FC58 /* ImageCropView.m */,
+				4071E6501C925654002E0D8E /* Fabric.framework */,
+				4071E6511C925654002E0D8E /* TwitterKit.framework */,
+				4071E6521C925654002E0D8E /* TwitterKitResources.bundle */,
+				4071E6531C925655002E0D8E /* TwitterCore.framework */,
+				4071E64C1C925144002E0D8E /* twitterViewController.h */,
+				4071E64D1C925144002E0D8E /* twitterViewController.m */,
+				409B8EE81C91077C00F4361D /* BackTableVC.swift */,
+				44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */,
+				409B8EE91C91077C00F4361D /* SWRevealViewController.h */,
+				409B8EEA1C91077C00F4361D /* SWRevealViewController.m */,
 				07CC95651C877BC900C05BB0 /* ScriptWebView.swift */,
-				C114505619172761005D1D99 /* hubViewController.m */,
 				C1E66E3D183C33D000851B89 /* CalendarViewController.h */,
 				C1E66E3E183C33D000851B89 /* CalendarViewController.m */,
 				C1E66E3F183C33D000851B89 /* Day_Event_ViewController.h */,
@@ -340,6 +423,12 @@
 				40AC32EB1C60294B003468F8 /* MonthOfEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
+				4071E65E1C927CCC002E0D8E /* overlayed front.jpg */,
+				4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */,
+				4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */,
+				4071E6581C926B7B002E0D8E /* background.png */,
+				409B8EE61C9103FB00F4361D /* frontpage.jpg */,
+				40F73D231C91348300A75F72 /* menu.png */,
 				C1A7C9841A00380500252982 /* WebViewViewController.h */,
 				C1A7C9851A00380500252982 /* WebViewViewController.m */,
 				9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */,
@@ -354,8 +443,8 @@
 				C11195241A114473001ED805 /* Reachability.m */,
 				07484B1B1C84CF84007D1ADC /* Authentication.swift */,
 				99F6F39119FDC39500536DB8 /* Images.xcassets */,
+				44C0A7CF1CA518C00021E16D /* CampusMap.jpg */,
 				C1E66DF8183C333A00851B89 /* Supporting Files */,
-				07B298971C83C49200BA787F /* LCSC-Bridging-Header.h */,
 			);
 			path = campuslife;
 			sourceTree = "<group>";
@@ -363,6 +452,7 @@
 		C1E66DF8183C333A00851B89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				409B8EF01C910AC700F4361D /* LCSC-Bridging-Header.h */,
 				99F6C3DA1A441A920041328A /* date_to-32.png */,
 				997268B71A37B224000FB68A /* iphoneE.jpg */,
 				994589EC1A396F9F00853E3E /* iphoneDetails.jpg */,
@@ -407,6 +497,7 @@
 				C1E66DEA183C333A00851B89 /* Sources */,
 				C1E66DEB183C333A00851B89 /* Frameworks */,
 				C1E66DEC183C333A00851B89 /* Resources */,
+				4071E64F1C9255CF002E0D8E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -463,6 +554,7 @@
 				992592B819FDC46B008946F8 /* Icon-Small-50.png in Resources */,
 				992592B419FDC46B008946F8 /* Icon-small-29.png in Resources */,
 				C1DEC8D018F4AC2700ECD591 /* dotCampusRec.png in Resources */,
+				4071E6561C925655002E0D8E /* TwitterKitResources.bundle in Resources */,
 				99A580931A0048E70044CA5E /* Default-Portrait-736h@3x.png in Resources */,
 				99F6F39219FDC39500536DB8 /* Images.xcassets in Resources */,
 				992592B219FDC46B008946F8 /* Icon-76.png in Resources */,
@@ -477,6 +569,7 @@
 				C108EA181A0802B2006A7BC7 /* Main_iPhone.storyboard in Resources */,
 				99A580911A0048E70044CA5E /* Default-Landscape.png in Resources */,
 				C1DEC8CD18F4AC2700ECD591 /* dotAthletics.png in Resources */,
+				4071E65B1C926B89002E0D8E /* HomeButton top bar small.jpg in Resources */,
 				99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */,
 				992592BE19FDC46B008946F8 /* iTunesArtwork@2x.png in Resources */,
 				C1DEC8CB18F4AC2700ECD591 /* dotAcademics.png in Resources */,
@@ -487,22 +580,28 @@
 				9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */,
 				99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */,
 				997451A41A38D93F00EA9B7C /* ipadDetails.jpg in Resources */,
+				4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */,
 				99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */,
 				997268B81A37B224000FB68A /* iphoneE.jpg in Resources */,
 				99A580921A0048E70044CA5E /* Default-Landscape@2x.png in Resources */,
 				99A580951A0048E70044CA5E /* Default-Portrait@2x.png in Resources */,
 				994589ED1A396F9F00853E3E /* iphoneDetails.jpg in Resources */,
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
+				409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */,
 				9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */,
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,
+				40F73D241C91348300A75F72 /* menu.png in Resources */,
 				9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */,
 				C1E66DFC183C333A00851B89 /* InfoPlist.strings in Resources */,
 				992592AF19FDC46B008946F8 /* Icon-60@3x.png in Resources */,
 				992592B619FDC46B008946F8 /* Icon-Small-40@2x.png in Resources */,
 				9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */,
 				C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */,
+				4071E6591C926B7B002E0D8E /* background.png in Resources */,
 				992592AE19FDC46B008946F8 /* Icon-60@2x.png in Resources */,
 				992592B319FDC46B008946F8 /* Icon-76@2x.png in Resources */,
+				44C0A7D01CA518C00021E16D /* CampusMap.jpg in Resources */,
+				4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */,
 				992592BC19FDC46B008946F8 /* Icon.png in Resources */,
 				992592BB19FDC46B008946F8 /* Icon-Small@3x.png in Resources */,
 				99F94B441A3A59CE00F3AADE /* Main_iPhone4.storyboard in Resources */,
@@ -513,32 +612,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4071E64F1C9255CF002E0D8E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 03df625429ad04e1406f3e259dd2edacf588ec0d";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C1E66DEA183C333A00851B89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */,
+				448A28B01C93D957000436AA /* CardViewController.swift in Sources */,
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
+				4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
 				9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */,
+				44EAFBD31CA31AD800BE6200 /* ProfileViewController.swift in Sources */,
 				C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */,
 				991048FB1A1E656100C83570 /* ContactInfo.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
+				44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */,
 				400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,
-				07484B1A1C84CD45007D1ADC /* ProfileViewController.m in Sources */,
+				07484B1A1C84CD45007D1ADC /* WarriorWebProfileViewController.m in Sources */,
 				40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */,
+				44C0A7C71CA4EE1D0021E16D /* HangoutsViewController.swift in Sources */,
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
+				44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */,
+				445F6D6A1CA3A5EB0098371C /* LCMailProfileViewController.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
-				C111B76D18C6929200B957F2 /* EventDetailTableViewController.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
+				44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */,
 				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
+				409B8EF61C911B9200F4361D /* MenuViewController.m in Sources */,
 				400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */,
+				409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */,
 				3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */,
+				409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */,
+				443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */,
+				44DF21581C99DD36003A0C3A /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +773,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/campuslife",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "campuslife/LCSC-Prefix.pch";
 				INFOPLIST_FILE = "campuslife/LCSC-Info.plist";
@@ -652,7 +784,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "campuslife/LCSC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LCSC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -667,6 +799,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/campuslife",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "campuslife/LCSC-Prefix.pch";
 				INFOPLIST_FILE = "campuslife/LCSC-Info.plist";
@@ -674,7 +810,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "campuslife/LCSC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LCSC-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
