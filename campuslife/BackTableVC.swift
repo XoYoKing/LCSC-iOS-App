@@ -15,7 +15,7 @@ class BackTableVC: UITableViewController {
     
     override func viewDidLoad() {
         self.tableView.tableFooterView = UIView()
-        TableArray = ["🏠 Main Page","🎉 All Events","🗓 Calendar","🗂 Resources","📞 Emergency","💳 WarriorCard", "🗺 Campus Map", "📻 Radio", "🎥 Athletics Videos"]
+        TableArray = ["🏠 Main Page","🎉 All Events","🗓 Calendar","🗂 Resources","📞 Emergency","💳 WarriorCard", "🗺 Campus Map", "📻 Radio", "🎥 Athletics Videos", "☎️ Hangouts"]
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

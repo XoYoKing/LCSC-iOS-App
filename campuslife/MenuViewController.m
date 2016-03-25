@@ -11,6 +11,10 @@
 #import <TwitterKit/TwitterKit.h>
 
 @implementation MenuViewController
+
+- (IBAction)hangoutTapped:(id)sender {
+    
+}
 -(void)viewDidLoad
 {
     _menuButton.target = [self revealViewController];

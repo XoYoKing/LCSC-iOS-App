@@ -26,6 +26,7 @@
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"scriptExecuted"];
     Authentication* auth = [[Authentication alloc] init];
 //    NSLog(@"%d and %d",[self checkProfile], (![auth userHaveEverBeenAtResourcesPage]));
     if ([self checkProfile] && ![auth userHaveEverBeenAtResourcesPage]){
@@ -95,7 +96,7 @@
             title = @"Warrior Web";
             
         } else if ([segue.identifier isEqualToString:@"LCMail"]) {
-            url = @"http://www.lcsc.edu/lcmail/";
+            url = @"https://accounts.google.com/AddSession?continue=https%3A%2F%2Faccounts.google.com%2Fb%2F0%2FAddMailService#identifier";
             title = @"LC Mail";
         } else if([segue.identifier isEqualToString:@"blackboard"]){
             url = @"https://lcsc.blackboard.com";

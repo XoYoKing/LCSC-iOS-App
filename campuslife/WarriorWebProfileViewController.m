@@ -39,7 +39,7 @@
 }
 
 - (IBAction)clearTapped:(id)sender {
-    [_auth clearProfile];
+    [_auth clearWarriorWebProfile];
     [self changeDisplaytext:@"" andPassword:@""];
 }
 

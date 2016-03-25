@@ -47,8 +47,13 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.activity stopAnimating];
     _activity.hidden = YES;
-    [_webView stringByEvaluatingJavaScriptFromString:[_script getScript:_currentURL]];
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"scriptExecuted"]){
+    //    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"scriptExecuted"];
+        [_webView stringByEvaluatingJavaScriptFromString:[_script getScript:_currentURL]];
+//    }
+    
 }
+
 -(void) setUrl:(NSURL *)url {
     _url = url;
 }

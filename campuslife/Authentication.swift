@@ -8,11 +8,15 @@
 
 import UIKit
 
+
+//saves the user username and password
 @objc class Authentication: NSObject {
+    
     private var prefs = NSUserDefaults.standardUserDefaults()
     override init(){
         super.init()
-        if (((prefs.stringForKey("wwlogin") == nil || prefs.stringForKey("wwpassword") == nil || prefs.stringForKey("bblogin") == nil || prefs.stringForKey("bbpassword") == nil))){
+        //initializing data in case it is nil
+        if (((prefs.stringForKey("wwlogin") == nil || prefs.stringForKey("wwpassword") == nil || prefs.stringForKey("bblogin") == nil || prefs.stringForKey("bbpassword") == nil)) || (prefs.stringForKey("lcmlogin") == nil) || (prefs.stringForKey("lcmpassword")) == nil){
             clearProfile()
         }
         if (prefs.stringForKey("userHaveEverBeenAtResourcesPage") == nil){
@@ -24,26 +28,30 @@ import UIKit
     func clearProfile(){
         clearWarriorWebProfile()
         clearBlackBoardProfile()
-        prefs.synchronize()
+        clearLCMailProfile()
     }
     
     func clearWarriorWebProfile(){
         prefs.setObject("", forKey: "wwlogin")
         prefs.setObject("", forKey: "wwpassword")
+        prefs.synchronize()
     }
     
     func clearBlackBoardProfile(){
         prefs.setObject("", forKey: "bblogin")
         prefs.setObject("", forKey: "bbpassword")
+        prefs.synchronize()
     }
     
     func clearLCMailProfile(){
         prefs.setObject("", forKey: "lcmlogin")
-        prefs.setObject("", forKey: "lcmpasswor")
+        prefs.setObject("", forKey: "lcmpassword")
+        prefs.synchronize()
     }
     
+    //function to avoid showingt he alert in resources table more than once
     func userHaveEverBeenAtResourcesPage() -> Bool{
-        print(prefs.stringForKey("userHaveEverBeenAtResourcesPage"))
+        
         let bool = prefs.stringForKey("userHaveEverBeenAtResourcesPage")
         if bool == "false"{
             return false
@@ -53,13 +61,15 @@ import UIKit
         return false
     }
     
+    
     func setUserHaveEverBeenAtResourcesPage(bool: String){
         if (bool != "true" && bool != "false") {return}
         prefs.setObject(bool, forKey: "userHaveEverBeenAtResourcesPage")
-        print("changed for \(bool)")
         prefs.synchronize()
     }
     
+    
+    //save your data acording to the profile destination and returns a bool representing if it was successfull operation or not
     func setProfile(destination: String, newLogin: String?, newPassword: String?) -> Bool{
         if destination == "warriorweb"{
             if (newLogin != ""){
@@ -70,8 +80,7 @@ import UIKit
                     return true
                 }
             }
-        }
-        else if destination == "blackboard"{
+        }else if destination == "blackboard"{
             if (newLogin != ""){
                 if (newPassword != ""){
                     prefs.setObject(newLogin!, forKey: "bblogin")
@@ -80,10 +89,26 @@ import UIKit
                     return true
                 }
             }
+        }else if destination == "lcmail"{
+            if (newLogin != ""){
+                let lcDomain = "@lcmail.lcsc.edu"
+                let lcDomainLength = lcDomain.characters.count
+                if(newLogin?.characters.count > lcDomainLength){
+                    let domainSubstr = (newLogin?.substringFromIndex((newLogin?.startIndex.advancedBy((newLogin?.characters.count)! - lcDomainLength))!))
+                    if (domainSubstr! == "@lcmail.lcsc.edu") {
+                        prefs.setObject(newLogin!, forKey: "lcmlogin")
+                        prefs.setObject(newPassword!, forKey: "lcmpassword")
+                        prefs.synchronize()
+                        return true
+                    }
+                }
+            }
         }
         return false
     }
     
+    
+    //gets
     func getWarriorWebUsername() -> String{
         return prefs.stringForKey("wwlogin")!
     }
@@ -108,3 +133,4 @@ import UIKit
         return prefs.stringForKey("lcmpassword")!
     }
 }
+

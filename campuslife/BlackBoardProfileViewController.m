@@ -18,7 +18,7 @@
 }
 
 - (IBAction)clearTapped:(id)sender {
-    [_auth clearProfile];
+    [_auth clearBlackBoardProfile];
     [self changeDisplaytext:@"" andPassword:@""];
 }
 
@@ -58,8 +58,8 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if (![_auth setProfile:@"blackboard" newLogin:_usernameDisplay.text newPassword:_passwordDisplay.text]){
-        NSString *newLogin = [_auth getWarriorWebUsername];
-        NSString *newPassword = [_auth getWarriorWebPassword];
+        NSString *newLogin = [_auth getBlackBoardUsername];
+        NSString *newPassword = [_auth getBlackBoardPassword];
         [self changeDisplaytext:newLogin andPassword:newPassword];
     }
 }
