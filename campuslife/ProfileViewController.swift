@@ -11,6 +11,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
+    //load the card image in case it exists
     func checkAndLoadCardPicture(){
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         if let imageToLoad = NSUserDefaults.standardUserDefaults().objectForKey("card"){

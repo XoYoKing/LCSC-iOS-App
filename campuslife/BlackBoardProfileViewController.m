@@ -17,22 +17,23 @@
     _passwordDisplay.text = newPassword;
 }
 
+//clean the BB profile after tapping clear
 - (IBAction)clearTapped:(id)sender {
     [_auth clearBlackBoardProfile];
     [self changeDisplaytext:@"" andPassword:@""];
 }
 
+//fill the text fiel with the user information after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
     _auth = [[Authentication alloc] init];
-    // Do any additional setup after loading the view.
-//    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
-//    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
+
     NSString *username = [_auth getBlackBoardUsername];
     NSString *password = [_auth getBlackBoardPassword];
     [self changeDisplaytext:username andPassword:password];
 }
 
+//Set the profile if it is valid
 - (IBAction)signingTapped:(id)sender {
     if ([_auth setProfile:@"blackboard" newLogin:_usernameDisplay.text newPassword:_passwordDisplay.text]){
         NSString *newLogin = [_auth getBlackBoardUsername];

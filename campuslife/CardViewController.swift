@@ -21,6 +21,8 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var imageView: UIImageView!
     var imagePicker: UIImagePickerController!
     
+    
+    //opens the imagepicker to take a photo
     @IBAction func cameraButtonTapped(sender: UIBarButtonItem) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -38,12 +40,13 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
         alert.show()
     }
     
+    //save the card image
     func saveImage(image: UIImage){
         NSUserDefaults.standardUserDefaults().setObject(UIImageJPEGRepresentation(image,1), forKey: "card")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 
-    
+    //allows the user to crop the image
     func ImageCropViewControllerSuccess(controller: UIViewController!, didFinishCroppingImage croppedImage: UIImage!) {
         saveImage(croppedImage)
         promptAlet("Success!", message: "Your card picture was saved.")
@@ -51,11 +54,12 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
         navigationController?.popViewControllerAnimated(true)
     }
 
+
     func ImageCropViewControllerDidCancel(controller: UIViewController!) {
         navigationController?.popViewControllerAnimated(true)
     }
 
-
+    //saves the photo taken by the user
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         let image = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
@@ -68,7 +72,7 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     
     
-
+    //check if there is a picture and load it in case it has
     func checkAndLoadCardPicture(){
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         if let imageToLoad = NSUserDefaults.standardUserDefaults().objectForKey("card"){
@@ -82,6 +86,7 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
     override func viewDidLoad() {
         super.viewDidLoad()
         //mycode
+        //loads the slide menu function
         menuButton.target = revealViewController()
         menuButton.action = Selector("revealToggle:")
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())

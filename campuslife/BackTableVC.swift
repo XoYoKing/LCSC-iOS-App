@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 
+
+//Takes care of the slide menu itens
 class BackTableVC: UITableViewController {
     
     var TableArray = [String]()
     
     override func viewDidLoad() {
         self.tableView.tableFooterView = UIView()
+        //fill the menu with the itens listed on the arrays
         TableArray = ["🏠 Main Page","🎉 All Events","🗓 Calendar","🗂 Resources","📞 Emergency","💳 WarriorCard", "🗺 Campus Map", "📻 Radio", "🎥 Athletics Videos", "☎️ Hangouts"]
     }
     
@@ -29,7 +32,7 @@ class BackTableVC: UITableViewController {
         
         return cell
     }
-    
+    //Social network links
     @IBAction func gotoInstagram(sender: AnyObject) {
         if let url = NSURL(string: "http://www.instagram.com/lewisclarkstate/") {
             UIApplication.sharedApplication().openURL(url)

@@ -20,7 +20,7 @@ import UIKit
             clearProfile()
         }
         if (prefs.stringForKey("userHaveEverBeenAtResourcesPage") == nil){
-            prefs.setObject("false", forKey: "userHaveEverBeenAtResourcesPage")
+            prefs.setBool(false, forKey: "userHaveEverBeenAtResourcesPage")
             prefs.synchronize()
         }
     }
@@ -51,20 +51,13 @@ import UIKit
     
     //function to avoid showingt he alert in resources table more than once
     func userHaveEverBeenAtResourcesPage() -> Bool{
-        
-        let bool = prefs.stringForKey("userHaveEverBeenAtResourcesPage")
-        if bool == "false"{
-            return false
-        }else if bool == "true"{
-            return true
-        }
-        return false
+        let bool = prefs.boolForKey("userHaveEverBeenAtResourcesPage")
+        return bool
     }
     
     
-    func setUserHaveEverBeenAtResourcesPage(bool: String){
-        if (bool != "true" && bool != "false") {return}
-        prefs.setObject(bool, forKey: "userHaveEverBeenAtResourcesPage")
+    func setUserHaveEverBeenAtResourcesPage(bool: Bool){
+        prefs.setBool(bool, forKey: "userHaveEverBeenAtResourcesPage")
         prefs.synchronize()
     }
     
@@ -93,6 +86,7 @@ import UIKit
             if (newLogin != ""){
                 let lcDomain = "@lcmail.lcsc.edu"
                 let lcDomainLength = lcDomain.characters.count
+                //checking if the email contains the @lcmail.lcsc.edu string in th ending
                 if(newLogin?.characters.count > lcDomainLength){
                     let domainSubstr = (newLogin?.substringFromIndex((newLogin?.startIndex.advancedBy((newLogin?.characters.count)! - lcDomainLength))!))
                     if (domainSubstr! == "@lcmail.lcsc.edu") {

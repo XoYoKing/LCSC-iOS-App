@@ -13,11 +13,13 @@
     _usernameDisplay.text = newLogin;
 }
 
+//clean the LCMail profile after tapping clear
 - (IBAction)clearTapped:(id)sender {
     [_auth clearLCMailProfile];
     [self changeDisplaytext:@""];
 }
 
+//fill the text fiel with the user information after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
     _auth = [[Authentication alloc] init];
@@ -26,6 +28,7 @@
     [self changeDisplaytext:username];
 }
 
+//Set the profile if it is valid
 - (IBAction)signingTapped:(id)sender {
     if ([_auth setProfile:@"lcmail" newLogin:_usernameDisplay.text newPassword:@""]){
         NSString *newLogin = [_auth getLCMailUsername];

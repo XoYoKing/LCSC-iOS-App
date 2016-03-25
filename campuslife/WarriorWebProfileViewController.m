@@ -25,24 +25,24 @@
     _passwordDisplay.text = newPassword;
 }
 
+//fill the text fiel with the user information after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    _menuButton.target = [self revealViewController];
-//    _menuButton.action = @selector(revealToggle:);
-//    [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
-//    [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     _auth = [[Authentication alloc] init];
     NSString *username = [_auth getWarriorWebUsername];
     NSString *password = [_auth getWarriorWebPassword];
     [self changeDisplaytext:username andPassword:password];
 }
 
+//clean the WW profile after tapping clear
 - (IBAction)clearTapped:(id)sender {
     [_auth clearWarriorWebProfile];
     [self changeDisplaytext:@"" andPassword:@""];
 }
 
+
+//Set the profile if it is valid
 - (IBAction)signingTapped:(id)sender {
     if ([_auth setProfile:@"warriorweb" newLogin:_usernameDisplay.text newPassword:_passwordDisplay.text]){
         NSString *newLogin = [_auth getWarriorWebUsername];

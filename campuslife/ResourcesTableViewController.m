@@ -9,7 +9,7 @@
 #import "ResourcesTableViewController.h"
 #import "WebViewViewController.h"
 #import "SWRevealViewController.h"
-#import "LCSC-swift.h"
+#import "LCSC-Swift.h"
 #import "WarriorWebProfileViewController.h"
 
 @interface ResourcesTableViewController ()
@@ -22,23 +22,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //loads the slide menu function
     _menuButton.target = [self revealViewController];
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
-    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"scriptExecuted"];
+    //check if user have ever been at this page before and displays an alert case it is true
     Authentication* auth = [[Authentication alloc] init];
-//    NSLog(@"%d and %d",[self checkProfile], (![auth userHaveEverBeenAtResourcesPage]));
-    if ([self checkProfile] && ![auth userHaveEverBeenAtResourcesPage]){
-        [auth setUserHaveEverBeenAtResourcesPage:@"true"];
+    if (![auth userHaveEverBeenAtResourcesPage]){
+        [auth setUserHaveEverBeenAtResourcesPage:true];
         [self promptAlert:@"Your Profile is not set!" message:@"Some functions may not work.\nDo you want to set you profile now?"];
     }
 }
 
-- (BOOL)checkProfile{
-    Authentication* auth = [[Authentication alloc] init];
-    return [[auth getWarriorWebPassword] isEqualToString:@""] || [[auth getWarriorWebUsername] isEqualToString:@""] || [[auth getBlackBoardPassword] isEqualToString:@"" ] || [[auth getBlackBoardUsername] isEqualToString:@""];
-}
 
 - (void)promptAlert:(NSString *)title message:(NSString *)message{
     UIAlertView* alert = [[UIAlertView alloc] init];
@@ -50,6 +46,7 @@
     [alert show];
 }
 
+//choose the action based on which button the user presses in the alertView
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ( buttonIndex == 1){
        [self performSegueWithIdentifier:@"Profile Alert" sender:self];

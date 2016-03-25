@@ -17,13 +17,14 @@ class RadioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //my code :)
+        //loads the slide menu function
         menuButton.target = revealViewController()
         menuButton.action = Selector("revealToggle:")
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
-        //http://stream.lcsc.edu/iphone.htm
+        //loads the LCSC radio page
         let url = NSURL(string:"http://stream.lcsc.edu/iphone.htm")
         let req = NSURLRequest(URL:url!)
         webView!.loadRequest(req)
