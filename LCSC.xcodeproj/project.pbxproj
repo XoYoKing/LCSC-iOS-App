@@ -35,7 +35,6 @@
 		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
 		44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */; };
 		44C0A7C71CA4EE1D0021E16D /* HangoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */; };
-		44C0A7D01CA518C00021E16D /* CampusMap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44C0A7CF1CA518C00021E16D /* CampusMap.jpg */; };
 		44DF21581C99DD36003A0C3A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21571C99DD36003A0C3A /* MapViewController.swift */; };
 		44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF215F1C99EB30003A0C3A /* RadioViewController.swift */; };
 		44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */; };
@@ -154,7 +153,6 @@
 		44A8E2BD1CA1E11600C4435D /* BlackBoardProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackBoardProfileViewController.h; sourceTree = "<group>"; };
 		44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackBoardProfileViewController.m; sourceTree = "<group>"; };
 		44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangoutsViewController.swift; sourceTree = "<group>"; };
-		44C0A7CF1CA518C00021E16D /* CampusMap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CampusMap.jpg; sourceTree = "<group>"; };
 		44DF21571C99DD36003A0C3A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		44DF215F1C99EB30003A0C3A /* RadioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioViewController.swift; sourceTree = "<group>"; };
 		44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleticsViewController.swift; sourceTree = "<group>"; };
@@ -443,7 +441,6 @@
 				C11195241A114473001ED805 /* Reachability.m */,
 				07484B1B1C84CF84007D1ADC /* Authentication.swift */,
 				99F6F39119FDC39500536DB8 /* Images.xcassets */,
-				44C0A7CF1CA518C00021E16D /* CampusMap.jpg */,
 				C1E66DF8183C333A00851B89 /* Supporting Files */,
 			);
 			path = campuslife;
@@ -600,7 +597,6 @@
 				4071E6591C926B7B002E0D8E /* background.png in Resources */,
 				992592AE19FDC46B008946F8 /* Icon-60@2x.png in Resources */,
 				992592B319FDC46B008946F8 /* Icon-76@2x.png in Resources */,
-				44C0A7D01CA518C00021E16D /* CampusMap.jpg in Resources */,
 				4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */,
 				992592BC19FDC46B008946F8 /* Icon.png in Resources */,
 				992592BB19FDC46B008946F8 /* Icon-Small@3x.png in Resources */,

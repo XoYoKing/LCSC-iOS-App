@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HangoutsViewController: UIViewController {
+class HangoutsViewController: UIViewController,UIWebViewDelegate {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var webView: UIWebView!
@@ -16,15 +16,20 @@ class HangoutsViewController: UIViewController {
         super.viewDidLoad()
         
         //code
-        
+        //slide menu functions
         menuButton.target = revealViewController()
         menuButton.action = Selector("revealToggle:")
     
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        //open hangoutswebpage
+        webView.hidden = true
         let url = NSURL(string:"https://hangouts.google.com")
         let req = NSURLRequest(URL:url!)
         webView!.loadRequest(req)
+//        self.navigationController?.popViewControllerAnimated(true)
+        self.performSegueWithIdentifier("backToMenu", sender: self)
     }
+    
 }
