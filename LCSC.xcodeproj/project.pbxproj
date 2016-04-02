@@ -10,6 +10,7 @@
 		07484B1A1C84CD45007D1ADC /* WarriorWebProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */; };
 		07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07484B1B1C84CF84007D1ADC /* Authentication.swift */; };
 		07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC95651C877BC900C05BB0 /* ScriptWebView.swift */; };
+		3F63700B1CAF74E300406274 /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F63700A1CAF74E300406274 /* CategoryTableView.m */; };
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
@@ -115,6 +116,8 @@
 		07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarriorWebProfileViewController.m; sourceTree = "<group>"; };
 		07484B1B1C84CF84007D1ADC /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		07CC95651C877BC900C05BB0 /* ScriptWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptWebView.swift; sourceTree = "<group>"; };
+		3F6370091CAF74E300406274 /* CategoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTableView.h; path = ../../dropdown2/dropdown2/CategoryTableView.h; sourceTree = "<group>"; };
+		3F63700A1CAF74E300406274 /* CategoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTableView.m; path = ../../dropdown2/dropdown2/CategoryTableView.m; sourceTree = "<group>"; };
 		3FE5FA781C594BA80024CEFB /* CalendarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfo.h; sourceTree = "<group>"; };
 		3FE5FA791C594BA80024CEFB /* CalendarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfo.m; sourceTree = "<group>"; };
 		400AC86D1C698D55003FC6E3 /* ResourcesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesTableViewController.h; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 				9916368119F829BB007F7E47 /* AllEventViewController.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
+				3F6370091CAF74E300406274 /* CategoryTableView.h */,
+				3F63700A1CAF74E300406274 /* CategoryTableView.m */,
 				07484B181C84CD45007D1ADC /* WarriorWebProfileViewController.h */,
 				07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */,
 				400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */,
@@ -639,6 +644,7 @@
 				C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */,
 				991048FB1A1E656100C83570 /* ContactInfo.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
+				3F63700B1CAF74E300406274 /* CategoryTableView.m in Sources */,
 				44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */,
 				400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,

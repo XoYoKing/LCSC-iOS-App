@@ -323,9 +323,50 @@
 }
 
 
+-(void)dismiss{
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
+{
+    return UIModalPresentationNone;
+}
 
+
+- (UIViewController *)presentationController:(UIPresentationController *)controller
+  viewControllerForAdaptivePresentationStyle:(UIModalPresentationStyle)style
+{
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller.presentedViewController];
+    UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                style: UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(dismiss)];
+    navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone;
+    return navigationController;
+}
+
+
+- (IBAction)itemButtonClicked:(UIBarButtonItem *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UITableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryView"];
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    UIPopoverPresentationController *popover = [vc popoverPresentationController];
+    popover.barButtonItem = sender;
+    popover.delegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
+}
 
 
 @end

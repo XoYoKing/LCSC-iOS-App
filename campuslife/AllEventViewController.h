@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AllEventViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface AllEventViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 -(void)loadAllData;
 @end
