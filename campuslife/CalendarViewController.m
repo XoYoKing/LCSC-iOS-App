@@ -440,8 +440,15 @@
         
         NSInteger selectedDay = indexPath.row+1 - [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth
                                                                                andYear:_selectedYear];
+        NSMutableArray *eventsToShow = [[NSMutableArray alloc] init];
+        Preferences *prefs = [Preferences getSharedInstance];
+        for(LCSCEvent *event in [_viewingMonth getEventsForDay:selectedDay]) {
+            if([prefs getPreference:[event getCategory]]) {
+                [eventsToShow addObject:event];
+            }
+        }
         [destViewController setDay:selectedDay];
-        [destViewController setEvents:[_viewingMonth getEventsForDay:selectedDay]];
+        [destViewController setEvents:eventsToShow];
     }
 }
 
