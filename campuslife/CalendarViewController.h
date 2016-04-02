@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CalendarViewController : UIViewController < UICollectionViewDelegate, UICollectionViewDataSource>
+@interface CalendarViewController : UIViewController < UICollectionViewDelegate, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftArrow;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
@@ -44,7 +44,6 @@
 - (IBAction)forwardMonthOffset:(id)sender;
 
 - (NSDate *)returnDateForMonth:(NSInteger)month year:(NSInteger)year day:(NSInteger)day;
-- (void) getEventsForMonth:(NSInteger) month :(NSInteger) year;
 - (void) setMonthNeedsLoaded:(BOOL)monthNeedsLoaded;
 
 @end
