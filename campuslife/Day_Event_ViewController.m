@@ -84,7 +84,8 @@
     DayEventCell *cell = (DayEventCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     LCSCEvent *the_event = [_dayEvents objectAtIndex:indexPath.row];
-    
+    [cell setEvent:the_event];
+
     if ([the_event isAllDay])
     {
         cell.eventTimeLabel.text = @"All Day Event";
@@ -138,10 +139,10 @@
     cell.summaryLabel.text = summaryHold;
     
     if(indexPath == _selectedIndex) {
-        cell.descriptionLabel.text = @"Go fuck yourself";
+        [cell loadDescription];
     
     } else {
-        cell.descriptionLabel.text = @"";
+        [cell hideDescription];
     }
     
     return cell;
