@@ -10,13 +10,12 @@
 #import "Preferences.h"
 #import "EventDetailViewController.h"
 #import "CalendarViewController.h"
-
+#import "DayEventCell.h"
 
 @interface Day_Event_ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
-@property (nonatomic) BOOL didSegue;
-
+@property (strong, nonatomic) NSIndexPath *selectedIndex;
 @end
 
 
@@ -32,25 +31,14 @@
  */
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
-
-    self.tableView.rowHeight = 44;
-    //self.navigationItem.title = [NSString stringWithFormat:@"%@ %d, %d", [events getMonthBarDate], [events getSelectedDay], [events getSelectedYear]];
-    
-    //self.navigationController.navigationBar.topItem.title = @"";
-    
-    
-    [self.tableView reloadData];
+    _selectedIndex = nil;
 }
 
 
-/*
- *  Request new information from day at index.
- */
 -(void)viewDidAppear:(BOOL)animated
 {
-    _didSegue = NO;
+    [super viewDidAppear:animated];
 }
 
 
@@ -61,6 +49,7 @@
 
 
 -(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
+    /*
     if ([segue.identifier isEqualToString:@"DayToDetail"]) {
         if (!_didSegue)
         {
@@ -72,6 +61,7 @@
             [destViewController setEvent:[_dayEvents objectAtIndex:indexPath.row]];
         }
     }
+     */
 }
 
 
@@ -91,19 +81,13 @@
 {
     static NSString *CellIdentifier = @"EventCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    DayEventCell *cell = (DayEventCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     LCSCEvent *the_event = [_dayEvents objectAtIndex:indexPath.row];
     
     if ([the_event isAllDay])
     {
-        UILabel *time = (UILabel *)[cell viewWithTag:20];
-        time.text = @"All Day Event";
+        cell.eventTimeLabel.text = @"All Day Event";
     }
     else
     {
@@ -117,49 +101,88 @@
         NSString *endTime = [eventEnd substringWithRange:elevenToSixteenEnd];
         endTime = [self twentyFourToTwelve:endTime];
         
-        UILabel *time = (UILabel *)[cell viewWithTag:20];
-        time.text = [NSString stringWithFormat:@"%@ \nto\n %@", startTime, endTime];
+        cell.eventTimeLabel.text = [NSString stringWithFormat:@"%@ \nto\n %@", startTime, endTime];
     }
     
     NSString *category = [the_event getCategory];
-    
+    NSString *dotFile;
     if ([category isEqualToString:@"Entertainment"])
     {
-        UIImageView *image = (UIImageView *)[cell viewWithTag:21];
-        [image setImage:[UIImage imageNamed:@"dotEntertainment.png"]];
+        dotFile = @"dotEntertainment.png";
     }
     else if ([category isEqualToString:@"Academics"])
     {
-        UIImageView *image = (UIImageView *)[cell viewWithTag:21];
-        [image setImage:[UIImage imageNamed:@"dotAcademics.png"]];
+        dotFile = @"dotAcademics.png";
     }
     else if ([category isEqualToString:@"Student Activities"])
     {
-        UIImageView *image = (UIImageView *)[cell viewWithTag:21];
-        [image setImage:[UIImage imageNamed:@"dotActivities.png"]];
+        dotFile = @"dotActivities.png";
     }
     else if ([category isEqualToString:@"Residence Life"])
     {
-        UIImageView *image = (UIImageView *)[cell viewWithTag:21];
-        [image setImage:[UIImage imageNamed:@"dotResidence.png"]];
+        dotFile = @"dotResidence.png";
     }
     else if ([category isEqualToString:@"Warrior Athletics"])
     {
-        UIImageView *image = (UIImageView *)[cell viewWithTag:21];
-        [image setImage:[UIImage imageNamed:@"dotAthletics.png"]];
+        dotFile = @"dotAthletics.png";
     }
     else if ([category isEqualToString:@"Campus Rec"])
     {
-        UIImageView *image = (UIImageView *)[cell viewWithTag:21];
-        [image setImage:[UIImage imageNamed:@"dotCampusRec.png"]];
+        dotFile = @"dotCampusRec.png";
     }
     
-    UILabel *summary = (UILabel *)[cell viewWithTag:22];
+    [cell.eventDotImageView setImage:[UIImage imageNamed:dotFile]];
+    
     NSString *summaryHold = [the_event getSummary];
     summaryHold = [summaryHold stringByReplacingOccurrencesOfString:@":" withString:@""];
-    summary.text = summaryHold;
+    cell.summaryLabel.text = summaryHold;
+    
+    if(indexPath == _selectedIndex) {
+        cell.descriptionLabel.text = @"Go fuck yourself";
+    
+    } else {
+        cell.descriptionLabel.text = @"";
+    }
     
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSMutableArray *cellsToReload = [[NSMutableArray alloc] init];
+    [cellsToReload addObject:indexPath];
+    
+    // User is selecting a cell for the first time
+    if(_selectedIndex == nil) {
+        _selectedIndex = indexPath;
+    }
+    
+    // user selected same cell again
+    else if(_selectedIndex == indexPath) {
+        _selectedIndex = nil;
+    }
+    
+    // user selected a new cell while another was selected
+    else {
+        NSIndexPath *prevPath = [_selectedIndex copy];
+        _selectedIndex = indexPath;
+        [cellsToReload addObject:prevPath];
+    }
+    
+    [tableView reloadRowsAtIndexPaths:cellsToReload
+                     withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(_selectedIndex == indexPath) {
+        return [DayEventCell ExpandedHeight];
+    } else {
+        return [DayEventCell DefaultHeight];
+    }
 }
 
 

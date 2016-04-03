@@ -14,6 +14,7 @@
 		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
 		401001C41CB0B3C30059E341 /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C31CB0B3C30059E341 /* CategoryTableView.m */; };
+		401001C71CB0B8300059E341 /* DayEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C61CB0B8300059E341 /* DayEventCell.m */; };
 		4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4071E64D1C925144002E0D8E /* twitterViewController.m */; };
 		4071E6541C925655002E0D8E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6501C925654002E0D8E /* Fabric.framework */; };
 		4071E6551C925655002E0D8E /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6511C925654002E0D8E /* TwitterKit.framework */; };
@@ -124,6 +125,8 @@
 		400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCEvent.m; sourceTree = "<group>"; };
 		401001C21CB0B3C30059E341 /* CategoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableView.h; sourceTree = "<group>"; };
 		401001C31CB0B3C30059E341 /* CategoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableView.m; sourceTree = "<group>"; };
+		401001C51CB0B8300059E341 /* DayEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayEventCell.h; sourceTree = "<group>"; };
+		401001C61CB0B8300059E341 /* DayEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayEventCell.m; sourceTree = "<group>"; };
 		4071E64C1C925144002E0D8E /* twitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitterViewController.h; sourceTree = "<group>"; };
 		4071E64D1C925144002E0D8E /* twitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twitterViewController.m; sourceTree = "<group>"; };
 		4071E6501C925654002E0D8E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 				C1E66E3E183C33D000851B89 /* CalendarViewController.m */,
 				C1E66E3F183C33D000851B89 /* Day_Event_ViewController.h */,
 				C1E66E40183C33D000851B89 /* Day_Event_ViewController.m */,
+				401001C51CB0B8300059E341 /* DayEventCell.h */,
+				401001C61CB0B8300059E341 /* DayEventCell.m */,
 				40AC32F01C6029F2003468F8 /* MonthFactory.h */,
 				40AC32F11C6029F2003468F8 /* MonthFactory.m */,
 				40AC32EA1C60294B003468F8 /* MonthOfEvents.h */,
@@ -647,6 +652,7 @@
 				401001C41CB0B3C30059E341 /* CategoryTableView.m in Sources */,
 				44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */,
 				400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */,
+				401001C71CB0B8300059E341 /* DayEventCell.m in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,
 				07484B1A1C84CD45007D1ADC /* WarriorWebProfileViewController.m in Sources */,
 				40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */,
