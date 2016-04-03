@@ -15,6 +15,7 @@
 #import "MonthOfEvents.h"
 #import "LCSCEvent.h"
 #import "SWRevealViewController.h"
+#import "AllEventCell.h"
 
 @interface AllEventViewController ()
 {
@@ -26,6 +27,7 @@
     Preferences *preferences;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
+@property (strong, nonatomic) NSIndexPath *selectedIndex;
 
 @end
 
@@ -33,6 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _selectedIndex = nil;
     _menuButton.target = [self revealViewController];
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
@@ -87,23 +90,6 @@
 }
 
 
-// TODO: Make the LCSCEvent class return its NSDictionary representation
-// Since the EventDetailTableViewController is used by the calendar and the list view
-// So it can't have the LCSCEvent class integrated yet
--(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
-    
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        wentToEvent = YES;
-        //Instantiate your next view controller!
-        EventDetailViewController *destViewController = (EventDetailViewController *)[segue destinationViewController];
-        
-        [destViewController setEvent:[displayedEvents objectAtIndex:indexPath.row]];
-    }
-}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -119,13 +105,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EventCell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    UILabel *dayLbl = (UILabel *)[cell viewWithTag:20];
-    UILabel *eventDetailLbl = (UILabel *)[cell viewWithTag:22];
-    UILabel *eventTimeLbl = (UILabel *)[cell viewWithTag:24];
-    UIImageView *image = (UIImageView *)[cell viewWithTag:10];
+    AllEventCell *cell = (AllEventCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                                              forIndexPath:indexPath];
+    UILabel *dayLbl = cell.dateLabel;
+    UILabel *eventSummaryLbl = cell.titleLabel;
+    UILabel *eventTimeLbl = cell.timeLabel;
+    UIImageView *image = cell.dotImageView;
     LCSCEvent *myEvent = [displayedEvents objectAtIndex:indexPath.row];
-    
+    [cell setEvent:myEvent];
+
     if ([myEvent isAllDay])
     {
         eventTimeLbl.text = @"All Day Event";
@@ -196,8 +184,12 @@
         [image setImage:[UIImage imageNamed:@"dotCampusRec.png"]];
     }
     
-    eventDetailLbl.text = [myEvent getSummary];
-    
+    eventSummaryLbl.text = [myEvent getSummary];
+    if(_selectedIndex == indexPath) {
+        [cell loadDescription];
+    } else {
+        [cell hideDescription];
+    }
     return cell;
 }
 
@@ -363,9 +355,48 @@
 
 - (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
 {
+    _selectedIndex = nil;
     [displayedEvents removeAllObjects];
     [self removeCancelledEvents];
     [self.tableView reloadData];
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSMutableArray *cellsToReload = [[NSMutableArray alloc] init];
+    [cellsToReload addObject:indexPath];
+    
+    // User is selecting a cell for the first time
+    if(_selectedIndex == nil) {
+        _selectedIndex = indexPath;
+    }
+    
+    // user selected same cell again
+    else if(_selectedIndex == indexPath) {
+        _selectedIndex = nil;
+    }
+    
+    // user selected a new cell while another was selected
+    else {
+        NSIndexPath *prevPath = [_selectedIndex copy];
+        _selectedIndex = indexPath;
+        [cellsToReload addObject:prevPath];
+    }
+    
+    [tableView reloadRowsAtIndexPaths:cellsToReload
+                     withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(_selectedIndex == indexPath) {
+        return [AllEventCell ExpandedHeight];
+    } else {
+        return [AllEventCell DefaultHeight];
+    }
 }
 
 
