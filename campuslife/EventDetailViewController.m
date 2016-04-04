@@ -211,7 +211,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
         EKEventStore *store = [[EKEventStore alloc] init];
         
 
-        [store requestAccessToEntityType:EKEntityTypeEvent completion:^(bool granted, NSError *error) {
+        [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
             if (!granted) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calendar Access Not Granted"
                                                                 message:@"Go to\nSettings > Privacy > Calendars\nand enable access to LCSC to add events to your personal calendar."

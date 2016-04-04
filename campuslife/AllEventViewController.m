@@ -384,7 +384,6 @@
         _selectedIndex = indexPath;
         [cellsToReload addObject:prevPath];
     }
-    
     [tableView reloadRowsAtIndexPaths:cellsToReload
                      withRowAnimation:UITableViewRowAnimationAutomatic];
 }
