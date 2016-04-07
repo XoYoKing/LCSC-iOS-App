@@ -42,8 +42,6 @@
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     [self loadAllData];
     self.tableView.rowHeight = 44;
-    // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
-    wentToEvent = NO;
 }
 
 
@@ -59,13 +57,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    if(!wentToEvent){
-        [displayedEvents removeAllObjects];
-        [self removeCancelledEvents];
-        [self.tableView reloadData];
-    } else {
-        wentToEvent = NO;
-    }
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
 }
 
 
