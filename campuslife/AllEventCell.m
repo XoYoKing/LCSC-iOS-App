@@ -47,7 +47,7 @@
     NSMutableAttributedString *Final = [[NSMutableAttributedString alloc]init];
     [Final appendAttributedString:attributedLocation];
     [Final appendAttributedString:attributedDesc];
-    
+    _eventDescriptionTextView.hidden = NO;
     [self.eventDescriptionTextView setAttributedText:Final];
     _eventDescriptionTextView.backgroundColor = [UIColor clearColor];
 }
