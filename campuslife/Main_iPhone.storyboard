@@ -647,7 +647,7 @@
         <scene sceneID="vbC-Ui-bsr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pcG-gU-rIb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="All Events" image="A6C666E7-4920-488D-84EB-C0DEEB3FEF9B" id="2J2-W4-Dwn"/>
+                    <tabBarItem key="tabBarItem" title="All Events" image="7FD01FD9-5FC2-46A2-A8AA-1B0D2DBD90AA" id="2J2-W4-Dwn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bgd-Eu-lYD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -666,7 +666,7 @@
         <scene sceneID="oWY-TB-3gO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uar-4W-Ymn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="067BEF0F-630C-4A33-945F-E63B0CF607FE" id="0QB-JS-ySv"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="30CEE01B-5E4F-4BC3-808F-20D36CD6C4AC" id="0QB-JS-ySv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nr1-r4-eMJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -741,7 +741,7 @@
         <scene sceneID="hnT-5K-dwj">
             <objects>
                 <navigationController id="E8T-kD-dN5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Emergency" image="E2DBA38C-37F6-49F3-9A93-E329A3C3A4E9" id="3ji-hN-Ry3"/>
+                    <tabBarItem key="tabBarItem" title="Emergency" image="9FAE05ED-824B-464A-B5E0-D3EA7325DFDB" id="3ji-hN-Ry3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jCb-kM-JJU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1867,7 +1867,7 @@
         <scene sceneID="Nvs-v4-GOG">
             <objects>
                 <tableViewController storyboardIdentifier="CategoryView" id="DnY-Bf-0zN" customClass="CategoryTableView" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ob2-3H-DbZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ob2-3H-DbZ">
                         <rect key="frame" x="0.0" y="0.0" width="221" height="263"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1994,7 +1994,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="067BEF0F-630C-4A33-945F-E63B0CF607FE" width="32" height="32">
+        <image name="30CEE01B-5E4F-4BC3-808F-20D36CD6C4AC" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -2132,7 +2132,7 @@ AKYAqACtAMQAxgDIHdod3x3qHfMeBh4KHh0eKB4xHjYePh5BHkYeVR5ZHmAeaB51HnoefB5+HoMeix6O
 HpMemx6eHrAesx64AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAHro
 </mutableData>
         </image>
-        <image name="A6C666E7-4920-488D-84EB-C0DEEB3FEF9B" width="32" height="32">
+        <image name="7FD01FD9-5FC2-46A2-A8AA-1B0D2DBD90AA" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2251,9 +2251,7 @@ XxloGXsZfxmSGZ0ZphmrGbMZthm7GcoZzhnVGd0Z6hnvGfEZ8xn4GgAaAxoIGhAaExolGigaLQAAAAAA
 AAIBAAAAAAAAAEIAAAAAAAAAAAAAAAAAABovA
 </mutableData>
         </image>
-        <image name="CampusMap" width="1275" height="1650"/>
-        <image name="Default-667h.png" width="375" height="667"/>
-        <image name="E2DBA38C-37F6-49F3-9A93-E329A3C3A4E9" width="32" height="32">
+        <image name="9FAE05ED-824B-464A-B5E0-D3EA7325DFDB" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -2404,6 +2402,8 @@ ISohLSEyIUEhRSFMIVQhYSFmIWghaiFvIXcheiF/IYchiiGcIZ8hpAAAAAAAAAIBAAAAAAAAAD8AAAAA
 AAAAAAAAAAAAACGmA
 </mutableData>
         </image>
+        <image name="CampusMap" width="1275" height="1650"/>
+        <image name="Default-667h.png" width="375" height="667"/>
         <image name="date_to-32.png" width="32" height="32"/>
         <image name="dotEntertainment.png" width="20" height="20"/>
         <image name="menu.png" width="28" height="20"/>
