@@ -49,6 +49,7 @@
     [Final appendAttributedString:attributedLocation];
     [Final appendAttributedString:attributedDesc];
     
+    _eventDescriptionTextView.hidden = YES;
     [self.eventDescriptionTextView setAttributedText:Final];
     _eventDescriptionTextView.backgroundColor = [UIColor clearColor];
 }
