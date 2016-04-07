@@ -25,6 +25,7 @@
 		4071E65B1C926B89002E0D8E /* HomeButton top bar small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */; };
 		4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */; };
 		4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65E1C927CCC002E0D8E /* overlayed front.jpg */; };
+		4084EA581CB49CB1004EFCA0 /* Facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 4084EA571CB49CB0004EFCA0 /* Facebook.png */; };
 		409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 409B8EE61C9103FB00F4361D /* frontpage.jpg */; };
 		409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EE81C91077C00F4361D /* BackTableVC.swift */; };
 		409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EEA1C91077C00F4361D /* SWRevealViewController.m */; };
@@ -140,6 +141,7 @@
 		4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "HomeButton top bar small.jpg"; sourceTree = "<group>"; };
 		4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rsz_homebutton_top_bar_small.jpg; sourceTree = "<group>"; };
 		4071E65E1C927CCC002E0D8E /* overlayed front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "overlayed front.jpg"; sourceTree = "<group>"; };
+		4084EA571CB49CB0004EFCA0 /* Facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Facebook.png; sourceTree = "<group>"; };
 		409B8EE61C9103FB00F4361D /* frontpage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frontpage.jpg; sourceTree = "<group>"; };
 		409B8EE81C91077C00F4361D /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		409B8EE91C91077C00F4361D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				40AC32EB1C60294B003468F8 /* MonthOfEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
+				4084EA571CB49CB0004EFCA0 /* Facebook.png */,
 				4071E65E1C927CCC002E0D8E /* overlayed front.jpg */,
 				4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */,
 				4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */,
@@ -601,6 +604,7 @@
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
 				409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */,
 				9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */,
+				4084EA581CB49CB1004EFCA0 /* Facebook.png in Resources */,
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,
 				40F73D241C91348300A75F72 /* menu.png in Resources */,
 				9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */,
