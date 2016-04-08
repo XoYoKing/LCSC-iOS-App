@@ -54,7 +54,7 @@
 
 -(void)initializeStoryBoardBasedOnScreenSize {
     UIStoryboard *storyboard = nil;
-    storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {    // The iOS device = iPhone or iPod Touch
         CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
@@ -62,13 +62,13 @@
         {   // iPhone 3GS, 4, and 4S and iPod Touch 3rd and 4th generation: 3.5 inch screen (diagonally measured)
 
             // Instantiate a new storyboard object using the storyboard file named MainStoryboard_iPhone
-            storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone4" bundle:nil];
+            storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         }
     }
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
         // The iOS device = iPad
         // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone35
-        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+        storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     }
     // Instantiate the initial view controller object from the storyboard

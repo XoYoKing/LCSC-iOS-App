@@ -534,7 +534,7 @@
 
 
 - (IBAction)itemButtonClicked:(UIBarButtonItem *)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryView"];
     vc.modalPresentationStyle = UIModalPresentationPopover;
     UIPopoverPresentationController *popover = [vc popoverPresentationController];
