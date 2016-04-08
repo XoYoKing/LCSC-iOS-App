@@ -358,7 +358,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Row: %ld\nCol: %ld", (long)selectedIndex.row, (long)selectedIndex.section);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSMutableArray *cellsToReload = [[NSMutableArray alloc] init];
     [cellsToReload addObject:indexPath];
