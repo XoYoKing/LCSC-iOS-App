@@ -20,6 +20,7 @@
 		403DDE751CB9DF72009F2950 /* instagram_icon.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE721CB9DF72009F2950 /* instagram_icon.png_16x16.png */; };
 		403DDE761CB9DF72009F2950 /* down_arrow 2.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */; };
 		403DDE771CB9DF72009F2950 /* facebook-icon.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE741CB9DF72009F2950 /* facebook-icon.png_16x16.png */; };
+		403DDE7C1CB9EA70009F2950 /* ExpandableEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 403DDE7B1CB9EA70009F2950 /* ExpandableEventCell.m */; };
 		403FF13B1CB7629400699436 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C108EA171A0802B2006A7BC7 /* Main.storyboard */; };
 		4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4071E64D1C925144002E0D8E /* twitterViewController.m */; };
 		4071E6541C925655002E0D8E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6501C925654002E0D8E /* Fabric.framework */; };
@@ -137,6 +138,8 @@
 		403DDE721CB9DF72009F2950 /* instagram_icon.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instagram_icon.png_16x16.png; sourceTree = "<group>"; };
 		403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down_arrow 2.png_16x16.png"; sourceTree = "<group>"; };
 		403DDE741CB9DF72009F2950 /* facebook-icon.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-icon.png_16x16.png"; sourceTree = "<group>"; };
+		403DDE7A1CB9EA70009F2950 /* ExpandableEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableEventCell.h; sourceTree = "<group>"; };
+		403DDE7B1CB9EA70009F2950 /* ExpandableEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandableEventCell.m; sourceTree = "<group>"; };
 		4071E64C1C925144002E0D8E /* twitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitterViewController.h; sourceTree = "<group>"; };
 		4071E64D1C925144002E0D8E /* twitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twitterViewController.m; sourceTree = "<group>"; };
 		4071E6501C925654002E0D8E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -391,6 +394,8 @@
 				401001C91CB0D88E0059E341 /* AllEventCell.m */,
 				C1E66E00183C333A00851B89 /* AppDelegate.h */,
 				C1E66E01183C333A00851B89 /* AppDelegate.m */,
+				403DDE7A1CB9EA70009F2950 /* ExpandableEventCell.h */,
+				403DDE7B1CB9EA70009F2950 /* ExpandableEventCell.m */,
 				401001C21CB0B3C30059E341 /* CategoryTableView.h */,
 				401001C31CB0B3C30059E341 /* CategoryTableView.m */,
 				07484B181C84CD45007D1ADC /* WarriorWebProfileViewController.h */,
@@ -682,6 +687,7 @@
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
+				403DDE7C1CB9EA70009F2950 /* ExpandableEventCell.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */,
 				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,

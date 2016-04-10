@@ -8,17 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "LCSCEvent.h"
+#import "ExpandableEventCell.h"
 
-@interface DayEventCell : UITableViewCell
+@interface DayEventCell : ExpandableEventCell
 @property (strong, nonatomic) IBOutlet UILabel *summaryLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *eventDotImageView;
 @property (strong, nonatomic) IBOutlet UILabel *eventTimeLabel;
 @property (strong, nonatomic) IBOutlet UIButton *addButton;
 @property (strong, nonatomic) IBOutlet UITextView *eventDescriptionTextView;
-@property (strong, nonatomic) LCSCEvent *event;
 
 -(void)loadDescription;
 -(void)hideDescription;
-+(NSInteger)ExpandedHeight;
-+(NSInteger)DefaultHeight;
 @end
