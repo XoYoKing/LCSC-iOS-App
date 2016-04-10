@@ -19,15 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    CGFloat alpha = 0.5;
     _categories = @[@"Academics", @"Entertainment", @"Student Activities",
                     @"Campus Rec", @"Residence Life", @"Warrior Athletics"];
     
-    _categoryColors = @[[UIColor lightGrayColor], // light gray
-                        [UIColor redColor], // red
-                        [UIColor orangeColor], // orange
-                        [UIColor greenColor], // green
-                        [[UIColor alloc] initWithRed: 0 green: 1 blue: 1 alpha:1.0], // teal
-                        [UIColor blueColor]]; // blue
+    _categoryColors = @[[[UIColor alloc] initWithRed:96 / 255.0 green:96 / 255.0 blue:96 / 255.0 alpha:alpha], // light gray
+                        [[UIColor alloc] initWithRed:144 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:alpha], // red
+                        [[UIColor alloc] initWithRed:240 / 255.0 green:144 / 255.0 blue:48 / 255.0 alpha:alpha], // orange
+                        [[UIColor alloc] initWithRed:0 / 255.0 green:144 / 255.0 blue:48 / 255.0 alpha:alpha], // green
+                        [[UIColor alloc] initWithRed:0 / 255.0 green:192 / 255.0 blue:192 / 255.0 alpha:alpha], // teal
+                        [[UIColor alloc] initWithRed:0 / 255.0 green:96 / 255.0 blue:144 / 255.0 alpha:alpha]]; // blue
 }
 
 

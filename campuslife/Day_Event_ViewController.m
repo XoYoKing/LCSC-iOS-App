@@ -138,7 +138,7 @@
     summaryHold = [summaryHold stringByReplacingOccurrencesOfString:@":" withString:@""];
     cell.summaryLabel.text = summaryHold;
     
-    if(indexPath == _selectedIndex) {
+    if([_selectedIndex isEqual:indexPath]) {
         [cell loadDescription];
     
     } else {
@@ -157,19 +157,19 @@
     
     // User is selecting a cell for the first time
     if(_selectedIndex == nil) {
-        _selectedIndex = indexPath;
-    }
+        _selectedIndex = [NSIndexPath indexPathForRow:indexPath.row
+                                           inSection:indexPath.section];    }
     
     // user selected same cell again
-    else if(_selectedIndex == indexPath) {
+    else if([_selectedIndex isEqual:indexPath]) {
         _selectedIndex = nil;
     }
     
     // user selected a new cell while another was selected
     else {
         NSIndexPath *prevPath = [_selectedIndex copy];
-        _selectedIndex = indexPath;
-        [cellsToReload addObject:prevPath];
+        _selectedIndex = [NSIndexPath indexPathForRow:indexPath.row
+                                           inSection:indexPath.section];        [cellsToReload addObject:prevPath];
     }
     
     [tableView reloadRowsAtIndexPaths:cellsToReload
@@ -179,7 +179,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(_selectedIndex == indexPath) {
+    if([_selectedIndex isEqual:indexPath]) {
         return [DayEventCell ExpandedHeight];
     } else {
         return [DayEventCell DefaultHeight];

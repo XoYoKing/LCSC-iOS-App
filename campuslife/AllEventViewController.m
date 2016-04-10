@@ -25,9 +25,9 @@
     //NSInteger currentYear;
     BOOL wentToEvent;
     Preferences *preferences;
+    NSIndexPath *selectedIndex;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
-@property (strong, nonatomic) NSIndexPath *selectedIndex;
 
 @end
 
@@ -35,15 +35,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _selectedIndex = nil;
+    selectedIndex = nil;
     _menuButton.target = [self revealViewController];
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     [self loadAllData];
     self.tableView.rowHeight = 44;
-    // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
-    wentToEvent = NO;
 }
 
 
@@ -59,13 +57,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    if(!wentToEvent){
-        [displayedEvents removeAllObjects];
-        [self removeCancelledEvents];
-        [self.tableView reloadData];
-    } else {
-        wentToEvent = NO;
-    }
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
 }
 
 
@@ -185,7 +179,7 @@
     }
     
     eventSummaryLbl.text = [myEvent getSummary];
-    if(_selectedIndex == indexPath) {
+    if([selectedIndex isEqual:indexPath]) {
         [cell loadDescription];
     } else {
         [cell hideDescription];
@@ -343,7 +337,7 @@
 
 
 - (IBAction)itemButtonClicked:(UIBarButtonItem *)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryView"];
     vc.modalPresentationStyle = UIModalPresentationPopover;
     UIPopoverPresentationController *popover = [vc popoverPresentationController];
@@ -355,7 +349,7 @@
 
 - (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
 {
-    _selectedIndex = nil;
+    selectedIndex = nil;
     [displayedEvents removeAllObjects];
     [self removeCancelledEvents];
     [self.tableView reloadData];
@@ -367,21 +361,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSMutableArray *cellsToReload = [[NSMutableArray alloc] init];
     [cellsToReload addObject:indexPath];
-    
     // User is selecting a cell for the first time
-    if(_selectedIndex == nil) {
-        _selectedIndex = indexPath;
+    if(selectedIndex == nil) {
+        selectedIndex = [NSIndexPath indexPathForRow:indexPath.row
+                                         inSection:indexPath.section];
     }
     
     // user selected same cell again
-    else if(_selectedIndex == indexPath) {
-        _selectedIndex = nil;
+    else if([selectedIndex isEqual:indexPath]) {
+        selectedIndex = nil;
     }
     
     // user selected a new cell while another was selected
     else {
-        NSIndexPath *prevPath = [_selectedIndex copy];
-        _selectedIndex = indexPath;
+        NSIndexPath *prevPath = [selectedIndex copy];
+        selectedIndex = [NSIndexPath indexPathForRow:indexPath.row
+                                            inSection:indexPath.section];
         [cellsToReload addObject:prevPath];
     }
     [tableView reloadRowsAtIndexPaths:cellsToReload
@@ -391,7 +386,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(_selectedIndex == indexPath) {
+    if([selectedIndex isEqual:indexPath]) {
         return [AllEventCell ExpandedHeight];
     } else {
         return [AllEventCell DefaultHeight];
