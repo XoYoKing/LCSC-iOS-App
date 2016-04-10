@@ -10,8 +10,17 @@
 #import "LCSCEvent.h"
 #import <EventKit/EventKit.h>
 
-#define EXPANDED_HEIGHT (300)
+
+#if IDIOM == IPAD
+#define EXPANDED_HEIGHT (200)
+
+#else
+#define EXPANDED_HEIGHT (150)
+
+#endif
+
 #define DEFAULT_HEIGHT (44)
+
 
 @implementation AllEventCell
 

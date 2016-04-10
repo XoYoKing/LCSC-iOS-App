@@ -16,6 +16,10 @@
 		401001C41CB0B3C30059E341 /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C31CB0B3C30059E341 /* CategoryTableView.m */; };
 		401001C71CB0B8300059E341 /* DayEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C61CB0B8300059E341 /* DayEventCell.m */; };
 		401001CA1CB0D88E0059E341 /* AllEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C91CB0D88E0059E341 /* AllEventCell.m */; };
+		403DDE711CB9DDD2009F2950 /* twitter_icon.ico_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE701CB9DDD2009F2950 /* twitter_icon.ico_16x16.png */; };
+		403DDE751CB9DF72009F2950 /* instagram_icon.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE721CB9DF72009F2950 /* instagram_icon.png_16x16.png */; };
+		403DDE761CB9DF72009F2950 /* down_arrow 2.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */; };
+		403DDE771CB9DF72009F2950 /* facebook-icon.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE741CB9DF72009F2950 /* facebook-icon.png_16x16.png */; };
 		403FF13B1CB7629400699436 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C108EA171A0802B2006A7BC7 /* Main.storyboard */; };
 		4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4071E64D1C925144002E0D8E /* twitterViewController.m */; };
 		4071E6541C925655002E0D8E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6501C925654002E0D8E /* Fabric.framework */; };
@@ -129,6 +133,10 @@
 		401001C61CB0B8300059E341 /* DayEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayEventCell.m; sourceTree = "<group>"; };
 		401001C81CB0D88E0059E341 /* AllEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllEventCell.h; sourceTree = "<group>"; };
 		401001C91CB0D88E0059E341 /* AllEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllEventCell.m; sourceTree = "<group>"; };
+		403DDE701CB9DDD2009F2950 /* twitter_icon.ico_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_icon.ico_16x16.png; sourceTree = "<group>"; };
+		403DDE721CB9DF72009F2950 /* instagram_icon.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instagram_icon.png_16x16.png; sourceTree = "<group>"; };
+		403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down_arrow 2.png_16x16.png"; sourceTree = "<group>"; };
+		403DDE741CB9DF72009F2950 /* facebook-icon.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-icon.png_16x16.png"; sourceTree = "<group>"; };
 		4071E64C1C925144002E0D8E /* twitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitterViewController.h; sourceTree = "<group>"; };
 		4071E64D1C925144002E0D8E /* twitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twitterViewController.m; sourceTree = "<group>"; };
 		4071E6501C925654002E0D8E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -394,6 +402,10 @@
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main.storyboard */,
+				403DDE701CB9DDD2009F2950 /* twitter_icon.ico_16x16.png */,
+				403DDE721CB9DF72009F2950 /* instagram_icon.png_16x16.png */,
+				403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */,
+				403DDE741CB9DF72009F2950 /* facebook-icon.png_16x16.png */,
 				44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */,
 				445F6D681CA3A5EB0098371C /* LCMailProfileViewController.h */,
 				445F6D691CA3A5EB0098371C /* LCMailProfileViewController.m */,
@@ -560,6 +572,7 @@
 				992592B719FDC46B008946F8 /* Icon-Small-40@3x.png in Resources */,
 				994589EB1A396F7800853E3E /* ipadE.jpg in Resources */,
 				992592BA19FDC46B008946F8 /* Icon-Small@2x.png in Resources */,
+				403DDE771CB9DF72009F2950 /* facebook-icon.png_16x16.png in Resources */,
 				992592B819FDC46B008946F8 /* Icon-Small-50.png in Resources */,
 				992592B419FDC46B008946F8 /* Icon-small-29.png in Resources */,
 				C1DEC8D018F4AC2700ECD591 /* dotCampusRec.png in Resources */,
@@ -568,6 +581,7 @@
 				99F6F39219FDC39500536DB8 /* Images.xcassets in Resources */,
 				992592B219FDC46B008946F8 /* Icon-76.png in Resources */,
 				992592B019FDC46B008946F8 /* Icon-72.png in Resources */,
+				403DDE751CB9DF72009F2950 /* instagram_icon.png_16x16.png in Resources */,
 				99A580971A0048E70044CA5E /* Default@2x.png in Resources */,
 				99A1B2381A2E7FD800F6B42A /* back-32.png in Resources */,
 				C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */,
@@ -593,6 +607,8 @@
 				997268B81A37B224000FB68A /* iphoneE.jpg in Resources */,
 				99A580921A0048E70044CA5E /* Default-Landscape@2x.png in Resources */,
 				99A580951A0048E70044CA5E /* Default-Portrait@2x.png in Resources */,
+				403DDE761CB9DF72009F2950 /* down_arrow 2.png_16x16.png in Resources */,
+				403DDE711CB9DDD2009F2950 /* twitter_icon.ico_16x16.png in Resources */,
 				994589ED1A396F9F00853E3E /* iphoneDetails.jpg in Resources */,
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
 				409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */,
