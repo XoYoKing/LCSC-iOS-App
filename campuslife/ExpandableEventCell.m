@@ -63,15 +63,15 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                 return;
             }
             else{
-                EKEvent *event = [EKEvent eventWithEventStore:store];
-                [event setTitle:[_event getSummary]];//solved
-                [event setLocation:[_event getLocation]];//solved
-                [event setNotes:[_event getDescription]];//solved
+                EKEvent *calEvent = [EKEvent eventWithEventStore:store];
+                [calEvent setTitle:[_event getSummary]];//solved
+                [calEvent setLocation:[_event getLocation]];//solved
+                [calEvent setNotes:[_event getDescription]];//solved
                 
                 
                 if ([_event isAllDay])
                 {
-                    [event setAllDay:true];
+                    [calEvent setAllDay:true];
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                     
@@ -84,7 +84,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                     start = [dateFormatter dateFromString:startDateString];
                     //end = [dateFormatter dateFromString:endDateString];
                     
-                    [event setStartDate:start];
+                    [calEvent setStartDate:start];
                     /*
                      This is not the best way do to it, but trying to get an end date was weird.
                      so I just set both to the same day. I guess you can't save multi day events.
@@ -95,20 +95,19 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                      a weird breakthrough on how to do it in the future!
                      */
                     
-                    [event setEndDate:start];
+                    [calEvent setEndDate:start];
                 }
                 else{
                     //not all day event
                     
-                    [event setAllDay:false];
+                    [calEvent setAllDay:false];
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
                     
-                    /* This code causes errors for some reason? - Kyle
                      
                      //clayton
-                     //          NSString *startDateString = [[_eventDict objectForKey:@"start"] objectForKey:@"dateTime"];
-                     //        NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"dateTime"];
+                     NSString *startDateString = [_event getStartTimestamp];
+                     NSString *endDateString = [_event getEndTimestamp];
                      
                      NSMutableString *mutableStartDate = [startDateString mutableCopy];
                      NSMutableString *mutableEndDate = [endDateString mutableCopy];
@@ -126,14 +125,13 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                      
                      NSDate *start = [dateFormatter dateFromString:mutableStartDate];
                      NSDate *end = [dateFormatter dateFromString:mutableEndDate];
-                     [event setStartDate:start];
-                     [event setEndDate:end];
-                     */
+                     [calEvent setStartDate:start];
+                     [calEvent setEndDate:end];
                 }
                 
-                [event setCalendar:[store defaultCalendarForNewEvents]];
+                [calEvent setCalendar:[store defaultCalendarForNewEvents]];
                 NSError *err = nil;
-                [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+                [store saveEvent:calEvent span:EKSpanThisEvent commit:YES error:&err];
                 //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
             }
         }];
