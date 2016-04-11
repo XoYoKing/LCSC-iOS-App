@@ -70,70 +70,216 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                 [calEvent setNotes:[_event getDescription]];//solved
                 
                 NSArray *reocurrences = [MonthFactory getReocurrencesOfEvent:_event];
-                
-                if ([_event isAllDay])
+                if ([reocurrences count] > 1)
                 {
-                    [calEvent setAllDay:true];
-                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                    
-                    NSString *startDateString = [_event getStartTimestamp];
-                    //NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"date"];
-                    
-                    NSDate *start = [[NSDate alloc] init];
-                    //NSDate *end = [[NSDate alloc] init];
-                    
-                    start = [dateFormatter dateFromString:startDateString];
-                    //end = [dateFormatter dateFromString:endDateString];
-                    
-                    [calEvent setStartDate:start];
-                    /*
-                     This is not the best way do to it, but trying to get an end date was weird.
-                     so I just set both to the same day. I guess you can't save multi day events.
-                     sorry but I'm lazy and junk and it was a hot mess. In the end we don't really
-                     want to work with the recurrance stuff that is provided in the jsons anyway so
-                     there is no good way to do multi day all day events.
-                     I'll leave the code commented out for the end date stuff incase someone has
-                     a weird breakthrough on how to do it in the future!
-                     */
-                    
-                    [calEvent setEndDate:start];
-                }
-                else{
-                    //not all day event
-                    
-                    [calEvent setAllDay:false];
-                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
-                    
-                     
-                     //clayton
-                     NSString *startDateString = [_event getStartTimestamp];
-                     NSString *endDateString = [_event getEndTimestamp];
-                     
-                     NSMutableString *mutableStartDate = [startDateString mutableCopy];
-                     NSMutableString *mutableEndDate = [endDateString mutableCopy];
-                     
-                     
-                     //Dont ask. adding the .000 made it a lot easier (I followed a stackOverflow article)
-                     //Me and date formatters do not get along :(
-                     [mutableStartDate insertString:@".000" atIndex:19];
-                     [mutableEndDate insertString:@".000" atIndex:19];
-                     
-                     
-                     [mutableStartDate deleteCharactersInRange:NSMakeRange(mutableStartDate.length - 3, 1)];
-                     [mutableEndDate deleteCharactersInRange:NSMakeRange(mutableEndDate.length - 3, 1)];
-                     
-                     
-                     NSDate *start = [dateFormatter dateFromString:mutableStartDate];
-                     NSDate *end = [dateFormatter dateFromString:mutableEndDate];
-                     [calEvent setStartDate:start];
-                     [calEvent setEndDate:end];
+                    UIAlertView *multiEvents = [[UIAlertView alloc] initWithTitle:@"Multiple occurences detected."
+                                                                          message:@"Would you like to add future occurences of this event?" delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                    [multiEvents show];
+                    NSInteger i = 0;
+                    if (buttonIndex == 1)
+                    {
+                        for(i; i < [reocurrences count]; i++)
+                        {
+                            //add events to calendar
+                            LCSCEvent *reocurrencesEvent = reocurrences[i];
+                            EKEvent *calEvent = [EKEvent eventWithEventStore:store];
+                            [calEvent setTitle:[reocurrencesEvent getSummary]];//solved
+                            [calEvent setLocation:[reocurrencesEvent getLocation]];//solved
+                            [calEvent setNotes:[reocurrencesEvent getDescription]];//solved
+                            if ([reocurrencesEvent isAllDay])
+                            {
+                                [calEvent setAllDay:true];
+                                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                                NSString *startDateString = [_event getStartTimestamp];
+                                NSDate *start = [[NSDate alloc] init];
+                                start = [dateFormatter dateFromString:startDateString];
+                                [calEvent setStartDate:start];
+                                [calEvent setEndDate:start];
+                            }
+                            else
+                            {
+                                [calEvent setAllDay:false];
+                                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
+                                
+                                
+                                //clayton
+                                NSString *startDateString = [_event getStartTimestamp];
+                                NSString *endDateString = [_event getEndTimestamp];
+                                
+                                NSMutableString *mutableStartDate = [startDateString mutableCopy];
+                                NSMutableString *mutableEndDate = [endDateString mutableCopy];
+                                
+                                
+                                [mutableStartDate insertString:@".000" atIndex:19];
+                                [mutableEndDate insertString:@".000" atIndex:19];
+                                
+                                
+                                [mutableStartDate deleteCharactersInRange:NSMakeRange(mutableStartDate.length - 3, 1)];
+                                [mutableEndDate deleteCharactersInRange:NSMakeRange(mutableEndDate.length - 3, 1)];
+                                
+                                
+                                NSDate *start = [dateFormatter dateFromString:mutableStartDate];
+                                NSDate *end = [dateFormatter dateFromString:mutableEndDate];
+                                [calEvent setStartDate:start];
+                                [calEvent setEndDate:end];
+                            }
+                            
+                            [calEvent setCalendar:[store defaultCalendarForNewEvents]];
+                            NSError *err = nil;
+                            [store saveEvent:calEvent span:EKSpanThisEvent commit:YES error:&err];
+                            //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
+                        }
+                    }
+                    else{
+                        
+                        EKEvent *calEvent = [EKEvent eventWithEventStore:store];
+                        [calEvent setTitle:[_event getSummary]];//solved
+                        [calEvent setLocation:[_event getLocation]];//solved
+                        [calEvent setNotes:[_event getDescription]];//solved
+                        
+                        if ([_event isAllDay])
+                        {
+                            [calEvent setAllDay:true];
+                            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                            
+                            NSString *startDateString = [_event getStartTimestamp];
+                            //NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"date"];
+                            
+                            NSDate *start = [[NSDate alloc] init];
+                            //NSDate *end = [[NSDate alloc] init];
+                            
+                            start = [dateFormatter dateFromString:startDateString];
+                            //end = [dateFormatter dateFromString:endDateString];
+                            
+                            [calEvent setStartDate:start];
+                            /*
+                             This is not the best way do to it, but trying to get an end date was weird.
+                             so I just set both to the same day. I guess you can't save multi day events.
+                             sorry but I'm lazy and junk and it was a hot mess. In the end we don't really
+                             want to work with the recurrance stuff that is provided in the jsons anyway so
+                             there is no good way to do multi day all day events.
+                             I'll leave the code commented out for the end date stuff incase someone has
+                             a weird breakthrough on how to do it in the future!
+                             */
+                            
+                            [calEvent setEndDate:start];
+                        }
+                        else{
+                            //not all day event
+                            
+                            [calEvent setAllDay:false];
+                            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
+                            
+                            
+                            //clayton
+                            NSString *startDateString = [_event getStartTimestamp];
+                            NSString *endDateString = [_event getEndTimestamp];
+                            
+                            NSMutableString *mutableStartDate = [startDateString mutableCopy];
+                            NSMutableString *mutableEndDate = [endDateString mutableCopy];
+                            
+                            
+                            //Dont ask. adding the .000 made it a lot easier (I followed a stackOverflow article)
+                            //Me and date formatters do not get along :(
+                            [mutableStartDate insertString:@".000" atIndex:19];
+                            [mutableEndDate insertString:@".000" atIndex:19];
+                            
+                            
+                            [mutableStartDate deleteCharactersInRange:NSMakeRange(mutableStartDate.length - 3, 1)];
+                            [mutableEndDate deleteCharactersInRange:NSMakeRange(mutableEndDate.length - 3, 1)];
+                            
+                            
+                            NSDate *start = [dateFormatter dateFromString:mutableStartDate];
+                            NSDate *end = [dateFormatter dateFromString:mutableEndDate];
+                            [calEvent setStartDate:start];
+                            [calEvent setEndDate:end];
+                        }
+                        [calEvent setCalendar:[store defaultCalendarForNewEvents]];
+                        NSError *err = nil;
+                        [store saveEvent:calEvent span:EKSpanThisEvent commit:YES error:&err];
+                        //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
+                    }
                 }
                 
-                [calEvent setCalendar:[store defaultCalendarForNewEvents]];
-                NSError *err = nil;
-                [store saveEvent:calEvent span:EKSpanThisEvent commit:YES error:&err];
+                else{
+                    
+                    EKEvent *calEvent = [EKEvent eventWithEventStore:store];
+                    [calEvent setTitle:[_event getSummary]];//solved
+                    [calEvent setLocation:[_event getLocation]];//solved
+                    [calEvent setNotes:[_event getDescription]];//solved
+                    
+                    if ([_event isAllDay])
+                    {
+                        [calEvent setAllDay:true];
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    
+                        NSString *startDateString = [_event getStartTimestamp];
+                        //NSString *endDateString = [[_eventDict objectForKey:@"end"] objectForKey:@"date"];
+                    
+                        NSDate *start = [[NSDate alloc] init];
+                        //NSDate *end = [[NSDate alloc] init];
+                    
+                        start = [dateFormatter dateFromString:startDateString];
+                        //end = [dateFormatter dateFromString:endDateString];
+                    
+                        [calEvent setStartDate:start];
+                        /*
+                         This is not the best way do to it, but trying to get an end date was weird.
+                         so I just set both to the same day. I guess you can't save multi day events.
+                         sorry but I'm lazy and junk and it was a hot mess. In the end we don't really
+                         want to work with the recurrance stuff that is provided in the jsons anyway so
+                         there is no good way to do multi day all day events.
+                         I'll leave the code commented out for the end date stuff incase someone has
+                         a weird breakthrough on how to do it in the future!
+                         */
+                    
+                        [calEvent setEndDate:start];
+                    }
+                    else{
+                        //not all day event
+                    
+                        [calEvent setAllDay:false];
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
+                    
+                     
+                        //clayton
+                        NSString *startDateString = [_event getStartTimestamp];
+                        NSString *endDateString = [_event getEndTimestamp];
+                     
+                        NSMutableString *mutableStartDate = [startDateString mutableCopy];
+                        NSMutableString *mutableEndDate = [endDateString mutableCopy];
+                     
+                     
+                        //Dont ask. adding the .000 made it a lot easier (I followed a stackOverflow article)
+                        //Me and date formatters do not get along :(
+                        [mutableStartDate insertString:@".000" atIndex:19];
+                        [mutableEndDate insertString:@".000" atIndex:19];
+                     
+                     
+                        [mutableStartDate deleteCharactersInRange:NSMakeRange(mutableStartDate.length - 3, 1)];
+                        [mutableEndDate deleteCharactersInRange:NSMakeRange(mutableEndDate.length - 3, 1)];
+                     
+                     
+                        NSDate *start = [dateFormatter dateFromString:mutableStartDate];
+                        NSDate *end = [dateFormatter dateFromString:mutableEndDate];
+                        [calEvent setStartDate:start];
+                        [calEvent setEndDate:end];
+                    }
+                    [calEvent setCalendar:[store defaultCalendarForNewEvents]];
+                    NSError *err = nil;
+                    [store saveEvent:calEvent span:EKSpanThisEvent commit:YES error:&err];
+                    //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
+                }
+                
+                //[calEvent setCalendar:[store defaultCalendarForNewEvents]];
+                //NSError *err = nil;
+                //[store saveEvent:calEvent span:EKSpanThisEvent commit:YES error:&err];
                 //NSString *savedEventId = event.eventIdentifier;  //this is so you can access this event later
             }
         }];
