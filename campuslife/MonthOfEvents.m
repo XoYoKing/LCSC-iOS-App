@@ -33,6 +33,13 @@
     return self;
 }
 
+
+-(NSInteger)daysInMonth
+{
+    return [_days count];
+}
+
+
 -(NSArray *)getEventsForDay:(NSInteger)day
 {
     return (NSArray *)[_days objectAtIndex:day-1];

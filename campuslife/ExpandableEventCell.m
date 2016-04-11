@@ -8,6 +8,7 @@
 
 #import "ExpandableEventCell.h"
 #import "LCSCEvent.h"
+#import "MonthFactory.h"
 #import <EventKit/EventKit.h>
 
 
@@ -68,6 +69,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                 [calEvent setLocation:[_event getLocation]];//solved
                 [calEvent setNotes:[_event getDescription]];//solved
                 
+                NSArray *reocurrences = [MonthFactory getReocurrencesOfEvent:_event];
                 
                 if ([_event isAllDay])
                 {

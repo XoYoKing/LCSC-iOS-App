@@ -11,6 +11,7 @@
 @interface MonthOfEvents : NSObject <NSFastEnumeration>
 -(NSArray *)getEventsForDay:(NSInteger)day;
 -(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year andEventsArray:(NSArray *)events;
+-(NSInteger)daysInMonth;
 
 @property (nonatomic, readonly, getter=getMonth) NSInteger month;
 @property (nonatomic, readonly, getter=getYear) NSInteger year;

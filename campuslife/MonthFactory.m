@@ -197,6 +197,44 @@ static NSMutableDictionary *monthCache;
 }
 
 
++(NSArray *) getReocurrencesOfEvent:(LCSCEvent *)event
+{
+    NSMutableArray *reoccurrences = [[NSMutableArray alloc] init];
+    NSInteger curDay = [event getStartDay];
+    NSInteger curMonth = [event getStartMonth];
+    NSInteger curYear = [event getStartYear];
+    BOOL done = NO;
+    NSString *eventSummary = [[event getSummary]
+                              stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    while([MonthFactory checkCacheForMonth:curMonth andYear:curYear] && !done) {
+        NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+        MonthOfEvents *curEventMonth = [monthCache objectForKey:indexStr];
+
+        for(; curDay <= [curEventMonth daysInMonth]; curDay++) {
+            NSArray *day = [curEventMonth getEventsForDay:curDay];
+            BOOL eventInDay = NO;
+            for(LCSCEvent *otherEvent in day) {
+                NSString *otherSummary = [[otherEvent getSummary]
+                                          stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                if([eventSummary isEqualToString:otherSummary]) {
+                    [reoccurrences addObject:otherEvent];
+                    eventInDay = YES;
+                }
+            }
+
+            if(!eventInDay) {
+                done = YES;
+                break;
+            }
+        }
+        [CalendarInfo incrementMonth:&curMonth :&curYear];
+        curDay = 1;
+    }
+
+    return reoccurrences;
+}
+
+
 +(NSMutableArray *)parseJSON:(NSData *)JSONAsData :(NSInteger)endMonth :(NSInteger)endYear
 {
     NSMutableArray *parsedEvents = [[NSMutableArray alloc] init];

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MonthOfEvents.h"
+#import "LCSCEvent.h"
 
 @interface MonthFactory : NSObject
 
@@ -21,5 +22,7 @@
   */
 +(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
+
++(NSArray *) getReocurrencesOfEvent:(LCSCEvent *)event;
 
 @end
