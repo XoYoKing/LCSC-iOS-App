@@ -56,10 +56,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"Starting viewWillAppear");
     [super viewWillAppear:YES];
     [displayedEvents removeAllObjects];
     [self removeCancelledEvents];
     [self.tableView reloadData];
+    NSLog(@"Done");
 }
 
 

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "Preferences.h"
 #import "Reachability.h"
+#import "MonthFactory.h"
+#import "CalendarInfo.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 
@@ -20,6 +22,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self initializeStoryBoardBasedOnScreenSize];
+    NSThread *preloadThread = [[NSThread alloc] initWithTarget:self
+                                                      selector:@selector(preloadEvents)
+                                                        object:nil];
+    [preloadThread start];
     [Fabric with:@[[Twitter class]]];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     
@@ -49,7 +55,23 @@
         }
             
     }
+    while([preloadThread isFinished] == NO) {
+        usleep(1000);
+    }
     return YES;
+}
+
+
+// preload the events for the AllEventViewController
+-(void)preloadEvents
+{
+    NSInteger currentMonth = [CalendarInfo getCurrentMonth];
+    NSInteger currentYear = [CalendarInfo getCurrentYear];
+    NSInteger monthsAhead = 6;
+    NSInteger endMonth = (currentYear * 12 + currentMonth + monthsAhead) % 12;
+    NSInteger endYear = (currentYear * 12 + currentMonth + monthsAhead) / 12;
+    [MonthFactory getMonthOfEventsFromMonth:currentMonth andYear:currentYear
+                                                      toMonth:endMonth andYear:endYear];
 }
 
 -(void)initializeStoryBoardBasedOnScreenSize {
