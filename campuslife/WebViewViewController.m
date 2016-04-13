@@ -8,7 +8,7 @@
 
 #import "WebViewViewController.h"
 #import "Reachability.h"
-#import "LCSC-Swift.h"
+#import "campusLife"
 
 @interface WebViewViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *back;
