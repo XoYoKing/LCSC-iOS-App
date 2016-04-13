@@ -12,7 +12,7 @@
         <!--Calendar-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="CalendarViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CalendarViewController" id="vXZ-lx-hvc" customClass="CalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TuU-Xn-cVV"/>
                         <viewControllerLayoutGuide type="bottom" id="MeZ-fV-LZa"/>
@@ -403,7 +403,7 @@
         <!--Day Events-->
         <scene sceneID="bdj-ao-PaR">
             <objects>
-                <tableViewController id="JC5-6H-sxR" customClass="Day_Event_ViewController" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="Day_Event_ViewController" id="JC5-6H-sxR" customClass="Day_Event_ViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uG3-Fl-Y0H">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -763,7 +763,7 @@
         <!--Emergency-->
         <scene sceneID="83d-7y-ctx">
             <objects>
-                <tableViewController id="Wr4-SQ-NwP" customClass="ContactInfo" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="ContactInfo" id="Wr4-SQ-NwP" customClass="ContactInfo" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qz7-eQ-780">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -858,7 +858,7 @@
         <!--Resources-->
         <scene sceneID="svA-5e-7ZY">
             <objects>
-                <tableViewController title="Resources" id="YHc-uI-bkV" customClass="ResourcesTableViewController" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="ResourcesTableViewController" title="Resources" id="YHc-uI-bkV" customClass="ResourcesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Q6g-TC-K3A">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1107,7 +1107,7 @@
         <!--Profile Settings-->
         <scene sceneID="Cmx-Ul-I6u">
             <objects>
-                <viewController id="bwf-dx-sbW" customClass="WarriorWebProfileViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="WarriorWebProfileViewController" id="bwf-dx-sbW" customClass="WarriorWebProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="diz-dO-f8f"/>
                         <viewControllerLayoutGuide type="bottom" id="cXX-Az-ejf"/>
@@ -1202,7 +1202,7 @@
         <!--Profile Settings-->
         <scene sceneID="Wey-O8-tAd">
             <objects>
-                <viewController title="Profile Settings" id="0Ey-6P-uOM" customClass="BlackBoardProfileViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="BlackBoardProfileViewController" title="Profile Settings" id="0Ey-6P-uOM" customClass="BlackBoardProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8hO-wx-dB3"/>
                         <viewControllerLayoutGuide type="bottom" id="apQ-9c-CY7"/>
@@ -1312,7 +1312,7 @@
         <!--Profile Settings-->
         <scene sceneID="m1U-Bf-EFW">
             <objects>
-                <viewController title="Profile Settings" id="hgT-1J-vqq" customClass="LCMailProfileViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LCMailProfileViewController" title="Profile Settings" id="hgT-1J-vqq" customClass="LCMailProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J4S-Xb-tEJ"/>
                         <viewControllerLayoutGuide type="bottom" id="80r-4Y-ifO"/>
@@ -1403,7 +1403,7 @@
         <!--Profile Settings-->
         <scene sceneID="pNH-pv-v6q">
             <objects>
-                <viewController id="8p0-As-nXa" customClass="ProfileViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ProfileViewController" id="8p0-As-nXa" customClass="ProfileViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LjK-7A-Oic"/>
                         <viewControllerLayoutGuide type="bottom" id="2cB-u0-eNP"/>
@@ -1540,7 +1540,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="nQr-Ra-lW4">
             <objects>
-                <viewController id="dLU-F8-34X" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SWRevealViewController" id="dLU-F8-34X" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xe6-M8-b7Y"/>
                         <viewControllerLayoutGuide type="bottom" id="VRL-IM-AR0"/>
@@ -1563,7 +1563,7 @@
         <!--Back TableVC-->
         <scene sceneID="pD1-fm-TTp">
             <objects>
-                <tableViewController id="uMf-Lw-Irk" customClass="BackTableVC" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="BackTableVC" id="uMf-Lw-Irk" customClass="BackTableVC" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ot4-Go-sS0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1646,7 +1646,7 @@
                                     <segue destination="riT-6j-fPw" kind="custom" identifier="🗺 Campus Map" customClass="SWRevealViewControllerSeguePushController" id="EJs-PD-7q5"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="📻 Radio" id="OoI-Zq-IV8">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="🎥 Athletics Videos" id="UNx-9p-P6p">
                                 <rect key="frame" x="0.0" y="400" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OoI-Zq-IV8" id="NW8-V2-C7f">
@@ -1654,10 +1654,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="48A-P7-HvD" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="qMa-Y6-dHW"/>
+                                    <segue destination="FhN-lb-UuI" kind="custom" identifier="🎥 Athletics Videos" customClass="SWRevealViewControllerSeguePushController" id="J8b-jG-Vg1"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="🎥 Athletics Videos" id="UNx-9p-P6p">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="📻 Radio" id="OoI-Zq-IV8">
                                 <rect key="frame" x="0.0" y="444" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UNx-9p-P6p" id="riE-IP-Wd9">
@@ -1665,7 +1665,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="FhN-lb-UuI" kind="custom" identifier="🎥 Athletics Videos" customClass="SWRevealViewControllerSeguePushController" id="J8b-jG-Vg1"/>
+                                    <segue destination="48A-P7-HvD" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="qMa-Y6-dHW"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="☎️ Hangouts" id="Ubj-bC-azM">
@@ -1694,20 +1694,20 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem image="facebook-icon.png_16x16.png" id="6Qn-59-oaK">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem image="facebook_icon.png_32x32.png" id="6Qn-59-oaK">
+                            <color key="tintColor" red="0.0" green="0.47711658099819276" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="gotoFacebook:" destination="uMf-Lw-Irk" id="Dxp-3C-B1L"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem image="instagram_icon.png_16x16.png" id="q2u-Sv-aas">
+                        <barButtonItem image="insta_icon_32x32.png" id="q2u-Sv-aas">
                             <color key="tintColor" red="0.40283696338383834" green="0.20054793466105619" blue="0.13632981620546059" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="gotoInstagram:" destination="uMf-Lw-Irk" id="B4v-Fa-pOd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem image="twitter_icon.ico_16x16.png" id="K5v-wR-6s6">
-                            <color key="tintColor" red="0.98384053049999998" green="0.28545943880000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem image="twitter_icon.png_32x32.png" id="K5v-wR-6s6">
+                            <color key="tintColor" red="0.045259655534228727" green="0.66680146368648407" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="gotoTwitter:" destination="uMf-Lw-Irk" id="J6k-Pr-d1G"/>
                             </connections>
@@ -1722,7 +1722,7 @@
         <!--Hangouts-->
         <scene sceneID="RMc-Rq-rK3">
             <objects>
-                <viewController id="Q6I-1m-EsF" customClass="HangoutsViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="HangoutsViewController" id="Q6I-1m-EsF" customClass="HangoutsViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qpw-J0-y8l"/>
                         <viewControllerLayoutGuide type="bottom" id="Cds-k0-vBd"/>
@@ -1761,7 +1761,7 @@
         <!--Athletics Videos-->
         <scene sceneID="KWy-eL-Goo">
             <objects>
-                <viewController id="U0Z-2U-mfZ" customClass="AthleticsViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AthleticsViewController" id="U0Z-2U-mfZ" customClass="AthleticsViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iua-YG-HqT"/>
                         <viewControllerLayoutGuide type="bottom" id="euo-we-I3a"/>
@@ -1835,7 +1835,7 @@
         <!--Warrior Card-->
         <scene sceneID="Fr6-dd-b9K">
             <objects>
-                <viewController id="1z9-py-R0X" customClass="CardViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CardViewController" id="1z9-py-R0X" customClass="CardViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1l3-0U-7x7"/>
                         <viewControllerLayoutGuide type="bottom" id="SHJ-C1-4TE"/>
@@ -1870,7 +1870,7 @@
         <!--Menu View Controller-->
         <scene sceneID="fkT-hK-Kyd">
             <objects>
-                <viewController id="2NP-px-NPR" customClass="MenuViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MenuViewController" id="2NP-px-NPR" customClass="MenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qds-YD-Tal"/>
                         <viewControllerLayoutGuide type="bottom" id="rxZ-sg-lqf"/>
@@ -1935,7 +1935,7 @@
         <!--Twitter View Controller-->
         <scene sceneID="2rW-Rg-Wqf">
             <objects>
-                <tableViewController id="riw-Kp-20Y" customClass="twitterViewController" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="twitterViewController" id="riw-Kp-20Y" customClass="twitterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yyT-Wn-Gq7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1977,7 +1977,7 @@
         <!--Campus Map-->
         <scene sceneID="wel-rX-UIa">
             <objects>
-                <viewController id="iCG-6t-X01" customClass="MapViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MapViewController" id="iCG-6t-X01" customClass="MapViewController" customModule="LCSC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tHG-MB-xv4"/>
                         <viewControllerLayoutGuide type="bottom" id="lg2-RY-jC3"/>
@@ -2089,7 +2089,7 @@
         <!--Category Table View-->
         <scene sceneID="Nvs-v4-GOG">
             <objects>
-                <tableViewController storyboardIdentifier="CategoryView" id="DnY-Bf-0zN" customClass="CategoryTableView" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="CategoryTableView" storyboardIdentifier="CategoryView" id="DnY-Bf-0zN" customClass="CategoryTableView" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ob2-3H-DbZ">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="263"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2643,9 +2643,9 @@ AAAAABocA
         <image name="warriorsIcon" width="1000" height="527"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S5c-Jq-kHc"/>
+        <segue reference="u0i-Tp-91u"/>
+        <segue reference="j4T-2R-tpU"/>
         <segue reference="t0e-hY-9we"/>
         <segue reference="WrE-J3-9b0"/>
-        <segue reference="j4T-2R-tpU"/>
     </inferredMetricsTieBreakers>
 </document>
