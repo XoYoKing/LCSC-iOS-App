@@ -214,7 +214,9 @@ static NSMutableDictionary *monthCache;
     else{
         //Get the events as an array
         
+        
         NSMutableArray *oldEventsInfo = [eventsInfoDict valueForKeyPath:@"items"];
+        
         
         //////////////////////////////////////////
         NSArray *holdDict = [oldEventsInfo copy];
@@ -386,6 +388,7 @@ static NSMutableDictionary *monthCache;
                 }
             }
         }
+        
         //////////////////////////////////////////
         if (oldEventsInfo == nil) {
             oldEventsInfo = [[NSMutableArray alloc] init];
@@ -404,14 +407,12 @@ static NSMutableDictionary *monthCache;
         //Convert the structure of the dictionaries in eventsInfo so that the dictionaries are compatible with the rest
         //  of the app.
         
-        NSMutableArray *eventsInfo = [[NSMutableArray alloc] init];
         for (int i=0; i<oldEventsInfo.count; i++)
         {
             //These will store the information that's needed for the event.
             NSString *startTime;
             NSString *endTime;
             //NSString *recur;
-            NSArray *recurrence;
             NSString *location;
             NSString *summary;
             NSString *description;
@@ -437,10 +438,14 @@ static NSMutableDictionary *monthCache;
                         endTime = [[oldEventsInfo[i] valueForKey:@"end"] valueForKey:@"date"];
                     }
                 }
-                
-                
-                
-                
+                else if ([[oldEventsInfo[i] objectForKey:@"status"] isEqualToString:@"cancelled"])
+                {
+                    continue;
+                }
+                else
+                {
+                    continue;
+                }
                 
                 if (endTime.length > 10){
                     NSString *endMoment = [endTime substringWithRange:NSMakeRange(10, 9)];
@@ -457,6 +462,10 @@ static NSMutableDictionary *monthCache;
                         }
                     }
                 }
+            }
+            else
+            {
+                continue;
             }
             
             if (([oldEventsInfo[i] valueForKey:@"location"] != nil))
@@ -499,310 +508,9 @@ static NSMutableDictionary *monthCache;
                 end = [[NSDictionary alloc] initWithObjects:@[endTime] forKeys:@[@"dateTime"]];
             }
             
-            if (recurrence == nil)
-            {
-                event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description"]];
-                
-            }
-            else
-            {
-                event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description, recurrence] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description", @"recurrence"]];
-            }
+            event = [[NSDictionary alloc] initWithObjects:@[category, location, summary, start, end, description] forKeys:@[@"category", @"location", @"summary", @"start", @"end", @"description"]];
             
-            //Puts the new event into the new array of event dictionaries!
-            [eventsInfo addObject:event];
-        }
-        
-        
-        int selectedMonth = (int)endMonth;
-        int selectedYear = (int)endYear;
-        
-        
-        if (selectedMonth == 0)
-        {
-            selectedMonth = 12;
-            selectedYear -= 1;
-            
-        }
-        else if (selectedMonth == 13)
-        {
-            selectedMonth = 1;
-            selectedYear += 1;
-            
-        }
-        
-        //Loop through the events
-        for (int i=0; i<[eventsInfo count]; i++) {
-            
-            //Now we must parse the summary and alter the dictionary so that it can be
-            //  used in the rest of the program easier. So we'll call parseSummaryForKey in this class
-            //  to pull info out of the Summary field in the Dictionary and place
-            //  it back into the dictionary mapped to a new key.
-            
-            NSMutableDictionary *currentEventInfo = [[NSMutableDictionary alloc] initWithDictionary:[eventsInfo objectAtIndex:i]];
-            
-            [currentEventInfo setObject:category forKey:@"category"];
-            
-            int startDay = 0;
-            int startMonth = 0;
-            int startYear = 0;
-            
-            int endDay = 0;
-            
-            //Determine if the event isn't an all day event type.
-            if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"dateTime"] != nil) {
-                startDay = (int)[[[[currentEventInfo objectForKey:@"start"]
-                                   objectForKey:@"dateTime"]
-                                  substringWithRange:NSMakeRange(8, 2)]
-                                 integerValue];
-                
-                startMonth = [[currentEventInfo[@"start"][@"dateTime"] substringWithRange:NSMakeRange(5, 2)] intValue];
-                
-                startYear = [[currentEventInfo[@"start"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue];
-                
-                //The endDay must not be the day of the month that it is on, but the number of days from the first day
-                //  of the startMonth.
-                if (startYear == [[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
-                    for (int month=startMonth; month<[[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(5, 2)] intValue]; month++) {
-                        endDay += [CalendarInfo getDaysOfMonth:month ofYear:startYear];
-                        
-                    }
-                    //Account for days in endMonth
-                    endDay += [[[[currentEventInfo objectForKey:@"end"]
-                                 objectForKey:@"dateTime"]
-                                substringWithRange:NSMakeRange(8, 2)]
-                               integerValue];
-                }
-                else {
-                    //At the very beginning we'll be working with probably not a full year.
-                    for (int month=startMonth; month<13; month++) {
-                        endDay += [CalendarInfo getDaysOfMonth:month ofYear:startYear];
-                        
-                    }
-                    
-                    //Start by accounting for year differences.
-                    for (int year=startYear+1; year<[[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue]+1; year++) {
-                        int endMonth = 12;
-                        //This makes sure that we stop on the month prior to the selected month
-                        //  and then add in the days for that month.
-                        if (year == [[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
-                            endMonth = [[currentEventInfo[@"end"][@"dateTime"] substringWithRange:NSMakeRange(5, 2)] intValue]-1;
-                            //Account for days in endMonth
-                            endDay += [[[[currentEventInfo objectForKey:@"end"]
-                                         objectForKey:@"dateTime"]
-                                        substringWithRange:NSMakeRange(8, 2)]
-                                       integerValue];
-                        }
-                        
-                        //This only takes into account full months strictly inbetween the start and end months.
-                        for (int month=1; month<endMonth+1; month++) {
-                            endDay += [CalendarInfo getDaysOfMonth:month ofYear:year];
-                            
-                        }
-                    }
-                }
-            }
-            
-            else if ([[currentEventInfo objectForKey:@"start"] objectForKey:@"date"] != nil) {
-                startDay = (int)[[[[currentEventInfo objectForKey:@"start"]
-                                   objectForKey:@"date"]
-                                  substringWithRange:NSMakeRange(8, 2)]
-                                 integerValue];
-                
-                startMonth = [[currentEventInfo[@"start"][@"date"] substringWithRange:NSMakeRange(5, 2)] intValue];
-                
-                startYear = [[currentEventInfo[@"start"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue];
-                
-                //The endDay must not be the day of the month that it is on, but the number of days from the first day
-                //  of the startMonth.
-                if (startYear == [[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
-                    for (int month=startMonth; month<[[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(5, 2)] intValue]; month++) {
-                        endDay += [CalendarInfo getDaysOfMonth:month ofYear:startYear];
-                        
-                    }
-                    //Account for days in endMonth
-                    endDay += [[[[currentEventInfo objectForKey:@"end"]
-                                 objectForKey:@"date"]
-                                substringWithRange:NSMakeRange(8, 2)]
-                               integerValue];
-                }
-                else {
-                    //At the very beginning we'll be working with probably not a full year.
-                    for (int month=startMonth; month<13; month++) {
-                        endDay += [CalendarInfo getDaysOfMonth:month ofYear:startYear];
-                        
-                    }
-                    
-                    //Start by accounting for year differences.
-                    for (int year=startYear+1; year<[[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue]+1; year++) {
-                        int endMonth = 12;
-                        //This makes sure that we stop on the month prior to the selected month
-                        //  and then add in the days for that month.
-                        if (year == [[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(0, 4)] intValue]) {
-                            endMonth = [[currentEventInfo[@"end"][@"date"] substringWithRange:NSMakeRange(5, 2)] intValue]-1;
-                            //Account for days in endMonth
-                            endDay += [[[[currentEventInfo objectForKey:@"end"]
-                                         objectForKey:@"date"]
-                                        substringWithRange:NSMakeRange(8, 2)]
-                                       integerValue];
-                        }
-                        //This only takes into account full months strictly inbetween the start and end months.
-                        for (int month=1; month<endMonth+1; month++) {
-                            
-                            endDay += [CalendarInfo getDaysOfMonth:month ofYear:year];
-                            
-                            
-                        }
-                    }
-                }
-                //This makes the end day exclusive! As per the google calendar's standard.
-                endDay -= 1;
-            }
-            else if ([[currentEventInfo objectForKey:@"status"] isEqualToString:@"cancelled"])
-            {
-                continue;
-            }
-            else
-            {
-                continue;
-            }
-            
-            float freq = 1.0;
-            int repeat = 1;
-            
-            //If an event is reocurring, then we must account for that.
-            
-            
-            //This will hold the number of days into the next month.
-            int wrappedDays = endDay-[CalendarInfo getDaysOfMonth:startMonth ofYear:startYear];
-            
-            
-            
-            //The e variable isn't being set properly. So fix it!
-            
-            int s = 0;
-            int e = 0;
-            
-            //The outer loop loops through the reocurrences.
-            for (int rep=0; rep<repeat; rep++) {
-                BOOL iterateOverDays = YES;
-                
-                //Are we dealing with a monthly repeat?
-                if (freq >= 28 && freq <= 31) {
-                    freq = [CalendarInfo getDaysOfMonth:startMonth ofYear:startYear];
-                    
-                }
-                else if (freq >= 365 && freq <= 366) {
-                    if (startYear % 4 == 0) {
-                        freq = 366;
-                    }
-                    else {
-                        freq = 365;
-                    }
-                }
-                
-                
-                //Here we setup the s and e variables for the for loop.
-                if (startYear == selectedYear) {
-                    //The startMonth is with respect to the startDay. The endDay quite possible
-                    //  can be going into the next month.
-                    if (startMonth == selectedMonth) {
-                        s = startDay;
-                        
-                        //Check if the endDay will be moving into the next month.
-                        if (endDay > [CalendarInfo getDaysOfMonth:startMonth ofYear:startYear]) {
-                            
-                            e = [CalendarInfo getDaysOfMonth:startMonth ofYear:startYear];
-                            
-                        }
-                        else {
-                            e = endDay;
-                        }
-                    }
-                    //Check if the startMonth is the previous month and the endDay will roll over into the next month.
-                    else if (startMonth + 1 == selectedMonth && endDay > [CalendarInfo getDaysOfMonth:startMonth ofYear:startYear]) {
-                        
-                        //We don't care about the days in the previous month, only that
-                        //  the rolled over days are going to be in the selected month.
-                        s = 1;
-                        
-                        //endDay is for sure going to be above the daysInMonth.
-                        e = endDay%[CalendarInfo getDaysOfMonth:startMonth ofYear:startYear];
-                        
-                    }
-                    else {
-                        //We'll skip this iterating, because we won't add anything.
-                        iterateOverDays = NO;
-                    }
-                }
-                else if (startYear == selectedYear-1
-                         && startMonth == 12
-                         && endDay > [CalendarInfo getDaysOfMonth:startMonth ofYear:startYear]) {
-                    
-                    //We don't care about the days in the previous month, only that
-                    //  the rolled over days are going to be in the selected month.
-                    s = 1;
-                    
-                    //endDay is for sure going to be above the daysInMonth.
-                    e = endDay%[CalendarInfo getDaysOfMonth:startMonth ofYear:startYear];
-                    
-                }
-                else {
-                    //We'll skip this iterating, because we won't add anything.
-                    iterateOverDays = NO;
-                }
-                if (iterateOverDays) {
-                    //Add events for the startday all the way up to the end day.
-                    for (int day=s; day<e+1; day++) {
-                        if (day != 0) {
-                            
-                        }
-                    }
-                }
-                
-                //Setup the start and end vars for the next repeat.
-                startDay = startDay + freq;
-                
-                endDay = endDay + freq;
-                
-                BOOL nextDateUpdated = NO;
-                
-                while (!nextDateUpdated)
-                {
-                    //Check if we're moving into a new month.
-                    if (startDay%[CalendarInfo getDaysOfMonth:startMonth ofYear:startYear] < startDay) {
-                        
-                        //Then we mod the startDay to get the day of the next month it will be on.
-                        startDay = startDay-[CalendarInfo getDaysOfMonth:startMonth ofYear:startYear];
-                        
-                        endDay = endDay-[CalendarInfo getDaysOfMonth:startMonth ofYear:startYear];
-                        
-                        startMonth += 1;
-                        
-                        //Check to see if we transitioned to a new year.
-                        if (startMonth > 12) {
-                            startMonth = 1;
-                            startYear += 1;
-                        }
-                        if (wrappedDays > 0) {
-                            if (startMonth != 1) {
-                                endDay += [CalendarInfo getDaysOfMonth:startMonth ofYear:startYear] - [CalendarInfo getDaysOfMonth:startMonth-1 ofYear:startYear];
-                                
-                            }
-                            else {
-                                endDay += [CalendarInfo getDaysOfMonth:startMonth ofYear:startYear] - [CalendarInfo getDaysOfMonth:12 ofYear:startYear-1];
-                                
-                            }
-                        }
-                    }
-                    else
-                    {
-                        nextDateUpdated = YES;
-                    }
-                }
-            }
-            
-            [parsedEvents addObject:[[LCSCEvent alloc] initWithNSDictionary:currentEventInfo]];
+            [parsedEvents addObject:[[LCSCEvent alloc] initWithNSDictionary:event]];
         }
     }
     
