@@ -230,6 +230,30 @@ static NSMutableDictionary *monthCache;
         [CalendarInfo incrementMonth:&curMonth :&curYear];
         curDay = 1;
     }
+    while([MonthFactory checkCacheForMonth:curMonth andYear:curYear] && !done) {
+        NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+        MonthOfEvents *curEventMonth = [monthCache objectForKey:indexStr];
+        
+        for(; curDay >= 1; curDay--) {
+            NSArray *day = [curEventMonth getEventsForDay:curDay];
+            BOOL eventInDay = NO;
+            for(LCSCEvent *otherEvent in day) {
+                NSString *otherSummary = [[otherEvent getSummary]
+                                          stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                if([eventSummary isEqualToString:otherSummary]) {
+                    [reoccurrences addObject:otherEvent];
+                    eventInDay = YES;
+                }
+            }
+            
+            if(!eventInDay) {
+                done = YES;
+                break;
+            }
+        }
+        [CalendarInfo decrementMonth:&curMonth :&curYear];
+        curDay = 1;
+    }
 
     return reoccurrences;
 }

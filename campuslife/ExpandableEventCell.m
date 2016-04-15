@@ -73,7 +73,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                 if ([reocurrences count] > 1)
                 {
                     UIAlertController * alert  = [UIAlertController alertControllerWithTitle:@"Multiple occurences detected."
-                                                                                     message:@"Would you like to add all future occurences of this event?"
+                                                                                     message:@"Would you like to add all similar occurences of this event?"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction* no = [UIAlertAction actionWithTitle:@"NO"
                                                                  style:UIAlertActionStyleCancel
