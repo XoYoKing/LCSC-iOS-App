@@ -21,7 +21,7 @@ class BackTableVC: UITableViewController {
     override func viewDidLoad() {
         self.tableView.tableFooterView = UIView()
         //fill the menu with the itens listed on the arrays
-        TableArray = ["🏠 Main Page","🎉 All Events","🗓 Calendar","🗂 Resources","📞 Emergency","💳 WarriorCard", "🗺 Campus Map", "📻 Radio", "🎥 Athletics Videos", "☎️ Hangouts"]
+        TableArray = ["🏠 Main Page","🎉 All Events","🗓 Calendar","🗂 Resources","📞 Emergency", "🗺 Campus Map", "📻 Radio", "🎥 Athletics Videos", "💬 Hangouts"]
         
         
         let myBtn: UIButton = UIButton()

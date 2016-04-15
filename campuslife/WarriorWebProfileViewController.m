@@ -29,6 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIImage *img = [[UIImage alloc] init];
+    img = [UIImage imageNamed:@"backgroundCollor"];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:img];
+    
+    _auth = [[Authentication alloc] init];
+    
     _auth = [[Authentication alloc] init];
     NSString *username = [_auth getWarriorWebUsername];
     NSString *password = [_auth getWarriorWebPassword];

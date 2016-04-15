@@ -92,6 +92,7 @@ class CardViewController: UIViewController, UINavigationControllerDelegate, UIIm
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        
         checkAndLoadCardPicture()
     }
 }

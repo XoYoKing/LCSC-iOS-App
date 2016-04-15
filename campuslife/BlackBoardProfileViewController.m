@@ -26,6 +26,10 @@
 //fill the text fiel with the user information after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundCollor")!)
+    UIImage *img = [[UIImage alloc] init];
+    img = [UIImage imageNamed:@"backgroundCollor"];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:img];
     _auth = [[Authentication alloc] init];
 
     NSString *username = [_auth getBlackBoardUsername];

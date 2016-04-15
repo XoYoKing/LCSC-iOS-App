@@ -41,7 +41,6 @@
 		40F73D241C91348300A75F72 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F73D231C91348300A75F72 /* menu.png */; };
 		443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECA1C97718200B6FC58 /* ImageCropView.m */; };
 		443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECD1C97787F00B6FC58 /* FXBlurView.m */; };
-		445F6D6A1CA3A5EB0098371C /* LCMailProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445F6D691CA3A5EB0098371C /* LCMailProfileViewController.m */; };
 		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
 		44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */; };
 		44C0A7C71CA4EE1D0021E16D /* HangoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */; };
@@ -167,8 +166,6 @@
 		443C4ECA1C97718200B6FC58 /* ImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropView.m; sourceTree = "<group>"; };
 		443C4ECC1C97787F00B6FC58 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		443C4ECD1C97787F00B6FC58 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		445F6D681CA3A5EB0098371C /* LCMailProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMailProfileViewController.h; sourceTree = "<group>"; };
-		445F6D691CA3A5EB0098371C /* LCMailProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMailProfileViewController.m; sourceTree = "<group>"; };
 		448A28AF1C93D957000436AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		44A8E2BD1CA1E11600C4435D /* BlackBoardProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackBoardProfileViewController.h; sourceTree = "<group>"; };
 		44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackBoardProfileViewController.m; sourceTree = "<group>"; };
@@ -412,8 +409,6 @@
 				403DDE801CBC1CDA009F2950 /* twitter_icon.png_32x32.png */,
 				403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */,
 				44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */,
-				445F6D681CA3A5EB0098371C /* LCMailProfileViewController.h */,
-				445F6D691CA3A5EB0098371C /* LCMailProfileViewController.m */,
 				44EAFBD21CA31AD800BE6200 /* ProfileViewController.swift */,
 				44A8E2BD1CA1E11600C4435D /* BlackBoardProfileViewController.h */,
 				44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */,
@@ -683,7 +678,6 @@
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
 				44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */,
-				445F6D6A1CA3A5EB0098371C /* LCMailProfileViewController.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
