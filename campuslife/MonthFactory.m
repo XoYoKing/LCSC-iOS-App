@@ -31,7 +31,10 @@ static NSMutableDictionary *monthCache;
 
 +(BOOL) checkCacheForMonth:(NSInteger)month andYear:(NSInteger)year
 {
-    return ([monthCache objectForKey:[MonthFactory getIndexStr:month :year]] != nil);
+    NSString *indexStr = [MonthFactory getIndexStr:month :year];
+    MonthOfEvents *thisMonth;
+    thisMonth = (MonthOfEvents *)[monthCache objectForKey:indexStr];
+    return  thisMonth != nil;
 }
 
 +(void) insertIntoCache:(NSArray *)events forMonth:(NSInteger)month andYear:(NSInteger)year
@@ -81,12 +84,14 @@ static NSMutableDictionary *monthCache;
         }
         [CalendarInfo decrementMonth:&pullMonthStop :&pullYearStop];
     }
-    
-    // pull needed data from google calendars
-    NSMutableArray *events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:
-                              pullMonthStart andYear:pullYearStart
-                                toMonth:pullMonthStop andYear:pullYearStop];
-    
+    NSMutableArray *events;
+    if(pullMonthStart < pullMonthStop && pullYearStart <= pullYearStop) {
+        // pull needed data from google calendars
+        events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:
+                                  pullMonthStart andYear:pullYearStart
+                                    toMonth:pullMonthStop andYear:pullYearStop];
+    }
+
     // put the data into the cache
     NSInteger curMonth = startMonth;
     NSInteger curYear = startYear;
@@ -111,11 +116,9 @@ static NSMutableDictionary *monthCache;
                 }
                 curIndex++;
             }
-            
-            if([monthEvents count] > 0) {
-                newMonth = [[MonthOfEvents alloc] initWithMonth:curMonth andYear:curYear andEventsArray:monthEvents];
-                [monthCache setObject:newMonth forKey:[MonthFactory getIndexStr:curMonth :curYear]];
-            }
+
+            newMonth = [[MonthOfEvents alloc] initWithMonth:curMonth andYear:curYear andEventsArray:monthEvents];
+            [monthCache setObject:newMonth forKey:[MonthFactory getIndexStr:curMonth :curYear]];
         }
         else {
             newMonth = [monthCache objectForKey:indexStr];
@@ -126,6 +129,18 @@ static NSMutableDictionary *monthCache;
         }
         [CalendarInfo incrementMonth:&curMonth :&curYear];
     }
+    
+    while(curMonth <= endMonth && curYear <= endYear) {
+        NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+        MonthOfEvents *emptyMonth = [[MonthOfEvents alloc]
+                                     initWithMonth:curMonth andYear:curYear
+                                     andEventsArray:@[]];
+        if(![MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
+            [monthCache setObject:emptyMonth forKey:indexStr];
+        }
+        [CalendarInfo incrementMonth:&curMonth :&curYear];
+    }
+    
     NSInteger month_i = startMonth;
     NSInteger year_i = startYear;
     while(month_i <= endMonth && year_i <= endYear) {
