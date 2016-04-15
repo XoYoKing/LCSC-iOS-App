@@ -245,6 +245,7 @@ static NSMutableDictionary *monthCache;
         [CalendarInfo incrementMonth:&curMonth :&curYear];
         curDay = 1;
     }
+    done = NO;
     while([MonthFactory checkCacheForMonth:curMonth andYear:curYear] && !done) {
         NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
         MonthOfEvents *curEventMonth = [monthCache objectForKey:indexStr];
