@@ -64,17 +64,34 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                 return;
             }
             else{
-                EKEvent *calEvent = [EKEvent eventWithEventStore:store];
-                [calEvent setTitle:[_event getSummary]];//solved
-                [calEvent setLocation:[_event getLocation]];//solved
-                [calEvent setNotes:[_event getDescription]];//solved
+                //EKEvent *calEvent = [EKEvent eventWithEventStore:store];
+                //[calEvent setTitle:[_event getSummary]];//solved
+                //[calEvent setLocation:[_event getLocation]];//solved
+                //[calEvent setNotes:[_event getDescription]];//solved
                 
                 NSArray *reocurrences = [MonthFactory getReocurrencesOfEvent:_event];
                 if ([reocurrences count] > 1)
                 {
+                    UIAlertController * alert  = [UIAlertController alertControllerWithTitle:@"Multiple occurences detected."
+                                                                                     message:@"Would you like to add all similar occurences of this event?"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction* no = [UIAlertAction actionWithTitle:@"NO"
+                                                                 style:UIAlertActionStyleCancel
+                                                               handler:nil];
+                    UIAlertAction* yes = [UIAlertAction actionWithTitle:@"YES"
+                                                                  style:UIAlertActionStyleDefault
+                                                                handler:^(UIAlertAction * action) {
+                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                }];
+                    [alert addAction:no];
+                    [alert addAction:yes];
+                    //[self presentViewController:alert animated:YES completion:nil];
+                    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+                    //[self presentViewController:alert animated:YES completion:nil];
+                    /*
                     UIAlertView *multiEvents = [[UIAlertView alloc] initWithTitle:@"Multiple occurences detected."
                                                                           message:@"Would you like to add future occurences of this event?" delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-                    [multiEvents show];
+                    [multiEvents show];*/
                     NSInteger i = 0;
                     if (buttonIndex == 1)
                     {
@@ -91,7 +108,7 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                                 [calEvent setAllDay:true];
                                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                                NSString *startDateString = [_event getStartTimestamp];
+                                NSString *startDateString = [reocurrencesEvent getStartTimestamp];
                                 NSDate *start = [[NSDate alloc] init];
                                 start = [dateFormatter dateFromString:startDateString];
                                 [calEvent setStartDate:start];
@@ -105,8 +122,8 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                                 
                                 
                                 //clayton
-                                NSString *startDateString = [_event getStartTimestamp];
-                                NSString *endDateString = [_event getEndTimestamp];
+                                NSString *startDateString = [reocurrencesEvent getStartTimestamp];
+                                NSString *endDateString = [reocurrencesEvent getEndTimestamp];
                                 
                                 NSMutableString *mutableStartDate = [startDateString mutableCopy];
                                 NSMutableString *mutableEndDate = [endDateString mutableCopy];
