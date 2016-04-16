@@ -86,6 +86,12 @@ void *timeHeartBeat()
 {
     //saveCache
 }
+- (NSMutableDictionary*)getCache
+{
+    //x: check the file structure for the serialized month cache structure.
+    
+    return nil;
+}
 - (NSMutableDictionary*)getCache:(NSString*)path
 {
     //x: check the file structure for the serialized month cache structure.
