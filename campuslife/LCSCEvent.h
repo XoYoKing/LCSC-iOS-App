@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LCSCEvent : NSObject
+@interface LCSCEvent : NSObject<NSCoding>
 
 // This constructor initializes the LCSCEvent object using the old NSDictionary structure
 -(id)initWithNSDictionary:(NSDictionary *)dict;

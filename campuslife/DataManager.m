@@ -42,7 +42,11 @@ double elapsedTime = 0.0;
         timeLock = [[NSLock alloc] init];
         time(&lastTime);
         serverClient = [[ServerClient alloc] init];
-                error = pthread_create(&timeThreadStruct, NULL, timeHeartBeat, NULL );
+        error = pthread_create(&timeThreadStruct, NULL, timeHeartBeat, NULL );
+        if (error)
+        {
+            NSLog(@"DataManager: could not start time thread");
+        }
         //NOTE for xero construct
     }
     
@@ -78,9 +82,11 @@ void *timeHeartBeat()
     return 0;
 }
 
-
-
-- (NSMutableDictionary*)getCache
+- (void)saveCache
+{
+    //saveCache
+}
+- (NSMutableDictionary*)getCache:(NSString*)path
 {
     //x: check the file structure for the serialized month cache structure.
     
@@ -89,7 +95,7 @@ void *timeHeartBeat()
 
 - (bool)doesCacheExist
 {
-    //NOTE for xero constrcut
+    
     return false;
 }
 

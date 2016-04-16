@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MonthOfEvents : NSObject <NSFastEnumeration>
+@interface MonthOfEvents : NSObject <NSFastEnumeration,NSCoding>
 -(NSArray *)getEventsForDay:(NSInteger)day;
 -(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year andEventsArray:(NSArray *)events;
 
