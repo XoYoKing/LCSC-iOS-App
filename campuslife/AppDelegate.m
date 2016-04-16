@@ -11,6 +11,7 @@
 #import "Reachability.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
+#import "DataManager.h"
 
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
@@ -22,8 +23,7 @@
     [self initializeStoryBoardBasedOnScreenSize];
     [Fabric with:@[[Twitter class]]];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-    
-    
+    //[DataManager singletonDataManager]; ///Drop anchor xero
     internetReach = [Reachability reachabilityForInternetConnection];
     [internetReach startNotifier];
     NetworkStatus netStatus = [internetReach currentReachabilityStatus];
@@ -49,6 +49,10 @@
         }
             
     }
+    
+    //Activate DataManager
+    
+    
     return YES;
 }
 
@@ -104,11 +108,15 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    //NOTE for xero close socket connections
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    //NOTE for xero reopen socket connections
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -164,6 +172,8 @@
             break;
         }
     }
+    
+    //Note for xero close socket connections
 }
 
 

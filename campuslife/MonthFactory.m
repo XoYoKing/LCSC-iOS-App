@@ -16,6 +16,7 @@
 @implementation MonthFactory
 
 static NSMutableDictionary *monthCache;
+static NSMutableDictionary *monthCacheRevisions;
 
 +(void)initialize
 {
@@ -42,7 +43,7 @@ static NSMutableDictionary *monthCache;
 +(MonthOfEvents *) getMonthOfEventsFromMonth:(NSInteger)month andYear:(NSInteger)year
 {
     NSString *searchStr = [MonthFactory getIndexStr:month :year];
-    MonthOfEvents *thisMonth;
+    MonthOfEvents *thisMonth; ///Drop anchor
     
     if([MonthFactory checkCacheForMonth:month andYear:year]) {
         thisMonth = (MonthOfEvents *)[monthCache objectForKey:searchStr];
@@ -55,7 +56,6 @@ static NSMutableDictionary *monthCache;
     
     return thisMonth;
 }
-
 
 +(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
@@ -87,6 +87,7 @@ static NSMutableDictionary *monthCache;
                               pullMonthStart andYear:pullYearStart
                                 toMonth:pullMonthStop andYear:pullYearStop];
     
+    
     // put the data into the cache
     NSInteger curMonth = startMonth;
     NSInteger curYear = startYear;
@@ -101,7 +102,7 @@ static NSMutableDictionary *monthCache;
         if(![MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
             NSMutableArray *monthEvents = [[NSMutableArray alloc] init];
             while(curIndex < [events count]) {
-                LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];
+                LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];  //x: beware (n^2)
                 NSInteger eventStartMonth = [curEvent getStartMonth];
                 if(eventStartMonth == curMonth) {
                     [monthEvents addObject:curEvent];
