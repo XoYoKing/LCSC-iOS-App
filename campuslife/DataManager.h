@@ -11,9 +11,10 @@
 @interface DataManager : NSObject{
     @public
 }
-
 - (id) init;
 - (bool)isCacheUpdated;
+- (NSMutableDictionary*)getCache;
+
 
 + (id)singletonDataManager;
 

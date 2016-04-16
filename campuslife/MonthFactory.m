@@ -12,6 +12,7 @@
 #import "CalendarInfo.h"
 #import "MonthOfEvents.h"
 #import "LCSCEvent.h"
+#import "DataManager.h"
 
 @implementation MonthFactory
 
@@ -20,7 +21,9 @@ static NSMutableDictionary *monthCacheRevisions;
 
 +(void)initialize
 {
-    monthCache = [[NSMutableDictionary alloc] init];
+    monthCache = [[DataManager singletonDataManager] getCache];
+    if (monthCache == nil)
+        monthCache = [[NSMutableDictionary alloc] init];
 }
 
 
@@ -44,16 +47,13 @@ static NSMutableDictionary *monthCacheRevisions;
 {
     NSString *searchStr = [MonthFactory getIndexStr:month :year];
     MonthOfEvents *thisMonth; ///Drop anchor
-    
     if([MonthFactory checkCacheForMonth:month andYear:year]) {
         thisMonth = (MonthOfEvents *)[monthCache objectForKey:searchStr];
-    
     } else {
         NSArray *events = [MonthFactory loadEventsFromMonth:month andYear:year toMonth:month andYear:year];
         thisMonth = [[MonthOfEvents alloc] initWithMonth:month andYear:year andEventsArray:events];
         [monthCache setObject:thisMonth forKey:searchStr];
     }
-    
     return thisMonth;
 }
 
