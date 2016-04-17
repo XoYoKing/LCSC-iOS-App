@@ -21,16 +21,16 @@
     if(self = [super init])
     {
         _days = [coder decodeObjectForKey:@"_days"];
-        _month = (NSInteger)[coder decodeObjectForKey:@"_month"];
-        _year = (NSInteger)[coder decodeObjectForKey:@"_year"];
+        _month = [coder decodeIntForKey:@"_month"];
+        _year = [coder decodeIntForKey:@"_year"];
     }
     return self;
 }
 -(void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:_days forKey:@"_days"];
-    [encoder encodeInteger:_month forKey:@"_month"];
-    [encoder encodeInteger:_year forKey:@"_year"];
+    [encoder encodeInt:(int)_month forKey:@"_month"];
+    [encoder encodeInt:(int)_year forKey:@"_year"];
 }
 -(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year andEventsArray:(NSArray *)events
 {

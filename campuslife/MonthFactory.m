@@ -54,6 +54,9 @@ static NSMutableDictionary *monthCacheRevisions;
         thisMonth = [[MonthOfEvents alloc] initWithMonth:month andYear:year andEventsArray:events];
         [monthCache setObject:thisMonth forKey:searchStr];
     }
+    ///Test code Remove
+    [[DataManager singletonDataManager] saveCache:monthCache];
+    NSMutableDictionary* temp = [[DataManager singletonDataManager] getCache]; 
     return thisMonth;
 }
 

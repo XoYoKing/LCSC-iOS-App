@@ -13,6 +13,7 @@
 
 @implementation DataManager
 
+const int CACHE_VERSION = 1;
 const int SLEEP_TIME = 10; //time in seconds
 ServerClient *serverClient;
 time_t lastTime;
@@ -82,23 +83,56 @@ void *timeHeartBeat()
     return 0;
 }
 
-- (void)saveCache
+- (void)saveCache:(NSMutableDictionary*)cache
 {
-    //saveCache
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    NSString* dataPath = [documentsDirectory stringByAppendingString:@"\/CalendarCache"];
+    NSMutableData* data = [[NSMutableData alloc] init];
+    bool fileSaved = false;
+    if (data)
+    {
+        NSKeyedArchiver* archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        if (archiver)
+        {
+            [archiver encodeInt:1 forKey:@"Version"];
+            [archiver encodeObject:cache forKey:@"MonthCache"];
+            [archiver finishEncoding];
+            fileSaved = [data writeToFile:dataPath atomically:YES];
+        }
+    }
 }
 - (NSMutableDictionary*)getCache
 {
-    //x: check the file structure for the serialized month cache structure.
-    
-    return nil;
+    //NSURL *documentDirectoryURL = [[[NSFileManager defaultManager]
+    //                                URLsForDirectory:NSCachesDirectory
+    //                                inDomains:NSUserDomainMask]
+    //                               lastObject];
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    NSString* dataPath = [documentsDirectory stringByAppendingString:@"\/CalendarCache"];
+    return [self getCache:dataPath];
 }
 - (NSMutableDictionary*)getCache:(NSString*)path
 {
-    //x: check the file structure for the serialized month cache structure.
-    
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    //NSMutableDictionary* monthCache;
+    //if([[NSFileManager defaultManager] fileExistsAtPath:path])
+    if (data)
+    {
+        NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        if (unarchiver)
+        {
+            int version = [unarchiver decodeIntForKey:@"Version"];
+            if (version == CACHE_VERSION)
+            {
+                return (NSMutableDictionary*)[unarchiver decodeObjectForKey:@"MonthCache"];
+                
+            }
+        }
+    }
     return nil;
 }
-
 - (bool)doesCacheExist
 {
     

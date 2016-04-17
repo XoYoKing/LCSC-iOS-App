@@ -15,7 +15,7 @@
 - (bool)isCacheUpdated;
 - (NSMutableDictionary*)getCache;
 - (NSMutableDictionary*)getCache:(NSString*)path;
-- (void)saveCache; 
+- (void)saveCache:(NSMutableDictionary*)cache;
 
 
 + (id)singletonDataManager;

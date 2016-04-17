@@ -14,11 +14,12 @@
     [coder encodeBool:_allDay forKey:@"_allDay"];
     [coder encodeObject:_startTimestamp forKey:@"_startTimestamp"];
     [coder encodeObject:_endTimestamp forKey:@"_endTimestamp"];
-    [coder encodeInteger:_startDay forKey:@"_startDay"];
-    [coder encodeInteger:_startMonth forKey:@"_startMonth"];
-    [coder encodeInteger:_startYear forKey:@"_startYear"];
-    [coder encodeInteger:_endDay forKey:@"_endDay"];
-    [coder encodeInteger:_endYear forKey:@"_endYear"];
+    [coder encodeInt:(int)_startDay forKey:@"_startDay"];
+    [coder encodeInt:(int)_startMonth forKey:@"_startMonth"];
+    [coder encodeInt:(int)_startYear forKey:@"_startYear"];
+    [coder encodeInt:(int)_endDay forKey:@"_endDay"];
+    [coder encodeInt:(int)_endMonth forKey:@"_endMonth"];
+    [coder encodeInt:(int)_endYear forKey:@"_endYear"];
     [coder encodeObject:_eventDescription forKey:@"_eventDescription"];
     [coder encodeObject:_location forKey:@"_location"];
     [coder encodeObject:_category forKey:@"_category"];
@@ -29,14 +30,15 @@
     self = [super init];
     if (self!=NULL)
     {
-        _allDay = [coder decodeObjectForKey:@"_allDay"];
+        _allDay = [coder decodeBoolForKey:@"_allDay"];
         _startTimestamp = [coder decodeObjectForKey:@"_startTimestamp"];
         _endTimestamp = [coder decodeObjectForKey:@"_endTimestamp"];
-        _startDay = (NSInteger)[coder decodeObjectForKey:@"_startDay"];
-        _startMonth = (NSInteger)[coder decodeObjectForKey:@"_startMonth"];
-        _startYear = (NSInteger)[coder decodeObjectForKey:@"_startYear"];
-        _endDay = (NSInteger)[coder decodeObjectForKey:@"_endDay"];
-        _endYear = (NSInteger)[coder decodeObjectForKey:@"_endYear"];
+        _startDay = [coder decodeIntForKey:@"_startDay"];
+        _startMonth = [coder decodeIntForKey:@"_startMonth"];
+        _startYear = [coder decodeIntForKey:@"_startYear"];
+        _endDay = [coder decodeIntForKey:@"_endDay"];
+        _endMonth = [coder decodeIntForKey:@"_endMonth"]; 
+        _endYear = [coder decodeIntForKey:@"_endYear"];
         _eventDescription = [coder decodeObjectForKey:@"_eventDescription"];
         _location = [coder decodeObjectForKey:@"_location"];
         _category = [coder decodeObjectForKey:@"_category"];
