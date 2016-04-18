@@ -21,8 +21,11 @@ import UIKit
         }
         if (prefs.stringForKey("userHaveEverBeenAtResourcesPage") == nil){
             prefs.setBool(false, forKey: "userHaveEverBeenAtResourcesPage")
-            prefs.synchronize()
         }
+        if (prefs.stringForKey("userHaveEverBeenAtProfilePage") == nil){
+            prefs.setBool(false, forKey: "userHaveEverBeenAtProfilePage")
+        }
+        prefs.synchronize()
     }
     
     func clearProfile(){
@@ -61,6 +64,15 @@ import UIKit
         prefs.synchronize()
     }
     
+    func setUserHaveEverBeenAtProfilePage(bool: Bool){
+        prefs.setBool(bool, forKey: "userHaveEverBeenAtProfilePage")
+        prefs.synchronize()
+    }
+    
+    func userHaveEverBeenAtProfilePage() -> Bool{
+        let bool = prefs.boolForKey("userHaveEverBeenAtProfilePage")
+        return bool
+    }
     
     //save your data acording to the profile destination and returns a bool representing if it was successfull operation or not
     func setProfile(destination: String, newLogin: String?, newPassword: String?) -> Bool{
@@ -80,21 +92,6 @@ import UIKit
                     prefs.setObject(newPassword!, forKey: "bbpassword")
                     prefs.synchronize()
                     return true
-                }
-            }
-        }else if destination == "lcmail"{
-            if (newLogin != ""){
-                let lcDomain = "@lcmail.lcsc.edu"
-                let lcDomainLength = lcDomain.characters.count
-                //checking if the email contains the @lcmail.lcsc.edu string in th ending
-                if(newLogin?.characters.count > lcDomainLength){
-                    let domainSubstr = (newLogin?.substringFromIndex((newLogin?.startIndex.advancedBy((newLogin?.characters.count)! - lcDomainLength))!))
-                    if (domainSubstr! == "@lcmail.lcsc.edu") {
-                        prefs.setObject(newLogin!, forKey: "lcmlogin")
-                        prefs.setObject(newPassword!, forKey: "lcmpassword")
-                        prefs.synchronize()
-                        return true
-                    }
                 }
             }
         }
@@ -119,12 +116,5 @@ import UIKit
         return prefs.stringForKey("bbpassword")!
     }
     
-    func getLCMailUsername() -> String{
-        return prefs.stringForKey("lcmlogin")!
-    }
-    
-    func getLCMailPassword() -> String{
-        return prefs.stringForKey("lcmpassword")!
-    }
 }
 

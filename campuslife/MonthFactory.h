@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MonthOfEvents.h"
+#import "LCSCEvent.h"
 
 @interface MonthFactory : NSObject
 

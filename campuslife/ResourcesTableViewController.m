@@ -93,8 +93,7 @@
             title = @"Warrior Web";
             
         } else if ([segue.identifier isEqualToString:@"LCMail"]) {
-            url = @"https://accounts.google.com/AddSession?continue=https%3A%2F%2Faccounts.google.com%2Fb%2F0%2FAddMailService#identifier";
-            title = @"LC Mail";
+            url = @"http://mail.google.com/a/lcmail.lcsc.edu";
         } else if([segue.identifier isEqualToString:@"blackboard"]){
             url = @"https://lcsc.blackboard.com";
             title = @"BlackBoard";

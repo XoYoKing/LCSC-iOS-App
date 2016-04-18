@@ -64,12 +64,6 @@
     Preferences *prefs = [Preferences getSharedInstance];
     
     //Here we load the actual state of the selected buttons.
-    [_btnEntertainment setSelected:[prefs getPreference:@"Entertainment"]];
-    [_btnAcademics setSelected:[prefs getPreference:@"Academics"]];
-    [_btnStudentActivities setSelected:[prefs getPreference:@"Student Activities"]];
-    [_btnResidenceLife setSelected:[prefs getPreference:@"Residence Life"]];
-    [_btnWarriorAthletics setSelected:[prefs getPreference:@"Warrior Athletics"]];
-    [_btnCampusRec setSelected:[prefs getPreference:@"Campus Rec"]];
     
     _leftArrow.enabled = NO;
     _rightArrow.enabled = NO;
@@ -172,53 +166,6 @@
 }
 
 
-- (IBAction)radioSelected:(UIButton *)sender
-{
-    Preferences *prefs = [Preferences getSharedInstance];
-    
-    NSString *categoryName = sender.titleLabel.text;
-    
-    if([categoryName  isEqual: @"Entertainment"])
-    {
-        [prefs negatePreference:categoryName]; //                              <-- Entertainment
-        [_btnEntertainment setSelected:[prefs getPreference:categoryName]];
-        [_btnEntertainment setHighlighted:NO];
-    }
-    else if([categoryName  isEqual: @"Academics"])
-    {
-        [prefs negatePreference:categoryName]; //                              <-- Academics
-        [_btnAcademics setSelected:[prefs getPreference:categoryName]];
-        [_btnAcademics setHighlighted:NO];
-    }
-    else if ([categoryName isEqual: @"Student Activities"])
-    {
-        [prefs negatePreference:categoryName]; //                              <-- Student Activities
-        [_btnStudentActivities setSelected:[prefs getPreference:categoryName]];
-        [_btnStudentActivities setHighlighted:NO];
-    }
-    else if ([categoryName  isEqual: @"Residence Life"])
-    {
-        [prefs negatePreference:categoryName]; //                              <-- Residence
-        [_btnResidenceLife setSelected:[prefs getPreference:categoryName]];
-        [_btnResidenceLife setHighlighted:NO];
-    }
-    else if ([categoryName isEqual: @"Warrior Athletics"])
-    {
-        [prefs negatePreference:categoryName]; //                              <-- Warrior Athletics
-        [_btnWarriorAthletics setSelected:[prefs getPreference:categoryName]];
-        [_btnWarriorAthletics setHighlighted:NO];
-    }
-    else
-    {
-        [prefs negatePreference:categoryName]; //                              <-- Campus Rec
-        [_btnCampusRec setSelected:[prefs getPreference:categoryName]];
-        [_btnCampusRec setHighlighted:NO];
-    }
-    
-    [_collectionView reloadData];
-}
-
-
 // Runs when user clicks the back button on the calendar
 // Set back the current month and year (if needed) and reload the events
 - (IBAction)backMonthOffset:(id)sender {
@@ -277,7 +224,7 @@
         
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
         
-        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay + daysOfPrevMonth];
+        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - firstWeekDay + daysOfPrevMonth];
     }
     
     // The cell represents a day in the next month
@@ -286,7 +233,7 @@
         
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
        
-        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay - daysOfMonth];
+        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - firstWeekDay - daysOfMonth];
     }
     
     else {
@@ -302,7 +249,7 @@
          to be super through.
          */
         UILabel *dayLbl = (UILabel *)[cell viewWithTag:100];
-        dayLbl.text = [NSString stringWithFormat:@"%ld", (int)indexPath.row+1 - firstWeekDay];
+        dayLbl.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1 - firstWeekDay];
         if ([dayLbl.text isEqualToString:_currentDateDay]){
             NSString *holdViewDay = [NSString stringWithFormat:@"%ld", (long)_selectedMonth];
             if (holdViewDay.length != _currentDateMonth.length){
@@ -439,8 +386,15 @@
         
         NSInteger selectedDay = indexPath.row+1 - [CalendarInfo getFirstWeekdayOfMonth:_selectedMonth
                                                                                andYear:_selectedYear];
+        NSMutableArray *eventsToShow = [[NSMutableArray alloc] init];
+        Preferences *prefs = [Preferences getSharedInstance];
+        for(LCSCEvent *event in [_viewingMonth getEventsForDay:selectedDay]) {
+            if([prefs getPreference:[event getCategory]]) {
+                [eventsToShow addObject:event];
+            }
+        }
         [destViewController setDay:selectedDay];
-        [destViewController setEvents:[_viewingMonth getEventsForDay:selectedDay]];
+        [destViewController setEvents:eventsToShow];
     }
 }
 
@@ -500,10 +454,45 @@
     [_activityIndicator stopAnimating];
 }
 
-#pragma mark - GoogleOAuth class delegate method implementation
 
--(void)authorizationWasSuccessful {
-    
+-(void)dismiss{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
+{
+    return UIModalPresentationNone;
+}
+
+
+- (UIViewController *)presentationController:(UIPresentationController *)controller
+  viewControllerForAdaptivePresentationStyle:(UIModalPresentationStyle)style
+{
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller.presentedViewController];
+    UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                style: UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(dismiss)];
+    navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone;
+    return navigationController;
+}
+
+
+- (IBAction)itemButtonClicked:(UIBarButtonItem *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryView"];
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    UIPopoverPresentationController *popover = [vc popoverPresentationController];
+    popover.barButtonItem = sender;
+    popover.delegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    [_collectionView reloadData];
 }
 
 

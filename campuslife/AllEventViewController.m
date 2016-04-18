@@ -15,6 +15,7 @@
 #import "MonthOfEvents.h"
 #import "LCSCEvent.h"
 #import "SWRevealViewController.h"
+#import "AllEventCell.h"
 
 @interface AllEventViewController ()
 {
@@ -24,6 +25,7 @@
     //NSInteger currentYear;
     BOOL wentToEvent;
     Preferences *preferences;
+    NSIndexPath *selectedIndex;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
@@ -33,14 +35,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    selectedIndex = nil;
     _menuButton.target = [self revealViewController];
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
     [self loadAllData];
     self.tableView.rowHeight = 44;
-    // prevents data from unnecessarily reloading when user comes back from Day_Event_ViewController
-    wentToEvent = NO;
 }
 
 
@@ -55,14 +56,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"Starting viewWillAppear");
     [super viewWillAppear:YES];
-    if(!wentToEvent){
-        [displayedEvents removeAllObjects];
-        [self removeCancelledEvents];
-        [self.tableView reloadData];
-    } else {
-        wentToEvent = NO;
-    }
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
+    NSLog(@"Done");
 }
 
 
@@ -87,23 +86,6 @@
 }
 
 
-// TODO: Make the LCSCEvent class return its NSDictionary representation
-// Since the EventDetailTableViewController is used by the calendar and the list view
-// So it can't have the LCSCEvent class integrated yet
--(void) prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"allEventToEventDetailTable"]) {
-    
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        wentToEvent = YES;
-        //Instantiate your next view controller!
-        EventDetailViewController *destViewController = (EventDetailViewController *)[segue destinationViewController];
-        
-        [destViewController setEvent:[displayedEvents objectAtIndex:indexPath.row]];
-    }
-}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -119,13 +101,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EventCell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    UILabel *dayLbl = (UILabel *)[cell viewWithTag:20];
-    UILabel *eventDetailLbl = (UILabel *)[cell viewWithTag:22];
-    UILabel *eventTimeLbl = (UILabel *)[cell viewWithTag:24];
-    UIImageView *image = (UIImageView *)[cell viewWithTag:10];
+    AllEventCell *cell = (AllEventCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                                              forIndexPath:indexPath];
+    UILabel *dayLbl = cell.dateLabel;
+    UILabel *eventSummaryLbl = cell.titleLabel;
+    UILabel *eventTimeLbl = cell.timeLabel;
+    UIImageView *image = cell.dotImageView;
     LCSCEvent *myEvent = [displayedEvents objectAtIndex:indexPath.row];
-    
+    [cell setEvent:myEvent];
+
     if ([myEvent isAllDay])
     {
         eventTimeLbl.text = @"All Day Event";
@@ -196,8 +180,12 @@
         [image setImage:[UIImage imageNamed:@"dotCampusRec.png"]];
     }
     
-    eventDetailLbl.text = [myEvent getSummary];
-    
+    eventSummaryLbl.text = [myEvent getSummary];
+    if([selectedIndex isEqual:indexPath]) {
+        [cell loadDescription];
+    } else {
+        [cell hideDescription];
+    }
     return cell;
 }
 
@@ -323,9 +311,89 @@
 }
 
 
+-(void)dismiss{
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
+{
+    return UIModalPresentationNone;
+}
 
+
+- (UIViewController *)presentationController:(UIPresentationController *)controller
+  viewControllerForAdaptivePresentationStyle:(UIModalPresentationStyle)style
+{
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller.presentedViewController];
+    UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                style: UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(dismiss)];
+    navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone;
+    return navigationController;
+}
+
+
+- (IBAction)itemButtonClicked:(UIBarButtonItem *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryView"];
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    UIPopoverPresentationController *popover = [vc popoverPresentationController];
+    popover.barButtonItem = sender;
+    popover.delegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    selectedIndex = nil;
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSMutableArray *cellsToReload = [[NSMutableArray alloc] init];
+    [cellsToReload addObject:indexPath];
+    // User is selecting a cell for the first time
+    if(selectedIndex == nil) {
+        selectedIndex = [NSIndexPath indexPathForRow:indexPath.row
+                                         inSection:indexPath.section];
+    }
+    
+    // user selected same cell again
+    else if([selectedIndex isEqual:indexPath]) {
+        selectedIndex = nil;
+    }
+    
+    // user selected a new cell while another was selected
+    else {
+        NSIndexPath *prevPath = [selectedIndex copy];
+        selectedIndex = [NSIndexPath indexPathForRow:indexPath.row
+                                            inSection:indexPath.section];
+        [cellsToReload addObject:prevPath];
+    }
+    [tableView reloadRowsAtIndexPaths:cellsToReload
+                     withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([selectedIndex isEqual:indexPath]) {
+        return [AllEventCell ExpandedHeight];
+    } else {
+        return [AllEventCell DefaultHeight];
+    }
+}
 
 
 @end
