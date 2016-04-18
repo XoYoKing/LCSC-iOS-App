@@ -55,10 +55,49 @@ static NSMutableDictionary *monthCacheRevisions;
         [monthCache setObject:thisMonth forKey:searchStr];
     }
     ///Test code Remove
-    [[DataManager singletonDataManager] saveCache:monthCache];
-    NSMutableDictionary* temp = [[DataManager singletonDataManager] getCache]; 
+    //[[DataManager singletonDataManager] saveCache:monthCache];
+    //NSMutableDictionary* temp = [[DataManager singletonDataManager] getCache];
     return thisMonth;
 }
+
++(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
+                      toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
+{
+    NSMutableDictionary *newMonthCache = [[NSMutableDictionary alloc] init];
+    NSMutableArray *events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:startMonth andYear:startYear
+                                                                         toMonth:endMonth andYear:endYear];
+    MonthOfEvents *currentMonth;
+    for(LCSCEvent *event in events)
+    {
+        //Get month range for an event, it must be inserted into
+        //currentMonth = [newMonthCache objectForKey:[MonthFactory getIndexStr:event. :year]]
+        //if(() != nil)
+        
+        //[newMonthCache setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
+    }
+
+    
+    
+    //NSMutableDictionary *newMonthCache = [[NSMutableDictionary alloc] init];
+
+    return nil;
+}
+
+//This is needed for building the cache
++(NSMutableArray*)getMonthKeys:(LCSCEvent*)event
+{
+    NSMutableArray *keyList = [[NSMutableArray alloc] init];
+    for(int i = (int)event.startYear; i <= event.endYear; i++)
+    {
+        for (int j = (int)event.startMonth; j<=((i ==event.endYear) ? event.endMonth : 12); j++)
+        {
+            [keyList addObject:[MonthFactory getIndexStr:j :i]];
+        }
+    }
+    return keyList;
+}
+
+
 
 +(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear

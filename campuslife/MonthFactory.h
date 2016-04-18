@@ -22,6 +22,7 @@
 +(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
 
-//+(NSArray *)loadEventsFromMonthCache:(NSInteger)startMonth andYear:(NSInteger) startYear
-//                             toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
++(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
+                        toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
+
 @end

@@ -58,9 +58,9 @@ double elapsedTime = 0.0;
 
 double probeTime()
 {
-    [timeLock lock];
+    //[timeLock lock];
     double getTime = elapsedTime;
-    [timeLock unlock];
+    //[timeLock unlock];
     return getTime;
 }
 void resetTime()
@@ -76,8 +76,8 @@ void *timeHeartBeat()
         time(&currentTime);
         [timeLock lock];
         elapsedTime += difftime(currentTime, lastTime);
-        [timeLock unlock];
         lastTime = currentTime;
+        [timeLock unlock];
         sleep(SLEEP_TIME);
     }
     return 0;
