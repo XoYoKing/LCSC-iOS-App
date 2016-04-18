@@ -62,19 +62,6 @@
     return YES;
 }
 
-
-// preload the events for the AllEventViewController
--(void)preloadEvents
-{
-    NSInteger currentMonth = [CalendarInfo getCurrentMonth];
-    NSInteger currentYear = [CalendarInfo getCurrentYear];
-    NSInteger monthsAhead = 6;
-    NSInteger endMonth = (currentYear * 12 + currentMonth + monthsAhead) % 12;
-    NSInteger endYear = (currentYear * 12 + currentMonth + monthsAhead) / 12;
-    [MonthFactory getMonthOfEventsFromMonth:currentMonth andYear:currentYear
-                                                      toMonth:endMonth andYear:endYear];
-}
-
 -(void)initializeStoryBoardBasedOnScreenSize {
     UIStoryboard *storyboard = nil;
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

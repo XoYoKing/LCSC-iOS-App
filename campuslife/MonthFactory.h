@@ -23,6 +23,7 @@
 +(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
 
++(NSArray *) getReocurrencesOfEvent:(LCSCEvent *)event;
 +(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
                         toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
 

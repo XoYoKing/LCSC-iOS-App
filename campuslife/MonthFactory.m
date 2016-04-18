@@ -126,13 +126,14 @@ static NSMutableDictionary *monthCacheRevisions;
         }
         [CalendarInfo decrementMonth:&pullMonthStop :&pullYearStop];
     }
-    
-    // pull needed data from google calendars
-    NSMutableArray *events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:
-                              pullMonthStart andYear:pullYearStart
-                                toMonth:pullMonthStop andYear:pullYearStop];
-    
-    
+    NSMutableArray *events;
+    if(pullMonthStart < pullMonthStop && pullYearStart <= pullYearStop) {
+        // pull needed data from google calendars
+        events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:
+                                  pullMonthStart andYear:pullYearStart
+                                    toMonth:pullMonthStop andYear:pullYearStop];
+    }
+
     // put the data into the cache
     NSInteger curMonth = startMonth;
     NSInteger curYear = startYear;
@@ -147,7 +148,7 @@ static NSMutableDictionary *monthCacheRevisions;
         if(![MonthFactory checkCacheForMonth:curMonth andYear:curYear]) {
             NSMutableArray *monthEvents = [[NSMutableArray alloc] init];
             while(curIndex < [events count]) {
-                LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];  //x: beware (n^2)
+                LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];
                 NSInteger eventStartMonth = [curEvent getStartMonth];
                 if(eventStartMonth == curMonth) {
                     [monthEvents addObject:curEvent];
