@@ -23,10 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self initializeStoryBoardBasedOnScreenSize];
-    NSThread *preloadThread = [[NSThread alloc] initWithTarget:self
-                                                      selector:@selector(preloadEvents)
-                                                        object:nil];
-    [preloadThread start];
+
     [Fabric with:@[[Twitter class]]];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     //[DataManager singletonDataManager]; ///Drop anchor xero
