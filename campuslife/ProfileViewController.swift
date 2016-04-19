@@ -9,9 +9,9 @@
 import UIKit
 
 class ProfileViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageCropViewControllerDelegate {
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var menuButton: UIBarButtonItem!
     var imagePicker: UIImagePickerController!
     let auth = Authentication()
     
@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         } else {
             imageView.image = UIImage(named: "squirrelCard")
             if !auth.userHaveEverBeenAtProfilePage(){
-                promptAlet("No card picture is registered!", message: "You can regiter your card picture by taping the camera button.")
+                promptAlet("No card picture is not registered!", message: "You can regiter your card picture by taping the camera button.")
                 auth.setUserHaveEverBeenAtProfilePage(true)
             }
         }
@@ -80,11 +80,17 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         //my code :)
+        menuButton.target = revealViewController()
+        menuButton.action = Selector("revealToggle:")
+        
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.blackColor().CGColor
         imageView.layer.borderWidth = 2.0
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundCollor")!)
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         checkAndLoadCardPicture()
     }
 }

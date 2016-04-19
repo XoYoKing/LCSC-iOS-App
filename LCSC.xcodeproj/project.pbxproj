@@ -11,7 +11,6 @@
 		07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07484B1B1C84CF84007D1ADC /* Authentication.swift */; };
 		07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC95651C877BC900C05BB0 /* ScriptWebView.swift */; };
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
-		400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
 		401001C41CB0B3C30059E341 /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C31CB0B3C30059E341 /* CategoryTableView.m */; };
 		401001C71CB0B8300059E341 /* DayEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C61CB0B8300059E341 /* DayEventCell.m */; };
@@ -39,14 +38,11 @@
 		40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32EB1C60294B003468F8 /* MonthOfEvents.m */; };
 		40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AC32F11C6029F2003468F8 /* MonthFactory.m */; };
 		40F73D241C91348300A75F72 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F73D231C91348300A75F72 /* menu.png */; };
+		440340111CC5DD20005DCBEE /* WebViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440340101CC5DD20005DCBEE /* WebViewContoller.swift */; };
 		443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECA1C97718200B6FC58 /* ImageCropView.m */; };
 		443C4ECE1C97787F00B6FC58 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443C4ECD1C97787F00B6FC58 /* FXBlurView.m */; };
-		448A28B01C93D957000436AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A28AF1C93D957000436AA /* CardViewController.swift */; };
 		44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */; };
-		44C0A7C71CA4EE1D0021E16D /* HangoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */; };
 		44DF21581C99DD36003A0C3A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21571C99DD36003A0C3A /* MapViewController.swift */; };
-		44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF215F1C99EB30003A0C3A /* RadioViewController.swift */; };
-		44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */; };
 		44EAFBD31CA31AD800BE6200 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAFBD21CA31AD800BE6200 /* ProfileViewController.swift */; };
 		991048FB1A1E656100C83570 /* ContactInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 991048FA1A1E656100C83570 /* ContactInfo.m */; };
 		9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9916368119F829BB007F7E47 /* AllEventViewController.m */; };
@@ -98,7 +94,6 @@
 		C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = C10BC49918AD8C5D004C91CD /* newAlphaCircle.png */; };
 		C11195211A113F35001ED805 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11195201A113F35001ED805 /* SystemConfiguration.framework */; };
 		C11195251A114473001ED805 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C11195241A114473001ED805 /* Reachability.m */; };
-		C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A7C9851A00380500252982 /* WebViewViewController.m */; };
 		C1DEC8CB18F4AC2700ECD591 /* dotAcademics.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DEC8C518F4AC2700ECD591 /* dotAcademics.png */; };
 		C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DEC8C618F4AC2700ECD591 /* dotActivities.png */; };
 		C1DEC8CD18F4AC2700ECD591 /* dotAthletics.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DEC8C718F4AC2700ECD591 /* dotAthletics.png */; };
@@ -123,8 +118,6 @@
 		07CC95651C877BC900C05BB0 /* ScriptWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptWebView.swift; sourceTree = "<group>"; };
 		3FE5FA781C594BA80024CEFB /* CalendarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfo.h; sourceTree = "<group>"; };
 		3FE5FA791C594BA80024CEFB /* CalendarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfo.m; sourceTree = "<group>"; };
-		400AC86D1C698D55003FC6E3 /* ResourcesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesTableViewController.h; sourceTree = "<group>"; };
-		400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesTableViewController.m; sourceTree = "<group>"; };
 		400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCEvent.h; sourceTree = "<group>"; };
 		400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSCEvent.m; sourceTree = "<group>"; };
 		401001C21CB0B3C30059E341 /* CategoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableView.h; sourceTree = "<group>"; };
@@ -162,17 +155,14 @@
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
 		40AC32F11C6029F2003468F8 /* MonthFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFactory.m; sourceTree = "<group>"; };
 		40F73D231C91348300A75F72 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		440340101CC5DD20005DCBEE /* WebViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewContoller.swift; sourceTree = "<group>"; };
 		443C4EC91C97718100B6FC58 /* ImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropView.h; sourceTree = "<group>"; };
 		443C4ECA1C97718200B6FC58 /* ImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropView.m; sourceTree = "<group>"; };
 		443C4ECC1C97787F00B6FC58 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		443C4ECD1C97787F00B6FC58 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		448A28AF1C93D957000436AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		44A8E2BD1CA1E11600C4435D /* BlackBoardProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackBoardProfileViewController.h; sourceTree = "<group>"; };
 		44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackBoardProfileViewController.m; sourceTree = "<group>"; };
-		44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangoutsViewController.swift; sourceTree = "<group>"; };
 		44DF21571C99DD36003A0C3A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		44DF215F1C99EB30003A0C3A /* RadioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioViewController.swift; sourceTree = "<group>"; };
-		44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleticsViewController.swift; sourceTree = "<group>"; };
 		44EAFBD21CA31AD800BE6200 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		991048F91A1E656100C83570 /* ContactInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfo.h; sourceTree = "<group>"; };
 		991048FA1A1E656100C83570 /* ContactInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfo.m; sourceTree = "<group>"; };
@@ -231,8 +221,6 @@
 		C111951F1A113EFA001ED805 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		C11195201A113F35001ED805 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C11195241A114473001ED805 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		C1A7C9841A00380500252982 /* WebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewViewController.h; sourceTree = "<group>"; };
-		C1A7C9851A00380500252982 /* WebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewViewController.m; sourceTree = "<group>"; };
 		C1DEC8C518F4AC2700ECD591 /* dotAcademics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotAcademics.png; sourceTree = "<group>"; };
 		C1DEC8C618F4AC2700ECD591 /* dotActivities.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotActivities.png; sourceTree = "<group>"; };
 		C1DEC8C718F4AC2700ECD591 /* dotAthletics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotAthletics.png; sourceTree = "<group>"; };
@@ -404,17 +392,15 @@
 				99DE4C1F19E5B58D00EBA303 /* EventDetailViewController.h */,
 				99DE4C2019E5B58D00EBA303 /* EventDetailViewController.m */,
 				C108EA171A0802B2006A7BC7 /* Main.storyboard */,
+				440340101CC5DD20005DCBEE /* WebViewContoller.swift */,
 				403DDE7D1CBC1C65009F2950 /* insta_icon_32x32.png */,
 				403DDE7F1CBC1CDA009F2950 /* facebook_icon.png_32x32.png */,
 				403DDE801CBC1CDA009F2950 /* twitter_icon.png_32x32.png */,
 				403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */,
-				44C0A7C61CA4EE1D0021E16D /* HangoutsViewController.swift */,
 				44EAFBD21CA31AD800BE6200 /* ProfileViewController.swift */,
 				44A8E2BD1CA1E11600C4435D /* BlackBoardProfileViewController.h */,
 				44A8E2BE1CA1E11600C4435D /* BlackBoardProfileViewController.m */,
-				44DF215F1C99EB30003A0C3A /* RadioViewController.swift */,
 				44DF21571C99DD36003A0C3A /* MapViewController.swift */,
-				448A28AF1C93D957000436AA /* CardViewController.swift */,
 				409B8EF41C911B9200F4361D /* MenuViewController.h */,
 				409B8EF51C911B9200F4361D /* MenuViewController.m */,
 				443C4ECC1C97787F00B6FC58 /* FXBlurView.h */,
@@ -428,7 +414,6 @@
 				4071E64C1C925144002E0D8E /* twitterViewController.h */,
 				4071E64D1C925144002E0D8E /* twitterViewController.m */,
 				409B8EE81C91077C00F4361D /* BackTableVC.swift */,
-				44DF21611C99EFAD003A0C3A /* AthleticsViewController.swift */,
 				409B8EE91C91077C00F4361D /* SWRevealViewController.h */,
 				409B8EEA1C91077C00F4361D /* SWRevealViewController.m */,
 				07CC95651C877BC900C05BB0 /* ScriptWebView.swift */,
@@ -451,14 +436,10 @@
 				4071E6581C926B7B002E0D8E /* background.png */,
 				409B8EE61C9103FB00F4361D /* frontpage.jpg */,
 				40F73D231C91348300A75F72 /* menu.png */,
-				C1A7C9841A00380500252982 /* WebViewViewController.h */,
-				C1A7C9851A00380500252982 /* WebViewViewController.m */,
 				9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */,
 				9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */,
 				9995B91D1A2BDE4A004C08C9 /* AthleticsWebViewController.h */,
 				9995B91E1A2BDE4A004C08C9 /* AthleticsWebViewController.m */,
-				400AC86D1C698D55003FC6E3 /* ResourcesTableViewController.h */,
-				400AC86E1C698D55003FC6E3 /* ResourcesTableViewController.m */,
 				991048F91A1E656100C83570 /* ContactInfo.h */,
 				991048FA1A1E656100C83570 /* ContactInfo.m */,
 				C111951F1A113EFA001ED805 /* Reachability.h */,
@@ -657,33 +638,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				443C4ECB1C97718200B6FC58 /* ImageCropView.m in Sources */,
-				448A28B01C93D957000436AA /* CardViewController.swift in Sources */,
 				99DE4C2119E5B58D00EBA303 /* EventDetailViewController.m in Sources */,
 				4071E64E1C925144002E0D8E /* twitterViewController.m in Sources */,
 				C1E66E02183C333A00851B89 /* AppDelegate.m in Sources */,
+				440340111CC5DD20005DCBEE /* WebViewContoller.swift in Sources */,
 				9995B91C1A2BD67D004C08C9 /* LCSCWebViewController.m in Sources */,
 				44EAFBD31CA31AD800BE6200 /* ProfileViewController.swift in Sources */,
-				C1A7C9861A00380500252982 /* WebViewViewController.m in Sources */,
 				991048FB1A1E656100C83570 /* ContactInfo.m in Sources */,
 				C1E66E47183C33D000851B89 /* CalendarViewController.m in Sources */,
 				401001C41CB0B3C30059E341 /* CategoryTableView.m in Sources */,
 				44A8E2BF1CA1E11600C4435D /* BlackBoardProfileViewController.m in Sources */,
-				400AC86F1C698D55003FC6E3 /* ResourcesTableViewController.m in Sources */,
 				401001C71CB0B8300059E341 /* DayEventCell.m in Sources */,
 				C1E66E4B183C33D000851B89 /* Preferences.m in Sources */,
 				07484B1A1C84CD45007D1ADC /* WarriorWebProfileViewController.m in Sources */,
 				40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */,
 				401001CA1CB0D88E0059E341 /* AllEventCell.m in Sources */,
-				44C0A7C71CA4EE1D0021E16D /* HangoutsViewController.swift in Sources */,
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
-				44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
 				403DDE7C1CB9EA70009F2950 /* ExpandableEventCell.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
-				44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */,
 				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,
 				9916368319F829BB007F7E47 /* AllEventViewController.m in Sources */,
 				409B8EF61C911B9200F4361D /* MenuViewController.m in Sources */,
