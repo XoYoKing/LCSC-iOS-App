@@ -216,8 +216,11 @@ static NSMutableDictionary *monthCache;
 {
     NSMutableArray *reoccurrences = [[NSMutableArray alloc] init];
     NSInteger curDay = [event getStartDay];
+    NSInteger today = curDay;
     NSInteger curMonth = [event getStartMonth];
+    NSInteger thisMonth = curMonth;
     NSInteger curYear = [event getStartYear];
+    NSInteger thisYear = curYear;
     BOOL done = NO;
     NSString *eventSummary = [[event getSummary]
                               stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -246,12 +249,12 @@ static NSMutableDictionary *monthCache;
         curDay = 1;
     }
     done = NO;
-    while([MonthFactory checkCacheForMonth:curMonth andYear:curYear] && !done) {
-        NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
+    while([MonthFactory checkCacheForMonth:thisMonth andYear:thisYear] && !done) {
+        NSString *indexStr = [MonthFactory getIndexStr:thisMonth :thisYear];
         MonthOfEvents *curEventMonth = [monthCache objectForKey:indexStr];
         
-        for(; curDay >= 1; curDay--) {
-            NSArray *day = [curEventMonth getEventsForDay:curDay];
+        for(; today >= 1; today--) {
+            NSArray *day = [curEventMonth getEventsForDay:today];
             BOOL eventInDay = NO;
             for(LCSCEvent *otherEvent in day) {
                 NSString *otherSummary = [[otherEvent getSummary]
@@ -267,8 +270,16 @@ static NSMutableDictionary *monthCache;
                 break;
             }
         }
-        [CalendarInfo decrementMonth:&curMonth :&curYear];
-        curDay = 1;
+        [CalendarInfo decrementMonth:&thisMonth :&thisYear];
+        if (thisMonth == 1 || thisMonth == 3 || thisMonth == 5 || thisMonth == 7 || thisMonth == 8 || thisMonth == 10 || thisMonth == 12) {
+            today = 31;
+        }
+        if (thisMonth == 2) {
+            today = 28;
+        }
+        else{
+            today = 30;
+        }
     }
 
     return reoccurrences;
