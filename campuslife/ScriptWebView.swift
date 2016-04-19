@@ -11,7 +11,7 @@ import UIKit
 class ScriptWebView: Authentication{
     
     private let warriorURL: String = "https://warriorwebss.lcsc.edu/Student/Account/Login?ReturnUrl=%2fStudent%2fPlanning%2fDegreePlans"
-    private let blackboardURL: String = "https://lcsc.blackboard.com"
+    private let blackboardURL: String = "https://lcsc.blackboard.com/"
     
     override init() {
         super.init()
