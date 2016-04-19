@@ -42,7 +42,7 @@ double elapsedTime = 0.0;
     {
         timeLock = [[NSLock alloc] init];
         time(&lastTime);
-        serverClient = [[ServerClient alloc] init];
+        //serverClient = [[ServerClient alloc] init];
         error = pthread_create(&timeThreadStruct, NULL, timeHeartBeat, NULL );
         if (error)
         {

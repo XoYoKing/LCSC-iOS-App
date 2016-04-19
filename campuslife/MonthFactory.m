@@ -70,37 +70,53 @@ static NSMutableDictionary *monthCacheRevisions;
     NSMutableArray *events = (NSMutableArray *)[MonthFactory loadEventsFromMonth:startMonth andYear:startYear
                                                                          toMonth:endMonth andYear:endYear];
     MonthOfEvents *currentMonth;
+    NSString *currentKey;
+    //int currentMonthDays;
     for(LCSCEvent *event in events)
     {
+        for(int i = (int)event.startYear; i <= event.endYear; i++)
+        {
+            for (int j = (int)event.startMonth; j<=((i ==event.endYear) ? event.endMonth : 12); j++)
+            {
+                currentKey = [MonthFactory getIndexStr:j :i];
+                currentMonth = [newMonthCache objectForKey:currentKey];
+                //currentMonthDays = [CalendarInfo getDaysOfMonth:j ofYear:i];
+                if (currentMonth == nil)
+                {
+                    currentMonth = [[MonthOfEvents alloc] initWithoutEvents:j andYear:i];
+                    [newMonthCache setObject:currentMonth forKey:currentKey];
+                    [currentMonth addEvent:event toDay:event.startDay];
+                    //create a newMonthOfEvents for the key, then populate it with Data
+                }
+            }
+        }
+        //[self getMonthKeys:event :^(int days){ days++;   } ];
         //Get month range for an event, it must be inserted into
         //currentMonth = [newMonthCache objectForKey:[MonthFactory getIndexStr:event. :year]]
         //if(() != nil)
-        
         //[newMonthCache setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
     }
-
-    
-    
     //NSMutableDictionary *newMonthCache = [[NSMutableDictionary alloc] init];
-
     return nil;
 }
 
-//This is needed for building the cache
-+(NSMutableArray*)getMonthKeys:(LCSCEvent*)event
++(NSMutableArray*)getMonthKeys:(LCSCEvent*)event  :(void (^)(int days))processDays
 {
     NSMutableArray *keyList = [[NSMutableArray alloc] init];
+    int daysInMonth;
     for(int i = (int)event.startYear; i <= event.endYear; i++)
     {
         for (int j = (int)event.startMonth; j<=((i ==event.endYear) ? event.endMonth : 12); j++)
         {
             [keyList addObject:[MonthFactory getIndexStr:j :i]];
+            //[keyList addObject:[CalendarInfo getDaysOfMonth:j ofYear:i]];
+            //[daysList addObject:<#(nonnull id)#>]
+            
+            processDays([CalendarInfo getDaysOfMonth:j ofYear:i]);
         }
     }
     return keyList;
 }
-
-
 
 +(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
@@ -150,6 +166,7 @@ static NSMutableDictionary *monthCacheRevisions;
             while(curIndex < [events count]) {
                 LCSCEvent *curEvent = (LCSCEvent *)[events objectAtIndex:curIndex];
                 NSInteger eventStartMonth = [curEvent getStartMonth];
+                
                 if(eventStartMonth == curMonth) {
                     [monthEvents addObject:curEvent];
                     
@@ -193,7 +210,6 @@ static NSMutableDictionary *monthCacheRevisions;
             [monthsOfEvents addObject:whatever];
         }
     }
-    
     return monthsOfEvents;
 }
 

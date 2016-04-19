@@ -32,6 +32,19 @@
     [encoder encodeInt:(int)_month forKey:@"_month"];
     [encoder encodeInt:(int)_year forKey:@"_year"];
 }
+
+-(id)initWithoutEvents:(NSInteger)month andYear:(NSInteger)year
+{
+    int number_of_days = [CalendarInfo getDaysOfMonth:(int)month ofYear:(int)year];
+    _days = [[NSMutableArray alloc] init];
+    for(int i = 0; i < number_of_days; ++i) {
+        [_days addObject:[[NSMutableArray alloc] init]];
+    }
+    _month = month;
+    _year = year;
+    return self;
+}
+
 -(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year andEventsArray:(NSArray *)events
 {
     int number_of_days = [CalendarInfo getDaysOfMonth:(int)month ofYear:(int)year];
