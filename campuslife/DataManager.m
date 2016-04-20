@@ -142,7 +142,7 @@ void *saveCacheThread()
     dataCache = [[DataCache alloc] init];
     dataCache.monthCache = [DataManager buildCache:startMonth andYear:startYear
                                            toMonth:endMonth andYear:endYear];
-    //time
+    dataCache.lastUpdated = time(NULL);
     return [dataCache monthCache];
 }
 +(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
