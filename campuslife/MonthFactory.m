@@ -77,6 +77,7 @@
 +(NSArray *) getMonthOfEventsFromMonth2:(NSInteger)startMonth andYear:(NSInteger) startYear
                                       toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
 {
+    NSMutableDictionary* monthCache = [[DataManager singletonDataManager] getCache];
     NSMutableArray *monthsOfEvents = [[NSMutableArray alloc] init];
     NSInteger pullMonthStart = startMonth;
     NSInteger pullYearStart = startYear;
@@ -169,6 +170,7 @@
 
 +(NSArray *) getReocurrencesOfEvent:(LCSCEvent *)event
 {
+    NSMutableDictionary* monthCache = [[DataManager singletonDataManager] getCache];
     NSMutableArray *reoccurrences = [[NSMutableArray alloc] init];
     NSInteger curDay = [event getStartDay];
     NSInteger curMonth = [event getStartMonth];
