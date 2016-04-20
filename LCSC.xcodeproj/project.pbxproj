@@ -22,6 +22,7 @@
 		402F77811CC80145001E8153 /* phone-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F777A1CC80145001E8153 /* phone-icon.png */; };
 		402F77821CC80145001E8153 /* radio-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F777B1CC80145001E8153 /* radio-icon.png */; };
 		402F77831CC80145001E8153 /* warrior-web-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F777C1CC80145001E8153 /* warrior-web-icon.png */; };
+		402F77851CC804C3001E8153 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F77841CC804C3001E8153 /* camera-icon.png */; };
 		403DDE761CB9DF72009F2950 /* down_arrow 2.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */; };
 		403DDE7C1CB9EA70009F2950 /* ExpandableEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 403DDE7B1CB9EA70009F2950 /* ExpandableEventCell.m */; };
 		403DDE7E1CBC1C65009F2950 /* insta_icon_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE7D1CBC1C65009F2950 /* insta_icon_32x32.png */; };
@@ -140,6 +141,7 @@
 		402F777A1CC80145001E8153 /* phone-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone-icon.png"; sourceTree = "<group>"; };
 		402F777B1CC80145001E8153 /* radio-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio-icon.png"; sourceTree = "<group>"; };
 		402F777C1CC80145001E8153 /* warrior-web-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warrior-web-icon.png"; sourceTree = "<group>"; };
+		402F77841CC804C3001E8153 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
 		403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down_arrow 2.png_16x16.png"; sourceTree = "<group>"; };
 		403DDE7A1CB9EA70009F2950 /* ExpandableEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableEventCell.h; sourceTree = "<group>"; };
 		403DDE7B1CB9EA70009F2950 /* ExpandableEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandableEventCell.m; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		402F77751CC80145001E8153 /* menu-icons */ = {
 			isa = PBXGroup;
 			children = (
+				402F77841CC804C3001E8153 /* camera-icon.png */,
 				402F77761CC80145001E8153 /* calendar-icon.png */,
 				402F77771CC80145001E8153 /* hangouts-icon.png */,
 				402F77781CC80145001E8153 /* home-icon.png */,
@@ -600,6 +603,7 @@
 				402F777F1CC80145001E8153 /* home-icon.png in Resources */,
 				9995B92B1A2BF488004C08C9 /* university-32.png in Resources */,
 				402F77811CC80145001E8153 /* phone-icon.png in Resources */,
+				402F77851CC804C3001E8153 /* camera-icon.png in Resources */,
 				402F777D1CC80145001E8153 /* calendar-icon.png in Resources */,
 				402F77821CC80145001E8153 /* radio-icon.png in Resources */,
 				992592B919FDC46B008946F8 /* Icon-Small-50@2x.png in Resources */,
