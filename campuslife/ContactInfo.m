@@ -71,7 +71,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 3;
+    return 4;
 }
 
 
@@ -91,6 +91,9 @@
     }else if (indexPath.row == 2){
         titleLabel.text = @"Campus Security Office";
         numberLabel.text = @"208-792-5272";
+    }else if (indexPath.row == 3){
+        titleLabel.text = @"Student Counseling";
+        numberLabel.text = @"208-792-2291";
     }
     
     return cell;
