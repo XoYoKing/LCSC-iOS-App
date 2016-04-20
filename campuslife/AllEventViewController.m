@@ -26,7 +26,7 @@
     BOOL wentToEvent;
     Preferences *preferences;
     NSIndexPath *selectedIndex;
-}
+    }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuButton;
 
 @end
@@ -306,7 +306,6 @@
             monthAbr = @"Dec";
             break;
     }
-    
     return monthAbr;
 }
 
