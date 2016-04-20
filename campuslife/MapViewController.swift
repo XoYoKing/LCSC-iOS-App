@@ -13,12 +13,21 @@ class MapViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var pinchView: UIView!
+    @IBOutlet var panView: UIView!
     
     let pinchRec = UIPinchGestureRecognizer()
+    let panRec = UIPanGestureRecognizer()
     func pinchedView(sender:UIPinchGestureRecognizer){
         self.view.bringSubviewToFront(pinchView)
         sender.view!.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
         sender.scale = 1.0
+    }
+    
+    func draggedView(sender:UIPanGestureRecognizer){
+        self.view!.bringSubviewToFront(sender.view!)
+        let translation = sender.translationInView(self.view)
+        sender.view!.center = CGPointMake(sender.view!.center.x + translation.x, sender.view!.center.y + translation.y)
+        sender.setTranslation(CGPointZero, inView: self.view)
     }
     
     override func viewDidLoad() {
@@ -30,6 +39,9 @@ class MapViewController: UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        panRec.addTarget(self, action: "draggedView:")
+        panView.addGestureRecognizer(panRec)
+        panView.userInteractionEnabled = true
         pinchRec.addTarget(self, action: #selector(MapViewController.pinchedView(_:)))
         pinchView.addGestureRecognizer(pinchRec)
         pinchView.userInteractionEnabled = true
