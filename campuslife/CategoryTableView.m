@@ -9,7 +9,18 @@
 #import "CategoryTableView.h"
 #import "Preferences.h"
 
+
+
 @interface CategoryTableView ()
+{
+    NSMutableArray *displayedEvents;
+    NSMutableArray *sortedArray;
+    //NSInteger currentMonth;
+    //NSInteger currentYear;
+    BOOL wentToEvent;
+    Preferences *preferences;
+    NSIndexPath *selectedIndex;
+}
     @property (nonatomic, strong) NSArray *categories;
     @property (nonatomic, strong) NSArray *categoryColors;
 @end
@@ -65,11 +76,12 @@
 
 -(void)showCellAsDeselected:(UITableViewCell *)cell atIndex:(NSInteger) ind
 {
+    [self.tableView reloadData];
     UILabel *cellLabel = [cell viewWithTag:10];
     cellLabel.textColor = [_categoryColors objectAtIndex:ind];
     cell.backgroundColor = [UIColor whiteColor];
-}
 
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -78,6 +90,7 @@
     NSString *catSelected = [_categories objectAtIndex:indexPath.row];
     Preferences *prefs = [Preferences getSharedInstance];
     BOOL active = [prefs getPreference:catSelected];
+    [self.tableView reloadData];
     
     // flip the active switch
     if(!active) {
