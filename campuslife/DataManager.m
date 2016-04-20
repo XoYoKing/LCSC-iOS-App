@@ -26,6 +26,7 @@ time_t lastUpdate = 0;
 pthread_t timeThreadStruct;
 pthread_t saveCacheThreadStruct;
 NSLock *timeLock;
+NSLock *dataCacheLock;
 bool timeKeeperActive = true;
 bool error = false;
 double elapsedTime = 0.0;
@@ -46,8 +47,12 @@ DataCache *dataCache = nil;
     if(self)
     {
         timeLock = [[NSLock alloc] init];
+        dataCacheLock = [[NSLock alloc] init];
         time(&lastTime);
+        time(&lastUpdate);
         //serverClient = [[ServerClient alloc] init];
+        //[self maintainCache];
+        [self getCache];
         error = pthread_create(&timeThreadStruct, NULL, timeHeartBeat, NULL );
         if (error)
         {
@@ -65,24 +70,37 @@ void *timeHeartBeat()
         [timeLock lock];
         elapsedTime += difftime(currentTime, lastTime); //elapsedTime in seconds
         lastTime = currentTime;
-        [[DataManager singletonDataManager] maintainCache];
+        if (elapsedTime > 666)
+            [[DataManager singletonDataManager] maintainCache];
         [timeLock unlock];
         sleep(SLEEP_TIME);
     }
     return 0;
 }
-
 -(void) maintainCache
 {
-    //TODO check the time since the last loaded cache
-    
+    [dataCacheLock lock];
+    time(&currentTime);
+    if (dataCache == nil)
+    {
+        [self rebuildCache];
+        dataCache.lastUpdated = time(NULL);
+        [self saveCache];
+        [dataCacheLock unlock];
+        return;
+    }
+    if (difftime(currentTime, dataCache.lastUpdated) > 666)
+    {
+        [self rebuildCache];
+        dataCache.lastUpdated = time(NULL);
+        [self saveCache];
+    }
+    [dataCacheLock unlock];
 }
-
 -(void)saveCache
 {
     error = pthread_create(&saveCacheThreadStruct, NULL, saveCacheThread, NULL );
 }
-
 void *saveCacheThread()
 {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -102,6 +120,11 @@ void *saveCacheThread()
         }
     }
     return 0;
+}
+- (NSMutableDictionary*)rebuildCache
+{
+    dataCache = nil; //see getCache to understand this
+    return [self getCache];
 }
 - (NSMutableDictionary*)getCache
 {
@@ -132,12 +155,14 @@ void *saveCacheThread()
 
 +(NSMutableDictionary *) buildCache
 {
-    NSInteger startMonth, endMonth = [CalendarInfo getCurrentMonth];
-    NSInteger startYear, endYear = [CalendarInfo getCurrentYear];
-    NSInteger startDay, endDay = [CalendarInfo getCurrentDay];
+    NSInteger startMonth = [CalendarInfo getCurrentMonth];
+    NSInteger endMonth = startMonth;
+    NSInteger startYear = [CalendarInfo getCurrentYear];
+    NSInteger endYear = startYear;
+    //NSInteger startDay, endDay = [CalendarInfo getCurrentDay];
     for (int i = 0; i < 6; i++) {
         [CalendarInfo incrementMonth:&endMonth :&endYear];
-        [CalendarInfo decrementMonth:&startMonth :&startYear];
+        //[CalendarInfo decrementMonth:&startMonth :&startYear];
     }
     dataCache = [[DataCache alloc] init];
     dataCache.monthCache = [DataManager buildCache:startMonth andYear:startYear
@@ -170,6 +195,8 @@ void *saveCacheThread()
     }
     return newMonthCache;
 }
+
+//Not used for now
 +(NSMutableArray*)getMonthKeys:(LCSCEvent*)event  :(void (^)(int days))processDays
 {
     NSMutableArray *keyList = [[NSMutableArray alloc] init];

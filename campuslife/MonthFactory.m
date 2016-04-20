@@ -17,14 +17,14 @@
 
 @implementation MonthFactory
 
-static NSMutableDictionary *monthCache;
-static NSMutableDictionary *monthCacheRevisions;
+//static NSMutableDictionary *monthCache;
+//static NSMutableDictionary *monthCacheRevisions;
 
 +(void)initialize
 {
-    monthCache = [[DataManager singletonDataManager] getCache];
-    if (monthCache == nil)
-        monthCache = [[NSMutableDictionary alloc] init];
+    //monthCache = [[DataManager singletonDataManager] getCache];
+    //if (monthCache == nil)
+    //    monthCache = [[NSMutableDictionary alloc] init];
 }
 
 +(NSString *)getIndexStr:(NSInteger)month :(NSInteger)year
@@ -36,12 +36,14 @@ static NSMutableDictionary *monthCacheRevisions;
 {
     NSString *indexStr = [MonthFactory getIndexStr:month :year];
     MonthOfEvents *thisMonth;
+    NSMutableDictionary *monthCache = [[DataManager singletonDataManager] getCache];
     thisMonth = (MonthOfEvents *)[monthCache objectForKey:indexStr];
     return  thisMonth != nil;
 }
 
 +(MonthOfEvents *) getMonthOfEventsFromMonth:(NSInteger)month andYear:(NSInteger)year
 {
+    NSMutableDictionary *monthCache = [[DataManager singletonDataManager] getCache];
     NSString *searchStr = [MonthFactory getIndexStr:month :year];
     MonthOfEvents *thisMonth;
     if([MonthFactory checkCacheForMonth:month andYear:year]) {
@@ -57,6 +59,7 @@ static NSMutableDictionary *monthCacheRevisions;
 +(NSArray *) getMonthOfEventsFromMonth:(NSInteger)startMonth andYear:(NSInteger) startYear
                                toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
 {
+    NSMutableDictionary *monthCache = [[DataManager singletonDataManager] getCache];
     NSMutableArray *monthsOfEvents = [[NSMutableArray alloc] init];
     NSInteger month_i = startMonth;
     NSInteger year_i = startYear;
