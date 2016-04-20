@@ -216,7 +216,7 @@ static NSMutableDictionary *monthCache;
 {
     NSMutableArray *reoccurrences = [[NSMutableArray alloc] init];
     NSInteger curDay = [event getStartDay];
-    NSInteger today = curDay;
+    NSInteger today = curDay - 1;
     NSInteger curMonth = [event getStartMonth];
     NSInteger thisMonth = curMonth;
     NSInteger curYear = [event getStartYear];
