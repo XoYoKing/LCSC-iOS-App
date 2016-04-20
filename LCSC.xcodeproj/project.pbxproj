@@ -15,6 +15,16 @@
 		401001C41CB0B3C30059E341 /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C31CB0B3C30059E341 /* CategoryTableView.m */; };
 		401001C71CB0B8300059E341 /* DayEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C61CB0B8300059E341 /* DayEventCell.m */; };
 		401001CA1CB0D88E0059E341 /* AllEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C91CB0D88E0059E341 /* AllEventCell.m */; };
+		402F777D1CC80145001E8153 /* calendar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F77761CC80145001E8153 /* calendar-icon.png */; };
+		402F777F1CC80145001E8153 /* home-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F77781CC80145001E8153 /* home-icon.png */; };
+		402F77801CC80145001E8153 /* map-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F77791CC80145001E8153 /* map-icon.png */; };
+		402F77811CC80145001E8153 /* phone-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F777A1CC80145001E8153 /* phone-icon.png */; };
+		402F77821CC80145001E8153 /* radio-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F777B1CC80145001E8153 /* radio-icon.png */; };
+		402F77831CC80145001E8153 /* warrior-web-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F777C1CC80145001E8153 /* warrior-web-icon.png */; };
+		402F77851CC804C3001E8153 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F77841CC804C3001E8153 /* camera-icon.png */; };
+		402F77881CC8063C001E8153 /* lcmail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F77861CC8063C001E8153 /* lcmail-icon.png */; };
+		402F77891CC8063C001E8153 /* lcsc-athletics-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F77871CC8063C001E8153 /* lcsc-athletics-icon.png */; };
+		402F778B1CC806B9001E8153 /* hangouts-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 402F778A1CC806B9001E8153 /* hangouts-icon.png */; };
 		403DDE761CB9DF72009F2950 /* down_arrow 2.png_16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */; };
 		403DDE7C1CB9EA70009F2950 /* ExpandableEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 403DDE7B1CB9EA70009F2950 /* ExpandableEventCell.m */; };
 		403DDE7E1CBC1C65009F2950 /* insta_icon_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 403DDE7D1CBC1C65009F2950 /* insta_icon_32x32.png */; };
@@ -126,6 +136,16 @@
 		401001C61CB0B8300059E341 /* DayEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayEventCell.m; sourceTree = "<group>"; };
 		401001C81CB0D88E0059E341 /* AllEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllEventCell.h; sourceTree = "<group>"; };
 		401001C91CB0D88E0059E341 /* AllEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllEventCell.m; sourceTree = "<group>"; };
+		402F77761CC80145001E8153 /* calendar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-icon.png"; sourceTree = "<group>"; };
+		402F77781CC80145001E8153 /* home-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon.png"; sourceTree = "<group>"; };
+		402F77791CC80145001E8153 /* map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-icon.png"; sourceTree = "<group>"; };
+		402F777A1CC80145001E8153 /* phone-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone-icon.png"; sourceTree = "<group>"; };
+		402F777B1CC80145001E8153 /* radio-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio-icon.png"; sourceTree = "<group>"; };
+		402F777C1CC80145001E8153 /* warrior-web-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warrior-web-icon.png"; sourceTree = "<group>"; };
+		402F77841CC804C3001E8153 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
+		402F77861CC8063C001E8153 /* lcmail-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcmail-icon.png"; sourceTree = "<group>"; };
+		402F77871CC8063C001E8153 /* lcsc-athletics-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcsc-athletics-icon.png"; sourceTree = "<group>"; };
+		402F778A1CC806B9001E8153 /* hangouts-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hangouts-icon.png"; sourceTree = "<group>"; };
 		403DDE731CB9DF72009F2950 /* down_arrow 2.png_16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down_arrow 2.png_16x16.png"; sourceTree = "<group>"; };
 		403DDE7A1CB9EA70009F2950 /* ExpandableEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableEventCell.h; sourceTree = "<group>"; };
 		403DDE7B1CB9EA70009F2950 /* ExpandableEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandableEventCell.m; sourceTree = "<group>"; };
@@ -267,6 +287,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		402F77751CC80145001E8153 /* menu-icons */ = {
+			isa = PBXGroup;
+			children = (
+				402F77861CC8063C001E8153 /* lcmail-icon.png */,
+				402F77871CC8063C001E8153 /* lcsc-athletics-icon.png */,
+				402F778A1CC806B9001E8153 /* hangouts-icon.png */,
+				402F77841CC804C3001E8153 /* camera-icon.png */,
+				402F77761CC80145001E8153 /* calendar-icon.png */,
+				402F77781CC80145001E8153 /* home-icon.png */,
+				402F77791CC80145001E8153 /* map-icon.png */,
+				402F777A1CC80145001E8153 /* phone-icon.png */,
+				402F777B1CC80145001E8153 /* radio-icon.png */,
+				402F777C1CC80145001E8153 /* warrior-web-icon.png */,
+			);
+			name = "menu-icons";
+			path = "Campus Life Icon/menu-icons";
+			sourceTree = "<group>";
+		};
 		9925929C19FDC46B008946F8 /* Campus Life Icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +498,7 @@
 				994589EC1A396F9F00853E3E /* iphoneDetails.jpg */,
 				994589EA1A396F7800853E3E /* ipadE.jpg */,
 				997451A31A38D93F00EA9B7C /* ipadDetails.jpg */,
+				402F77751CC80145001E8153 /* menu-icons */,
 				99A580831A0048E70044CA5E /* Splash Screen */,
 				99DACA6B19FDC68B00CA76CB /* dot/tab icons */,
 				9925929C19FDC46B008946F8 /* Campus Life Icon */,
@@ -564,10 +603,17 @@
 				992592B019FDC46B008946F8 /* Icon-72.png in Resources */,
 				99A580971A0048E70044CA5E /* Default@2x.png in Resources */,
 				99A1B2381A2E7FD800F6B42A /* back-32.png in Resources */,
+				402F778B1CC806B9001E8153 /* hangouts-icon.png in Resources */,
 				C10BC49A18AD8C5D004C91CD /* newAlphaCircle.png in Resources */,
 				997451A21A38D81500EA9B7C /* phone2-32.png in Resources */,
+				402F77881CC8063C001E8153 /* lcmail-icon.png in Resources */,
 				992592BD19FDC46B008946F8 /* Icon@2x.png in Resources */,
+				402F777F1CC80145001E8153 /* home-icon.png in Resources */,
 				9995B92B1A2BF488004C08C9 /* university-32.png in Resources */,
+				402F77811CC80145001E8153 /* phone-icon.png in Resources */,
+				402F77851CC804C3001E8153 /* camera-icon.png in Resources */,
+				402F777D1CC80145001E8153 /* calendar-icon.png in Resources */,
+				402F77821CC80145001E8153 /* radio-icon.png in Resources */,
 				992592B919FDC46B008946F8 /* Icon-Small-50@2x.png in Resources */,
 				99A580911A0048E70044CA5E /* Default-Landscape.png in Resources */,
 				C1DEC8CD18F4AC2700ECD591 /* dotAthletics.png in Resources */,
@@ -576,6 +622,7 @@
 				99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */,
 				992592BE19FDC46B008946F8 /* iTunesArtwork@2x.png in Resources */,
 				C1DEC8CB18F4AC2700ECD591 /* dotAcademics.png in Resources */,
+				402F77801CC80145001E8153 /* map-icon.png in Resources */,
 				99A580961A0048E70044CA5E /* Default.png in Resources */,
 				992592B519FDC46B008946F8 /* Icon-Small-40.png in Resources */,
 				99F6C3DB1A441A920041328A /* date_to-32.png in Resources */,
@@ -586,6 +633,7 @@
 				4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */,
 				99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */,
 				997268B81A37B224000FB68A /* iphoneE.jpg in Resources */,
+				402F77891CC8063C001E8153 /* lcsc-athletics-icon.png in Resources */,
 				99A580921A0048E70044CA5E /* Default-Landscape@2x.png in Resources */,
 				403DDE821CBC1CDA009F2950 /* twitter_icon.png_32x32.png in Resources */,
 				99A580951A0048E70044CA5E /* Default-Portrait@2x.png in Resources */,
@@ -602,6 +650,7 @@
 				992592AF19FDC46B008946F8 /* Icon-60@3x.png in Resources */,
 				992592B619FDC46B008946F8 /* Icon-Small-40@2x.png in Resources */,
 				9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */,
+				402F77831CC80145001E8153 /* warrior-web-icon.png in Resources */,
 				C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */,
 				4071E6591C926B7B002E0D8E /* background.png in Resources */,
 				992592AE19FDC46B008946F8 /* Icon-60@2x.png in Resources */,
