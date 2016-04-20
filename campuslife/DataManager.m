@@ -24,6 +24,7 @@ time_t lastTime;
 time_t currentTime;
 time_t lastUpdate = 0;
 pthread_t timeThreadStruct;
+pthread_t saveCacheThreadStruct;
 NSLock *timeLock;
 bool timeKeeperActive = true;
 bool error = false;
@@ -52,10 +53,7 @@ DataCache *dataCache = nil;
         {
             NSLog(@"DataManager: could not start time thread");
         }
-        //NOTE for xero construct
     }
-    
-    
     return self;
 }
 
@@ -73,7 +71,12 @@ void *timeHeartBeat()
     return 0;
 }
 
-- (void)saveCache
+-(void)saveCache
+{
+    error = pthread_create(&saveCacheThreadStruct, NULL, saveCacheThread, NULL );
+}
+
+void *saveCacheThread()
 {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectory = [paths objectAtIndex:0];
@@ -91,6 +94,7 @@ void *timeHeartBeat()
             fileSaved = [data writeToFile:dataPath atomically:YES];
         }
     }
+    return 0;
 }
 - (NSMutableDictionary*)getCache
 {
@@ -104,9 +108,9 @@ void *timeHeartBeat()
 - (NSMutableDictionary*)getCache:(NSString*)path
 {
     NSData* data = [NSData dataWithContentsOfFile:path];
-    if (data)
-        return nil;
-    NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    if (data == nil)
+        return [DataManager buildCache];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     if (unarchiver)
         return nil;
     int version = [unarchiver decodeIntForKey:@"Version"];
@@ -116,6 +120,21 @@ void *timeHeartBeat()
         return [dataCache monthCache];
     }
     return nil;
+}
+
++(NSMutableDictionary *) buildCache
+{
+    NSInteger startMonth, endMonth = [CalendarInfo getCurrentMonth];
+    NSInteger startYear, endYear = [CalendarInfo getCurrentYear];
+    NSInteger startDay, endDay = [CalendarInfo getCurrentDay];
+    for (int i = 0; i < 6; i++) {
+        [CalendarInfo incrementMonth:&endMonth :&endYear];
+        [CalendarInfo decrementMonth:&startMonth :&startYear];
+    }
+    dataCache = [[DataCache alloc] init];
+    dataCache.monthCache = [DataManager buildCache:startMonth andYear:startYear
+                                           toMonth:endMonth andYear:endYear];
+    return [dataCache monthCache];
 }
 +(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
                             toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear

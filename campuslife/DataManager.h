@@ -16,9 +16,9 @@
 - (NSMutableDictionary*)getCache;
 - (NSMutableDictionary*)getCache:(NSString*)path;
 - (void)saveCache;
-
-
-
++(NSMutableDictionary *) buildCache;
++(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
+                            toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear;
 
 
 @end
