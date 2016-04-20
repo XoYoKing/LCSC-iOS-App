@@ -11,6 +11,7 @@
 		07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07484B1B1C84CF84007D1ADC /* Authentication.swift */; };
 		07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC95651C877BC900C05BB0 /* ScriptWebView.swift */; };
 		170C727A1CC4B47500EC4F0C /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 170C72791CC4B47500EC4F0C /* DataCache.m */; };
+		170C727D1CC6C2FD00EC4F0C /* JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 170C727C1CC6C2FD00EC4F0C /* JsonParser.m */; };
 		171035BB1CC043820019AAA6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 171035BA1CC043820019AAA6 /* DataManager.m */; };
 		171035BE1CC0589D0019AAA6 /* ServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 171035BD1CC0589D0019AAA6 /* ServerClient.m */; };
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
@@ -126,6 +127,8 @@
 		07CC95651C877BC900C05BB0 /* ScriptWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptWebView.swift; sourceTree = "<group>"; };
 		170C72781CC4B47500EC4F0C /* DataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
 		170C72791CC4B47500EC4F0C /* DataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
+		170C727B1CC6C2FD00EC4F0C /* JsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonParser.h; sourceTree = "<group>"; };
+		170C727C1CC6C2FD00EC4F0C /* JsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonParser.m; sourceTree = "<group>"; };
 		171035B91CC043820019AAA6 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		171035BA1CC043820019AAA6 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		171035BC1CC0589D0019AAA6 /* ServerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerClient.h; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 		C1E66DF7183C333A00851B89 /* campuslife */ = {
 			isa = PBXGroup;
 			children = (
+				170C727B1CC6C2FD00EC4F0C /* JsonParser.h */,
+				170C727C1CC6C2FD00EC4F0C /* JsonParser.m */,
 				170C72781CC4B47500EC4F0C /* DataCache.h */,
 				170C72791CC4B47500EC4F0C /* DataCache.m */,
 				171035BF1CC074E50019AAA6 /* PacketFormat.h */,
@@ -697,11 +702,11 @@
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
 				44DF21601C99EB30003A0C3A /* RadioViewController.swift in Sources */,
-				445F6D6A1CA3A5EB0098371C /* LCMailProfileViewController.m in Sources */,
 				170C727A1CC4B47500EC4F0C /* DataCache.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
+				170C727D1CC6C2FD00EC4F0C /* JsonParser.m in Sources */,
 				403DDE7C1CB9EA70009F2950 /* ExpandableEventCell.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				44DF21621C99EFAD003A0C3A /* AthleticsViewController.swift in Sources */,

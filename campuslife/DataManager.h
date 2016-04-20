@@ -12,13 +12,13 @@
     @public
 }
 - (id) init;
-- (bool)isCacheUpdated;
++ (id)singletonDataManager;
 - (NSMutableDictionary*)getCache;
 - (NSMutableDictionary*)getCache:(NSString*)path;
-- (void)saveCache:(NSMutableDictionary*)cache;
+- (void)saveCache;
 
 
-+ (id)singletonDataManager;
+
 
 
 @end

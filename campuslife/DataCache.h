@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DataCache : NSObject<NSCoding>
+
 @property (nonatomic, strong) NSMutableDictionary *monthCache;
 @property (nonatomic, strong) NSMutableDictionary *monthCacheRevision;
 @property (nonatomic) time_t lastUpdated;

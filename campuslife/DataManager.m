@@ -8,23 +8,27 @@
 #import <foundation/Foundation.h>
 #import "ServerClient.h"
 #import "DataManager.h"
-#include <pthread.h>
-#include <time.h>
+#import "CalendarInfo.h"
+#import "JsonParser.h"
+#import "DataCache.h"
+#import <pthread.h>
+#import <time.h>
+#import "MonthOfEvents.h"
+#import "MonthFactory.h"
 
 @implementation DataManager
-
 const int CACHE_VERSION = 1;
 const int SLEEP_TIME = 10; //time in seconds
-ServerClient *serverClient;
+//ServerClient *serverClient;
 time_t lastTime;
 time_t currentTime;
+time_t lastUpdate = 0;
 pthread_t timeThreadStruct;
 NSLock *timeLock;
 bool timeKeeperActive = true;
 bool error = false;
 double elapsedTime = 0.0;
-
-
+DataCache *dataCache = nil;
 
 + (id)singletonDataManager{
     static DataManager *singletonDataManager = nil;
@@ -55,27 +59,13 @@ double elapsedTime = 0.0;
     return self;
 }
 
-
-double probeTime()
-{
-    //[timeLock lock];
-    double getTime = elapsedTime;
-    //[timeLock unlock];
-    return getTime;
-}
-void resetTime()
-{
-    [timeLock lock];
-    elapsedTime = 0.0;
-    [timeLock unlock];
-}
 void *timeHeartBeat()
 {
     while(timeKeeperActive)
     {
         time(&currentTime);
         [timeLock lock];
-        elapsedTime += difftime(currentTime, lastTime);
+        elapsedTime += difftime(currentTime, lastTime); //elapsedTime in seconds
         lastTime = currentTime;
         [timeLock unlock];
         sleep(SLEEP_TIME);
@@ -83,7 +73,7 @@ void *timeHeartBeat()
     return 0;
 }
 
-- (void)saveCache:(NSMutableDictionary*)cache
+- (void)saveCache
 {
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectory = [paths objectAtIndex:0];
@@ -96,7 +86,7 @@ void *timeHeartBeat()
         if (archiver)
         {
             [archiver encodeInt:1 forKey:@"Version"];
-            [archiver encodeObject:cache forKey:@"MonthCache"];
+            [archiver encodeObject:dataCache forKey:@"MonthCache"];
             [archiver finishEncoding];
             fileSaved = [data writeToFile:dataPath atomically:YES];
         }
@@ -104,10 +94,8 @@ void *timeHeartBeat()
 }
 - (NSMutableDictionary*)getCache
 {
-    //NSURL *documentDirectoryURL = [[[NSFileManager defaultManager]
-    //                                URLsForDirectory:NSCachesDirectory
-    //                                inDomains:NSUserDomainMask]
-    //                               lastObject];
+    if (dataCache != nil)
+        return [dataCache monthCache];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectory = [paths objectAtIndex:0];
     NSString* dataPath = [documentsDirectory stringByAppendingString:@"\/CalendarCache"];
@@ -116,35 +104,62 @@ void *timeHeartBeat()
 - (NSMutableDictionary*)getCache:(NSString*)path
 {
     NSData* data = [NSData dataWithContentsOfFile:path];
-    //NSMutableDictionary* monthCache;
-    //if([[NSFileManager defaultManager] fileExistsAtPath:path])
     if (data)
+        return nil;
+    NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    if (unarchiver)
+        return nil;
+    int version = [unarchiver decodeIntForKey:@"Version"];
+    if (version == CACHE_VERSION)
     {
-        NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        if (unarchiver)
-        {
-            int version = [unarchiver decodeIntForKey:@"Version"];
-            if (version == CACHE_VERSION)
-            {
-                return (NSMutableDictionary*)[unarchiver decodeObjectForKey:@"MonthCache"];
-                
-            }
-        }
+        dataCache = (DataCache*)[unarchiver decodeObjectForKey:@"MonthCache"];
+        return [dataCache monthCache];
     }
     return nil;
 }
-- (bool)doesCacheExist
++(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
+                            toMonth:(NSInteger) endMonth andYear:(NSInteger)endYear
 {
-    
-    return false;
+    NSMutableDictionary *newMonthCache = [[NSMutableDictionary alloc] init];
+    NSMutableArray *events = (NSMutableArray *)[JsonParser loadEventsFromMonth:startMonth andYear:startYear
+                                                                         toMonth:endMonth andYear:endYear];
+    MonthOfEvents *currentMonth;
+    NSString *currentKey;
+    for(LCSCEvent *event in events)
+    {
+        for(int i = (int)event.startYear; i <= event.endYear; i++)
+        {
+            for (int j = (int)event.startMonth; j<=((i ==event.endYear) ? event.endMonth : 12); j++)
+            {
+                currentKey = [DataManager getIndexStr:j :i];
+                currentMonth = [newMonthCache objectForKey:currentKey];
+                if (currentMonth == nil)
+                    currentMonth = [[MonthOfEvents alloc] initWithoutEvents:j andYear:i];
+                [newMonthCache setObject:currentMonth forKey:currentKey];
+                [currentMonth addEvent:event toDay:event.startDay];
+            }
+        }
+    }
+    return newMonthCache;
 }
-
-
-- (bool)isCacheUpdated
++(NSMutableArray*)getMonthKeys:(LCSCEvent*)event  :(void (^)(int days))processDays
 {
-    //NOTE for xero construct
-    return false;
+    NSMutableArray *keyList = [[NSMutableArray alloc] init];
+    //int daysInMonth;
+    for(int i = (int)event.startYear; i <= event.endYear; i++)
+    {
+        for (int j = (int)event.startMonth; j<=((i ==event.endYear) ? event.endMonth : 12); j++)
+        {
+            [keyList addObject:[DataManager getIndexStr:j :i]];
+            //[keyList addObject:[CalendarInfo getDaysOfMonth:j ofYear:i]];
+            //[daysList addObject:<#(nonnull id)#>]
+            
+            processDays([CalendarInfo getDaysOfMonth:j ofYear:i]);
+        }
+    }
+    return keyList;
 }
-
-
-@end
++(NSString *)getIndexStr:(NSInteger)month :(NSInteger)year
+{
+    return [NSString stringWithFormat:@"%ld-%ld", (long)year, (long)month];
+}@end
