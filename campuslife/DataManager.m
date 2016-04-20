@@ -52,7 +52,8 @@ DataCache *dataCache = nil;
         time(&lastUpdate);
         //serverClient = [[ServerClient alloc] init];
         //[self maintainCache];
-        [self getCache];
+        //[self getCache];
+        elapsedTime = 1000;
         error = pthread_create(&timeThreadStruct, NULL, timeHeartBeat, NULL );
         if (error)
         {
@@ -80,6 +81,7 @@ void *timeHeartBeat()
 -(void) maintainCache
 {
     [dataCacheLock lock];
+    elapsedTime = 0;
     time(&currentTime);
     if (dataCache == nil)
     {
@@ -141,7 +143,7 @@ void *saveCacheThread()
     if (data == nil)
         return [DataManager buildCache];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    if (unarchiver)
+    if (unarchiver == nil)
         return [DataManager buildCache];
     int version = [unarchiver decodeIntForKey:@"Version"];
     if (version == CACHE_VERSION)
@@ -180,18 +182,16 @@ void *saveCacheThread()
     NSString *currentKey;
     for(LCSCEvent *event in events)
     {
-        for(int i = (int)event.startYear; i <= event.endYear; i++)
-        {
-            for (int j = (int)event.startMonth; j<=((i ==event.endYear) ? event.endMonth : 12); j++)
-            {
-                currentKey = [DataManager getIndexStr:j :i];
-                currentMonth = [newMonthCache objectForKey:currentKey];
-                if (currentMonth == nil)
-                    currentMonth = [[MonthOfEvents alloc] initWithoutEvents:j andYear:i];
-                [newMonthCache setObject:currentMonth forKey:currentKey];
-                [currentMonth addEvent:event toDay:event.startDay];
-            }
-        }
+        int startYear = (int)event.startYear;
+        int startMonth = (int)event.startMonth;
+        int startDay = (int)event.startDay;
+        currentKey = [DataManager getIndexStr:startMonth :startYear];
+        currentMonth = [newMonthCache objectForKey:currentKey];
+        NSLog(@"Building eventKey %@ monthDays %ld start day %ld", currentKey, (long)currentMonth.daysInMonth, (long)event.startDay);
+        if (currentMonth == nil)
+            currentMonth = [[MonthOfEvents alloc] initWithoutEvents:startMonth andYear:startYear];
+        [newMonthCache setObject:currentMonth forKey:currentKey];
+        [currentMonth addEvent:event toDay:startDay];
     }
     return newMonthCache;
 }

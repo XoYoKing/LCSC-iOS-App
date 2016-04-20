@@ -26,7 +26,7 @@
 
     [Fabric with:@[[Twitter class]]];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-    [DataManager singletonDataManager]; ///Drop anchor xero
+    [DataManager singletonDataManager];
     internetReach = [Reachability reachabilityForInternetConnection];
     [internetReach startNotifier];
     NetworkStatus netStatus = [internetReach currentReachabilityStatus];
