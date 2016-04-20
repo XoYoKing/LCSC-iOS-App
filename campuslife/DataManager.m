@@ -65,10 +65,17 @@ void *timeHeartBeat()
         [timeLock lock];
         elapsedTime += difftime(currentTime, lastTime); //elapsedTime in seconds
         lastTime = currentTime;
+        [[DataManager singletonDataManager] maintainCache];
         [timeLock unlock];
         sleep(SLEEP_TIME);
     }
     return 0;
+}
+
+-(void) maintainCache
+{
+    //TODO check the time since the last loaded cache
+    
 }
 
 -(void)saveCache
@@ -112,14 +119,15 @@ void *saveCacheThread()
         return [DataManager buildCache];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     if (unarchiver)
-        return nil;
+        return [DataManager buildCache];
     int version = [unarchiver decodeIntForKey:@"Version"];
     if (version == CACHE_VERSION)
     {
         dataCache = (DataCache*)[unarchiver decodeObjectForKey:@"MonthCache"];
+        //check to see if cache is updated.
         return [dataCache monthCache];
     }
-    return nil;
+    return [DataManager buildCache];
 }
 
 +(NSMutableDictionary *) buildCache
@@ -134,6 +142,7 @@ void *saveCacheThread()
     dataCache = [[DataCache alloc] init];
     dataCache.monthCache = [DataManager buildCache:startMonth andYear:startYear
                                            toMonth:endMonth andYear:endYear];
+    //time
     return [dataCache monthCache];
 }
 +(NSMutableDictionary *) buildCache:(NSInteger)startMonth andYear:(NSInteger) startYear
