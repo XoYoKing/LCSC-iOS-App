@@ -11,7 +11,6 @@
 #import "ExpandableEventCell.h"
 
 @interface AllEventCell : ExpandableEventCell
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *dotImageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;

@@ -167,7 +167,6 @@
     
     AllEventCell *cell = (AllEventCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                                               forIndexPath:indexPath];
-    UILabel *dayLbl = cell.dateLabel;
     UILabel *eventSummaryLbl = cell.titleLabel;
     UILabel *eventTimeLbl = cell.timeLabel;
     UIImageView *image = cell.dotImageView;
@@ -177,9 +176,6 @@
     if ([myEvent isAllDay])
     {
         eventTimeLbl.text = @"All Day Event";
-        NSString *monthAbr = [self getMonthAbbreviation:[myEvent getStartMonth]];
-        NSInteger dayNum = [myEvent getStartDay];
-        dayLbl.text = [NSString stringWithFormat:@"%@ %d", monthAbr, (int)dayNum];
     }
     else
     {
@@ -211,10 +207,6 @@
         endTime = [self twentyFourToTwelve:endTime];
         
         eventTimeLbl.text = [NSString stringWithFormat:@"%@ - %@",startTime, endTime];
-        
-        NSString *monthAbr = [self getMonthAbbreviation:[myEvent getStartMonth]];
-        NSInteger dayNum = [myEvent getStartDay];
-        dayLbl.text = [NSString stringWithFormat:@"%@ %d", monthAbr, (int)dayNum];
     }
     
     NSString *category = [myEvent getCategory];
@@ -286,63 +278,6 @@
     }
     
     return time;
-}
-
-
--(NSString *)getMonthAbbreviation:(NSInteger)monthNumber
-{
-    NSString *monthAbr;
-    switch(monthNumber)
-    {
-        case 1:
-            monthAbr = @"Jan";
-            break;
-            
-        case 2:
-            monthAbr = @"Feb";
-            break;
-            
-        case 3:
-            monthAbr = @"Mar";
-            break;
-            
-        case 4:
-            monthAbr = @"Apr";
-            break;
-            
-        case 5:
-            monthAbr = @"May";
-            break;
-            
-        case 6:
-            monthAbr = @"June";
-            break;
-            
-        case 7:
-            monthAbr = @"July";
-            break;
-            
-        case 8:
-            monthAbr = @"Aug";
-            break;
-            
-        case 9:
-            monthAbr = @"Sept";
-            break;
-            
-        case 10:
-            monthAbr = @"Oct";
-            break;
-            
-        case 11:
-            monthAbr = @"Nov";
-            break;
-            
-        case 12:
-            monthAbr = @"Dec";
-            break;
-    }
-    return monthAbr;
 }
 
 
