@@ -17,13 +17,36 @@
 #import "SWRevealViewController.h"
 #import "AllEventCell.h"
 
+
+@interface DaySection : NSObject
+-(id)initWithDay:(NSInteger)day month:(NSInteger)month year:(NSInteger)year events:(NSArray *)events;
+-(LCSCEvent *)getEventAtIndex:(NSInteger)index;
+
+@property (strong, nonatomic, readonly) NSString *sectionHeader;
+@property (strong, nonatomic, readonly) NSArray *eventsInDay;
+@end
+
+@implementation DaySection
+
+-(id)initWithDay:(NSInteger)day month:(NSInteger)month year:(NSInteger)year events:(NSArray *)events
+{
+    _eventsInDay = [[NSArray alloc] initWithArray:events];
+    _sectionHeader = [NSString stringWithFormat:@"%@ %ld, %ld", [CalendarInfo getMonthBarDateOfMonth:month], day, year];
+    return self;
+    
+}
+-(LCSCEvent *)getEventAtIndex:(NSInteger)index
+{
+    return [_eventsInDay objectAtIndex:index];
+}
+
+@end
+
+
 @interface AllEventViewController ()
 {
-    NSMutableArray *displayedEvents;
-    NSMutableArray *sortedArray;
-    //NSInteger currentMonth;
-    //NSInteger currentYear;
-    BOOL wentToEvent;
+    NSMutableArray *loadedMonths;
+    NSMutableArray *daySections;
     Preferences *preferences;
     NSIndexPath *selectedIndex;
     }
@@ -36,47 +59,81 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     selectedIndex = nil;
+    preferences = [Preferences getSharedInstance];
     _menuButton.target = [self revealViewController];
     _menuButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:[[self revealViewController] panGestureRecognizer]];
     [self.view addGestureRecognizer:[[self revealViewController] tapGestureRecognizer]];
-    [self loadAllData];
+    [self loadMonths];
     self.tableView.rowHeight = 44;
 }
 
 
--(void)loadAllData
+-(void)loadDaySections
 {
-    sortedArray = [[NSMutableArray alloc] init];
-    preferences = [Preferences getSharedInstance];
-    [self loadAllEvents];
-    displayedEvents = [[NSMutableArray alloc] init];
+    daySections = [[NSMutableArray alloc] init];
+    
+    NSInteger today = [CalendarInfo getCurrentDay];
+    NSInteger thisMonth = [CalendarInfo getCurrentMonth];
+    NSInteger thisYear = [CalendarInfo getCurrentYear];
+    for(MonthOfEvents *curMonthOfEvents in loadedMonths) {
+        
+        NSInteger curDay = 1;
+        if(curMonthOfEvents.month == thisMonth && curMonthOfEvents.year == thisYear) {
+            curDay = today;
+        }
+        for(; curDay < [curMonthOfEvents daysInMonth]; curDay++) {
+            NSArray *eventsInDay = [curMonthOfEvents getEventsForDay:curDay];
+            NSArray *filteredEvents = [self filterEvents:eventsInDay];
+            if([filteredEvents count] > 0) {
+                DaySection *daySect = [[DaySection alloc] initWithDay:curDay
+                                                                month:curMonthOfEvents.month
+                                                                 year:curMonthOfEvents.year
+                                                               events:filteredEvents];
+                [daySections addObject:daySect];
+            }
+        }
+    }
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
+-(NSArray *)filterEvents:(NSArray *)events
 {
-    NSLog(@"Starting viewWillAppear");
-    [super viewWillAppear:YES];
-    [displayedEvents removeAllObjects];
-    [self removeCancelledEvents];
-    [self.tableView reloadData];
-    NSLog(@"Done");
-}
-
-
--(void)removeCancelledEvents
-{
-    for(int i = 0; i < [sortedArray count]; ++i) {
-        LCSCEvent *event = sortedArray[i];
+    NSMutableArray *filteredEvents = [[NSMutableArray alloc] init];
+    for(LCSCEvent *event in events) {
         NSString *categoryName = [event getCategory];
         for (NSString *name in [CalendarInfo getCategoryNames])
         {
             if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == YES)) {
-                [displayedEvents addObject:sortedArray[i]];
+                [filteredEvents addObject:event];
             }
         }
     }
+    return (NSArray *)filteredEvents;
+}
+
+
+-(void)loadMonths
+{
+    loadedMonths = [[NSMutableArray alloc] init];
+    NSInteger currentMonth = [CalendarInfo getCurrentMonth];
+    NSInteger currentYear = [CalendarInfo getCurrentYear];
+    
+    NSInteger monthsAhead = 6;
+    NSInteger endMonth = (currentYear * 12 + currentMonth + monthsAhead) % 12;
+    NSInteger endYear = (currentYear * 12 + currentMonth + monthsAhead) / 12;
+    NSArray *months = [MonthFactory getMonthOfEventsFromMonth:currentMonth andYear:currentYear
+                                                      toMonth:endMonth andYear:endYear];
+    for(MonthOfEvents *month in months) {
+        [loadedMonths addObject:month];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self loadDaySections];
+    [self.tableView reloadData];
 }
 
 
@@ -88,13 +145,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return [daySections count];
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[daySections objectAtIndex:section] sectionHeader];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [displayedEvents count];
+    DaySection *daySect = [daySections objectAtIndex:section];
+    return [daySect.eventsInDay count];
 }
 
 
@@ -107,7 +171,7 @@
     UILabel *eventSummaryLbl = cell.titleLabel;
     UILabel *eventTimeLbl = cell.timeLabel;
     UIImageView *image = cell.dotImageView;
-    LCSCEvent *myEvent = [displayedEvents objectAtIndex:indexPath.row];
+    LCSCEvent *myEvent = [[daySections objectAtIndex:indexPath.section] getEventAtIndex:indexPath.row];
     [cell setEvent:myEvent];
 
     if ([myEvent isAllDay])
@@ -187,34 +251,6 @@
         [cell hideDescription];
     }
     return cell;
-}
-
-
--(void)loadAllEvents
-{
-    NSInteger currentMonth = [CalendarInfo getCurrentMonth];
-    NSInteger currentYear = [CalendarInfo getCurrentYear];
-    NSInteger currentDay = [CalendarInfo getCurrentDay];
-    
-    NSInteger monthsAhead = 6;
-    NSInteger endMonth = (currentYear * 12 + currentMonth + monthsAhead) % 12;
-    NSInteger endYear = (currentYear * 12 + currentMonth + monthsAhead) / 12;
-    NSArray *months = [MonthFactory getMonthOfEventsFromMonth:currentMonth andYear:currentYear
-                                                      toMonth:endMonth andYear:endYear];
-    for(MonthOfEvents *month in months) {
-        NSInteger curMonthDay = 1;
-        for(NSArray *day in month) {
-            if([month getMonth] == currentMonth && [month getYear] == currentYear) {
-                if(curMonthDay >= currentDay) {
-                    [sortedArray addObjectsFromArray:day];
-                }
-            }
-            else {
-                [sortedArray addObjectsFromArray:day];
-            }
-            curMonthDay++;
-        }
-    }
 }
 
 
@@ -311,8 +347,7 @@
 
 
 -(void)dismiss{
-    [displayedEvents removeAllObjects];
-    [self removeCancelledEvents];
+    [self loadDaySections];
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -320,8 +355,14 @@
 
 -(void)updateData:(NSNotification *)notification
 {
-    [displayedEvents removeAllObjects];
-    [self removeCancelledEvents];
+    // if a cell is expanded and its category is deselected, we need to set selectedIndex properly
+    if(selectedIndex != nil) {
+        LCSCEvent *selectedEvent = [[daySections objectAtIndex:selectedIndex.section] getEventAtIndex:selectedIndex.row];
+        if([[self filterEvents:@[selectedEvent]] count] == 0) {
+            selectedIndex = nil;
+        }
+    }
+    [self loadDaySections];
     [self.tableView reloadData];
 }
 
@@ -364,10 +405,6 @@
 
 - (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
 {
-    selectedIndex = nil;
-    [displayedEvents removeAllObjects];
-    [self removeCancelledEvents];
-    [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
