@@ -100,6 +100,8 @@
         [self showCellAsDeselected:cell atIndex:indexPath.row];
     }
     [prefs negatePreference:catSelected];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CategoryUpdatedNotification" object:self];
 }
 
 

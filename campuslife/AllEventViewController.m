@@ -318,6 +318,14 @@
 }
 
 
+-(void)updateData:(NSNotification *)notification
+{
+    [displayedEvents removeAllObjects];
+    [self removeCancelledEvents];
+    [self.tableView reloadData];
+}
+
+
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
 {
     return UIModalPresentationNone;
@@ -341,6 +349,12 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CategoryView"];
     vc.modalPresentationStyle = UIModalPresentationPopover;
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(updateData:)
+     name:@"CategoryUpdatedNotification"
+     object:vc];
+
     UIPopoverPresentationController *popover = [vc popoverPresentationController];
     popover.barButtonItem = sender;
     popover.delegate = self;
@@ -354,6 +368,7 @@
     [displayedEvents removeAllObjects];
     [self removeCancelledEvents];
     [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
