@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         } else {
             imageView.image = UIImage(named: "squirrelCard")
             if !auth.userHaveEverBeenAtProfilePage(){
-                promptAlet("No card picture is not registered!", message: "You can regiter your card picture by taping the camera button.")
+                promptAlet("No card picture is registered!", message: "You can register your card picture by tapping the camera button.")
                 auth.setUserHaveEverBeenAtProfilePage(true)
             }
         }

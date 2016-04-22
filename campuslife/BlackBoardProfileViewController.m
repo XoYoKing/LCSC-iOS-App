@@ -53,7 +53,7 @@
     } else {
         _alert = [[UIAlertView alloc] init];
         _alert.title = @"Fail!";
-        _alert.message = @"Your username or password have invalide input.";
+        _alert.message = @"Your username or password is invalid.";
         _alert.delegate = self;
         [_alert addButtonWithTitle:@"Ok"];
         [_alert show];

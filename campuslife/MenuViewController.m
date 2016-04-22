@@ -22,7 +22,7 @@
     Authentication* auth = [[Authentication alloc] init];
     if (![auth userHaveEverBeenAtResourcesPage]){
         [auth setUserHaveEverBeenAtResourcesPage:true];
-        [self promptAlert:@"Your Profile is not set!" message:@"Some functions may not work.\nDo you want to set you profile now?"];
+        [self promptAlert:@"Your Profile is not set!" message:@"Some functionality may not work.\nDo you want to set your profile now?"];
     }
 }
 

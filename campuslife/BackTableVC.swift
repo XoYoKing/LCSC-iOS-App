@@ -20,33 +20,7 @@ class BackTableVC: UITableViewController {
     
     override func viewDidLoad() {
         self.tableView.tableFooterView = UIView()
-        //fill the menu with the itens listed on the arrays
-        TableArray = ["Main Page","Calendar","Emergency", "Campus Map", "Radio", "Athletics Videos", "Hangouts", "LCSC Website", "Athletics Website", "LCMail", "Warrior Web", "BlackBoard", "Profile"]
     }
-    /*
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TableArray.count
-    }*/
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TableArray[indexPath.row], forIndexPath: indexPath) as UITableViewCell
-        
-        cell.textLabel?.text =  TableArray[indexPath.row]
-        
-        return cell
-    }*/
-    //Social network links
-//    @IBAction func gotoInstagram(sender: AnyObject) {
-//        if let url = NSURL(string: "http://www.instagram.com/lewisclarkstate/") {
-//            UIApplication.sharedApplication().openURL(url)
-//        }
-//    }
-//    
-//    @IBAction func gotoFacebook(sender: AnyObject) {
-//        if let url = NSURL(string: "http://www.facebook.com/LewisClarkState") {
-//            UIApplication.sharedApplication().openURL(url)
-//        }
-//    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
