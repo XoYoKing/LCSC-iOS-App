@@ -10,6 +10,9 @@
 		07484B1A1C84CD45007D1ADC /* WarriorWebProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */; };
 		07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07484B1B1C84CF84007D1ADC /* Authentication.swift */; };
 		07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC95651C877BC900C05BB0 /* ScriptWebView.swift */; };
+		170C727A1CC4B47500EC4F0C /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 170C72791CC4B47500EC4F0C /* DataCache.m */; };
+		170C727D1CC6C2FD00EC4F0C /* JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 170C727C1CC6C2FD00EC4F0C /* JsonParser.m */; };
+		171035BB1CC043820019AAA6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 171035BA1CC043820019AAA6 /* DataManager.m */; };
 		3FE5FA7A1C594BA80024CEFB /* CalendarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE5FA791C594BA80024CEFB /* CalendarInfo.m */; };
 		400AC8721C6E69BA003FC6E3 /* LCSCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 400AC8711C6E69BA003FC6E3 /* LCSCEvent.m */; };
 		401001C41CB0B3C30059E341 /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 401001C31CB0B3C30059E341 /* CategoryTableView.m */; };
@@ -36,12 +39,6 @@
 		4071E6551C925655002E0D8E /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6511C925654002E0D8E /* TwitterKit.framework */; };
 		4071E6561C925655002E0D8E /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4071E6521C925654002E0D8E /* TwitterKitResources.bundle */; };
 		4071E6571C925655002E0D8E /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4071E6531C925655002E0D8E /* TwitterCore.framework */; };
-		4071E6591C926B7B002E0D8E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4071E6581C926B7B002E0D8E /* background.png */; };
-		4071E65B1C926B89002E0D8E /* HomeButton top bar small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */; };
-		4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */; };
-		4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4071E65E1C927CCC002E0D8E /* overlayed front.jpg */; };
-		4084EA581CB49CB1004EFCA0 /* Facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 4084EA571CB49CB0004EFCA0 /* Facebook.png */; };
-		409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 409B8EE61C9103FB00F4361D /* frontpage.jpg */; };
 		409B8EEB1C91077C00F4361D /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EE81C91077C00F4361D /* BackTableVC.swift */; };
 		409B8EEC1C91077C00F4361D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EEA1C91077C00F4361D /* SWRevealViewController.m */; };
 		409B8EF61C911B9200F4361D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B8EF51C911B9200F4361D /* MenuViewController.m */; };
@@ -126,6 +123,12 @@
 		07484B191C84CD45007D1ADC /* WarriorWebProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarriorWebProfileViewController.m; sourceTree = "<group>"; };
 		07484B1B1C84CF84007D1ADC /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		07CC95651C877BC900C05BB0 /* ScriptWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptWebView.swift; sourceTree = "<group>"; };
+		170C72781CC4B47500EC4F0C /* DataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
+		170C72791CC4B47500EC4F0C /* DataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
+		170C727B1CC6C2FD00EC4F0C /* JsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonParser.h; sourceTree = "<group>"; };
+		170C727C1CC6C2FD00EC4F0C /* JsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonParser.m; sourceTree = "<group>"; };
+		171035B91CC043820019AAA6 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		171035BA1CC043820019AAA6 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		3FE5FA781C594BA80024CEFB /* CalendarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfo.h; sourceTree = "<group>"; };
 		3FE5FA791C594BA80024CEFB /* CalendarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfo.m; sourceTree = "<group>"; };
 		400AC8701C6E69BA003FC6E3 /* LCSCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSCEvent.h; sourceTree = "<group>"; };
@@ -158,12 +161,6 @@
 		4071E6511C925654002E0D8E /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		4071E6521C925654002E0D8E /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
 		4071E6531C925655002E0D8E /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
-		4071E6581C926B7B002E0D8E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "HomeButton top bar small.jpg"; sourceTree = "<group>"; };
-		4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rsz_homebutton_top_bar_small.jpg; sourceTree = "<group>"; };
-		4071E65E1C927CCC002E0D8E /* overlayed front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "overlayed front.jpg"; sourceTree = "<group>"; };
-		4084EA571CB49CB0004EFCA0 /* Facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Facebook.png; sourceTree = "<group>"; };
-		409B8EE61C9103FB00F4361D /* frontpage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frontpage.jpg; sourceTree = "<group>"; };
 		409B8EE81C91077C00F4361D /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		409B8EE91C91077C00F4361D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		409B8EEA1C91077C00F4361D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -174,7 +171,7 @@
 		40AC32EB1C60294B003468F8 /* MonthOfEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthOfEvents.m; sourceTree = "<group>"; };
 		40AC32F01C6029F2003468F8 /* MonthFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFactory.h; sourceTree = "<group>"; };
 		40AC32F11C6029F2003468F8 /* MonthFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFactory.m; sourceTree = "<group>"; };
-		40F73D231C91348300A75F72 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		40F73D231C91348300A75F72 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../menu.png; sourceTree = "<group>"; };
 		440340101CC5DD20005DCBEE /* WebViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewContoller.swift; sourceTree = "<group>"; };
 		443C4EC91C97718100B6FC58 /* ImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropView.h; sourceTree = "<group>"; };
 		443C4ECA1C97718200B6FC58 /* ImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropView.m; sourceTree = "<group>"; };
@@ -290,6 +287,7 @@
 		402F77751CC80145001E8153 /* menu-icons */ = {
 			isa = PBXGroup;
 			children = (
+				40F73D231C91348300A75F72 /* menu.png */,
 				402F77861CC8063C001E8153 /* lcmail-icon.png */,
 				402F77871CC8063C001E8153 /* lcsc-athletics-icon.png */,
 				402F778A1CC806B9001E8153 /* hangouts-icon.png */,
@@ -411,6 +409,12 @@
 		C1E66DF7183C333A00851B89 /* campuslife */ = {
 			isa = PBXGroup;
 			children = (
+				170C727B1CC6C2FD00EC4F0C /* JsonParser.h */,
+				170C727C1CC6C2FD00EC4F0C /* JsonParser.m */,
+				170C72781CC4B47500EC4F0C /* DataCache.h */,
+				170C72791CC4B47500EC4F0C /* DataCache.m */,
+				171035B91CC043820019AAA6 /* DataManager.h */,
+				171035BA1CC043820019AAA6 /* DataManager.m */,
 				9916368219F829BB007F7E47 /* AllEventViewController.h */,
 				9916368119F829BB007F7E47 /* AllEventViewController.m */,
 				401001C81CB0D88E0059E341 /* AllEventCell.h */,
@@ -467,13 +471,6 @@
 				40AC32EB1C60294B003468F8 /* MonthOfEvents.m */,
 				C1E66E45183C33D000851B89 /* Preferences.h */,
 				C1E66E46183C33D000851B89 /* Preferences.m */,
-				4084EA571CB49CB0004EFCA0 /* Facebook.png */,
-				4071E65E1C927CCC002E0D8E /* overlayed front.jpg */,
-				4071E65A1C926B89002E0D8E /* HomeButton top bar small.jpg */,
-				4071E65C1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg */,
-				4071E6581C926B7B002E0D8E /* background.png */,
-				409B8EE61C9103FB00F4361D /* frontpage.jpg */,
-				40F73D231C91348300A75F72 /* menu.png */,
 				9995B91A1A2BD67D004C08C9 /* LCSCWebViewController.h */,
 				9995B91B1A2BD67D004C08C9 /* LCSCWebViewController.m */,
 				9995B91D1A2BDE4A004C08C9 /* AthleticsWebViewController.h */,
@@ -617,7 +614,6 @@
 				992592B919FDC46B008946F8 /* Icon-Small-50@2x.png in Resources */,
 				99A580911A0048E70044CA5E /* Default-Landscape.png in Resources */,
 				C1DEC8CD18F4AC2700ECD591 /* dotAthletics.png in Resources */,
-				4071E65B1C926B89002E0D8E /* HomeButton top bar small.jpg in Resources */,
 				403DDE811CBC1CDA009F2950 /* facebook_icon.png_32x32.png in Resources */,
 				99A5808E1A0048E70044CA5E /* Default-568h@2x.png in Resources */,
 				992592BE19FDC46B008946F8 /* iTunesArtwork@2x.png in Resources */,
@@ -630,7 +626,6 @@
 				9941899419E4F81D00D6AED4 /* calendar-32.png in Resources */,
 				99A5808F1A0048E70044CA5E /* Default-667h@2x.png in Resources */,
 				997451A41A38D93F00EA9B7C /* ipadDetails.jpg in Resources */,
-				4071E65D1C927BC5002E0D8E /* rsz_homebutton_top_bar_small.jpg in Resources */,
 				99A1B2391A2E7FD800F6B42A /* forward-32.png in Resources */,
 				997268B81A37B224000FB68A /* iphoneE.jpg in Resources */,
 				402F77891CC8063C001E8153 /* lcsc-athletics-icon.png in Resources */,
@@ -640,9 +635,7 @@
 				403DDE761CB9DF72009F2950 /* down_arrow 2.png_16x16.png in Resources */,
 				994589ED1A396F9F00853E3E /* iphoneDetails.jpg in Resources */,
 				99A580941A0048E70044CA5E /* Default-Portrait.png in Resources */,
-				409B8EE71C9103FB00F4361D /* frontpage.jpg in Resources */,
 				9941899319E4F81D00D6AED4 /* day_view-32.png in Resources */,
-				4084EA581CB49CB1004EFCA0 /* Facebook.png in Resources */,
 				C1DEC8CE18F4AC2700ECD591 /* dotResidence.png in Resources */,
 				40F73D241C91348300A75F72 /* menu.png in Resources */,
 				9995B92C1A2BF488004C08C9 /* trophy-32.png in Resources */,
@@ -652,11 +645,9 @@
 				9995B92A1A2BF488004C08C9 /* hospital-32.png in Resources */,
 				402F77831CC80145001E8153 /* warrior-web-icon.png in Resources */,
 				C1DEC8CC18F4AC2700ECD591 /* dotActivities.png in Resources */,
-				4071E6591C926B7B002E0D8E /* background.png in Resources */,
 				992592AE19FDC46B008946F8 /* Icon-60@2x.png in Resources */,
 				403FF13B1CB7629400699436 /* Main.storyboard in Resources */,
 				992592B319FDC46B008946F8 /* Icon-76@2x.png in Resources */,
-				4071E65F1C927CCC002E0D8E /* overlayed front.jpg in Resources */,
 				992592BC19FDC46B008946F8 /* Icon.png in Resources */,
 				992592BB19FDC46B008946F8 /* Icon-Small@3x.png in Resources */,
 				C105A2A018B6A992007C841C /* bigAlphaCircle.png in Resources */,
@@ -702,11 +693,14 @@
 				07484B1A1C84CD45007D1ADC /* WarriorWebProfileViewController.m in Sources */,
 				40AC32F21C6029F2003468F8 /* MonthFactory.m in Sources */,
 				401001CA1CB0D88E0059E341 /* AllEventCell.m in Sources */,
+				171035BB1CC043820019AAA6 /* DataManager.m in Sources */,
 				C1E66E48183C33D000851B89 /* Day_Event_ViewController.m in Sources */,
 				07484B1C1C84CF84007D1ADC /* Authentication.swift in Sources */,
+				170C727A1CC4B47500EC4F0C /* DataCache.m in Sources */,
 				C1E66DFE183C333A00851B89 /* main.m in Sources */,
 				40AC32EC1C60294B003468F8 /* MonthOfEvents.m in Sources */,
 				9995B91F1A2BDE4A004C08C9 /* AthleticsWebViewController.m in Sources */,
+				170C727D1CC6C2FD00EC4F0C /* JsonParser.m in Sources */,
 				403DDE7C1CB9EA70009F2950 /* ExpandableEventCell.m in Sources */,
 				C11195251A114473001ED805 /* Reachability.m in Sources */,
 				07CC95661C877BC900C05BB0 /* ScriptWebView.swift in Sources */,

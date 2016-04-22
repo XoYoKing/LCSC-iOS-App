@@ -13,6 +13,7 @@
 #import "CalendarInfo.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
+#import "DataManager.h"
 
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
@@ -22,14 +23,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self initializeStoryBoardBasedOnScreenSize];
-    NSThread *preloadThread = [[NSThread alloc] initWithTarget:self
-                                                      selector:@selector(preloadEvents)
-                                                        object:nil];
-    [preloadThread start];
+
     [Fabric with:@[[Twitter class]]];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-    
-    
+    [DataManager singletonDataManager];
     internetReach = [Reachability reachabilityForInternetConnection];
     [internetReach startNotifier];
     NetworkStatus netStatus = [internetReach currentReachabilityStatus];
@@ -55,23 +52,8 @@
         }
             
     }
-    while([preloadThread isFinished] == NO) {
-        usleep(1000);
-    }
+    
     return YES;
-}
-
-
-// preload the events for the AllEventViewController
--(void)preloadEvents
-{
-    NSInteger currentMonth = [CalendarInfo getCurrentMonth];
-    NSInteger currentYear = [CalendarInfo getCurrentYear];
-    NSInteger monthsAhead = 6;
-    NSInteger endMonth = (currentYear * 12 + currentMonth + monthsAhead) % 12;
-    NSInteger endYear = (currentYear * 12 + currentMonth + monthsAhead) / 12;
-    [MonthFactory getMonthOfEventsFromMonth:currentMonth andYear:currentYear
-                                                      toMonth:endMonth andYear:endYear];
 }
 
 -(void)initializeStoryBoardBasedOnScreenSize {
@@ -131,6 +113,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    //NOTE for xero reopen socket connections
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

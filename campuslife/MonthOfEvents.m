@@ -15,6 +15,36 @@
 @end
 
 @implementation MonthOfEvents
+
+-(id)initWithCoder:(NSCoder *)coder
+{
+    if(self = [super init])
+    {
+        _days = [coder decodeObjectForKey:@"_days"];
+        _month = [coder decodeIntForKey:@"_month"];
+        _year = [coder decodeIntForKey:@"_year"];
+    }
+    return self;
+}
+-(void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:_days forKey:@"_days"];
+    [encoder encodeInt:(int)_month forKey:@"_month"];
+    [encoder encodeInt:(int)_year forKey:@"_year"];
+}
+
+-(id)initWithoutEvents:(NSInteger)month andYear:(NSInteger)year
+{
+    int number_of_days = [CalendarInfo getDaysOfMonth:(int)month ofYear:(int)year];
+    _days = [[NSMutableArray alloc] init];
+    for(int i = 0; i < number_of_days; ++i) {
+        [_days addObject:[[NSMutableArray alloc] init]];
+    }
+    _month = month;
+    _year = year;
+    return self;
+}
+
 -(id)initWithMonth:(NSInteger)month andYear:(NSInteger) year andEventsArray:(NSArray *)events
 {
     int number_of_days = [CalendarInfo getDaysOfMonth:(int)month ofYear:(int)year];
