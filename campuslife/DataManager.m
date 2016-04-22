@@ -19,6 +19,7 @@
 @implementation DataManager
 const int CACHE_VERSION = 1;
 const int SLEEP_TIME = 10; //time in seconds
+const int CACHE_UPDATE_INTERVAL = 3600;
 //ServerClient *serverClient;
 time_t lastTime;
 time_t currentTime;
@@ -71,7 +72,7 @@ void *timeHeartBeat()
         [timeLock lock];
         elapsedTime += difftime(currentTime, lastTime); //elapsedTime in seconds
         lastTime = currentTime;
-        if (elapsedTime > 666)
+        if (elapsedTime > CACHE_UPDATE_INTERVAL)
             [[DataManager singletonDataManager] maintainCache];
         [timeLock unlock];
         sleep(SLEEP_TIME);
@@ -91,7 +92,7 @@ void *timeHeartBeat()
         [dataCacheLock unlock];
         return;
     }
-    if (difftime(currentTime, dataCache.lastUpdated) > 666)
+    if (difftime(currentTime, dataCache.lastUpdated) > CACHE_UPDATE_INTERVAL)
     {
         [self rebuildCache];
         dataCache.lastUpdated = time(NULL);
