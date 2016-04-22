@@ -102,11 +102,8 @@
     NSMutableArray *filteredEvents = [[NSMutableArray alloc] init];
     for(LCSCEvent *event in events) {
         NSString *categoryName = [event getCategory];
-        for (NSString *name in [CalendarInfo getCategoryNames])
-        {
-            if ([categoryName isEqualToString:name] && ([preferences getPreference:categoryName] == YES)) {
-                [filteredEvents addObject:event];
-            }
+        if([preferences getPreference:categoryName]) {
+            [filteredEvents addObject:event];
         }
     }
     return (NSArray *)filteredEvents;
