@@ -17,16 +17,6 @@
 
 @implementation MonthFactory
 
-//static NSMutableDictionary *monthCache;
-//static NSMutableDictionary *monthCacheRevisions;
-
-+(void)initialize
-{
-    //monthCache = [[DataManager singletonDataManager] getCache];
-    //if (monthCache == nil)
-    //    monthCache = [[NSMutableDictionary alloc] init];
-}
-
 +(NSString *)getIndexStr:(NSInteger)month :(NSInteger)year
 {
     return [NSString stringWithFormat:@"%ld-%ld", (long)year, (long)month];
