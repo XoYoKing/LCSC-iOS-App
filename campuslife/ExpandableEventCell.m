@@ -70,6 +70,9 @@ clickedButtonAtIndex:(NSInteger) buttonIndex{
                 //[calEvent setNotes:[_event getDescription]];//solved
                 
                 NSArray *reocurrences = [MonthFactory getReocurrencesOfEvent:_event];
+                NSInteger reCount;
+                reCount = [reocurrences count];
+                NSLog(@"%ld",(long)reCount);
                 if ([reocurrences count] > 1)
                 {
                     UIAlertController * alert  = [UIAlertController alertControllerWithTitle:@"Multiple occurences detected."

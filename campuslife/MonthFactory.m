@@ -215,6 +215,8 @@ static NSMutableDictionary *monthCache;
 +(NSArray *) getReocurrencesOfEvent:(LCSCEvent *)event
 {
     NSMutableArray *reoccurrences = [[NSMutableArray alloc] init];
+    NSMutableArray *backReoccurrences = [[NSMutableArray alloc]init];
+    NSMutableArray *finalReoccurrences = [[NSMutableArray alloc]init];
     NSInteger curDay = [event getStartDay];
     NSInteger today = curDay - 1;
     NSInteger curMonth = [event getStartMonth];
@@ -224,6 +226,7 @@ static NSMutableDictionary *monthCache;
     BOOL done = NO;
     NSString *eventSummary = [[event getSummary]
                               stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    eventSummary = [eventSummary uppercaseString];
     while([MonthFactory checkCacheForMonth:curMonth andYear:curYear] && !done) {
         NSString *indexStr = [MonthFactory getIndexStr:curMonth :curYear];
         MonthOfEvents *curEventMonth = [monthCache objectForKey:indexStr];
@@ -234,6 +237,7 @@ static NSMutableDictionary *monthCache;
             for(LCSCEvent *otherEvent in day) {
                 NSString *otherSummary = [[otherEvent getSummary]
                                           stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                otherSummary = [otherSummary uppercaseString];
                 if([eventSummary isEqualToString:otherSummary]) {
                     [reoccurrences addObject:otherEvent];
                     eventInDay = YES;
@@ -259,8 +263,9 @@ static NSMutableDictionary *monthCache;
             for(LCSCEvent *otherEvent in day) {
                 NSString *otherSummary = [[otherEvent getSummary]
                                           stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                otherSummary = [otherSummary uppercaseString];
                 if([eventSummary isEqualToString:otherSummary]) {
-                    [reoccurrences addObject:otherEvent];
+                    [backReoccurrences addObject:otherEvent];
                     eventInDay = YES;
                 }
             }
@@ -281,8 +286,10 @@ static NSMutableDictionary *monthCache;
             today = 30;
         }
     }
+    
+    return [reoccurrences arrayByAddingObjectsFromArray:backReoccurrences];
 
-    return reoccurrences;
+    //return reoccurrences;
 }
 
 

@@ -18,10 +18,20 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     
     
     @IBAction func cameraButtonTapped(sender: UIBarButtonItem) {
+        initImageCropping()
+    }
+    
+    
+    @IBAction func takeAPictureTapped(sender: UIButton) {
+        initImageCropping()
+    }
+    
+    func initImageCropping(){
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .Camera
         presentViewController((imagePicker), animated: true, completion: nil)
+
     }
     
     func promptAlet(title: String, message: String){
