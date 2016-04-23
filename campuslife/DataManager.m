@@ -6,7 +6,6 @@
 //  Copyright © 2016 LCSC. All rights reserved.
 //
 #import <foundation/Foundation.h>
-//#import "ServerClient.h"
 #import "DataManager.h"
 #import "CalendarInfo.h"
 #import "JsonParser.h"
@@ -51,10 +50,7 @@ DataCache *dataCache = nil;
         dataCacheLock = [[NSLock alloc] init];
         time(&lastTime);
         time(&lastUpdate);
-        //serverClient = [[ServerClient alloc] init];
-        //[self maintainCache];
-        //[self getCache];
-        elapsedTime = 1000;
+        elapsedTime = 1000 + CACHE_UPDATE_INTERVAL; //this is ment to force a cacheRebuild
         error = pthread_create(&timeThreadStruct, NULL, timeHeartBeat, NULL );
         if (error)
         {
